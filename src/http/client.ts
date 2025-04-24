@@ -17,49 +17,44 @@ async function getHeaders(
     ...(headers || {}),
   };
 
-  // Get token from cookie
-  let token: string | undefined;
-
-  // Check if we're in a browser environment
-  if (typeof document !== "undefined") {
-    // Client-side: Get token from document.cookie
-    token = document.cookie
+  if (typeof window !== "undefined") {
+    ("use client");
+    // Get token from cookie manually
+    const token = document.cookie
       .split("; ")
       .find((row) => row.startsWith("access_token="))
       ?.split("=")[1];
-  } else if (cookies) {
-    // Server-side: Parse cookies string passed as parameter
-    token = cookies
-      .split("; ")
-      .find((row) => row.startsWith("access_token="))
-      ?.split("=")[1];
-  }
 
-  // Adicionar o token de autenticação se existir
-  if (token) {
-    return {
-      ...baseHeaders,
-      Authorization: `Bearer ${token}`,
-    };
-  }
+    // Adicionar o token de autenticação se existir
+    if (token) {
+      return {
+        ...baseHeaders,
+        Authorization: `Bearer ${token}`,
+      };
+    }
 
-  return baseHeaders;
+    return baseHeaders;
+  } else {
+    ("use server");
+    // Get token from cookies in server context
+    const { cookies } = await import("next/headers");
+    const cookieStore = cookies();
+    const token = (await cookieStore).get("access_token")?.value;
+
+    // Adicionar o token de autenticação se existir
+    if (token) {
+      return {
+        ...baseHeaders,
+        Authorization: `Bearer ${token}`,
+      };
+    }
+
+    return baseHeaders;
+  }
 }
 
-export async function http<T>(
-  path: string,
-  options: RequestInit,
-  cookies?: string
-): Promise<T> {
-  // Define o tipo para o segundo parâmetro para uso com o Orval
-  type SecondParameter<T extends (...args: any) => any> = T extends (
-    arg1: any,
-    arg2: infer P,
-    ...args: any[]
-  ) => any
-    ? P
-    : never;
-  const requestHeaders = await getHeaders(options.headers, cookies);
+export async function http<T>(path: string, options: RequestInit): Promise<T> {
+  const requestHeaders = await getHeaders(options.headers);
 
   const url = new URL(path, "http://localhost:3333");
 

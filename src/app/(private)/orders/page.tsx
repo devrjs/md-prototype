@@ -1,9 +1,7 @@
-"use client";
+import { getOrders } from "@/http/orval/api";
 
-import { useGetOrders } from "@/http/orval/api";
-
-export default function Order() {
-  const { data } = useGetOrders();
+export default async function Order() {
+  const data = await getOrders();
 
   return (
     <div>
