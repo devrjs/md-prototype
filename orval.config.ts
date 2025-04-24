@@ -15,10 +15,19 @@ export default defineConfig({
         fetch: {
           includeHttpResponseReturnType: false,
         },
-
+        operations: {
+          // Adiciona o parâmetro cookies para todas as operações
+          // para permitir o uso no servidor
+          operationName: (operation) => {
+            return operation;
+          },
+        },
         mutator: {
           path: "./src/http/client.ts",
           name: "http",
+          // Adiciona o parâmetro de cookies para o mutator
+          // para permitir o uso no servidor
+          additionalArgs: ["cookies?: string"],
         },
       },
     },
