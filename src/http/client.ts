@@ -14,21 +14,40 @@ async function getHeaders(headers?: HeadersInit): Promise<HeadersInit> {
     ...(headers || {}),
   };
 
-  // Get token from cookie manually
-  const token = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("access_token="))
-    ?.split("=")[1];
+  if (typeof window !== "undefined") {
+    ("use client");
+    // Get token from cookie manually
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("access_token="))
+      ?.split("=")[1];
 
-  // Adicionar o token de autenticação se existir
-  if (token) {
-    return {
-      ...baseHeaders,
-      Authorization: `Bearer ${token}`,
-    };
+    // Adicionar o token de autenticação se existir
+    if (token) {
+      return {
+        ...baseHeaders,
+        Authorization: `Bearer ${token}`,
+      };
+    }
+
+    return baseHeaders;
+  } else {
+    ("use server");
+    // Get token from cookies in server context
+    const { cookies } = await import("next/headers");
+    const cookieStore = cookies();
+    const token = (await cookieStore).get("access_token")?.value;
+
+    // Adicionar o token de autenticação se existir
+    if (token) {
+      return {
+        ...baseHeaders,
+        Authorization: `Bearer ${token}`,
+      };
+    }
+
+    return baseHeaders;
   }
-
-  return baseHeaders;
 }
 
 export async function http<T>(path: string, options: RequestInit): Promise<T> {

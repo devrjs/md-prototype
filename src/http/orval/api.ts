@@ -10,9 +10,14 @@ import {
   useQuery
 } from '@tanstack/react-query';
 import type {
+  DataTag,
+  DefinedInitialDataOptions,
+  DefinedUseQueryResult,
   MutationFunction,
+  QueryClient,
   QueryFunction,
   QueryKey,
+  UndefinedInitialDataOptions,
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
@@ -2167,6 +2172,20 @@ export type GetOrders200 = {
   orders: GetOrders200OrdersItem[];
 };
 
+export type GetOrdersId200ItemsItem = {
+  id: string;
+  variation_sku: string;
+  name: string;
+  quantity: number;
+  unit_price: number;
+  unit_price_with_discount: number;
+  created_at: string;
+  updated_at: string;
+  order_id: string;
+  /** @nullable */
+  product_variation_id: string | null;
+};
+
 /**
  * Detalhes do pedido obtidos com sucesso.
  */
@@ -2177,6 +2196,10 @@ export type GetOrdersId200 = {
   order_placed_at: string;
   created_at: string;
   updated_at: string;
+  user_id: string;
+  customer_id: string;
+  address_id: string;
+  items: GetOrdersId200ItemsItem[];
 };
 
 /**
@@ -2459,7 +2482,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostUsers = <TError = PostUsers409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postUsers>>, TError,{data: PostUsersBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postUsers>>,
         TError,
         {data: PostUsersBody},
@@ -2468,7 +2491,7 @@ export const usePostUsers = <TError = PostUsers409,
 
       const mutationOptions = getPostUsersMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -2532,7 +2555,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostSessionsPassword = <TError = PostSessionsPassword400,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postSessionsPassword>>, TError,{data: PostSessionsPasswordBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postSessionsPassword>>,
         TError,
         {data: PostSessionsPasswordBody},
@@ -2541,7 +2564,7 @@ export const usePostSessionsPassword = <TError = PostSessionsPassword400,
 
       const mutationOptions = getPostSessionsPasswordMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -2574,7 +2597,7 @@ export const getGetUsersProfileQueryKey = () => {
     }
 
     
-export const getGetUsersProfileQueryOptions = <TData = Awaited<ReturnType<typeof getUsersProfile>>, TError = GetUsersProfile401 | GetUsersProfile404>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetUsersProfileQueryOptions = <TData = Awaited<ReturnType<typeof getUsersProfile>>, TError = GetUsersProfile401 | GetUsersProfile404>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -2589,25 +2612,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetUsersProfileQueryResult = NonNullable<Awaited<ReturnType<typeof getUsersProfile>>>
 export type GetUsersProfileQueryError = GetUsersProfile401 | GetUsersProfile404
 
 
+export function useGetUsersProfile<TData = Awaited<ReturnType<typeof getUsersProfile>>, TError = GetUsersProfile401 | GetUsersProfile404>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getUsersProfile>>,
+          TError,
+          Awaited<ReturnType<typeof getUsersProfile>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetUsersProfile<TData = Awaited<ReturnType<typeof getUsersProfile>>, TError = GetUsersProfile401 | GetUsersProfile404>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getUsersProfile>>,
+          TError,
+          Awaited<ReturnType<typeof getUsersProfile>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetUsersProfile<TData = Awaited<ReturnType<typeof getUsersProfile>>, TError = GetUsersProfile401 | GetUsersProfile404>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna dados de perfil do usuário.
  */
 
 export function useGetUsersProfile<TData = Awaited<ReturnType<typeof getUsersProfile>>, TError = GetUsersProfile401 | GetUsersProfile404>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUsersProfile>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetUsersProfileQueryOptions(options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -2678,7 +2725,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostCustomers = <TError = PostCustomers401 | PostCustomers409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postCustomers>>, TError,{data: PostCustomersBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postCustomers>>,
         TError,
         {data: PostCustomersBody},
@@ -2687,7 +2734,7 @@ export const usePostCustomers = <TError = PostCustomers401 | PostCustomers409,
 
       const mutationOptions = getPostCustomersMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -2727,7 +2774,7 @@ export const getGetCustomersQueryKey = (params?: GetCustomersParams,) => {
     }
 
     
-export const getGetCustomersQueryOptions = <TData = Awaited<ReturnType<typeof getCustomers>>, TError = GetCustomers401 | GetCustomers404>(params?: GetCustomersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetCustomersQueryOptions = <TData = Awaited<ReturnType<typeof getCustomers>>, TError = GetCustomers401 | GetCustomers404>(params?: GetCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -2742,25 +2789,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetCustomersQueryResult = NonNullable<Awaited<ReturnType<typeof getCustomers>>>
 export type GetCustomersQueryError = GetCustomers401 | GetCustomers404
 
 
+export function useGetCustomers<TData = Awaited<ReturnType<typeof getCustomers>>, TError = GetCustomers401 | GetCustomers404>(
+ params: undefined |  GetCustomersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getCustomers>>,
+          TError,
+          Awaited<ReturnType<typeof getCustomers>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetCustomers<TData = Awaited<ReturnType<typeof getCustomers>>, TError = GetCustomers401 | GetCustomers404>(
+ params?: GetCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getCustomers>>,
+          TError,
+          Awaited<ReturnType<typeof getCustomers>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetCustomers<TData = Awaited<ReturnType<typeof getCustomers>>, TError = GetCustomers401 | GetCustomers404>(
+ params?: GetCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de clientes castrados.
  */
 
 export function useGetCustomers<TData = Awaited<ReturnType<typeof getCustomers>>, TError = GetCustomers401 | GetCustomers404>(
- params?: GetCustomersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params?: GetCustomersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomers>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetCustomersQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -2800,7 +2871,7 @@ export const getGetCustomersIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetCustomersIdQueryOptions = <TData = Awaited<ReturnType<typeof getCustomersId>>, TError = GetCustomersId401 | GetCustomersId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetCustomersIdQueryOptions = <TData = Awaited<ReturnType<typeof getCustomersId>>, TError = GetCustomersId401 | GetCustomersId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -2815,25 +2886,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetCustomersIdQueryResult = NonNullable<Awaited<ReturnType<typeof getCustomersId>>>
 export type GetCustomersIdQueryError = GetCustomersId401 | GetCustomersId404
 
 
+export function useGetCustomersId<TData = Awaited<ReturnType<typeof getCustomersId>>, TError = GetCustomersId401 | GetCustomersId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getCustomersId>>,
+          TError,
+          Awaited<ReturnType<typeof getCustomersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetCustomersId<TData = Awaited<ReturnType<typeof getCustomersId>>, TError = GetCustomersId401 | GetCustomersId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getCustomersId>>,
+          TError,
+          Awaited<ReturnType<typeof getCustomersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetCustomersId<TData = Awaited<ReturnType<typeof getCustomersId>>, TError = GetCustomersId401 | GetCustomersId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna informações de um cliente específico.
  */
 
 export function useGetCustomersId<TData = Awaited<ReturnType<typeof getCustomersId>>, TError = GetCustomersId401 | GetCustomersId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getCustomersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetCustomersIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -2905,7 +3000,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutCustomersId = <TError = PutCustomersId401 | PutCustomersId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putCustomersId>>, TError,{id: string;data: PutCustomersIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putCustomersId>>,
         TError,
         {id: string;data: PutCustomersIdBody},
@@ -2914,7 +3009,7 @@ export const usePutCustomersId = <TError = PutCustomersId401 | PutCustomersId404
 
       const mutationOptions = getPutCustomersIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -2977,7 +3072,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteCustomersId = <TError = DeleteCustomersId401 | DeleteCustomersId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteCustomersId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteCustomersId>>,
         TError,
         {id: string},
@@ -2986,7 +3081,7 @@ export const useDeleteCustomersId = <TError = DeleteCustomersId401 | DeleteCusto
 
       const mutationOptions = getDeleteCustomersIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3050,7 +3145,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostSuppliers = <TError = PostSuppliers401 | PostSuppliers409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postSuppliers>>, TError,{data: PostSuppliersBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postSuppliers>>,
         TError,
         {data: PostSuppliersBody},
@@ -3059,7 +3154,7 @@ export const usePostSuppliers = <TError = PostSuppliers401 | PostSuppliers409,
 
       const mutationOptions = getPostSuppliersMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3099,7 +3194,7 @@ export const getGetSuppliersQueryKey = (params?: GetSuppliersParams,) => {
     }
 
     
-export const getGetSuppliersQueryOptions = <TData = Awaited<ReturnType<typeof getSuppliers>>, TError = GetSuppliers401 | GetSuppliers404>(params?: GetSuppliersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetSuppliersQueryOptions = <TData = Awaited<ReturnType<typeof getSuppliers>>, TError = GetSuppliers401 | GetSuppliers404>(params?: GetSuppliersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -3114,25 +3209,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetSuppliersQueryResult = NonNullable<Awaited<ReturnType<typeof getSuppliers>>>
 export type GetSuppliersQueryError = GetSuppliers401 | GetSuppliers404
 
 
+export function useGetSuppliers<TData = Awaited<ReturnType<typeof getSuppliers>>, TError = GetSuppliers401 | GetSuppliers404>(
+ params: undefined |  GetSuppliersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSuppliers>>,
+          TError,
+          Awaited<ReturnType<typeof getSuppliers>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetSuppliers<TData = Awaited<ReturnType<typeof getSuppliers>>, TError = GetSuppliers401 | GetSuppliers404>(
+ params?: GetSuppliersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSuppliers>>,
+          TError,
+          Awaited<ReturnType<typeof getSuppliers>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetSuppliers<TData = Awaited<ReturnType<typeof getSuppliers>>, TError = GetSuppliers401 | GetSuppliers404>(
+ params?: GetSuppliersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de fornecedores cadastrados.
  */
 
 export function useGetSuppliers<TData = Awaited<ReturnType<typeof getSuppliers>>, TError = GetSuppliers401 | GetSuppliers404>(
- params?: GetSuppliersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params?: GetSuppliersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliers>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetSuppliersQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -3171,7 +3290,7 @@ export const getGetSuppliersIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetSuppliersIdQueryOptions = <TData = Awaited<ReturnType<typeof getSuppliersId>>, TError = GetSuppliersId401 | GetSuppliersId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetSuppliersIdQueryOptions = <TData = Awaited<ReturnType<typeof getSuppliersId>>, TError = GetSuppliersId401 | GetSuppliersId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -3186,25 +3305,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetSuppliersIdQueryResult = NonNullable<Awaited<ReturnType<typeof getSuppliersId>>>
 export type GetSuppliersIdQueryError = GetSuppliersId401 | GetSuppliersId404
 
 
+export function useGetSuppliersId<TData = Awaited<ReturnType<typeof getSuppliersId>>, TError = GetSuppliersId401 | GetSuppliersId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSuppliersId>>,
+          TError,
+          Awaited<ReturnType<typeof getSuppliersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetSuppliersId<TData = Awaited<ReturnType<typeof getSuppliersId>>, TError = GetSuppliersId401 | GetSuppliersId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getSuppliersId>>,
+          TError,
+          Awaited<ReturnType<typeof getSuppliersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetSuppliersId<TData = Awaited<ReturnType<typeof getSuppliersId>>, TError = GetSuppliersId401 | GetSuppliersId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna as informações de um fornecedor específico.
  */
 
 export function useGetSuppliersId<TData = Awaited<ReturnType<typeof getSuppliersId>>, TError = GetSuppliersId401 | GetSuppliersId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getSuppliersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetSuppliersIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -3276,7 +3419,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutSuppliersId = <TError = PutSuppliersId401 | PutSuppliersId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putSuppliersId>>, TError,{id: string;data: PutSuppliersIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putSuppliersId>>,
         TError,
         {id: string;data: PutSuppliersIdBody},
@@ -3285,7 +3428,7 @@ export const usePutSuppliersId = <TError = PutSuppliersId401 | PutSuppliersId404
 
       const mutationOptions = getPutSuppliersIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3348,7 +3491,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteSuppliersId = <TError = DeleteSuppliersId401 | DeleteSuppliersId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteSuppliersId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteSuppliersId>>,
         TError,
         {id: string},
@@ -3357,7 +3500,7 @@ export const useDeleteSuppliersId = <TError = DeleteSuppliersId401 | DeleteSuppl
 
       const mutationOptions = getDeleteSuppliersIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3421,7 +3564,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostEmployees = <TError = PostEmployees401 | PostEmployees409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postEmployees>>, TError,{data: PostEmployeesBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postEmployees>>,
         TError,
         {data: PostEmployeesBody},
@@ -3430,7 +3573,7 @@ export const usePostEmployees = <TError = PostEmployees401 | PostEmployees409,
 
       const mutationOptions = getPostEmployeesMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3470,7 +3613,7 @@ export const getGetEmployeesQueryKey = (params?: GetEmployeesParams,) => {
     }
 
     
-export const getGetEmployeesQueryOptions = <TData = Awaited<ReturnType<typeof getEmployees>>, TError = GetEmployees401 | GetEmployees404>(params?: GetEmployeesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetEmployeesQueryOptions = <TData = Awaited<ReturnType<typeof getEmployees>>, TError = GetEmployees401 | GetEmployees404>(params?: GetEmployeesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -3485,25 +3628,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetEmployeesQueryResult = NonNullable<Awaited<ReturnType<typeof getEmployees>>>
 export type GetEmployeesQueryError = GetEmployees401 | GetEmployees404
 
 
+export function useGetEmployees<TData = Awaited<ReturnType<typeof getEmployees>>, TError = GetEmployees401 | GetEmployees404>(
+ params: undefined |  GetEmployeesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getEmployees>>,
+          TError,
+          Awaited<ReturnType<typeof getEmployees>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetEmployees<TData = Awaited<ReturnType<typeof getEmployees>>, TError = GetEmployees401 | GetEmployees404>(
+ params?: GetEmployeesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getEmployees>>,
+          TError,
+          Awaited<ReturnType<typeof getEmployees>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetEmployees<TData = Awaited<ReturnType<typeof getEmployees>>, TError = GetEmployees401 | GetEmployees404>(
+ params?: GetEmployeesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de colaboradores cadastrados.
  */
 
 export function useGetEmployees<TData = Awaited<ReturnType<typeof getEmployees>>, TError = GetEmployees401 | GetEmployees404>(
- params?: GetEmployeesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params?: GetEmployeesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployees>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetEmployeesQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -3543,7 +3710,7 @@ export const getGetEmployeesIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetEmployeesIdQueryOptions = <TData = Awaited<ReturnType<typeof getEmployeesId>>, TError = GetEmployeesId401 | GetEmployeesId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetEmployeesIdQueryOptions = <TData = Awaited<ReturnType<typeof getEmployeesId>>, TError = GetEmployeesId401 | GetEmployeesId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -3558,25 +3725,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetEmployeesIdQueryResult = NonNullable<Awaited<ReturnType<typeof getEmployeesId>>>
 export type GetEmployeesIdQueryError = GetEmployeesId401 | GetEmployeesId404
 
 
+export function useGetEmployeesId<TData = Awaited<ReturnType<typeof getEmployeesId>>, TError = GetEmployeesId401 | GetEmployeesId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getEmployeesId>>,
+          TError,
+          Awaited<ReturnType<typeof getEmployeesId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetEmployeesId<TData = Awaited<ReturnType<typeof getEmployeesId>>, TError = GetEmployeesId401 | GetEmployeesId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getEmployeesId>>,
+          TError,
+          Awaited<ReturnType<typeof getEmployeesId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetEmployeesId<TData = Awaited<ReturnType<typeof getEmployeesId>>, TError = GetEmployeesId401 | GetEmployeesId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna informações um colaborador específico.
  */
 
 export function useGetEmployeesId<TData = Awaited<ReturnType<typeof getEmployeesId>>, TError = GetEmployeesId401 | GetEmployeesId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getEmployeesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetEmployeesIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -3648,7 +3839,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutEmployeesId = <TError = PutEmployeesId401 | PutEmployeesId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putEmployeesId>>, TError,{id: string;data: PutEmployeesIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putEmployeesId>>,
         TError,
         {id: string;data: PutEmployeesIdBody},
@@ -3657,7 +3848,7 @@ export const usePutEmployeesId = <TError = PutEmployeesId401 | PutEmployeesId404
 
       const mutationOptions = getPutEmployeesIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3720,7 +3911,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteEmployeesId = <TError = DeleteEmployeesId401 | DeleteEmployeesId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteEmployeesId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteEmployeesId>>,
         TError,
         {id: string},
@@ -3729,7 +3920,7 @@ export const useDeleteEmployeesId = <TError = DeleteEmployeesId401 | DeleteEmplo
 
       const mutationOptions = getDeleteEmployeesIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3793,7 +3984,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostProducts = <TError = PostProducts401 | PostProducts404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postProducts>>, TError,{data: PostProductsBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postProducts>>,
         TError,
         {data: PostProductsBody},
@@ -3802,7 +3993,7 @@ export const usePostProducts = <TError = PostProducts401 | PostProducts404,
 
       const mutationOptions = getPostProductsMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -3842,7 +4033,7 @@ export const getGetProductsQueryKey = (params?: GetProductsParams,) => {
     }
 
     
-export const getGetProductsQueryOptions = <TData = Awaited<ReturnType<typeof getProducts>>, TError = GetProducts401>(params?: GetProductsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsQueryOptions = <TData = Awaited<ReturnType<typeof getProducts>>, TError = GetProducts401>(params?: GetProductsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -3857,25 +4048,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsQueryResult = NonNullable<Awaited<ReturnType<typeof getProducts>>>
 export type GetProductsQueryError = GetProducts401
 
 
+export function useGetProducts<TData = Awaited<ReturnType<typeof getProducts>>, TError = GetProducts401>(
+ params: undefined |  GetProductsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProducts>>,
+          TError,
+          Awaited<ReturnType<typeof getProducts>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProducts<TData = Awaited<ReturnType<typeof getProducts>>, TError = GetProducts401>(
+ params?: GetProductsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProducts>>,
+          TError,
+          Awaited<ReturnType<typeof getProducts>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProducts<TData = Awaited<ReturnType<typeof getProducts>>, TError = GetProducts401>(
+ params?: GetProductsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de produtos cadastrados.
  */
 
 export function useGetProducts<TData = Awaited<ReturnType<typeof getProducts>>, TError = GetProducts401>(
- params?: GetProductsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params?: GetProductsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProducts>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -3915,7 +4130,7 @@ export const getGetProductsIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetProductsIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsId>>, TError = GetProductsId401 | GetProductsId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsId>>, TError = GetProductsId401 | GetProductsId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -3930,25 +4145,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsIdQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsId>>>
 export type GetProductsIdQueryError = GetProductsId401 | GetProductsId404
 
 
+export function useGetProductsId<TData = Awaited<ReturnType<typeof getProductsId>>, TError = GetProductsId401 | GetProductsId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsId<TData = Awaited<ReturnType<typeof getProductsId>>, TError = GetProductsId401 | GetProductsId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsId<TData = Awaited<ReturnType<typeof getProductsId>>, TError = GetProductsId401 | GetProductsId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna as informações de um produto específico.
  */
 
 export function useGetProductsId<TData = Awaited<ReturnType<typeof getProductsId>>, TError = GetProductsId401 | GetProductsId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -4020,7 +4259,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutProductsId = <TError = PutProductsId401 | PutProductsId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putProductsId>>, TError,{id: string;data: PutProductsIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putProductsId>>,
         TError,
         {id: string;data: PutProductsIdBody},
@@ -4029,7 +4268,7 @@ export const usePutProductsId = <TError = PutProductsId401 | PutProductsId404,
 
       const mutationOptions = getPutProductsIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4092,7 +4331,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteProductsId = <TError = DeleteProductsId401 | DeleteProductsId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProductsId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProductsId>>,
         TError,
         {id: string},
@@ -4101,7 +4340,7 @@ export const useDeleteProductsId = <TError = DeleteProductsId401 | DeleteProduct
 
       const mutationOptions = getDeleteProductsIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4169,7 +4408,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostProductsUpload = <TError = PostProductsUpload400 | PostProductsUpload401,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postProductsUpload>>, TError,{data: PostProductsUploadBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postProductsUpload>>,
         TError,
         {data: PostProductsUploadBody},
@@ -4178,7 +4417,7 @@ export const usePostProductsUpload = <TError = PostProductsUpload400 | PostProdu
 
       const mutationOptions = getPostProductsUploadMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4211,7 +4450,7 @@ export const getGetProductsMeasurementUnitsQueryKey = () => {
     }
 
     
-export const getGetProductsMeasurementUnitsQueryOptions = <TData = Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError = GetProductsMeasurementUnits401>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsMeasurementUnitsQueryOptions = <TData = Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError = GetProductsMeasurementUnits401>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -4226,25 +4465,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsMeasurementUnitsQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsMeasurementUnits>>>
 export type GetProductsMeasurementUnitsQueryError = GetProductsMeasurementUnits401
 
 
+export function useGetProductsMeasurementUnits<TData = Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError = GetProductsMeasurementUnits401>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsMeasurementUnits>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsMeasurementUnits>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsMeasurementUnits<TData = Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError = GetProductsMeasurementUnits401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsMeasurementUnits>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsMeasurementUnits>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsMeasurementUnits<TData = Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError = GetProductsMeasurementUnits401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de unidades de medida de produtos.
  */
 
 export function useGetProductsMeasurementUnits<TData = Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError = GetProductsMeasurementUnits401>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsMeasurementUnits>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsMeasurementUnitsQueryOptions(options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -4315,7 +4578,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostProductsBrands = <TError = PostProductsBrands401 | PostProductsBrands409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postProductsBrands>>, TError,{data: PostProductsBrandsBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postProductsBrands>>,
         TError,
         {data: PostProductsBrandsBody},
@@ -4324,7 +4587,7 @@ export const usePostProductsBrands = <TError = PostProductsBrands401 | PostProdu
 
       const mutationOptions = getPostProductsBrandsMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4357,7 +4620,7 @@ export const getGetProductsBrandsQueryKey = () => {
     }
 
     
-export const getGetProductsBrandsQueryOptions = <TData = Awaited<ReturnType<typeof getProductsBrands>>, TError = GetProductsBrands401>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsBrandsQueryOptions = <TData = Awaited<ReturnType<typeof getProductsBrands>>, TError = GetProductsBrands401>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -4372,25 +4635,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsBrandsQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsBrands>>>
 export type GetProductsBrandsQueryError = GetProductsBrands401
 
 
+export function useGetProductsBrands<TData = Awaited<ReturnType<typeof getProductsBrands>>, TError = GetProductsBrands401>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsBrands>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsBrands>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsBrands<TData = Awaited<ReturnType<typeof getProductsBrands>>, TError = GetProductsBrands401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsBrands>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsBrands>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsBrands<TData = Awaited<ReturnType<typeof getProductsBrands>>, TError = GetProductsBrands401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de marcas cadastradas.
  */
 
 export function useGetProductsBrands<TData = Awaited<ReturnType<typeof getProductsBrands>>, TError = GetProductsBrands401>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsBrands>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsBrandsQueryOptions(options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -4460,7 +4747,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteProductsBrandsId = <TError = DeleteProductsBrandsId401 | DeleteProductsBrandsId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProductsBrandsId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProductsBrandsId>>,
         TError,
         {id: string},
@@ -4469,7 +4756,7 @@ export const useDeleteProductsBrandsId = <TError = DeleteProductsBrandsId401 | D
 
       const mutationOptions = getDeleteProductsBrandsIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4533,7 +4820,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostProductsCategories = <TError = PostProductsCategories401 | PostProductsCategories409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postProductsCategories>>, TError,{data: PostProductsCategoriesBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postProductsCategories>>,
         TError,
         {data: PostProductsCategoriesBody},
@@ -4542,7 +4829,7 @@ export const usePostProductsCategories = <TError = PostProductsCategories401 | P
 
       const mutationOptions = getPostProductsCategoriesMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4575,7 +4862,7 @@ export const getGetProductsCategoriesQueryKey = () => {
     }
 
     
-export const getGetProductsCategoriesQueryOptions = <TData = Awaited<ReturnType<typeof getProductsCategories>>, TError = GetProductsCategories401>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsCategoriesQueryOptions = <TData = Awaited<ReturnType<typeof getProductsCategories>>, TError = GetProductsCategories401>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -4590,25 +4877,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsCategoriesQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsCategories>>>
 export type GetProductsCategoriesQueryError = GetProductsCategories401
 
 
+export function useGetProductsCategories<TData = Awaited<ReturnType<typeof getProductsCategories>>, TError = GetProductsCategories401>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsCategories>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsCategories>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsCategories<TData = Awaited<ReturnType<typeof getProductsCategories>>, TError = GetProductsCategories401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsCategories>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsCategories>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsCategories<TData = Awaited<ReturnType<typeof getProductsCategories>>, TError = GetProductsCategories401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de categorias de produtos cadastradas.
  */
 
 export function useGetProductsCategories<TData = Awaited<ReturnType<typeof getProductsCategories>>, TError = GetProductsCategories401>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsCategories>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsCategoriesQueryOptions(options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -4678,7 +4989,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteProductsCategoriesId = <TError = DeleteProductsCategoriesId401 | DeleteProductsCategoriesId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProductsCategoriesId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProductsCategoriesId>>,
         TError,
         {id: string},
@@ -4687,7 +4998,7 @@ export const useDeleteProductsCategoriesId = <TError = DeleteProductsCategoriesI
 
       const mutationOptions = getDeleteProductsCategoriesIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4751,7 +5062,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostProductsAttributesNames = <TError = PostProductsAttributesNames401 | PostProductsAttributesNames409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postProductsAttributesNames>>, TError,{data: PostProductsAttributesNamesBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postProductsAttributesNames>>,
         TError,
         {data: PostProductsAttributesNamesBody},
@@ -4760,7 +5071,7 @@ export const usePostProductsAttributesNames = <TError = PostProductsAttributesNa
 
       const mutationOptions = getPostProductsAttributesNamesMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4800,7 +5111,7 @@ export const getGetProductsAttributesNamesQueryKey = (params?: GetProductsAttrib
     }
 
     
-export const getGetProductsAttributesNamesQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesNames>>, TError = GetProductsAttributesNames401>(params?: GetProductsAttributesNamesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsAttributesNamesQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesNames>>, TError = GetProductsAttributesNames401>(params?: GetProductsAttributesNamesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -4815,25 +5126,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsAttributesNamesQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsAttributesNames>>>
 export type GetProductsAttributesNamesQueryError = GetProductsAttributesNames401
 
 
+export function useGetProductsAttributesNames<TData = Awaited<ReturnType<typeof getProductsAttributesNames>>, TError = GetProductsAttributesNames401>(
+ params: undefined |  GetProductsAttributesNamesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesNames>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesNames>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesNames<TData = Awaited<ReturnType<typeof getProductsAttributesNames>>, TError = GetProductsAttributesNames401>(
+ params?: GetProductsAttributesNamesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesNames>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesNames>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesNames<TData = Awaited<ReturnType<typeof getProductsAttributesNames>>, TError = GetProductsAttributesNames401>(
+ params?: GetProductsAttributesNamesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de nomes de atributos de produto.
  */
 
 export function useGetProductsAttributesNames<TData = Awaited<ReturnType<typeof getProductsAttributesNames>>, TError = GetProductsAttributesNames401>(
- params?: GetProductsAttributesNamesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params?: GetProductsAttributesNamesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNames>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsAttributesNamesQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -4904,7 +5239,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostProductsAttributesValues = <TError = PostProductsAttributesValues401 | PostProductsAttributesValues409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postProductsAttributesValues>>, TError,{data: PostProductsAttributesValuesBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postProductsAttributesValues>>,
         TError,
         {data: PostProductsAttributesValuesBody},
@@ -4913,7 +5248,7 @@ export const usePostProductsAttributesValues = <TError = PostProductsAttributesV
 
       const mutationOptions = getPostProductsAttributesValuesMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -4953,7 +5288,7 @@ export const getGetProductsAttributesValuesQueryKey = (params: GetProductsAttrib
     }
 
     
-export const getGetProductsAttributesValuesQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesValues>>, TError = GetProductsAttributesValues401>(params: GetProductsAttributesValuesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsAttributesValuesQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesValues>>, TError = GetProductsAttributesValues401>(params: GetProductsAttributesValuesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -4968,25 +5303,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsAttributesValuesQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsAttributesValues>>>
 export type GetProductsAttributesValuesQueryError = GetProductsAttributesValues401
 
 
+export function useGetProductsAttributesValues<TData = Awaited<ReturnType<typeof getProductsAttributesValues>>, TError = GetProductsAttributesValues401>(
+ params: GetProductsAttributesValuesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesValues>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesValues>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesValues<TData = Awaited<ReturnType<typeof getProductsAttributesValues>>, TError = GetProductsAttributesValues401>(
+ params: GetProductsAttributesValuesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesValues>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesValues>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesValues<TData = Awaited<ReturnType<typeof getProductsAttributesValues>>, TError = GetProductsAttributesValues401>(
+ params: GetProductsAttributesValuesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de valores de atributos de produto.
  */
 
 export function useGetProductsAttributesValues<TData = Awaited<ReturnType<typeof getProductsAttributesValues>>, TError = GetProductsAttributesValues401>(
- params: GetProductsAttributesValuesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params: GetProductsAttributesValuesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValues>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsAttributesValuesQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -5026,7 +5385,7 @@ export const getGetProductsAttributesNamesIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetProductsAttributesNamesIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError = GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsAttributesNamesIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError = GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -5041,25 +5400,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsAttributesNamesIdQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsAttributesNamesId>>>
 export type GetProductsAttributesNamesIdQueryError = GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404
 
 
+export function useGetProductsAttributesNamesId<TData = Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError = GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesNamesId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesNamesId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesNamesId<TData = Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError = GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesNamesId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesNamesId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesNamesId<TData = Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError = GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna as informações de um nome de atributo de produto específico.
  */
 
 export function useGetProductsAttributesNamesId<TData = Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError = GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesNamesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsAttributesNamesIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -5131,7 +5514,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutProductsAttributesNamesId = <TError = PutProductsAttributesNamesId401 | PutProductsAttributesNamesId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putProductsAttributesNamesId>>, TError,{id: string;data: PutProductsAttributesNamesIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putProductsAttributesNamesId>>,
         TError,
         {id: string;data: PutProductsAttributesNamesIdBody},
@@ -5140,7 +5523,7 @@ export const usePutProductsAttributesNamesId = <TError = PutProductsAttributesNa
 
       const mutationOptions = getPutProductsAttributesNamesIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5203,7 +5586,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteProductsAttributesNamesId = <TError = DeleteProductsAttributesNamesId401 | DeleteProductsAttributesNamesId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProductsAttributesNamesId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProductsAttributesNamesId>>,
         TError,
         {id: string},
@@ -5212,7 +5595,7 @@ export const useDeleteProductsAttributesNamesId = <TError = DeleteProductsAttrib
 
       const mutationOptions = getDeleteProductsAttributesNamesIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5245,7 +5628,7 @@ export const getGetProductsAttributesValuesIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetProductsAttributesValuesIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError = GetProductsAttributesValuesId401 | GetProductsAttributesValuesId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsAttributesValuesIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError = GetProductsAttributesValuesId401 | GetProductsAttributesValuesId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -5260,25 +5643,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsAttributesValuesIdQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsAttributesValuesId>>>
 export type GetProductsAttributesValuesIdQueryError = GetProductsAttributesValuesId401 | GetProductsAttributesValuesId404
 
 
+export function useGetProductsAttributesValuesId<TData = Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError = GetProductsAttributesValuesId401 | GetProductsAttributesValuesId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesValuesId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesValuesId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesValuesId<TData = Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError = GetProductsAttributesValuesId401 | GetProductsAttributesValuesId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsAttributesValuesId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsAttributesValuesId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsAttributesValuesId<TData = Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError = GetProductsAttributesValuesId401 | GetProductsAttributesValuesId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna as informações de um valor de atributo de produto específico.
  */
 
 export function useGetProductsAttributesValuesId<TData = Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError = GetProductsAttributesValuesId401 | GetProductsAttributesValuesId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsAttributesValuesId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsAttributesValuesIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -5350,7 +5757,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutProductsAttributesValuesId = <TError = PutProductsAttributesValuesId401 | PutProductsAttributesValuesId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putProductsAttributesValuesId>>, TError,{id: string;data: PutProductsAttributesValuesIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putProductsAttributesValuesId>>,
         TError,
         {id: string;data: PutProductsAttributesValuesIdBody},
@@ -5359,7 +5766,7 @@ export const usePutProductsAttributesValuesId = <TError = PutProductsAttributesV
 
       const mutationOptions = getPutProductsAttributesValuesIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5422,7 +5829,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteProductsAttributesValuesId = <TError = DeleteProductsAttributesValuesId401 | DeleteProductsAttributesValuesId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProductsAttributesValuesId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProductsAttributesValuesId>>,
         TError,
         {id: string},
@@ -5431,7 +5838,7 @@ export const useDeleteProductsAttributesValuesId = <TError = DeleteProductsAttri
 
       const mutationOptions = getDeleteProductsAttributesValuesIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5495,7 +5902,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostProductsVariations = <TError = PostProductsVariations401 | PostProductsVariations409,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postProductsVariations>>, TError,{data: PostProductsVariationsBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postProductsVariations>>,
         TError,
         {data: PostProductsVariationsBody},
@@ -5504,7 +5911,7 @@ export const usePostProductsVariations = <TError = PostProductsVariations401 | P
 
       const mutationOptions = getPostProductsVariationsMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5544,7 +5951,7 @@ export const getGetProductsVariationsQueryKey = (params?: GetProductsVariationsP
     }
 
     
-export const getGetProductsVariationsQueryOptions = <TData = Awaited<ReturnType<typeof getProductsVariations>>, TError = GetProductsVariations401 | GetProductsVariations404>(params?: GetProductsVariationsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsVariationsQueryOptions = <TData = Awaited<ReturnType<typeof getProductsVariations>>, TError = GetProductsVariations401 | GetProductsVariations404>(params?: GetProductsVariationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -5559,25 +5966,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsVariationsQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsVariations>>>
 export type GetProductsVariationsQueryError = GetProductsVariations401 | GetProductsVariations404
 
 
+export function useGetProductsVariations<TData = Awaited<ReturnType<typeof getProductsVariations>>, TError = GetProductsVariations401 | GetProductsVariations404>(
+ params: undefined |  GetProductsVariationsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsVariations>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsVariations>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsVariations<TData = Awaited<ReturnType<typeof getProductsVariations>>, TError = GetProductsVariations401 | GetProductsVariations404>(
+ params?: GetProductsVariationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsVariations>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsVariations>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsVariations<TData = Awaited<ReturnType<typeof getProductsVariations>>, TError = GetProductsVariations401 | GetProductsVariations404>(
+ params?: GetProductsVariationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de variações de produtos.
  */
 
 export function useGetProductsVariations<TData = Awaited<ReturnType<typeof getProductsVariations>>, TError = GetProductsVariations401 | GetProductsVariations404>(
- params?: GetProductsVariationsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params?: GetProductsVariationsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariations>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsVariationsQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -5617,7 +6048,7 @@ export const getGetProductsVariationsIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetProductsVariationsIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsVariationsId>>, TError = GetProductsVariationsId401 | GetProductsVariationsId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetProductsVariationsIdQueryOptions = <TData = Awaited<ReturnType<typeof getProductsVariationsId>>, TError = GetProductsVariationsId401 | GetProductsVariationsId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -5632,25 +6063,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetProductsVariationsIdQueryResult = NonNullable<Awaited<ReturnType<typeof getProductsVariationsId>>>
 export type GetProductsVariationsIdQueryError = GetProductsVariationsId401 | GetProductsVariationsId404
 
 
+export function useGetProductsVariationsId<TData = Awaited<ReturnType<typeof getProductsVariationsId>>, TError = GetProductsVariationsId401 | GetProductsVariationsId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsVariationsId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsVariationsId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsVariationsId<TData = Awaited<ReturnType<typeof getProductsVariationsId>>, TError = GetProductsVariationsId401 | GetProductsVariationsId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getProductsVariationsId>>,
+          TError,
+          Awaited<ReturnType<typeof getProductsVariationsId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetProductsVariationsId<TData = Awaited<ReturnType<typeof getProductsVariationsId>>, TError = GetProductsVariationsId401 | GetProductsVariationsId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna as informações de uma variação de produto específica.
  */
 
 export function useGetProductsVariationsId<TData = Awaited<ReturnType<typeof getProductsVariationsId>>, TError = GetProductsVariationsId401 | GetProductsVariationsId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProductsVariationsId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetProductsVariationsIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -5722,7 +6177,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutProductsVariationsId = <TError = PutProductsVariationsId401 | PutProductsVariationsId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putProductsVariationsId>>, TError,{id: string;data: PutProductsVariationsIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putProductsVariationsId>>,
         TError,
         {id: string;data: PutProductsVariationsIdBody},
@@ -5731,7 +6186,7 @@ export const usePutProductsVariationsId = <TError = PutProductsVariationsId401 |
 
       const mutationOptions = getPutProductsVariationsIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5794,7 +6249,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteProductsVariationsId = <TError = DeleteProductsVariationsId401 | DeleteProductsVariationsId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProductsVariationsId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProductsVariationsId>>,
         TError,
         {id: string},
@@ -5803,7 +6258,7 @@ export const useDeleteProductsVariationsId = <TError = DeleteProductsVariationsI
 
       const mutationOptions = getDeleteProductsVariationsIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5867,7 +6322,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostOrders = <TError = PostOrders400 | PostOrders401 | PostOrders404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postOrders>>, TError,{data: PostOrdersBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postOrders>>,
         TError,
         {data: PostOrdersBody},
@@ -5876,7 +6331,7 @@ export const usePostOrders = <TError = PostOrders400 | PostOrders401 | PostOrder
 
       const mutationOptions = getPostOrdersMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -5916,7 +6371,7 @@ export const getGetOrdersQueryKey = (params?: GetOrdersParams,) => {
     }
 
     
-export const getGetOrdersQueryOptions = <TData = Awaited<ReturnType<typeof getOrders>>, TError = unknown>(params?: GetOrdersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetOrdersQueryOptions = <TData = Awaited<ReturnType<typeof getOrders>>, TError = unknown>(params?: GetOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -5931,25 +6386,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetOrdersQueryResult = NonNullable<Awaited<ReturnType<typeof getOrders>>>
 export type GetOrdersQueryError = unknown
 
 
+export function useGetOrders<TData = Awaited<ReturnType<typeof getOrders>>, TError = unknown>(
+ params: undefined |  GetOrdersParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getOrders>>,
+          TError,
+          Awaited<ReturnType<typeof getOrders>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetOrders<TData = Awaited<ReturnType<typeof getOrders>>, TError = unknown>(
+ params?: GetOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getOrders>>,
+          TError,
+          Awaited<ReturnType<typeof getOrders>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetOrders<TData = Awaited<ReturnType<typeof getOrders>>, TError = unknown>(
+ params?: GetOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna uma lista de pedidos.
  */
 
 export function useGetOrders<TData = Awaited<ReturnType<typeof getOrders>>, TError = unknown>(
- params?: GetOrdersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ params?: GetOrdersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrders>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetOrdersQueryOptions(params,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -5989,7 +6468,7 @@ export const getGetOrdersIdQueryKey = (id: string,) => {
     }
 
     
-export const getGetOrdersIdQueryOptions = <TData = Awaited<ReturnType<typeof getOrdersId>>, TError = GetOrdersId401 | GetOrdersId404>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetOrdersIdQueryOptions = <TData = Awaited<ReturnType<typeof getOrdersId>>, TError = GetOrdersId401 | GetOrdersId404>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -6004,25 +6483,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetOrdersIdQueryResult = NonNullable<Awaited<ReturnType<typeof getOrdersId>>>
 export type GetOrdersIdQueryError = GetOrdersId401 | GetOrdersId404
 
 
+export function useGetOrdersId<TData = Awaited<ReturnType<typeof getOrdersId>>, TError = GetOrdersId401 | GetOrdersId404>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getOrdersId>>,
+          TError,
+          Awaited<ReturnType<typeof getOrdersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetOrdersId<TData = Awaited<ReturnType<typeof getOrdersId>>, TError = GetOrdersId401 | GetOrdersId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getOrdersId>>,
+          TError,
+          Awaited<ReturnType<typeof getOrdersId>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetOrdersId<TData = Awaited<ReturnType<typeof getOrdersId>>, TError = GetOrdersId401 | GetOrdersId404>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna informações detalhadas de um pedido específico.
  */
 
 export function useGetOrdersId<TData = Awaited<ReturnType<typeof getOrdersId>>, TError = GetOrdersId401 | GetOrdersId404>(
- id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getOrdersId>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetOrdersIdQueryOptions(id,options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -6094,7 +6597,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePutOrdersId = <TError = PutOrdersId400 | PutOrdersId401 | PutOrdersId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof putOrdersId>>, TError,{id: string;data: PutOrdersIdBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof putOrdersId>>,
         TError,
         {id: string;data: PutOrdersIdBody},
@@ -6103,7 +6606,7 @@ export const usePutOrdersId = <TError = PutOrdersId400 | PutOrdersId401 | PutOrd
 
       const mutationOptions = getPutOrdersIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -6166,7 +6669,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const useDeleteOrdersId = <TError = DeleteOrdersId401 | DeleteOrdersId404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOrdersId>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteOrdersId>>,
         TError,
         {id: string},
@@ -6175,7 +6678,7 @@ export const useDeleteOrdersId = <TError = DeleteOrdersId401 | DeleteOrdersId404
 
       const mutationOptions = getDeleteOrdersIdMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 /**
@@ -6208,7 +6711,7 @@ export const getGetShopeeAuthUrlQueryKey = () => {
     }
 
     
-export const getGetShopeeAuthUrlQueryOptions = <TData = Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError = GetShopeeAuthUrl401>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData>, request?: SecondParameter<typeof http>}
+export const getGetShopeeAuthUrlQueryOptions = <TData = Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError = GetShopeeAuthUrl401>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData>>, request?: SecondParameter<typeof http>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -6223,25 +6726,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetShopeeAuthUrlQueryResult = NonNullable<Awaited<ReturnType<typeof getShopeeAuthUrl>>>
 export type GetShopeeAuthUrlQueryError = GetShopeeAuthUrl401
 
 
+export function useGetShopeeAuthUrl<TData = Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError = GetShopeeAuthUrl401>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getShopeeAuthUrl>>,
+          TError,
+          Awaited<ReturnType<typeof getShopeeAuthUrl>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetShopeeAuthUrl<TData = Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError = GetShopeeAuthUrl401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getShopeeAuthUrl>>,
+          TError,
+          Awaited<ReturnType<typeof getShopeeAuthUrl>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetShopeeAuthUrl<TData = Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError = GetShopeeAuthUrl401>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Retorna a URL para autenticação do Shopee.
  */
 
 export function useGetShopeeAuthUrl<TData = Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError = GetShopeeAuthUrl401>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData>, request?: SecondParameter<typeof http>}
-  
- ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getShopeeAuthUrl>>, TError, TData>>, request?: SecondParameter<typeof http>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getGetShopeeAuthUrlQueryOptions(options)
 
-  const query = useQuery(queryOptions ) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
   query.queryKey = queryOptions.queryKey ;
 
@@ -6312,7 +6839,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  */
 export const usePostShopeeAuthToken = <TError = PostShopeeAuthToken400 | PostShopeeAuthToken401 | PostShopeeAuthToken404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postShopeeAuthToken>>, TError,{data: PostShopeeAuthTokenBody}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postShopeeAuthToken>>,
         TError,
         {data: PostShopeeAuthTokenBody},
@@ -6321,7 +6848,7 @@ export const usePostShopeeAuthToken = <TError = PostShopeeAuthToken400 | PostSho
 
       const mutationOptions = getPostShopeeAuthTokenMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 export const getPostShopeeOrderImportUrl = (params: PostShopeeOrderImportParams,) => {
@@ -6384,7 +6911,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export const usePostShopeeOrderImport = <TError = PostShopeeOrderImport400 | PostShopeeOrderImport401 | PostShopeeOrderImport404,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postShopeeOrderImport>>, TError,{params: PostShopeeOrderImportParams}, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postShopeeOrderImport>>,
         TError,
         {params: PostShopeeOrderImportParams},
@@ -6393,7 +6920,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
       const mutationOptions = getPostShopeeOrderImportMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
     
 export const getPostShopeeDownloadShippingDocumentUrl = () => {
@@ -6449,7 +6976,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export const usePostShopeeDownloadShippingDocument = <TError = unknown,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postShopeeDownloadShippingDocument>>, TError,void, TContext>, request?: SecondParameter<typeof http>}
- ): UseMutationResult<
+ , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof postShopeeDownloadShippingDocument>>,
         TError,
         void,
@@ -6458,5 +6985,5 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
       const mutationOptions = getPostShopeeDownloadShippingDocumentMutationOptions(options);
 
-      return useMutation(mutationOptions );
+      return useMutation(mutationOptions , queryClient);
     }
