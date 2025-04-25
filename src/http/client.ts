@@ -28,10 +28,11 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
   if (typeof window !== 'undefined') {
     ;('use client')
     // Get token from cookie manually
-    const token = document.cookie
-      .split('; ')
-      .find(row => row.startsWith('access_token='))
-      ?.split('=')[1]
+    token =
+      document.cookie
+        .split('; ')
+        .find(row => row.startsWith('access_token='))
+        ?.split('=')[1] ?? ''
   } else {
     ;('use server')
     // Get token from cookies in server context
