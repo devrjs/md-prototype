@@ -18,19 +18,32 @@ export default defineConfig({
   //   done: [`biome check --write ${OUTPUT_PATH}`],
   // },
   plugins: [
-    pluginOas(),
-    pluginTs({
-      unknownType: 'unknown',
+    pluginOas({
+      validate: false,
+      generators: [],
     }),
-    // pluginZod({
+    pluginTs({
+      output: { path: 'models.ts' },
+    }),
+    pluginClient({
+      output: {
+        path: '.',
+      },
+      importPath: '@/http/client',
+    }),
+    // pluginOas(),
+    // pluginTs({
     //   unknownType: 'unknown',
     // }),
-    pluginClient({
-      client: 'fetch',
-      paramsType: 'object',
-      // parser: 'zod',
-      importPath: './src/http/client.ts',
-      baseURL: 'http://localhost:3333',
-    }),
+    // // pluginZod({
+    // //   unknownType: 'unknown',
+    // // }),
+    // pluginClient({
+    //   client: 'fetch',
+    //   paramsType: 'object',
+    //   // parser: 'zod',
+    //   importPath: '@/http/client.ts',
+    //   baseURL: 'http://localhost:3333',
+    // }),
   ],
 })

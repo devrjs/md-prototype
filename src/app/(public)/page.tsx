@@ -16,10 +16,8 @@ export default function Home() {
     event.preventDefault()
 
     const data = postSessionsPassword({
-      data: {
-        email,
-        password,
-      },
+      email,
+      password,
     })
       .then(({ access_token }) => {
         document.cookie = `access_token=${access_token}; path=/; max-age=86400; secure; samesite=strict`
