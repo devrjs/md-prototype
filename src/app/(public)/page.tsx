@@ -1,35 +1,37 @@
-"use client";
+'use client'
 
 import {
+  type GetUsersProfile200,
   getUsersProfile,
-  GetUsersProfile200,
   postSessionsPassword,
-} from "@/http/orval/api";
-import { useState } from "react";
+} from '@/http/kubb'
+import { useState } from 'react'
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [data, setData] = useState<GetUsersProfile200>();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [data, setData] = useState<GetUsersProfile200>()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     const data = postSessionsPassword({
-      email: email,
-      password: password,
+      data: {
+        email,
+        password,
+      },
     })
       .then(({ access_token }) => {
-        document.cookie = `access_token=${access_token}; path=/; max-age=86400; secure; samesite=strict`;
+        document.cookie = `access_token=${access_token}; path=/; max-age=86400; secure; samesite=strict`
       })
       .then(() => {
-        const result = getUsersProfile().then((response) => {
-          console.log(response);
+        const result = getUsersProfile().then(response => {
+          console.log(response)
 
-          setData(response);
-        });
-      });
-  };
+          setData(response)
+        })
+      })
+  }
 
   return (
     <main className="flex flex-col items-center gap-4">
@@ -42,7 +44,7 @@ export default function Home() {
             type="email"
             id="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={event => setEmail(event.target.value)}
             className="border border-gray-300 rounded-md px-3 py-2"
           />
         </div>
@@ -54,7 +56,7 @@ export default function Home() {
             type="password"
             id="password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={event => setPassword(event.target.value)}
             className="border border-gray-300 rounded-md px-3 py-2"
           />
         </div>
@@ -68,5 +70,5 @@ export default function Home() {
 
       <div>{JSON.stringify(data, null, 2)}</div>
     </main>
-  );
+  )
 }
