@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetOrdersQueryResponse, GetOrdersQueryParams } from './models.ts'
+import type { GetOrdersQueryResponseType, GetOrdersQueryParamsType } from './types/GetOrdersType.ts'
 
 function getGetOrdersUrl() {
   return `/orders` as const
@@ -16,10 +16,10 @@ function getGetOrdersUrl() {
  * @summary Retorna uma lista de pedidos.
  * {@link /orders}
  */
-export async function getOrders(params?: GetOrdersQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getOrders(params?: GetOrdersQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetOrdersQueryResponse, ResponseErrorConfig<Error>, unknown>({
+  const res = await request<GetOrdersQueryResponseType, ResponseErrorConfig<Error>, unknown>({
     method: 'GET',
     url: getGetOrdersUrl().toString(),
     params,

@@ -5,9 +5,9 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetEmployeesIdQueryResponse, GetEmployeesIdPathParams, GetEmployeesId401, GetEmployeesId404 } from './models.ts'
+import type { GetEmployeesIdQueryResponseType, GetEmployeesIdPathParamsType, GetEmployeesId401Type, GetEmployeesId404Type } from './types/GetEmployeesIdType.ts'
 
-function getGetEmployeesIdUrl(id: GetEmployeesIdPathParams['id']) {
+function getGetEmployeesIdUrl(id: GetEmployeesIdPathParamsType['id']) {
   return `/employees/${id}` as const
 }
 
@@ -16,10 +16,10 @@ function getGetEmployeesIdUrl(id: GetEmployeesIdPathParams['id']) {
  * @summary Retorna informações um colaborador específico.
  * {@link /employees/:id}
  */
-export async function getEmployeesId(id: GetEmployeesIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getEmployeesId(id: GetEmployeesIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetEmployeesIdQueryResponse, ResponseErrorConfig<GetEmployeesId401 | GetEmployeesId404>, unknown>({
+  const res = await request<GetEmployeesIdQueryResponseType, ResponseErrorConfig<GetEmployeesId401Type | GetEmployeesId404Type>, unknown>({
     method: 'GET',
     url: getGetEmployeesIdUrl(id).toString(),
     ...requestConfig,

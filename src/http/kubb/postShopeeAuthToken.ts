@@ -6,12 +6,12 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostShopeeAuthTokenMutationRequest,
-  PostShopeeAuthTokenMutationResponse,
-  PostShopeeAuthToken400,
-  PostShopeeAuthToken401,
-  PostShopeeAuthToken404,
-} from './models.ts'
+  PostShopeeAuthTokenMutationRequestType,
+  PostShopeeAuthTokenMutationResponseType,
+  PostShopeeAuthToken400Type,
+  PostShopeeAuthToken401Type,
+  PostShopeeAuthToken404Type,
+} from './types/PostShopeeAuthTokenType.ts'
 
 function getPostShopeeAuthTokenUrl() {
   return `/shopee/auth/token` as const
@@ -23,15 +23,15 @@ function getPostShopeeAuthTokenUrl() {
  * {@link /shopee/auth/token}
  */
 export async function postShopeeAuthToken(
-  data: PostShopeeAuthTokenMutationRequest,
-  config: Partial<RequestConfig<PostShopeeAuthTokenMutationRequest>> & { client?: typeof client } = {},
+  data: PostShopeeAuthTokenMutationRequestType,
+  config: Partial<RequestConfig<PostShopeeAuthTokenMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
-    PostShopeeAuthTokenMutationResponse,
-    ResponseErrorConfig<PostShopeeAuthToken400 | PostShopeeAuthToken401 | PostShopeeAuthToken404>,
-    PostShopeeAuthTokenMutationRequest
+    PostShopeeAuthTokenMutationResponseType,
+    ResponseErrorConfig<PostShopeeAuthToken400Type | PostShopeeAuthToken401Type | PostShopeeAuthToken404Type>,
+    PostShopeeAuthTokenMutationRequestType
   >({ method: 'POST', url: getPostShopeeAuthTokenUrl().toString(), data, ...requestConfig })
   return res.data
 }

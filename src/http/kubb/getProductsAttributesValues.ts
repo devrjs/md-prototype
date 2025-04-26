@@ -5,7 +5,11 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetProductsAttributesValuesQueryResponse, GetProductsAttributesValuesQueryParams, GetProductsAttributesValues401 } from './models.ts'
+import type {
+  GetProductsAttributesValuesQueryResponseType,
+  GetProductsAttributesValuesQueryParamsType,
+  GetProductsAttributesValues401Type,
+} from './types/GetProductsAttributesValuesType.ts'
 
 function getGetProductsAttributesValuesUrl() {
   return `/products/attributes/values` as const
@@ -17,12 +21,12 @@ function getGetProductsAttributesValuesUrl() {
  * {@link /products/attributes/values}
  */
 export async function getProductsAttributesValues(
-  params: GetProductsAttributesValuesQueryParams,
+  params: GetProductsAttributesValuesQueryParamsType,
   config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsAttributesValuesQueryResponse, ResponseErrorConfig<GetProductsAttributesValues401>, unknown>({
+  const res = await request<GetProductsAttributesValuesQueryResponseType, ResponseErrorConfig<GetProductsAttributesValues401Type>, unknown>({
     method: 'GET',
     url: getGetProductsAttributesValuesUrl().toString(),
     params,

@@ -5,9 +5,14 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { DeleteSuppliersIdMutationResponse, DeleteSuppliersIdPathParams, DeleteSuppliersId401, DeleteSuppliersId404 } from './models.ts'
+import type {
+  DeleteSuppliersIdMutationResponseType,
+  DeleteSuppliersIdPathParamsType,
+  DeleteSuppliersId401Type,
+  DeleteSuppliersId404Type,
+} from './types/DeleteSuppliersIdType.ts'
 
-function getDeleteSuppliersIdUrl(id: DeleteSuppliersIdPathParams['id']) {
+function getDeleteSuppliersIdUrl(id: DeleteSuppliersIdPathParamsType['id']) {
   return `/suppliers/${id}` as const
 }
 
@@ -16,10 +21,10 @@ function getDeleteSuppliersIdUrl(id: DeleteSuppliersIdPathParams['id']) {
  * @summary Remove um fornecedor específico.
  * {@link /suppliers/:id}
  */
-export async function deleteSuppliersId(id: DeleteSuppliersIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function deleteSuppliersId(id: DeleteSuppliersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<DeleteSuppliersIdMutationResponse, ResponseErrorConfig<DeleteSuppliersId401 | DeleteSuppliersId404>, unknown>({
+  const res = await request<DeleteSuppliersIdMutationResponseType, ResponseErrorConfig<DeleteSuppliersId401Type | DeleteSuppliersId404Type>, unknown>({
     method: 'DELETE',
     url: getDeleteSuppliersIdUrl(id).toString(),
     ...requestConfig,

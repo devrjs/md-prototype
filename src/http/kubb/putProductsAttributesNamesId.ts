@@ -6,14 +6,14 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PutProductsAttributesNamesIdMutationRequest,
-  PutProductsAttributesNamesIdMutationResponse,
-  PutProductsAttributesNamesIdPathParams,
-  PutProductsAttributesNamesId401,
-  PutProductsAttributesNamesId404,
-} from './models.ts'
+  PutProductsAttributesNamesIdMutationRequestType,
+  PutProductsAttributesNamesIdMutationResponseType,
+  PutProductsAttributesNamesIdPathParamsType,
+  PutProductsAttributesNamesId401Type,
+  PutProductsAttributesNamesId404Type,
+} from './types/PutProductsAttributesNamesIdType.ts'
 
-function getPutProductsAttributesNamesIdUrl(id: PutProductsAttributesNamesIdPathParams['id']) {
+function getPutProductsAttributesNamesIdUrl(id: PutProductsAttributesNamesIdPathParamsType['id']) {
   return `/products/attributes/names/${id}` as const
 }
 
@@ -23,16 +23,16 @@ function getPutProductsAttributesNamesIdUrl(id: PutProductsAttributesNamesIdPath
  * {@link /products/attributes/names/:id}
  */
 export async function putProductsAttributesNamesId(
-  id: PutProductsAttributesNamesIdPathParams['id'],
-  data: PutProductsAttributesNamesIdMutationRequest,
-  config: Partial<RequestConfig<PutProductsAttributesNamesIdMutationRequest>> & { client?: typeof client } = {},
+  id: PutProductsAttributesNamesIdPathParamsType['id'],
+  data: PutProductsAttributesNamesIdMutationRequestType,
+  config: Partial<RequestConfig<PutProductsAttributesNamesIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
-    PutProductsAttributesNamesIdMutationResponse,
-    ResponseErrorConfig<PutProductsAttributesNamesId401 | PutProductsAttributesNamesId404>,
-    PutProductsAttributesNamesIdMutationRequest
+    PutProductsAttributesNamesIdMutationResponseType,
+    ResponseErrorConfig<PutProductsAttributesNamesId401Type | PutProductsAttributesNamesId404Type>,
+    PutProductsAttributesNamesIdMutationRequestType
   >({ method: 'PUT', url: getPutProductsAttributesNamesIdUrl(id).toString(), data, ...requestConfig })
   return res.data
 }

@@ -5,9 +5,9 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetCustomersIdQueryResponse, GetCustomersIdPathParams, GetCustomersId401, GetCustomersId404 } from './models.ts'
+import type { GetCustomersIdQueryResponseType, GetCustomersIdPathParamsType, GetCustomersId401Type, GetCustomersId404Type } from './types/GetCustomersIdType.ts'
 
-function getGetCustomersIdUrl(id: GetCustomersIdPathParams['id']) {
+function getGetCustomersIdUrl(id: GetCustomersIdPathParamsType['id']) {
   return `/customers/${id}` as const
 }
 
@@ -16,10 +16,10 @@ function getGetCustomersIdUrl(id: GetCustomersIdPathParams['id']) {
  * @summary Retorna informações de um cliente específico.
  * {@link /customers/:id}
  */
-export async function getCustomersId(id: GetCustomersIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getCustomersId(id: GetCustomersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetCustomersIdQueryResponse, ResponseErrorConfig<GetCustomersId401 | GetCustomersId404>, unknown>({
+  const res = await request<GetCustomersIdQueryResponseType, ResponseErrorConfig<GetCustomersId401Type | GetCustomersId404Type>, unknown>({
     method: 'GET',
     url: getGetCustomersIdUrl(id).toString(),
     ...requestConfig,

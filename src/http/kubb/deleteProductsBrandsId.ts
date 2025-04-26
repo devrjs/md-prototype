@@ -6,13 +6,13 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteProductsBrandsIdMutationResponse,
-  DeleteProductsBrandsIdPathParams,
-  DeleteProductsBrandsId401,
-  DeleteProductsBrandsId404,
-} from './models.ts'
+  DeleteProductsBrandsIdMutationResponseType,
+  DeleteProductsBrandsIdPathParamsType,
+  DeleteProductsBrandsId401Type,
+  DeleteProductsBrandsId404Type,
+} from './types/DeleteProductsBrandsIdType.ts'
 
-function getDeleteProductsBrandsIdUrl(id: DeleteProductsBrandsIdPathParams['id']) {
+function getDeleteProductsBrandsIdUrl(id: DeleteProductsBrandsIdPathParamsType['id']) {
   return `/products/brands/${id}` as const
 }
 
@@ -21,13 +21,13 @@ function getDeleteProductsBrandsIdUrl(id: DeleteProductsBrandsIdPathParams['id']
  * @summary Remove uma marca específica.
  * {@link /products/brands/:id}
  */
-export async function deleteProductsBrandsId(id: DeleteProductsBrandsIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function deleteProductsBrandsId(id: DeleteProductsBrandsIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<DeleteProductsBrandsIdMutationResponse, ResponseErrorConfig<DeleteProductsBrandsId401 | DeleteProductsBrandsId404>, unknown>({
-    method: 'DELETE',
-    url: getDeleteProductsBrandsIdUrl(id).toString(),
-    ...requestConfig,
-  })
+  const res = await request<
+    DeleteProductsBrandsIdMutationResponseType,
+    ResponseErrorConfig<DeleteProductsBrandsId401Type | DeleteProductsBrandsId404Type>,
+    unknown
+  >({ method: 'DELETE', url: getDeleteProductsBrandsIdUrl(id).toString(), ...requestConfig })
   return res.data
 }

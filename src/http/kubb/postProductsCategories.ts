@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostProductsCategoriesMutationRequest,
-  PostProductsCategoriesMutationResponse,
-  PostProductsCategories401,
-  PostProductsCategories409,
-} from './models.ts'
+  PostProductsCategoriesMutationRequestType,
+  PostProductsCategoriesMutationResponseType,
+  PostProductsCategories401Type,
+  PostProductsCategories409Type,
+} from './types/PostProductsCategoriesType.ts'
 
 function getPostProductsCategoriesUrl() {
   return `/products/categories` as const
@@ -22,15 +22,15 @@ function getPostProductsCategoriesUrl() {
  * {@link /products/categories}
  */
 export async function postProductsCategories(
-  data: PostProductsCategoriesMutationRequest,
-  config: Partial<RequestConfig<PostProductsCategoriesMutationRequest>> & { client?: typeof client } = {},
+  data: PostProductsCategoriesMutationRequestType,
+  config: Partial<RequestConfig<PostProductsCategoriesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
-    PostProductsCategoriesMutationResponse,
-    ResponseErrorConfig<PostProductsCategories401 | PostProductsCategories409>,
-    PostProductsCategoriesMutationRequest
+    PostProductsCategoriesMutationResponseType,
+    ResponseErrorConfig<PostProductsCategories401Type | PostProductsCategories409Type>,
+    PostProductsCategoriesMutationRequestType
   >({ method: 'POST', url: getPostProductsCategoriesUrl().toString(), data, ...requestConfig })
   return res.data
 }

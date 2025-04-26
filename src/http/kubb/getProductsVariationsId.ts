@@ -6,13 +6,13 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetProductsVariationsIdQueryResponse,
-  GetProductsVariationsIdPathParams,
-  GetProductsVariationsId401,
-  GetProductsVariationsId404,
-} from './models.ts'
+  GetProductsVariationsIdQueryResponseType,
+  GetProductsVariationsIdPathParamsType,
+  GetProductsVariationsId401Type,
+  GetProductsVariationsId404Type,
+} from './types/GetProductsVariationsIdType.ts'
 
-function getGetProductsVariationsIdUrl(id: GetProductsVariationsIdPathParams['id']) {
+function getGetProductsVariationsIdUrl(id: GetProductsVariationsIdPathParamsType['id']) {
   return `/products/variations/${id}` as const
 }
 
@@ -21,13 +21,16 @@ function getGetProductsVariationsIdUrl(id: GetProductsVariationsIdPathParams['id
  * @summary Retorna as informações de uma variação de produto específica.
  * {@link /products/variations/:id}
  */
-export async function getProductsVariationsId(id: GetProductsVariationsIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProductsVariationsId(
+  id: GetProductsVariationsIdPathParamsType['id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsVariationsIdQueryResponse, ResponseErrorConfig<GetProductsVariationsId401 | GetProductsVariationsId404>, unknown>({
-    method: 'GET',
-    url: getGetProductsVariationsIdUrl(id).toString(),
-    ...requestConfig,
-  })
+  const res = await request<
+    GetProductsVariationsIdQueryResponseType,
+    ResponseErrorConfig<GetProductsVariationsId401Type | GetProductsVariationsId404Type>,
+    unknown
+  >({ method: 'GET', url: getGetProductsVariationsIdUrl(id).toString(), ...requestConfig })
   return res.data
 }

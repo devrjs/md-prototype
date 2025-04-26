@@ -5,9 +5,9 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetSuppliersIdQueryResponse, GetSuppliersIdPathParams, GetSuppliersId401, GetSuppliersId404 } from './models.ts'
+import type { GetSuppliersIdQueryResponseType, GetSuppliersIdPathParamsType, GetSuppliersId401Type, GetSuppliersId404Type } from './types/GetSuppliersIdType.ts'
 
-function getGetSuppliersIdUrl(id: GetSuppliersIdPathParams['id']) {
+function getGetSuppliersIdUrl(id: GetSuppliersIdPathParamsType['id']) {
   return `/suppliers/${id}` as const
 }
 
@@ -15,10 +15,10 @@ function getGetSuppliersIdUrl(id: GetSuppliersIdPathParams['id']) {
  * @summary Retorna as informações de um fornecedor específico.
  * {@link /suppliers/:id}
  */
-export async function getSuppliersId(id: GetSuppliersIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getSuppliersId(id: GetSuppliersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetSuppliersIdQueryResponse, ResponseErrorConfig<GetSuppliersId401 | GetSuppliersId404>, unknown>({
+  const res = await request<GetSuppliersIdQueryResponseType, ResponseErrorConfig<GetSuppliersId401Type | GetSuppliersId404Type>, unknown>({
     method: 'GET',
     url: getGetSuppliersIdUrl(id).toString(),
     ...requestConfig,

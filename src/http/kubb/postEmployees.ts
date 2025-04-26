@@ -5,7 +5,12 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostEmployeesMutationRequest, PostEmployeesMutationResponse, PostEmployees401, PostEmployees409 } from './models.ts'
+import type {
+  PostEmployeesMutationRequestType,
+  PostEmployeesMutationResponseType,
+  PostEmployees401Type,
+  PostEmployees409Type,
+} from './types/PostEmployeesType.ts'
 
 function getPostEmployeesUrl() {
   return `/employees` as const
@@ -17,16 +22,15 @@ function getPostEmployeesUrl() {
  * {@link /employees}
  */
 export async function postEmployees(
-  data: PostEmployeesMutationRequest,
-  config: Partial<RequestConfig<PostEmployeesMutationRequest>> & { client?: typeof client } = {},
+  data: PostEmployeesMutationRequestType,
+  config: Partial<RequestConfig<PostEmployeesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PostEmployeesMutationResponse, ResponseErrorConfig<PostEmployees401 | PostEmployees409>, PostEmployeesMutationRequest>({
-    method: 'POST',
-    url: getPostEmployeesUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  const res = await request<
+    PostEmployeesMutationResponseType,
+    ResponseErrorConfig<PostEmployees401Type | PostEmployees409Type>,
+    PostEmployeesMutationRequestType
+  >({ method: 'POST', url: getPostEmployeesUrl().toString(), data, ...requestConfig })
   return res.data
 }

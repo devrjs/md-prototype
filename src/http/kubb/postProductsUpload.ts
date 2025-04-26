@@ -5,7 +5,12 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostProductsUploadMutationRequest, PostProductsUploadMutationResponse, PostProductsUpload400, PostProductsUpload401 } from './models.ts'
+import type {
+  PostProductsUploadMutationRequestType,
+  PostProductsUploadMutationResponseType,
+  PostProductsUpload400Type,
+  PostProductsUpload401Type,
+} from './types/PostProductsUploadType.ts'
 
 function getPostProductsUploadUrl() {
   return `/products/upload` as const
@@ -17,8 +22,8 @@ function getPostProductsUploadUrl() {
  * {@link /products/upload}
  */
 export async function postProductsUpload(
-  data?: PostProductsUploadMutationRequest,
-  config: Partial<RequestConfig<PostProductsUploadMutationRequest>> & { client?: typeof client } = {},
+  data?: PostProductsUploadMutationRequestType,
+  config: Partial<RequestConfig<PostProductsUploadMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
@@ -32,9 +37,9 @@ export async function postProductsUpload(
     })
   }
   const res = await request<
-    PostProductsUploadMutationResponse,
-    ResponseErrorConfig<PostProductsUpload400 | PostProductsUpload401>,
-    PostProductsUploadMutationRequest
+    PostProductsUploadMutationResponseType,
+    ResponseErrorConfig<PostProductsUpload400Type | PostProductsUpload401Type>,
+    PostProductsUploadMutationRequestType
   >({
     method: 'POST',
     url: getPostProductsUploadUrl().toString(),

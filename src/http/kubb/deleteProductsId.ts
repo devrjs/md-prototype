@@ -5,9 +5,14 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { DeleteProductsIdMutationResponse, DeleteProductsIdPathParams, DeleteProductsId401, DeleteProductsId404 } from './models.ts'
+import type {
+  DeleteProductsIdMutationResponseType,
+  DeleteProductsIdPathParamsType,
+  DeleteProductsId401Type,
+  DeleteProductsId404Type,
+} from './types/DeleteProductsIdType.ts'
 
-function getDeleteProductsIdUrl(id: DeleteProductsIdPathParams['id']) {
+function getDeleteProductsIdUrl(id: DeleteProductsIdPathParamsType['id']) {
   return `/products/${id}` as const
 }
 
@@ -16,10 +21,10 @@ function getDeleteProductsIdUrl(id: DeleteProductsIdPathParams['id']) {
  * @summary Remove um produto específico.
  * {@link /products/:id}
  */
-export async function deleteProductsId(id: DeleteProductsIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function deleteProductsId(id: DeleteProductsIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<DeleteProductsIdMutationResponse, ResponseErrorConfig<DeleteProductsId401 | DeleteProductsId404>, unknown>({
+  const res = await request<DeleteProductsIdMutationResponseType, ResponseErrorConfig<DeleteProductsId401Type | DeleteProductsId404Type>, unknown>({
     method: 'DELETE',
     url: getDeleteProductsIdUrl(id).toString(),
     ...requestConfig,

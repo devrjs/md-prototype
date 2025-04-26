@@ -5,9 +5,14 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { DeleteEmployeesIdMutationResponse, DeleteEmployeesIdPathParams, DeleteEmployeesId401, DeleteEmployeesId404 } from './models.ts'
+import type {
+  DeleteEmployeesIdMutationResponseType,
+  DeleteEmployeesIdPathParamsType,
+  DeleteEmployeesId401Type,
+  DeleteEmployeesId404Type,
+} from './types/DeleteEmployeesIdType.ts'
 
-function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParams['id']) {
+function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParamsType['id']) {
   return `/employees/${id}` as const
 }
 
@@ -16,10 +21,10 @@ function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParams['id']) {
  * @summary Remove um colaborador específico.
  * {@link /employees/:id}
  */
-export async function deleteEmployeesId(id: DeleteEmployeesIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function deleteEmployeesId(id: DeleteEmployeesIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<DeleteEmployeesIdMutationResponse, ResponseErrorConfig<DeleteEmployeesId401 | DeleteEmployeesId404>, unknown>({
+  const res = await request<DeleteEmployeesIdMutationResponseType, ResponseErrorConfig<DeleteEmployeesId401Type | DeleteEmployeesId404Type>, unknown>({
     method: 'DELETE',
     url: getDeleteEmployeesIdUrl(id).toString(),
     ...requestConfig,

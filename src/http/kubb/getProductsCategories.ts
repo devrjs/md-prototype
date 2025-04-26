@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetProductsCategoriesQueryResponse, GetProductsCategories401 } from './models.ts'
+import type { GetProductsCategoriesQueryResponseType, GetProductsCategories401Type } from './types/GetProductsCategoriesType.ts'
 
 function getGetProductsCategoriesUrl() {
   return `/products/categories` as const
@@ -19,7 +19,7 @@ function getGetProductsCategoriesUrl() {
 export async function getProductsCategories(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsCategoriesQueryResponse, ResponseErrorConfig<GetProductsCategories401>, unknown>({
+  const res = await request<GetProductsCategoriesQueryResponseType, ResponseErrorConfig<GetProductsCategories401Type>, unknown>({
     method: 'GET',
     url: getGetProductsCategoriesUrl().toString(),
     ...requestConfig,

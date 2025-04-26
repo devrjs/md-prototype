@@ -5,7 +5,13 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostOrdersMutationRequest, PostOrdersMutationResponse, PostOrders400, PostOrders401, PostOrders404 } from './models.ts'
+import type {
+  PostOrdersMutationRequestType,
+  PostOrdersMutationResponseType,
+  PostOrders400Type,
+  PostOrders401Type,
+  PostOrders404Type,
+} from './types/PostOrdersType.ts'
 
 function getPostOrdersUrl() {
   return `/orders` as const
@@ -16,14 +22,16 @@ function getPostOrdersUrl() {
  * @summary Registra um novo pedido.
  * {@link /orders}
  */
-export async function postOrders(data: PostOrdersMutationRequest, config: Partial<RequestConfig<PostOrdersMutationRequest>> & { client?: typeof client } = {}) {
+export async function postOrders(
+  data: PostOrdersMutationRequestType,
+  config: Partial<RequestConfig<PostOrdersMutationRequestType>> & { client?: typeof client } = {},
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PostOrdersMutationResponse, ResponseErrorConfig<PostOrders400 | PostOrders401 | PostOrders404>, PostOrdersMutationRequest>({
-    method: 'POST',
-    url: getPostOrdersUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  const res = await request<
+    PostOrdersMutationResponseType,
+    ResponseErrorConfig<PostOrders400Type | PostOrders401Type | PostOrders404Type>,
+    PostOrdersMutationRequestType
+  >({ method: 'POST', url: getPostOrdersUrl().toString(), data, ...requestConfig })
   return res.data
 }

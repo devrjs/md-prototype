@@ -6,13 +6,13 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetProductsAttributesNamesIdQueryResponse,
-  GetProductsAttributesNamesIdPathParams,
-  GetProductsAttributesNamesId401,
-  GetProductsAttributesNamesId404,
-} from './models.ts'
+  GetProductsAttributesNamesIdQueryResponseType,
+  GetProductsAttributesNamesIdPathParamsType,
+  GetProductsAttributesNamesId401Type,
+  GetProductsAttributesNamesId404Type,
+} from './types/GetProductsAttributesNamesIdType.ts'
 
-function getGetProductsAttributesNamesIdUrl(id: GetProductsAttributesNamesIdPathParams['id']) {
+function getGetProductsAttributesNamesIdUrl(id: GetProductsAttributesNamesIdPathParamsType['id']) {
   return `/products/attributes/names/${id}` as const
 }
 
@@ -22,14 +22,14 @@ function getGetProductsAttributesNamesIdUrl(id: GetProductsAttributesNamesIdPath
  * {@link /products/attributes/names/:id}
  */
 export async function getProductsAttributesNamesId(
-  id: GetProductsAttributesNamesIdPathParams['id'],
+  id: GetProductsAttributesNamesIdPathParamsType['id'],
   config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
-    GetProductsAttributesNamesIdQueryResponse,
-    ResponseErrorConfig<GetProductsAttributesNamesId401 | GetProductsAttributesNamesId404>,
+    GetProductsAttributesNamesIdQueryResponseType,
+    ResponseErrorConfig<GetProductsAttributesNamesId401Type | GetProductsAttributesNamesId404Type>,
     unknown
   >({ method: 'GET', url: getGetProductsAttributesNamesIdUrl(id).toString(), ...requestConfig })
   return res.data

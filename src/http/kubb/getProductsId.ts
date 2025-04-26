@@ -5,9 +5,9 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetProductsIdQueryResponse, GetProductsIdPathParams, GetProductsId401, GetProductsId404 } from './models.ts'
+import type { GetProductsIdQueryResponseType, GetProductsIdPathParamsType, GetProductsId401Type, GetProductsId404Type } from './types/GetProductsIdType.ts'
 
-function getGetProductsIdUrl(id: GetProductsIdPathParams['id']) {
+function getGetProductsIdUrl(id: GetProductsIdPathParamsType['id']) {
   return `/products/${id}` as const
 }
 
@@ -16,10 +16,10 @@ function getGetProductsIdUrl(id: GetProductsIdPathParams['id']) {
  * @summary Retorna as informações de um produto específico.
  * {@link /products/:id}
  */
-export async function getProductsId(id: GetProductsIdPathParams['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProductsId(id: GetProductsIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsIdQueryResponse, ResponseErrorConfig<GetProductsId401 | GetProductsId404>, unknown>({
+  const res = await request<GetProductsIdQueryResponseType, ResponseErrorConfig<GetProductsId401Type | GetProductsId404Type>, unknown>({
     method: 'GET',
     url: getGetProductsIdUrl(id).toString(),
     ...requestConfig,

@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetProductsMeasurementUnitsQueryResponse, GetProductsMeasurementUnits401 } from './models.ts'
+import type { GetProductsMeasurementUnitsQueryResponseType, GetProductsMeasurementUnits401Type } from './types/GetProductsMeasurementUnitsType.ts'
 
 function getGetProductsMeasurementUnitsUrl() {
   return `/products/measurement-units` as const
@@ -19,7 +19,7 @@ function getGetProductsMeasurementUnitsUrl() {
 export async function getProductsMeasurementUnits(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsMeasurementUnitsQueryResponse, ResponseErrorConfig<GetProductsMeasurementUnits401>, unknown>({
+  const res = await request<GetProductsMeasurementUnitsQueryResponseType, ResponseErrorConfig<GetProductsMeasurementUnits401Type>, unknown>({
     method: 'GET',
     url: getGetProductsMeasurementUnitsUrl().toString(),
     ...requestConfig,

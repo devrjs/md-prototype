@@ -5,9 +5,15 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PutSuppliersIdMutationRequest, PutSuppliersIdMutationResponse, PutSuppliersIdPathParams, PutSuppliersId401, PutSuppliersId404 } from './models.ts'
+import type {
+  PutSuppliersIdMutationRequestType,
+  PutSuppliersIdMutationResponseType,
+  PutSuppliersIdPathParamsType,
+  PutSuppliersId401Type,
+  PutSuppliersId404Type,
+} from './types/PutSuppliersIdType.ts'
 
-function getPutSuppliersIdUrl(id: PutSuppliersIdPathParams['id']) {
+function getPutSuppliersIdUrl(id: PutSuppliersIdPathParamsType['id']) {
   return `/suppliers/${id}` as const
 }
 
@@ -17,17 +23,16 @@ function getPutSuppliersIdUrl(id: PutSuppliersIdPathParams['id']) {
  * {@link /suppliers/:id}
  */
 export async function putSuppliersId(
-  id: PutSuppliersIdPathParams['id'],
-  data: PutSuppliersIdMutationRequest,
-  config: Partial<RequestConfig<PutSuppliersIdMutationRequest>> & { client?: typeof client } = {},
+  id: PutSuppliersIdPathParamsType['id'],
+  data: PutSuppliersIdMutationRequestType,
+  config: Partial<RequestConfig<PutSuppliersIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PutSuppliersIdMutationResponse, ResponseErrorConfig<PutSuppliersId401 | PutSuppliersId404>, PutSuppliersIdMutationRequest>({
-    method: 'PUT',
-    url: getPutSuppliersIdUrl(id).toString(),
-    data,
-    ...requestConfig,
-  })
+  const res = await request<
+    PutSuppliersIdMutationResponseType,
+    ResponseErrorConfig<PutSuppliersId401Type | PutSuppliersId404Type>,
+    PutSuppliersIdMutationRequestType
+  >({ method: 'PUT', url: getPutSuppliersIdUrl(id).toString(), data, ...requestConfig })
   return res.data
 }

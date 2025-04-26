@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostProductsAttributesNamesMutationRequest,
-  PostProductsAttributesNamesMutationResponse,
-  PostProductsAttributesNames401,
-  PostProductsAttributesNames409,
-} from './models.ts'
+  PostProductsAttributesNamesMutationRequestType,
+  PostProductsAttributesNamesMutationResponseType,
+  PostProductsAttributesNames401Type,
+  PostProductsAttributesNames409Type,
+} from './types/PostProductsAttributesNamesType.ts'
 
 function getPostProductsAttributesNamesUrl() {
   return `/products/attributes/names` as const
@@ -22,15 +22,15 @@ function getPostProductsAttributesNamesUrl() {
  * {@link /products/attributes/names}
  */
 export async function postProductsAttributesNames(
-  data: PostProductsAttributesNamesMutationRequest,
-  config: Partial<RequestConfig<PostProductsAttributesNamesMutationRequest>> & { client?: typeof client } = {},
+  data: PostProductsAttributesNamesMutationRequestType,
+  config: Partial<RequestConfig<PostProductsAttributesNamesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
-    PostProductsAttributesNamesMutationResponse,
-    ResponseErrorConfig<PostProductsAttributesNames401 | PostProductsAttributesNames409>,
-    PostProductsAttributesNamesMutationRequest
+    PostProductsAttributesNamesMutationResponseType,
+    ResponseErrorConfig<PostProductsAttributesNames401Type | PostProductsAttributesNames409Type>,
+    PostProductsAttributesNamesMutationRequestType
   >({ method: 'POST', url: getPostProductsAttributesNamesUrl().toString(), data, ...requestConfig })
   return res.data
 }

@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostShopeeDownloadShippingDocumentMutationResponse } from './models.ts'
+import type { PostShopeeDownloadShippingDocumentMutationResponseType } from './types/PostShopeeDownloadShippingDocumentType.ts'
 
 function getPostShopeeDownloadShippingDocumentUrl() {
   return `/shopee/download/shipping-document` as const
@@ -17,7 +17,7 @@ function getPostShopeeDownloadShippingDocumentUrl() {
 export async function postShopeeDownloadShippingDocument(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PostShopeeDownloadShippingDocumentMutationResponse, ResponseErrorConfig<Error>, unknown>({
+  const res = await request<PostShopeeDownloadShippingDocumentMutationResponseType, ResponseErrorConfig<Error>, unknown>({
     method: 'POST',
     url: getPostShopeeDownloadShippingDocumentUrl().toString(),
     ...requestConfig,

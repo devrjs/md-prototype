@@ -5,9 +5,15 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PutCustomersIdMutationRequest, PutCustomersIdMutationResponse, PutCustomersIdPathParams, PutCustomersId401, PutCustomersId404 } from './models.ts'
+import type {
+  PutCustomersIdMutationRequestType,
+  PutCustomersIdMutationResponseType,
+  PutCustomersIdPathParamsType,
+  PutCustomersId401Type,
+  PutCustomersId404Type,
+} from './types/PutCustomersIdType.ts'
 
-function getPutCustomersIdUrl(id: PutCustomersIdPathParams['id']) {
+function getPutCustomersIdUrl(id: PutCustomersIdPathParamsType['id']) {
   return `/customers/${id}` as const
 }
 
@@ -17,17 +23,16 @@ function getPutCustomersIdUrl(id: PutCustomersIdPathParams['id']) {
  * {@link /customers/:id}
  */
 export async function putCustomersId(
-  id: PutCustomersIdPathParams['id'],
-  data: PutCustomersIdMutationRequest,
-  config: Partial<RequestConfig<PutCustomersIdMutationRequest>> & { client?: typeof client } = {},
+  id: PutCustomersIdPathParamsType['id'],
+  data: PutCustomersIdMutationRequestType,
+  config: Partial<RequestConfig<PutCustomersIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PutCustomersIdMutationResponse, ResponseErrorConfig<PutCustomersId401 | PutCustomersId404>, PutCustomersIdMutationRequest>({
-    method: 'PUT',
-    url: getPutCustomersIdUrl(id).toString(),
-    data,
-    ...requestConfig,
-  })
+  const res = await request<
+    PutCustomersIdMutationResponseType,
+    ResponseErrorConfig<PutCustomersId401Type | PutCustomersId404Type>,
+    PutCustomersIdMutationRequestType
+  >({ method: 'PUT', url: getPutCustomersIdUrl(id).toString(), data, ...requestConfig })
   return res.data
 }

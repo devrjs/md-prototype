@@ -5,7 +5,12 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostProductsBrandsMutationRequest, PostProductsBrandsMutationResponse, PostProductsBrands401, PostProductsBrands409 } from './models.ts'
+import type {
+  PostProductsBrandsMutationRequestType,
+  PostProductsBrandsMutationResponseType,
+  PostProductsBrands401Type,
+  PostProductsBrands409Type,
+} from './types/PostProductsBrandsType.ts'
 
 function getPostProductsBrandsUrl() {
   return `/products/brands` as const
@@ -17,15 +22,15 @@ function getPostProductsBrandsUrl() {
  * {@link /products/brands}
  */
 export async function postProductsBrands(
-  data: PostProductsBrandsMutationRequest,
-  config: Partial<RequestConfig<PostProductsBrandsMutationRequest>> & { client?: typeof client } = {},
+  data: PostProductsBrandsMutationRequestType,
+  config: Partial<RequestConfig<PostProductsBrandsMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
-    PostProductsBrandsMutationResponse,
-    ResponseErrorConfig<PostProductsBrands401 | PostProductsBrands409>,
-    PostProductsBrandsMutationRequest
+    PostProductsBrandsMutationResponseType,
+    ResponseErrorConfig<PostProductsBrands401Type | PostProductsBrands409Type>,
+    PostProductsBrandsMutationRequestType
   >({ method: 'POST', url: getPostProductsBrandsUrl().toString(), data, ...requestConfig })
   return res.data
 }

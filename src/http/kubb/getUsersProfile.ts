@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetUsersProfileQueryResponse, GetUsersProfile401, GetUsersProfile404 } from './models.ts'
+import type { GetUsersProfileQueryResponseType, GetUsersProfile401Type, GetUsersProfile404Type } from './types/GetUsersProfileType.ts'
 
 function getGetUsersProfileUrl() {
   return `/users/profile` as const
@@ -19,7 +19,7 @@ function getGetUsersProfileUrl() {
 export async function getUsersProfile(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetUsersProfileQueryResponse, ResponseErrorConfig<GetUsersProfile401 | GetUsersProfile404>, unknown>({
+  const res = await request<GetUsersProfileQueryResponseType, ResponseErrorConfig<GetUsersProfile401Type | GetUsersProfile404Type>, unknown>({
     method: 'GET',
     url: getGetUsersProfileUrl().toString(),
     ...requestConfig,

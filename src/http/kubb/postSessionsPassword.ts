@@ -5,7 +5,11 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostSessionsPasswordMutationRequest, PostSessionsPasswordMutationResponse, PostSessionsPassword400 } from './models.ts'
+import type {
+  PostSessionsPasswordMutationRequestType,
+  PostSessionsPasswordMutationResponseType,
+  PostSessionsPassword400Type,
+} from './types/PostSessionsPasswordType.ts'
 
 function getPostSessionsPasswordUrl() {
   return `/sessions/password` as const
@@ -17,16 +21,15 @@ function getPostSessionsPasswordUrl() {
  * {@link /sessions/password}
  */
 export async function postSessionsPassword(
-  data: PostSessionsPasswordMutationRequest,
-  config: Partial<RequestConfig<PostSessionsPasswordMutationRequest>> & { client?: typeof client } = {},
+  data: PostSessionsPasswordMutationRequestType,
+  config: Partial<RequestConfig<PostSessionsPasswordMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PostSessionsPasswordMutationResponse, ResponseErrorConfig<PostSessionsPassword400>, PostSessionsPasswordMutationRequest>({
-    method: 'POST',
-    url: getPostSessionsPasswordUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  const res = await request<
+    PostSessionsPasswordMutationResponseType,
+    ResponseErrorConfig<PostSessionsPassword400Type>,
+    PostSessionsPasswordMutationRequestType
+  >({ method: 'POST', url: getPostSessionsPasswordUrl().toString(), data, ...requestConfig })
   return res.data
 }

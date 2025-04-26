@@ -5,7 +5,12 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostSuppliersMutationRequest, PostSuppliersMutationResponse, PostSuppliers401, PostSuppliers409 } from './models.ts'
+import type {
+  PostSuppliersMutationRequestType,
+  PostSuppliersMutationResponseType,
+  PostSuppliers401Type,
+  PostSuppliers409Type,
+} from './types/PostSuppliersType.ts'
 
 function getPostSuppliersUrl() {
   return `/suppliers` as const
@@ -17,16 +22,15 @@ function getPostSuppliersUrl() {
  * {@link /suppliers}
  */
 export async function postSuppliers(
-  data: PostSuppliersMutationRequest,
-  config: Partial<RequestConfig<PostSuppliersMutationRequest>> & { client?: typeof client } = {},
+  data: PostSuppliersMutationRequestType,
+  config: Partial<RequestConfig<PostSuppliersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PostSuppliersMutationResponse, ResponseErrorConfig<PostSuppliers401 | PostSuppliers409>, PostSuppliersMutationRequest>({
-    method: 'POST',
-    url: getPostSuppliersUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  const res = await request<
+    PostSuppliersMutationResponseType,
+    ResponseErrorConfig<PostSuppliers401Type | PostSuppliers409Type>,
+    PostSuppliersMutationRequestType
+  >({ method: 'POST', url: getPostSuppliersUrl().toString(), data, ...requestConfig })
   return res.data
 }

@@ -1,7 +1,7 @@
-import { getOrders } from '@/http/kubb'
+import { getOrders, getOrdersId } from '@/http/kubb'
 
 export default async function Order() {
-  const data = await getOrders({ pageIndex: '1' })
+  const data = await getOrdersId('1')
 
   return (
     <div>

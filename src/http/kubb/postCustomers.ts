@@ -5,7 +5,12 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostCustomersMutationRequest, PostCustomersMutationResponse, PostCustomers401, PostCustomers409 } from './models.ts'
+import type {
+  PostCustomersMutationRequestType,
+  PostCustomersMutationResponseType,
+  PostCustomers401Type,
+  PostCustomers409Type,
+} from './types/PostCustomersType.ts'
 
 function getPostCustomersUrl() {
   return `/customers` as const
@@ -17,16 +22,15 @@ function getPostCustomersUrl() {
  * {@link /customers}
  */
 export async function postCustomers(
-  data: PostCustomersMutationRequest,
-  config: Partial<RequestConfig<PostCustomersMutationRequest>> & { client?: typeof client } = {},
+  data: PostCustomersMutationRequestType,
+  config: Partial<RequestConfig<PostCustomersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PostCustomersMutationResponse, ResponseErrorConfig<PostCustomers401 | PostCustomers409>, PostCustomersMutationRequest>({
-    method: 'POST',
-    url: getPostCustomersUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  const res = await request<
+    PostCustomersMutationResponseType,
+    ResponseErrorConfig<PostCustomers401Type | PostCustomers409Type>,
+    PostCustomersMutationRequestType
+  >({ method: 'POST', url: getPostCustomersUrl().toString(), data, ...requestConfig })
   return res.data
 }

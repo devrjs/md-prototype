@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetSuppliersQueryResponse, GetSuppliersQueryParams, GetSuppliers401, GetSuppliers404 } from './models.ts'
+import type { GetSuppliersQueryResponseType, GetSuppliersQueryParamsType, GetSuppliers401Type, GetSuppliers404Type } from './types/GetSuppliersType.ts'
 
 function getGetSuppliersUrl() {
   return `/suppliers` as const
@@ -16,10 +16,10 @@ function getGetSuppliersUrl() {
  * @summary Retorna uma lista de fornecedores cadastrados.
  * {@link /suppliers}
  */
-export async function getSuppliers(params?: GetSuppliersQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getSuppliers(params?: GetSuppliersQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetSuppliersQueryResponse, ResponseErrorConfig<GetSuppliers401 | GetSuppliers404>, unknown>({
+  const res = await request<GetSuppliersQueryResponseType, ResponseErrorConfig<GetSuppliers401Type | GetSuppliers404Type>, unknown>({
     method: 'GET',
     url: getGetSuppliersUrl().toString(),
     params,

@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetEmployeesQueryResponse, GetEmployeesQueryParams, GetEmployees401, GetEmployees404 } from './models.ts'
+import type { GetEmployeesQueryResponseType, GetEmployeesQueryParamsType, GetEmployees401Type, GetEmployees404Type } from './types/GetEmployeesType.ts'
 
 function getGetEmployeesUrl() {
   return `/employees` as const
@@ -16,10 +16,10 @@ function getGetEmployeesUrl() {
  * @summary Retorna uma lista de colaboradores cadastrados.
  * {@link /employees}
  */
-export async function getEmployees(params?: GetEmployeesQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getEmployees(params?: GetEmployeesQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetEmployeesQueryResponse, ResponseErrorConfig<GetEmployees401 | GetEmployees404>, unknown>({
+  const res = await request<GetEmployeesQueryResponseType, ResponseErrorConfig<GetEmployees401Type | GetEmployees404Type>, unknown>({
     method: 'GET',
     url: getGetEmployeesUrl().toString(),
     params,

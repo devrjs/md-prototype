@@ -20,36 +20,14 @@ export type ResponseErrorConfig<TData = unknown> = {
   statusText: string
 }
 
-const client = async <TData, TError = unknown, TVariables = unknown>(
+export const client = async <TData, TError = unknown, TVariables = unknown>(
   config: RequestConfig<TVariables>
 ): Promise<ResponseErrorConfig<TData>> => {
-  let token = ''
-
-  if (typeof window !== 'undefined') {
-    ;('use client')
-    // Get token from cookie manually
-    token =
-      document.cookie
-        .split('; ')
-        .find(row => row.startsWith('access_token='))
-        ?.split('=')[1] ?? ''
-  } else {
-    ;('use server')
-    // Get token from cookies in server context
-    const { cookies } = await import('next/headers')
-    const cookieStore = cookies()
-    token = (await cookieStore).get('access_token')?.value ?? ''
-  }
-
-  const response = await fetch(`http://localhost:3333${config.url}`, {
+  const response = await fetch('http://localhost:3333', {
     method: config.method.toUpperCase(),
     body: JSON.stringify(config.data),
     signal: config.signal,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-      ...config.headers,
-    },
+    headers: config.headers,
   })
 
   const data = await response.json()
@@ -60,5 +38,3 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
     statusText: response.statusText,
   }
 }
-
-export default client

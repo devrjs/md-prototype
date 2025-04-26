@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetCustomersQueryResponse, GetCustomersQueryParams, GetCustomers401, GetCustomers404 } from './models.ts'
+import type { GetCustomersQueryResponseType, GetCustomersQueryParamsType, GetCustomers401Type, GetCustomers404Type } from './types/GetCustomersType.ts'
 
 function getGetCustomersUrl() {
   return `/customers` as const
@@ -16,10 +16,10 @@ function getGetCustomersUrl() {
  * @summary Retorna uma lista de clientes castrados.
  * {@link /customers}
  */
-export async function getCustomers(params?: GetCustomersQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getCustomers(params?: GetCustomersQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetCustomersQueryResponse, ResponseErrorConfig<GetCustomers401 | GetCustomers404>, unknown>({
+  const res = await request<GetCustomersQueryResponseType, ResponseErrorConfig<GetCustomers401Type | GetCustomers404Type>, unknown>({
     method: 'GET',
     url: getGetCustomersUrl().toString(),
     params,

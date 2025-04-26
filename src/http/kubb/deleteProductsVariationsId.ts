@@ -6,13 +6,13 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteProductsVariationsIdMutationResponse,
-  DeleteProductsVariationsIdPathParams,
-  DeleteProductsVariationsId401,
-  DeleteProductsVariationsId404,
-} from './models.ts'
+  DeleteProductsVariationsIdMutationResponseType,
+  DeleteProductsVariationsIdPathParamsType,
+  DeleteProductsVariationsId401Type,
+  DeleteProductsVariationsId404Type,
+} from './types/DeleteProductsVariationsIdType.ts'
 
-function getDeleteProductsVariationsIdUrl(id: DeleteProductsVariationsIdPathParams['id']) {
+function getDeleteProductsVariationsIdUrl(id: DeleteProductsVariationsIdPathParamsType['id']) {
   return `/products/variations/${id}` as const
 }
 
@@ -22,14 +22,14 @@ function getDeleteProductsVariationsIdUrl(id: DeleteProductsVariationsIdPathPara
  * {@link /products/variations/:id}
  */
 export async function deleteProductsVariationsId(
-  id: DeleteProductsVariationsIdPathParams['id'],
+  id: DeleteProductsVariationsIdPathParamsType['id'],
   config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
-    DeleteProductsVariationsIdMutationResponse,
-    ResponseErrorConfig<DeleteProductsVariationsId401 | DeleteProductsVariationsId404>,
+    DeleteProductsVariationsIdMutationResponseType,
+    ResponseErrorConfig<DeleteProductsVariationsId401Type | DeleteProductsVariationsId404Type>,
     unknown
   >({ method: 'DELETE', url: getDeleteProductsVariationsIdUrl(id).toString(), ...requestConfig })
   return res.data

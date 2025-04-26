@@ -29,6 +29,7 @@ export default defineConfig({
       output: {
         path: '.',
       },
+      client: 'fetch',
       importPath: '@/http/client',
     }),
     // pluginOas(),
