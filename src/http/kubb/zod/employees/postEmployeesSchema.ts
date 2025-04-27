@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostEmployees201Type,
   PostEmployees401Type,
@@ -11,7 +12,6 @@ import type {
   PostEmployeesMutationRequestType,
   PostEmployeesMutationResponseType,
 } from '../../types/ColaboradoresTypes/PostEmployeesType.ts'
-import { z } from 'zod'
 
 /**
  * @description Colaborador cadastrado com sucesso.

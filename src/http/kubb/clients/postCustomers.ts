@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostCustomersMutationRequestType,
-  PostCustomersMutationResponseType,
   PostCustomers401Type,
   PostCustomers409Type,
+  PostCustomersMutationRequestType,
+  PostCustomersMutationResponseType,
 } from '../types/ClientesTypes/PostCustomersType.ts'
 
 function getPostCustomersUrl() {

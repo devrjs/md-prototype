@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
-  GetProductsAttributesNamesIdPathParamsType,
   GetProductsAttributesNamesId200Type,
   GetProductsAttributesNamesId401Type,
   GetProductsAttributesNamesId404Type,
+  GetProductsAttributesNamesIdPathParamsType,
   GetProductsAttributesNamesIdQueryResponseType,
 } from '../../types/Produtos (Atributos)Types/GetProductsAttributesNamesIdType.ts'
-import { z } from 'zod'
 
 export const getProductsAttributesNamesIdPathParamsSchema = z.object({
   id: z.string(),

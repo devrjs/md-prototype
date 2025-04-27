@@ -4,12 +4,12 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   GetProductsCategories200Type,
   GetProductsCategories401Type,
   GetProductsCategoriesQueryResponseType,
 } from '../../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
-import { z } from 'zod'
 
 /**
  * @description Categorias de produtos obtidas com sucesso.

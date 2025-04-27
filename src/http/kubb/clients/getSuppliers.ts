@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetSuppliersQueryResponseType,
-  GetSuppliersQueryParamsType,
   GetSuppliers401Type,
   GetSuppliers404Type,
+  GetSuppliersQueryParamsType,
+  GetSuppliersQueryResponseType,
 } from '../types/FornecedoresTypes/GetSuppliersType.ts'
 
 function getGetSuppliersUrl() {

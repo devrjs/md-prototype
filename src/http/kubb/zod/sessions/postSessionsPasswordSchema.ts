@@ -4,13 +4,13 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostSessionsPassword200Type,
   PostSessionsPassword400Type,
   PostSessionsPasswordMutationRequestType,
   PostSessionsPasswordMutationResponseType,
 } from '../../types/Usu\u00E1riosTypes/PostSessionsPasswordType.ts'
-import { z } from 'zod'
 
 /**
  * @description Usuário autenticado com sucesso.

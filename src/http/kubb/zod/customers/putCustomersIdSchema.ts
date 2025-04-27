@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
-  PutCustomersIdPathParamsType,
   PutCustomersId200Type,
   PutCustomersId401Type,
   PutCustomersId404Type,
   PutCustomersIdMutationRequestType,
   PutCustomersIdMutationResponseType,
+  PutCustomersIdPathParamsType,
 } from '../../types/ClientesTypes/PutCustomersIdType.ts'
-import { z } from 'zod'
 
 export const putCustomersIdPathParamsSchema = z.object({
   id: z.string(),

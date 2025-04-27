@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostProductsUpload201Type,
   PostProductsUpload400Type,
@@ -11,7 +12,6 @@ import type {
   PostProductsUploadMutationRequestType,
   PostProductsUploadMutationResponseType,
 } from '../../types/ProdutosTypes/PostProductsUploadType.ts'
-import { z } from 'zod'
 
 /**
  * @description Produto cadastrado com sucesso.

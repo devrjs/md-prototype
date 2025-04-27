@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
-  GetEmployeesQueryParamsType,
   GetEmployees200Type,
   GetEmployees401Type,
   GetEmployees404Type,
+  GetEmployeesQueryParamsType,
   GetEmployeesQueryResponseType,
 } from '../../types/ColaboradoresTypes/GetEmployeesType.ts'
-import { z } from 'zod'
 
 export const getEmployeesQueryParamsSchema = z
   .object({

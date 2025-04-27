@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetSuppliersIdQueryResponseType,
-  GetSuppliersIdPathParamsType,
   GetSuppliersId401Type,
   GetSuppliersId404Type,
+  GetSuppliersIdPathParamsType,
+  GetSuppliersIdQueryResponseType,
 } from '../types/FornecedoresTypes/GetSuppliersIdType.ts'
 
 function getGetSuppliersIdUrl(id: GetSuppliersIdPathParamsType['id']) {

@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  PutEmployeesId401Type,
+  PutEmployeesId404Type,
   PutEmployeesIdMutationRequestType,
   PutEmployeesIdMutationResponseType,
   PutEmployeesIdPathParamsType,
-  PutEmployeesId401Type,
-  PutEmployeesId404Type,
 } from '../types/ColaboradoresTypes/PutEmployeesIdType.ts'
 
 function getPutEmployeesIdUrl(id: PutEmployeesIdPathParamsType['id']) {

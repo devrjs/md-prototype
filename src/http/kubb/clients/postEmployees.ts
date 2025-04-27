@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostEmployeesMutationRequestType,
-  PostEmployeesMutationResponseType,
   PostEmployees401Type,
   PostEmployees409Type,
+  PostEmployeesMutationRequestType,
+  PostEmployeesMutationResponseType,
 } from '../types/ColaboradoresTypes/PostEmployeesType.ts'
 
 function getPostEmployeesUrl() {

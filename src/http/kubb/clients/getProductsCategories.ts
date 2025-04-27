@@ -6,8 +6,8 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetProductsCategoriesQueryResponseType,
   GetProductsCategories401Type,
+  GetProductsCategoriesQueryResponseType,
 } from '../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
 
 function getGetProductsCategoriesUrl() {

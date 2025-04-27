@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostSuppliersMutationRequestType,
-  PostSuppliersMutationResponseType,
   PostSuppliers401Type,
   PostSuppliers409Type,
+  PostSuppliersMutationRequestType,
+  PostSuppliersMutationResponseType,
 } from '../types/FornecedoresTypes/PostSuppliersType.ts'
 
 function getPostSuppliersUrl() {

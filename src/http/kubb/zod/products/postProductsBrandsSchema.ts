@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostProductsBrands201Type,
   PostProductsBrands401Type,
@@ -11,7 +12,6 @@ import type {
   PostProductsBrandsMutationRequestType,
   PostProductsBrandsMutationResponseType,
 } from '../../types/Produtos (Marcas)Types/PostProductsBrandsType.ts'
-import { z } from 'zod'
 
 /**
  * @description Marca cadastrado com sucesso.

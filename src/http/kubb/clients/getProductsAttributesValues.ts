@@ -6,9 +6,9 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetProductsAttributesValuesQueryResponseType,
-  GetProductsAttributesValuesQueryParamsType,
   GetProductsAttributesValues401Type,
+  GetProductsAttributesValuesQueryParamsType,
+  GetProductsAttributesValuesQueryResponseType,
 } from '../types/Produtos (Atributos)Types/GetProductsAttributesValuesType.ts'
 
 function getGetProductsAttributesValuesUrl() {

@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetEmployeesIdQueryResponseType,
-  GetEmployeesIdPathParamsType,
   GetEmployeesId401Type,
   GetEmployeesId404Type,
+  GetEmployeesIdPathParamsType,
+  GetEmployeesIdQueryResponseType,
 } from '../types/ColaboradoresTypes/GetEmployeesIdType.ts'
 
 function getGetEmployeesIdUrl(id: GetEmployeesIdPathParamsType['id']) {

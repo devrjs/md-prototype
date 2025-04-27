@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostProductsVariations201Type,
   PostProductsVariations401Type,
@@ -11,7 +12,6 @@ import type {
   PostProductsVariationsMutationRequestType,
   PostProductsVariationsMutationResponseType,
 } from '../../types/Produtos (Varia\u00E7\u00F5es)Types/PostProductsVariationsType.ts'
-import { z } from 'zod'
 
 /**
  * @description Variação cadastrada com sucesso.

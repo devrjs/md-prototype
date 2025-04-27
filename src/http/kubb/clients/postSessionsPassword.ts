@@ -6,9 +6,9 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  PostSessionsPassword400Type,
   PostSessionsPasswordMutationRequestType,
   PostSessionsPasswordMutationResponseType,
-  PostSessionsPassword400Type,
 } from '../types/Usu\u00E1riosTypes/PostSessionsPasswordType.ts'
 
 function getPostSessionsPasswordUrl() {

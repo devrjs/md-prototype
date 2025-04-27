@@ -6,9 +6,9 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  PostUsers409Type,
   PostUsersMutationRequestType,
   PostUsersMutationResponseType,
-  PostUsers409Type,
 } from '../types/Usu\u00E1riosTypes/PostUsersType.ts'
 
 function getPostUsersUrl() {

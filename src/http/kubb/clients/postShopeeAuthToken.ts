@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostShopeeAuthTokenMutationRequestType,
-  PostShopeeAuthTokenMutationResponseType,
   PostShopeeAuthToken400Type,
   PostShopeeAuthToken401Type,
   PostShopeeAuthToken404Type,
+  PostShopeeAuthTokenMutationRequestType,
+  PostShopeeAuthTokenMutationResponseType,
 } from '../types/Shopee APITypes/PostShopeeAuthTokenType.ts'
 
 function getPostShopeeAuthTokenUrl() {

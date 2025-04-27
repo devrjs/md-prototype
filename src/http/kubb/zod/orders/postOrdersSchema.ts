@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostOrders201Type,
   PostOrders400Type,
@@ -12,7 +13,6 @@ import type {
   PostOrdersMutationRequestType,
   PostOrdersMutationResponseType,
 } from '../../types/PedidosTypes/PostOrdersType.ts'
-import { z } from 'zod'
 
 /**
  * @description Pedido criado com sucesso.

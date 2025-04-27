@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetOrdersIdQueryResponseType,
-  GetOrdersIdPathParamsType,
   GetOrdersId401Type,
   GetOrdersId404Type,
+  GetOrdersIdPathParamsType,
+  GetOrdersIdQueryResponseType,
 } from '../types/PedidosTypes/GetOrdersIdType.ts'
 
 function getGetOrdersIdUrl(id: GetOrdersIdPathParamsType['id']) {

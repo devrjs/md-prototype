@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostProductsAttributesNames201Type,
   PostProductsAttributesNames401Type,
@@ -11,7 +12,6 @@ import type {
   PostProductsAttributesNamesMutationRequestType,
   PostProductsAttributesNamesMutationResponseType,
 } from '../../types/Produtos (Atributos)Types/PostProductsAttributesNamesType.ts'
-import { z } from 'zod'
 
 /**
  * @description Nome do atributo do produto cadastrado com sucesso.

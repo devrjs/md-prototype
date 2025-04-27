@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
-  GetOrdersIdPathParamsType,
   GetOrdersId200Type,
   GetOrdersId401Type,
   GetOrdersId404Type,
+  GetOrdersIdPathParamsType,
   GetOrdersIdQueryResponseType,
 } from '../../types/PedidosTypes/GetOrdersIdType.ts'
-import { z } from 'zod'
 
 export const getOrdersIdPathParamsSchema = z.object({
   id: z.string(),

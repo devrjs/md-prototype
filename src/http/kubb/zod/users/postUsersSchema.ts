@@ -4,13 +4,13 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostUsers201Type,
   PostUsers409Type,
   PostUsersMutationRequestType,
   PostUsersMutationResponseType,
 } from '../../types/Usu\u00E1riosTypes/PostUsersType.ts'
-import { z } from 'zod'
 
 /**
  * @description Usuário cadastrado com sucesso.

@@ -4,12 +4,12 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   GetShopeeAuthUrl200Type,
   GetShopeeAuthUrl401Type,
   GetShopeeAuthUrlQueryResponseType,
 } from '../../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
-import { z } from 'zod'
 
 /**
  * @description Default Response

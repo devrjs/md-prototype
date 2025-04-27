@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  PutProductsAttributesValuesId401Type,
+  PutProductsAttributesValuesId404Type,
   PutProductsAttributesValuesIdMutationRequestType,
   PutProductsAttributesValuesIdMutationResponseType,
   PutProductsAttributesValuesIdPathParamsType,
-  PutProductsAttributesValuesId401Type,
-  PutProductsAttributesValuesId404Type,
 } from '../types/Produtos (Atributos)Types/PutProductsAttributesValuesIdType.ts'
 
 function getPutProductsAttributesValuesIdUrl(

@@ -6,12 +6,12 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PutOrdersIdMutationRequestType,
-  PutOrdersIdMutationResponseType,
-  PutOrdersIdPathParamsType,
   PutOrdersId400Type,
   PutOrdersId401Type,
   PutOrdersId404Type,
+  PutOrdersIdMutationRequestType,
+  PutOrdersIdMutationResponseType,
+  PutOrdersIdPathParamsType,
 } from '../types/PedidosTypes/PutOrdersIdType.ts'
 
 function getPutOrdersIdUrl(id: PutOrdersIdPathParamsType['id']) {

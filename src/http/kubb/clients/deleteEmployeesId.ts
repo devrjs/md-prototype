@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteEmployeesIdMutationResponseType,
-  DeleteEmployeesIdPathParamsType,
   DeleteEmployeesId401Type,
   DeleteEmployeesId404Type,
+  DeleteEmployeesIdMutationResponseType,
+  DeleteEmployeesIdPathParamsType,
 } from '../types/ColaboradoresTypes/DeleteEmployeesIdType.ts'
 
 function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParamsType['id']) {

@@ -4,13 +4,13 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   GetUsersProfile200Type,
   GetUsersProfile401Type,
   GetUsersProfile404Type,
   GetUsersProfileQueryResponseType,
 } from '../../types/Usu\u00E1riosTypes/GetUsersProfileType.ts'
-import { z } from 'zod'
 
 /**
  * @description Informações do perfil do usuário obtidas com sucesso.

@@ -4,12 +4,12 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   GetProductsMeasurementUnits200Type,
   GetProductsMeasurementUnits401Type,
   GetProductsMeasurementUnitsQueryResponseType,
 } from '../../types/Produtos (Unidades de Medida)Types/GetProductsMeasurementUnitsType.ts'
-import { z } from 'zod'
 
 /**
  * @description Unidades de medida de produtos obtidas com sucesso.

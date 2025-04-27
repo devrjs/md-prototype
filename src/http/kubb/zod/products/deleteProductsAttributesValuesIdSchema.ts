@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
-  DeleteProductsAttributesValuesIdPathParamsType,
   DeleteProductsAttributesValuesId200Type,
   DeleteProductsAttributesValuesId401Type,
   DeleteProductsAttributesValuesId404Type,
   DeleteProductsAttributesValuesIdMutationResponseType,
+  DeleteProductsAttributesValuesIdPathParamsType,
 } from '../../types/Produtos (Atributos)Types/DeleteProductsAttributesValuesIdType.ts'
-import { z } from 'zod'
 
 export const deleteProductsAttributesValuesIdPathParamsSchema = z.object({
   id: z.string(),

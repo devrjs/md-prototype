@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostProductsCategories201Type,
   PostProductsCategories401Type,
@@ -11,7 +12,6 @@ import type {
   PostProductsCategoriesMutationRequestType,
   PostProductsCategoriesMutationResponseType,
 } from '../../types/Produtos (Categorias)Types/PostProductsCategoriesType.ts'
-import { z } from 'zod'
 
 /**
  * @description Categoria cadastrado com sucesso.

@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
-  GetSuppliersQueryParamsType,
   GetSuppliers200Type,
   GetSuppliers401Type,
   GetSuppliers404Type,
+  GetSuppliersQueryParamsType,
   GetSuppliersQueryResponseType,
 } from '../../types/FornecedoresTypes/GetSuppliersType.ts'
-import { z } from 'zod'
 
 export const getSuppliersQueryParamsSchema = z
   .object({

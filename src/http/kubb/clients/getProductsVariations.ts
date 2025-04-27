@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetProductsVariationsQueryResponseType,
-  GetProductsVariationsQueryParamsType,
   GetProductsVariations401Type,
   GetProductsVariations404Type,
+  GetProductsVariationsQueryParamsType,
+  GetProductsVariationsQueryResponseType,
 } from '../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType.ts'
 
 function getGetProductsVariationsUrl() {

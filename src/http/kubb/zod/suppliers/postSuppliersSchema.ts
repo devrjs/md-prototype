@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostSuppliers201Type,
   PostSuppliers401Type,
@@ -11,7 +12,6 @@ import type {
   PostSuppliersMutationRequestType,
   PostSuppliersMutationResponseType,
 } from '../../types/FornecedoresTypes/PostSuppliersType.ts'
-import { z } from 'zod'
 
 /**
  * @description Fornecedor cadastrado com sucesso.

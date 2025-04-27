@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostShopeeAuthToken200Type,
   PostShopeeAuthToken400Type,
@@ -12,7 +13,6 @@ import type {
   PostShopeeAuthTokenMutationRequestType,
   PostShopeeAuthTokenMutationResponseType,
 } from '../../types/Shopee APITypes/PostShopeeAuthTokenType.ts'
-import { z } from 'zod'
 
 /**
  * @description Shopee authenticated.

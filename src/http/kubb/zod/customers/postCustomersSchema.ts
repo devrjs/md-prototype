@@ -4,6 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostCustomers201Type,
   PostCustomers401Type,
@@ -11,7 +12,6 @@ import type {
   PostCustomersMutationRequestType,
   PostCustomersMutationResponseType,
 } from '../../types/ClientesTypes/PostCustomersType.ts'
-import { z } from 'zod'
 
 /**
  * @description Cliente cadastrado com sucesso.

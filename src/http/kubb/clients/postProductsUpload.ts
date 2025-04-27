@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostProductsUploadMutationRequestType,
-  PostProductsUploadMutationResponseType,
   PostProductsUpload400Type,
   PostProductsUpload401Type,
+  PostProductsUploadMutationRequestType,
+  PostProductsUploadMutationResponseType,
 } from '../types/ProdutosTypes/PostProductsUploadType.ts'
 
 function getPostProductsUploadUrl() {

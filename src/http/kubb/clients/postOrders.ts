@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostOrdersMutationRequestType,
-  PostOrdersMutationResponseType,
   PostOrders400Type,
   PostOrders401Type,
   PostOrders404Type,
+  PostOrdersMutationRequestType,
+  PostOrdersMutationResponseType,
 } from '../types/PedidosTypes/PostOrdersType.ts'
 
 function getPostOrdersUrl() {

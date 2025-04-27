@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteProductsCategoriesIdMutationResponseType,
-  DeleteProductsCategoriesIdPathParamsType,
   DeleteProductsCategoriesId401Type,
   DeleteProductsCategoriesId404Type,
+  DeleteProductsCategoriesIdMutationResponseType,
+  DeleteProductsCategoriesIdPathParamsType,
 } from '../types/Produtos (Categorias)Types/DeleteProductsCategoriesIdType.ts'
 
 function getDeleteProductsCategoriesIdUrl(

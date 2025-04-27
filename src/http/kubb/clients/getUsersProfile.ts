@@ -6,9 +6,9 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetUsersProfileQueryResponseType,
   GetUsersProfile401Type,
   GetUsersProfile404Type,
+  GetUsersProfileQueryResponseType,
 } from '../types/Usu\u00E1riosTypes/GetUsersProfileType.ts'
 
 function getGetUsersProfileUrl() {

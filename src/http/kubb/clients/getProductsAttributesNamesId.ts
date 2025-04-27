@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetProductsAttributesNamesIdQueryResponseType,
-  GetProductsAttributesNamesIdPathParamsType,
   GetProductsAttributesNamesId401Type,
   GetProductsAttributesNamesId404Type,
+  GetProductsAttributesNamesIdPathParamsType,
+  GetProductsAttributesNamesIdQueryResponseType,
 } from '../types/Produtos (Atributos)Types/GetProductsAttributesNamesIdType.ts'
 
 function getGetProductsAttributesNamesIdUrl(

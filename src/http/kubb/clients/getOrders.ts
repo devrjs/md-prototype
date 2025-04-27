@@ -6,8 +6,8 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetOrdersQueryResponseType,
   GetOrdersQueryParamsType,
+  GetOrdersQueryResponseType,
 } from '../types/PedidosTypes/GetOrdersType.ts'
 
 function getGetOrdersUrl() {

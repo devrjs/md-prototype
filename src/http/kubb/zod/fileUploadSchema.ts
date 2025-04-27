@@ -4,8 +4,8 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type { FileUploadType } from '../types/FileUploadType.ts'
 import { z } from 'zod'
+import type { FileUploadType } from '../types/FileUploadType.ts'
 
 export const fileUploadSchema = z.object({
   file: z

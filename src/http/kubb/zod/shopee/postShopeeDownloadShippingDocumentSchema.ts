@@ -4,11 +4,11 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import { z } from 'zod'
 import type {
   PostShopeeDownloadShippingDocument200Type,
   PostShopeeDownloadShippingDocumentMutationResponseType,
 } from '../../types/Shopee APITypes/PostShopeeDownloadShippingDocumentType.ts'
-import { z } from 'zod'
 
 /**
  * @description Default Response
