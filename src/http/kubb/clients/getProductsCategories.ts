@@ -11,7 +11,7 @@ import type {
 } from '../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
 
 function getGetProductsCategoriesUrl() {
-  return `/products/categories` as const
+  return '/products/categories' as const
 }
 
 /**

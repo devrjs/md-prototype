@@ -13,7 +13,7 @@ import type {
 } from '../types/Produtos (Categorias)Types/PostProductsCategoriesType.ts'
 
 function getPostProductsCategoriesUrl() {
-  return `/products/categories` as const
+  return '/products/categories' as const
 }
 
 /**

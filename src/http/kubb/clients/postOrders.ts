@@ -14,7 +14,7 @@ import type {
 } from '../types/PedidosTypes/PostOrdersType.ts'
 
 function getPostOrdersUrl() {
-  return `/orders` as const
+  return '/orders' as const
 }
 
 /**

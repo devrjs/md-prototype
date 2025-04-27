@@ -11,7 +11,7 @@ import type {
 } from '../types/PedidosTypes/GetOrdersType.ts'
 
 function getGetOrdersUrl() {
-  return `/orders` as const
+  return '/orders' as const
 }
 
 /**

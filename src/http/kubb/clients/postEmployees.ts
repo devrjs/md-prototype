@@ -13,7 +13,7 @@ import type {
 } from '../types/ColaboradoresTypes/PostEmployeesType.ts'
 
 function getPostEmployeesUrl() {
-  return `/employees` as const
+  return '/employees' as const
 }
 
 /**

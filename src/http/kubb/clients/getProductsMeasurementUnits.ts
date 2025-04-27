@@ -11,7 +11,7 @@ import type {
 } from '../types/Produtos (Unidades de Medida)Types/GetProductsMeasurementUnitsType.ts'
 
 function getGetProductsMeasurementUnitsUrl() {
-  return `/products/measurement-units` as const
+  return '/products/measurement-units' as const
 }
 
 /**

@@ -13,7 +13,7 @@ import type {
 } from '../types/ClientesTypes/PostCustomersType.ts'
 
 function getPostCustomersUrl() {
-  return `/customers` as const
+  return '/customers' as const
 }
 
 /**

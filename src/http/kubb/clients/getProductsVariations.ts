@@ -13,7 +13,7 @@ import type {
 } from '../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType.ts'
 
 function getGetProductsVariationsUrl() {
-  return `/products/variations` as const
+  return '/products/variations' as const
 }
 
 /**

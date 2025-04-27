@@ -13,7 +13,7 @@ import type {
 } from '../types/FornecedoresTypes/PostSuppliersType.ts'
 
 function getPostSuppliersUrl() {
-  return `/suppliers` as const
+  return '/suppliers' as const
 }
 
 /**

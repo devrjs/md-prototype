@@ -13,7 +13,7 @@ import type {
 } from '../types/ProdutosTypes/PostProductsUploadType.ts'
 
 function getPostProductsUploadUrl() {
-  return `/products/upload` as const
+  return '/products/upload' as const
 }
 
 /**

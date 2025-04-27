@@ -12,7 +12,7 @@ import type {
 } from '../types/Usu\u00E1riosTypes/GetUsersProfileType.ts'
 
 function getGetUsersProfileUrl() {
-  return `/users/profile` as const
+  return '/users/profile' as const
 }
 
 /**

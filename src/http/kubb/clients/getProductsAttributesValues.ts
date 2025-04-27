@@ -12,7 +12,7 @@ import type {
 } from '../types/Produtos (Atributos)Types/GetProductsAttributesValuesType.ts'
 
 function getGetProductsAttributesValuesUrl() {
-  return `/products/attributes/values` as const
+  return '/products/attributes/values' as const
 }
 
 /**

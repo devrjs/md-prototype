@@ -11,7 +11,7 @@ import type {
 } from '../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
 
 function getGetShopeeAuthUrlUrl() {
-  return `/shopee/auth/url` as const
+  return '/shopee/auth/url' as const
 }
 
 /**

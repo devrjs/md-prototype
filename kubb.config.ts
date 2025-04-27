@@ -14,9 +14,9 @@ export default defineConfig({
     path: OUTPUT_PATH, // 🔹 Diretório onde os arquivos gerados serão salvos
     clean: true,
   },
-  // hooks: {
-  //   done: [`biome check --write ${OUTPUT_PATH}`],
-  // },
+  hooks: {
+    done: [`biome lint --write --unsafe ${OUTPUT_PATH}`],
+  },
   plugins: [
     pluginOas(), // 🔹 Processa a OpenAPI e prepara os dados para os outros plugins
     // 🔹 Gera automaticamente os tipos TypeScript baseados nos schemas da API

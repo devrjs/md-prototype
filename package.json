@@ -7,9 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fix:lint": "pnpx @biomejs/biome lint --write ./src",
-    "fix:format": "pnpx @biomejs/biome format --write ./src",
-    "fix:check": "pnpx @biomejs/biome check --write ./src",
+    "fix:lint": "biome lint --write ./src",
+    "fix:lint:unsafe": "biome lint --write --unsafe ./src",
     "fix-kubb-imports": "node ./src/http/fixKubbImports.js"
   },
   "dependencies": {

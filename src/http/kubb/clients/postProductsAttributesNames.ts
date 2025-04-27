@@ -13,7 +13,7 @@ import type {
 } from '../types/Produtos (Atributos)Types/PostProductsAttributesNamesType.ts'
 
 function getPostProductsAttributesNamesUrl() {
-  return `/products/attributes/names` as const
+  return '/products/attributes/names' as const
 }
 
 /**

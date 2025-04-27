@@ -14,7 +14,7 @@ import type {
 } from '../types/Shopee APITypes/PostShopeeAuthTokenType.ts'
 
 function getPostShopeeAuthTokenUrl() {
-  return `/shopee/auth/token` as const
+  return '/shopee/auth/token' as const
 }
 
 /**

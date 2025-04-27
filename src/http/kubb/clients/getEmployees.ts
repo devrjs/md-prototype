@@ -13,7 +13,7 @@ import type {
 } from '../types/ColaboradoresTypes/GetEmployeesType.ts'
 
 function getGetEmployeesUrl() {
-  return `/employees` as const
+  return '/employees' as const
 }
 
 /**

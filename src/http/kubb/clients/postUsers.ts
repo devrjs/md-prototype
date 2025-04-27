@@ -12,7 +12,7 @@ import type {
 } from '../types/Usu\u00E1riosTypes/PostUsersType.ts'
 
 function getPostUsersUrl() {
-  return `/users` as const
+  return '/users' as const
 }
 
 /**
