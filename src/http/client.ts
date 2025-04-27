@@ -1,3 +1,5 @@
+import { env } from '@/env'
+
 export type RequestConfig<TData = unknown> = {
   url?: string
   method: 'GET' | 'PUT' | 'PATCH' | 'POST' | 'DELETE'
@@ -41,7 +43,7 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
     token = (await cookieStore).get('access_token')?.value ?? ''
   }
 
-  const response = await fetch(`http://localhost:3333${config.url}`, {
+  const response = await fetch(`${env.API_URL}${config.url}`, {
     method: config.method.toUpperCase(),
     body: JSON.stringify(config.data),
     signal: config.signal,
