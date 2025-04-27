@@ -1,7 +1,7 @@
 'use client'
 
 import {
-  type GetUsersProfile200,
+  type GetUsersProfile200Type,
   getUsersProfile,
   postSessionsPassword,
 } from '@/http/kubb'
@@ -10,7 +10,7 @@ import { useState } from 'react'
 export default function Home() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [data, setData] = useState<GetUsersProfile200>()
+  const [data, setData] = useState<GetUsersProfile200Type>()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()

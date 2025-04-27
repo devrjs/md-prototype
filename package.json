@@ -7,13 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fix-imports": "node ./src/http/fixImports.ts"
+    "fix:format": "pnpx @biomejs/biome format --write ./src",
+    "fix:lint": "pnpx @biomejs/biome lint --write ./src",
+    "fix:check": "pnpx @biomejs/biome check --write ./src",
+    "fix-kubb-imports": "node ./src/http/fixKubbImports.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.74.4",
     "next": "15.3.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -21,6 +25,7 @@
     "@kubb/core": "^3.10.0",
     "@kubb/plugin-client": "^3.10.0",
     "@kubb/plugin-oas": "^3.10.0",
+    "@kubb/plugin-react-query": "^3.10.2",
     "@kubb/plugin-ts": "^3.10.0",
     "@kubb/plugin-zod": "^3.10.1",
     "@tailwindcss/postcss": "^4",

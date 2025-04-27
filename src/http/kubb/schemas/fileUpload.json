@@ -1,0 +1,1 @@
+{"type":"object","properties":{"file":{"type":"string","format":"binary","description":"Arquivo de imagem a ser enviado"}},"x-readme-ref-name":"FileUpload"}

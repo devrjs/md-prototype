@@ -20,7 +20,7 @@ export type ResponseErrorConfig<TData = unknown> = {
   statusText: string
 }
 
-export const client = async <TData, TError = unknown, TVariables = unknown>(
+const client = async <TData, TError = unknown, TVariables = unknown>(
   config: RequestConfig<TVariables>
 ): Promise<ResponseErrorConfig<TData>> => {
   const response = await fetch('http://localhost:3333', {
@@ -38,3 +38,5 @@ export const client = async <TData, TError = unknown, TVariables = unknown>(
     statusText: response.statusText,
   }
 }
+
+export default client
