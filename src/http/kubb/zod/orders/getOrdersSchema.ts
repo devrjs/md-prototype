@@ -9,7 +9,7 @@ import type {
   GetOrders200Type,
   GetOrdersQueryParamsType,
   GetOrdersQueryResponseType,
-} from '../../types/PedidosTypes/GetOrdersType.ts'
+} from '../../types/PedidosTypes/GetOrdersType'
 
 export const getOrdersQueryParamsSchema = z
   .object({

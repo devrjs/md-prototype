@@ -9,7 +9,7 @@ import type {
   GetProductsAttributesValues401Type,
   GetProductsAttributesValuesQueryParamsType,
   GetProductsAttributesValuesQueryResponseType,
-} from '../types/Produtos (Atributos)Types/GetProductsAttributesValuesType.ts'
+} from '../types/Produtos (Atributos)Types/GetProductsAttributesValuesType'
 
 function getGetProductsAttributesValuesUrl() {
   return '/products/attributes/values' as const

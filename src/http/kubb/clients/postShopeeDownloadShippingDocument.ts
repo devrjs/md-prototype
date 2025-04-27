@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostShopeeDownloadShippingDocumentMutationResponseType } from '../types/Shopee APITypes/PostShopeeDownloadShippingDocumentType.ts'
+import type { PostShopeeDownloadShippingDocumentMutationResponseType } from '../types/Shopee APITypes/PostShopeeDownloadShippingDocumentType'
 
 function getPostShopeeDownloadShippingDocumentUrl() {
   return '/shopee/download/shipping-document' as const

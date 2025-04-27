@@ -12,7 +12,7 @@ import type {
   PutOrdersIdMutationRequestType,
   PutOrdersIdMutationResponseType,
   PutOrdersIdPathParamsType,
-} from '../types/PedidosTypes/PutOrdersIdType.ts'
+} from '../types/PedidosTypes/PutOrdersIdType'
 
 function getPutOrdersIdUrl(id: PutOrdersIdPathParamsType['id']) {
   return `/orders/${id}` as const

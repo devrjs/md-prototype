@@ -11,7 +11,7 @@ import type {
   PostProducts404Type,
   PostProductsMutationRequestType,
   PostProductsMutationResponseType,
-} from '../../types/ProdutosTypes/PostProductsType.ts'
+} from '../../types/ProdutosTypes/PostProductsType'
 
 /**
  * @description Produto cadastrado com sucesso.

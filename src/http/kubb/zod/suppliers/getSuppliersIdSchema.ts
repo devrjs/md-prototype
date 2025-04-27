@@ -11,7 +11,7 @@ import type {
   GetSuppliersId404Type,
   GetSuppliersIdPathParamsType,
   GetSuppliersIdQueryResponseType,
-} from '../../types/FornecedoresTypes/GetSuppliersIdType.ts'
+} from '../../types/FornecedoresTypes/GetSuppliersIdType'
 
 export const getSuppliersIdPathParamsSchema = z.object({
   id: z.string(),

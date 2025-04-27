@@ -11,7 +11,7 @@ import type {
   PutCustomersIdMutationRequestType,
   PutCustomersIdMutationResponseType,
   PutCustomersIdPathParamsType,
-} from '../types/ClientesTypes/PutCustomersIdType.ts'
+} from '../types/ClientesTypes/PutCustomersIdType'
 
 function getPutCustomersIdUrl(id: PutCustomersIdPathParamsType['id']) {
   return `/customers/${id}` as const

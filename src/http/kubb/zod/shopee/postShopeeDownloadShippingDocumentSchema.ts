@@ -8,7 +8,7 @@ import { z } from 'zod'
 import type {
   PostShopeeDownloadShippingDocument200Type,
   PostShopeeDownloadShippingDocumentMutationResponseType,
-} from '../../types/Shopee APITypes/PostShopeeDownloadShippingDocumentType.ts'
+} from '../../types/Shopee APITypes/PostShopeeDownloadShippingDocumentType'
 
 /**
  * @description Default Response

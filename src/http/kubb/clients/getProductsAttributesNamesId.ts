@@ -10,7 +10,7 @@ import type {
   GetProductsAttributesNamesId404Type,
   GetProductsAttributesNamesIdPathParamsType,
   GetProductsAttributesNamesIdQueryResponseType,
-} from '../types/Produtos (Atributos)Types/GetProductsAttributesNamesIdType.ts'
+} from '../types/Produtos (Atributos)Types/GetProductsAttributesNamesIdType'
 
 function getGetProductsAttributesNamesIdUrl(
   id: GetProductsAttributesNamesIdPathParamsType['id']

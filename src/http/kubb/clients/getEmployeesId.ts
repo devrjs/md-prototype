@@ -10,7 +10,7 @@ import type {
   GetEmployeesId404Type,
   GetEmployeesIdPathParamsType,
   GetEmployeesIdQueryResponseType,
-} from '../types/ColaboradoresTypes/GetEmployeesIdType.ts'
+} from '../types/ColaboradoresTypes/GetEmployeesIdType'
 
 function getGetEmployeesIdUrl(id: GetEmployeesIdPathParamsType['id']) {
   return `/employees/${id}` as const

@@ -11,7 +11,7 @@ import type {
   DeleteSuppliersId404Type,
   DeleteSuppliersIdMutationResponseType,
   DeleteSuppliersIdPathParamsType,
-} from '../../types/FornecedoresTypes/DeleteSuppliersIdType.ts'
+} from '../../types/FornecedoresTypes/DeleteSuppliersIdType'
 
 export const deleteSuppliersIdPathParamsSchema = z.object({
   id: z.string(),

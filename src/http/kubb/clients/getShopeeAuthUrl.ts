@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
   GetShopeeAuthUrl401Type,
   GetShopeeAuthUrlQueryResponseType,
-} from '../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
+} from '../types/Shopee APITypes/GetShopeeAuthUrlType'
 
 function getGetShopeeAuthUrlUrl() {
   return '/shopee/auth/url' as const

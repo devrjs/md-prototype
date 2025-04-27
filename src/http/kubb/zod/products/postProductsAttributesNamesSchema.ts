@@ -11,7 +11,7 @@ import type {
   PostProductsAttributesNames409Type,
   PostProductsAttributesNamesMutationRequestType,
   PostProductsAttributesNamesMutationResponseType,
-} from '../../types/Produtos (Atributos)Types/PostProductsAttributesNamesType.ts'
+} from '../../types/Produtos (Atributos)Types/PostProductsAttributesNamesType'
 
 /**
  * @description Nome do atributo do produto cadastrado com sucesso.

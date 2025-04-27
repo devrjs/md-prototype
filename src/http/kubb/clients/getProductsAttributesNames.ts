@@ -9,7 +9,7 @@ import type {
   GetProductsAttributesNames401Type,
   GetProductsAttributesNamesQueryParamsType,
   GetProductsAttributesNamesQueryResponseType,
-} from '../types/Produtos (Atributos)Types/GetProductsAttributesNamesType.ts'
+} from '../types/Produtos (Atributos)Types/GetProductsAttributesNamesType'
 
 function getGetProductsAttributesNamesUrl() {
   return '/products/attributes/names' as const

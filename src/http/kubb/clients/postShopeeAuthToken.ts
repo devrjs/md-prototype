@@ -11,7 +11,7 @@ import type {
   PostShopeeAuthToken404Type,
   PostShopeeAuthTokenMutationRequestType,
   PostShopeeAuthTokenMutationResponseType,
-} from '../types/Shopee APITypes/PostShopeeAuthTokenType.ts'
+} from '../types/Shopee APITypes/PostShopeeAuthTokenType'
 
 function getPostShopeeAuthTokenUrl() {
   return '/shopee/auth/token' as const

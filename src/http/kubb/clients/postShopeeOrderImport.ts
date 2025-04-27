@@ -11,7 +11,7 @@ import type {
   PostShopeeOrderImport404Type,
   PostShopeeOrderImportMutationResponseType,
   PostShopeeOrderImportQueryParamsType,
-} from '../types/Shopee APITypes/PostShopeeOrderImportType.ts'
+} from '../types/Shopee APITypes/PostShopeeOrderImportType'
 
 function getPostShopeeOrderImportUrl() {
   return '/shopee/order/import' as const

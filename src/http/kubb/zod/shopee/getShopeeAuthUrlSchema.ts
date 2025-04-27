@@ -9,7 +9,7 @@ import type {
   GetShopeeAuthUrl200Type,
   GetShopeeAuthUrl401Type,
   GetShopeeAuthUrlQueryResponseType,
-} from '../../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
+} from '../../types/Shopee APITypes/GetShopeeAuthUrlType'
 
 /**
  * @description Default Response

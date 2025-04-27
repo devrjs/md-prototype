@@ -11,7 +11,7 @@ import type {
   GetEmployeesId404Type,
   GetEmployeesIdPathParamsType,
   GetEmployeesIdQueryResponseType,
-} from '../../types/ColaboradoresTypes/GetEmployeesIdType.ts'
+} from '../../types/ColaboradoresTypes/GetEmployeesIdType'
 
 export const getEmployeesIdPathParamsSchema = z.object({
   id: z.string(),

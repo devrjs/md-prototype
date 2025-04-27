@@ -10,7 +10,7 @@ import type {
   DeleteProductsAttributesValuesId404Type,
   DeleteProductsAttributesValuesIdMutationResponseType,
   DeleteProductsAttributesValuesIdPathParamsType,
-} from '../types/Produtos (Atributos)Types/DeleteProductsAttributesValuesIdType.ts'
+} from '../types/Produtos (Atributos)Types/DeleteProductsAttributesValuesIdType'
 
 function getDeleteProductsAttributesValuesIdUrl(
   id: DeleteProductsAttributesValuesIdPathParamsType['id']

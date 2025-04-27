@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
   GetOrdersQueryParamsType,
   GetOrdersQueryResponseType,
-} from '../types/PedidosTypes/GetOrdersType.ts'
+} from '../types/PedidosTypes/GetOrdersType'
 
 function getGetOrdersUrl() {
   return '/orders' as const

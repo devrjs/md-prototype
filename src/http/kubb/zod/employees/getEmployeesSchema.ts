@@ -11,7 +11,7 @@ import type {
   GetEmployees404Type,
   GetEmployeesQueryParamsType,
   GetEmployeesQueryResponseType,
-} from '../../types/ColaboradoresTypes/GetEmployeesType.ts'
+} from '../../types/ColaboradoresTypes/GetEmployeesType'
 
 export const getEmployeesQueryParamsSchema = z
   .object({

@@ -11,7 +11,7 @@ import type {
   DeleteProductsVariationsId404Type,
   DeleteProductsVariationsIdMutationResponseType,
   DeleteProductsVariationsIdPathParamsType,
-} from '../../types/Produtos (Varia\u00E7\u00F5es)Types/DeleteProductsVariationsIdType.ts'
+} from '../../types/Produtos (Varia\u00E7\u00F5es)Types/DeleteProductsVariationsIdType'
 
 export const deleteProductsVariationsIdPathParamsSchema = z.object({
   id: z.string(),

@@ -11,7 +11,7 @@ import type {
   GetSuppliers404Type,
   GetSuppliersQueryParamsType,
   GetSuppliersQueryResponseType,
-} from '../../types/FornecedoresTypes/GetSuppliersType.ts'
+} from '../../types/FornecedoresTypes/GetSuppliersType'
 
 export const getSuppliersQueryParamsSchema = z
   .object({

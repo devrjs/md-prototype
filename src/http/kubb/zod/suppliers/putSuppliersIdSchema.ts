@@ -12,7 +12,7 @@ import type {
   PutSuppliersIdMutationRequestType,
   PutSuppliersIdMutationResponseType,
   PutSuppliersIdPathParamsType,
-} from '../../types/FornecedoresTypes/PutSuppliersIdType.ts'
+} from '../../types/FornecedoresTypes/PutSuppliersIdType'
 
 export const putSuppliersIdPathParamsSchema = z.object({
   id: z.string(),

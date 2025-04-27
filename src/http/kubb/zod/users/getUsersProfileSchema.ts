@@ -10,7 +10,7 @@ import type {
   GetUsersProfile401Type,
   GetUsersProfile404Type,
   GetUsersProfileQueryResponseType,
-} from '../../types/Usu\u00E1riosTypes/GetUsersProfileType.ts'
+} from '../../types/Usu\u00E1riosTypes/GetUsersProfileType'
 
 /**
  * @description Informações do perfil do usuário obtidas com sucesso.

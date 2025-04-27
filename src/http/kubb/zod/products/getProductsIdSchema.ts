@@ -11,7 +11,7 @@ import type {
   GetProductsId404Type,
   GetProductsIdPathParamsType,
   GetProductsIdQueryResponseType,
-} from '../../types/ProdutosTypes/GetProductsIdType.ts'
+} from '../../types/ProdutosTypes/GetProductsIdType'
 
 export const getProductsIdPathParamsSchema = z.object({
   id: z.string(),

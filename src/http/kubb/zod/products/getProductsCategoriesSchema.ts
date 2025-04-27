@@ -9,7 +9,7 @@ import type {
   GetProductsCategories200Type,
   GetProductsCategories401Type,
   GetProductsCategoriesQueryResponseType,
-} from '../../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
+} from '../../types/Produtos (Categorias)Types/GetProductsCategoriesType'
 
 /**
  * @description Categorias de produtos obtidas com sucesso.

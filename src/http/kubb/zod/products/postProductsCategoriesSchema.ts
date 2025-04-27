@@ -11,7 +11,7 @@ import type {
   PostProductsCategories409Type,
   PostProductsCategoriesMutationRequestType,
   PostProductsCategoriesMutationResponseType,
-} from '../../types/Produtos (Categorias)Types/PostProductsCategoriesType.ts'
+} from '../../types/Produtos (Categorias)Types/PostProductsCategoriesType'
 
 /**
  * @description Categoria cadastrado com sucesso.

@@ -11,7 +11,7 @@ import type {
   PutEmployeesIdMutationRequestType,
   PutEmployeesIdMutationResponseType,
   PutEmployeesIdPathParamsType,
-} from '../types/ColaboradoresTypes/PutEmployeesIdType.ts'
+} from '../types/ColaboradoresTypes/PutEmployeesIdType'
 
 function getPutEmployeesIdUrl(id: PutEmployeesIdPathParamsType['id']) {
   return `/employees/${id}` as const

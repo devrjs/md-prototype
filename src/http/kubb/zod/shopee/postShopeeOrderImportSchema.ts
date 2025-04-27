@@ -12,7 +12,7 @@ import type {
   PostShopeeOrderImport404Type,
   PostShopeeOrderImportMutationResponseType,
   PostShopeeOrderImportQueryParamsType,
-} from '../../types/Shopee APITypes/PostShopeeOrderImportType.ts'
+} from '../../types/Shopee APITypes/PostShopeeOrderImportType'
 
 export const postShopeeOrderImportQueryParamsSchema = z.object({
   orderPeriodStartDate: z.string(),

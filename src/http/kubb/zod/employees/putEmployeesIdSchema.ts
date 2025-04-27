@@ -12,7 +12,7 @@ import type {
   PutEmployeesIdMutationRequestType,
   PutEmployeesIdMutationResponseType,
   PutEmployeesIdPathParamsType,
-} from '../../types/ColaboradoresTypes/PutEmployeesIdType.ts'
+} from '../../types/ColaboradoresTypes/PutEmployeesIdType'
 
 export const putEmployeesIdPathParamsSchema = z.object({
   id: z.string(),

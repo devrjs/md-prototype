@@ -9,7 +9,7 @@ import type {
   GetUsersProfile401Type,
   GetUsersProfile404Type,
   GetUsersProfileQueryResponseType,
-} from '../types/Usu\u00E1riosTypes/GetUsersProfileType.ts'
+} from '../types/Usu\u00E1riosTypes/GetUsersProfileType'
 
 function getGetUsersProfileUrl() {
   return '/users/profile' as const

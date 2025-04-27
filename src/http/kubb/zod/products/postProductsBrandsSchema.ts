@@ -11,7 +11,7 @@ import type {
   PostProductsBrands409Type,
   PostProductsBrandsMutationRequestType,
   PostProductsBrandsMutationResponseType,
-} from '../../types/Produtos (Marcas)Types/PostProductsBrandsType.ts'
+} from '../../types/Produtos (Marcas)Types/PostProductsBrandsType'
 
 /**
  * @description Marca cadastrado com sucesso.

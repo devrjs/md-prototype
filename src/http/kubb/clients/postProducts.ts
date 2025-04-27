@@ -10,7 +10,7 @@ import type {
   PostProducts404Type,
   PostProductsMutationRequestType,
   PostProductsMutationResponseType,
-} from '../types/ProdutosTypes/PostProductsType.ts'
+} from '../types/ProdutosTypes/PostProductsType'
 
 function getPostProductsUrl() {
   return '/products' as const

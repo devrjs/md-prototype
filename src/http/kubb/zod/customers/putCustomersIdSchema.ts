@@ -12,7 +12,7 @@ import type {
   PutCustomersIdMutationRequestType,
   PutCustomersIdMutationResponseType,
   PutCustomersIdPathParamsType,
-} from '../../types/ClientesTypes/PutCustomersIdType.ts'
+} from '../../types/ClientesTypes/PutCustomersIdType'
 
 export const putCustomersIdPathParamsSchema = z.object({
   id: z.string(),

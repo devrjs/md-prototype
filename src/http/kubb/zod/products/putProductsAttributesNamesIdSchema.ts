@@ -12,7 +12,7 @@ import type {
   PutProductsAttributesNamesIdMutationRequestType,
   PutProductsAttributesNamesIdMutationResponseType,
   PutProductsAttributesNamesIdPathParamsType,
-} from '../../types/Produtos (Atributos)Types/PutProductsAttributesNamesIdType.ts'
+} from '../../types/Produtos (Atributos)Types/PutProductsAttributesNamesIdType'
 
 export const putProductsAttributesNamesIdPathParamsSchema = z.object({
   id: z.string(),

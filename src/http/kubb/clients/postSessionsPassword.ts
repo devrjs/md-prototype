@@ -9,7 +9,7 @@ import type {
   PostSessionsPassword400Type,
   PostSessionsPasswordMutationRequestType,
   PostSessionsPasswordMutationResponseType,
-} from '../types/Usu\u00E1riosTypes/PostSessionsPasswordType.ts'
+} from '../types/Usu\u00E1riosTypes/PostSessionsPasswordType'
 
 function getPostSessionsPasswordUrl() {
   return '/sessions/password' as const

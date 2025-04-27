@@ -10,7 +10,7 @@ import type {
   GetSuppliersId404Type,
   GetSuppliersIdPathParamsType,
   GetSuppliersIdQueryResponseType,
-} from '../types/FornecedoresTypes/GetSuppliersIdType.ts'
+} from '../types/FornecedoresTypes/GetSuppliersIdType'
 
 function getGetSuppliersIdUrl(id: GetSuppliersIdPathParamsType['id']) {
   return `/suppliers/${id}` as const

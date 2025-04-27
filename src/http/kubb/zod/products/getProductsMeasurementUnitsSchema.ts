@@ -9,7 +9,7 @@ import type {
   GetProductsMeasurementUnits200Type,
   GetProductsMeasurementUnits401Type,
   GetProductsMeasurementUnitsQueryResponseType,
-} from '../../types/Produtos (Unidades de Medida)Types/GetProductsMeasurementUnitsType.ts'
+} from '../../types/Produtos (Unidades de Medida)Types/GetProductsMeasurementUnitsType'
 
 /**
  * @description Unidades de medida de produtos obtidas com sucesso.

@@ -11,7 +11,7 @@ import type {
   PostEmployees409Type,
   PostEmployeesMutationRequestType,
   PostEmployeesMutationResponseType,
-} from '../../types/ColaboradoresTypes/PostEmployeesType.ts'
+} from '../../types/ColaboradoresTypes/PostEmployeesType'
 
 /**
  * @description Colaborador cadastrado com sucesso.

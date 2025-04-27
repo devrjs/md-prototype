@@ -12,7 +12,7 @@ import type {
   PostOrders404Type,
   PostOrdersMutationRequestType,
   PostOrdersMutationResponseType,
-} from '../../types/PedidosTypes/PostOrdersType.ts'
+} from '../../types/PedidosTypes/PostOrdersType'
 
 /**
  * @description Pedido criado com sucesso.

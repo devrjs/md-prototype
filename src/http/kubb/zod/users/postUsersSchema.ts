@@ -10,7 +10,7 @@ import type {
   PostUsers409Type,
   PostUsersMutationRequestType,
   PostUsersMutationResponseType,
-} from '../../types/Usu\u00E1riosTypes/PostUsersType.ts'
+} from '../../types/Usu\u00E1riosTypes/PostUsersType'
 
 /**
  * @description Usuário cadastrado com sucesso.

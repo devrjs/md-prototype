@@ -11,7 +11,7 @@ import type {
   GetCustomers404Type,
   GetCustomersQueryParamsType,
   GetCustomersQueryResponseType,
-} from '../../types/ClientesTypes/GetCustomersType.ts'
+} from '../../types/ClientesTypes/GetCustomersType'
 
 export const getCustomersQueryParamsSchema = z
   .object({

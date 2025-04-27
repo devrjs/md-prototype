@@ -12,7 +12,7 @@ import type {
   PostShopeeAuthToken404Type,
   PostShopeeAuthTokenMutationRequestType,
   PostShopeeAuthTokenMutationResponseType,
-} from '../../types/Shopee APITypes/PostShopeeAuthTokenType.ts'
+} from '../../types/Shopee APITypes/PostShopeeAuthTokenType'
 
 /**
  * @description Shopee authenticated.

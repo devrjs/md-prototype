@@ -13,7 +13,7 @@ import type {
   PutOrdersIdMutationRequestType,
   PutOrdersIdMutationResponseType,
   PutOrdersIdPathParamsType,
-} from '../../types/PedidosTypes/PutOrdersIdType.ts'
+} from '../../types/PedidosTypes/PutOrdersIdType'
 
 export const putOrdersIdPathParamsSchema = z.object({
   id: z.string(),

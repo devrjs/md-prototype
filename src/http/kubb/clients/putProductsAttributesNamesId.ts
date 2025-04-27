@@ -11,7 +11,7 @@ import type {
   PutProductsAttributesNamesIdMutationRequestType,
   PutProductsAttributesNamesIdMutationResponseType,
   PutProductsAttributesNamesIdPathParamsType,
-} from '../types/Produtos (Atributos)Types/PutProductsAttributesNamesIdType.ts'
+} from '../types/Produtos (Atributos)Types/PutProductsAttributesNamesIdType'
 
 function getPutProductsAttributesNamesIdUrl(
   id: PutProductsAttributesNamesIdPathParamsType['id']

@@ -10,7 +10,7 @@ import type {
   GetOrdersId404Type,
   GetOrdersIdPathParamsType,
   GetOrdersIdQueryResponseType,
-} from '../types/PedidosTypes/GetOrdersIdType.ts'
+} from '../types/PedidosTypes/GetOrdersIdType'
 
 function getGetOrdersIdUrl(id: GetOrdersIdPathParamsType['id']) {
   return `/orders/${id}` as const

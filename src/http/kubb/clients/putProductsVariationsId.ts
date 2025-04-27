@@ -11,7 +11,7 @@ import type {
   PutProductsVariationsIdMutationRequestType,
   PutProductsVariationsIdMutationResponseType,
   PutProductsVariationsIdPathParamsType,
-} from '../types/Produtos (Varia\u00E7\u00F5es)Types/PutProductsVariationsIdType.ts'
+} from '../types/Produtos (Varia\u00E7\u00F5es)Types/PutProductsVariationsIdType'
 
 function getPutProductsVariationsIdUrl(
   id: PutProductsVariationsIdPathParamsType['id']
