@@ -556,8 +556,15 @@ export { putProductsId } from './clients/putProductsId.ts'
 export { putProductsVariationsId } from './clients/putProductsVariationsId.ts'
 export { putSuppliersId } from './clients/putSuppliersId.ts'
 export { deleteCustomersId200Enum } from './types/ClientesTypes/DeleteCustomersIdType.ts'
-export { getCustomersId200DocumentTypeEnum, getCustomersId200GenderEnum, addressesPlatformEnum } from './types/ClientesTypes/GetCustomersIdType.ts'
-export { getCustomersQueryParamsOrderByEnum, customersDocumentTypeEnum } from './types/ClientesTypes/GetCustomersType.ts'
+export {
+  getCustomersId200DocumentTypeEnum,
+  getCustomersId200GenderEnum,
+  addressesPlatformEnum,
+} from './types/ClientesTypes/GetCustomersIdType.ts'
+export {
+  getCustomersQueryParamsOrderByEnum,
+  customersDocumentTypeEnum,
+} from './types/ClientesTypes/GetCustomersType.ts'
 export {
   postCustomers201Enum,
   postCustomersMutationRequestDocumentTypeEnum,
@@ -569,8 +576,15 @@ export {
   putCustomersIdMutationRequestGenderEnum,
 } from './types/ClientesTypes/PutCustomersIdType.ts'
 export { deleteEmployeesId200Enum } from './types/ColaboradoresTypes/DeleteEmployeesIdType.ts'
-export { getEmployeesId200DocumentTypeEnum, getEmployeesId200GenderEnum, addressesPlatformEnum3 } from './types/ColaboradoresTypes/GetEmployeesIdType.ts'
-export { getEmployeesQueryParamsOrderByEnum, employeesDocumentTypeEnum } from './types/ColaboradoresTypes/GetEmployeesType.ts'
+export {
+  getEmployeesId200DocumentTypeEnum,
+  getEmployeesId200GenderEnum,
+  addressesPlatformEnum3,
+} from './types/ColaboradoresTypes/GetEmployeesIdType.ts'
+export {
+  getEmployeesQueryParamsOrderByEnum,
+  employeesDocumentTypeEnum,
+} from './types/ColaboradoresTypes/GetEmployeesType.ts'
 export {
   postEmployees201Enum,
   postEmployeesMutationRequestDocumentTypeEnum,
@@ -582,12 +596,27 @@ export {
   putEmployeesIdMutationRequestGenderEnum,
 } from './types/ColaboradoresTypes/PutEmployeesIdType.ts'
 export { deleteSuppliersId200Enum } from './types/FornecedoresTypes/DeleteSuppliersIdType.ts'
-export { getSuppliersId200DocumentTypeEnum, addressesPlatformEnum2 } from './types/FornecedoresTypes/GetSuppliersIdType.ts'
-export { getSuppliersQueryParamsOrderByEnum, suppliersDocumentTypeEnum } from './types/FornecedoresTypes/GetSuppliersType.ts'
-export { postSuppliers201Enum, postSuppliersMutationRequestDocumentTypeEnum } from './types/FornecedoresTypes/PostSuppliersType.ts'
-export { putSuppliersId200Enum, putSuppliersIdMutationRequestDocumentTypeEnum } from './types/FornecedoresTypes/PutSuppliersIdType.ts'
+export {
+  getSuppliersId200DocumentTypeEnum,
+  addressesPlatformEnum2,
+} from './types/FornecedoresTypes/GetSuppliersIdType.ts'
+export {
+  getSuppliersQueryParamsOrderByEnum,
+  suppliersDocumentTypeEnum,
+} from './types/FornecedoresTypes/GetSuppliersType.ts'
+export {
+  postSuppliers201Enum,
+  postSuppliersMutationRequestDocumentTypeEnum,
+} from './types/FornecedoresTypes/PostSuppliersType.ts'
+export {
+  putSuppliersId200Enum,
+  putSuppliersIdMutationRequestDocumentTypeEnum,
+} from './types/FornecedoresTypes/PutSuppliersIdType.ts'
 export { deleteOrdersId200Enum } from './types/PedidosTypes/DeleteOrdersIdType.ts'
-export { getOrdersQueryParamsOrderByEnum, getOrdersQueryParamsStatusEnum } from './types/PedidosTypes/GetOrdersType.ts'
+export {
+  getOrdersQueryParamsOrderByEnum,
+  getOrdersQueryParamsStatusEnum,
+} from './types/PedidosTypes/GetOrdersType.ts'
 export {
   postOrders201Enum,
   postOrdersMutationRequestStatusEnum,
@@ -711,7 +740,11 @@ export {
   getOrdersId404Schema,
   getOrdersIdQueryResponseSchema,
 } from './zod/orders/getOrdersIdSchema.ts'
-export { getOrdersQueryParamsSchema, getOrders200Schema, getOrdersQueryResponseSchema } from './zod/orders/getOrdersSchema.ts'
+export {
+  getOrdersQueryParamsSchema,
+  getOrders200Schema,
+  getOrdersQueryResponseSchema,
+} from './zod/orders/getOrdersSchema.ts'
 export {
   postOrders201Schema,
   postOrders400Schema,
@@ -797,7 +830,11 @@ export {
   getProductsAttributesValues401Schema,
   getProductsAttributesValuesQueryResponseSchema,
 } from './zod/products/getProductsAttributesValuesSchema.ts'
-export { getProductsBrands200Schema, getProductsBrands401Schema, getProductsBrandsQueryResponseSchema } from './zod/products/getProductsBrandsSchema.ts'
+export {
+  getProductsBrands200Schema,
+  getProductsBrands401Schema,
+  getProductsBrandsQueryResponseSchema,
+} from './zod/products/getProductsBrandsSchema.ts'
 export {
   getProductsCategories200Schema,
   getProductsCategories401Schema,
@@ -815,7 +852,12 @@ export {
   getProductsMeasurementUnits401Schema,
   getProductsMeasurementUnitsQueryResponseSchema,
 } from './zod/products/getProductsMeasurementUnitsSchema.ts'
-export { getProductsQueryParamsSchema, getProducts200Schema, getProducts401Schema, getProductsQueryResponseSchema } from './zod/products/getProductsSchema.ts'
+export {
+  getProductsQueryParamsSchema,
+  getProducts200Schema,
+  getProducts401Schema,
+  getProductsQueryResponseSchema,
+} from './zod/products/getProductsSchema.ts'
 export {
   getProductsVariationsIdPathParamsSchema,
   getProductsVariationsId200Schema,
@@ -917,7 +959,11 @@ export {
   postSessionsPasswordMutationRequestSchema,
   postSessionsPasswordMutationResponseSchema,
 } from './zod/sessions/postSessionsPasswordSchema.ts'
-export { getShopeeAuthUrl200Schema, getShopeeAuthUrl401Schema, getShopeeAuthUrlQueryResponseSchema } from './zod/shopee/getShopeeAuthUrlSchema.ts'
+export {
+  getShopeeAuthUrl200Schema,
+  getShopeeAuthUrl401Schema,
+  getShopeeAuthUrlQueryResponseSchema,
+} from './zod/shopee/getShopeeAuthUrlSchema.ts'
 export {
   postShopeeAuthToken200Schema,
   postShopeeAuthToken400Schema,
@@ -980,4 +1026,9 @@ export {
   getUsersProfile404Schema,
   getUsersProfileQueryResponseSchema,
 } from './zod/users/getUsersProfileSchema.ts'
-export { postUsers201Schema, postUsers409Schema, postUsersMutationRequestSchema, postUsersMutationResponseSchema } from './zod/users/postUsersSchema.ts'
+export {
+  postUsers201Schema,
+  postUsers409Schema,
+  postUsersMutationRequestSchema,
+  postUsersMutationResponseSchema,
+} from './zod/users/postUsersSchema.ts'

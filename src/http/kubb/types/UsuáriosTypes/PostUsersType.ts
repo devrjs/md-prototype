@@ -7,7 +7,8 @@ export const postUsers201Enum = {
   null: 'null',
 } as const
 
-export type PostUsers201EnumType = (typeof postUsers201Enum)[keyof typeof postUsers201Enum]
+export type PostUsers201EnumType =
+  (typeof postUsers201Enum)[keyof typeof postUsers201Enum]
 
 /**
  * @description Usuário cadastrado com sucesso.

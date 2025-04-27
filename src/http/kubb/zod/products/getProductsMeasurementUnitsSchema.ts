@@ -20,9 +20,11 @@ export const getProductsMeasurementUnits200Schema = z
       id: z.string(),
       name: z.string(),
       acronym: z.string(),
-    }),
+    })
   )
-  .describe('Unidades de medida de produtos obtidas com sucesso.') as unknown as ToZod<GetProductsMeasurementUnits200Type>
+  .describe(
+    'Unidades de medida de produtos obtidas com sucesso.'
+  ) as unknown as ToZod<GetProductsMeasurementUnits200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -31,8 +33,10 @@ export const getProductsMeasurementUnits401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsMeasurementUnits401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<GetProductsMeasurementUnits401Type>
 
 export const getProductsMeasurementUnitsQueryResponseSchema = z.lazy(
-  () => getProductsMeasurementUnits200Schema,
+  () => getProductsMeasurementUnits200Schema
 ) as unknown as ToZod<GetProductsMeasurementUnitsQueryResponseType>

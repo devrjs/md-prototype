@@ -18,12 +18,14 @@ export const postShopeeOrderImport200Enum = {
   null: 'null',
 } as const
 
-export type PostShopeeOrderImport200EnumType = (typeof postShopeeOrderImport200Enum)[keyof typeof postShopeeOrderImport200Enum]
+export type PostShopeeOrderImport200EnumType =
+  (typeof postShopeeOrderImport200Enum)[keyof typeof postShopeeOrderImport200Enum]
 
 /**
  * @description Pedidos importados com sucesso.
  */
-export type PostShopeeOrderImport200Type = PostShopeeOrderImport200EnumType | null
+export type PostShopeeOrderImport200Type =
+  PostShopeeOrderImport200EnumType | null
 
 /**
  * @description Erro ao importar pedidos.
@@ -55,10 +57,14 @@ export type PostShopeeOrderImport404Type = {
   message: string
 }
 
-export type PostShopeeOrderImportMutationResponseType = PostShopeeOrderImport200Type
+export type PostShopeeOrderImportMutationResponseType =
+  PostShopeeOrderImport200Type
 
 export type PostShopeeOrderImportTypeMutation = {
   Response: PostShopeeOrderImport200Type
   QueryParams: PostShopeeOrderImportQueryParamsType
-  Errors: PostShopeeOrderImport400Type | PostShopeeOrderImport401Type | PostShopeeOrderImport404Type
+  Errors:
+    | PostShopeeOrderImport400Type
+    | PostShopeeOrderImport401Type
+    | PostShopeeOrderImport404Type
 }

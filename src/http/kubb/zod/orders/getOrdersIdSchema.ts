@@ -43,10 +43,12 @@ export const getOrdersId200Schema = z
         updated_at: z.string().datetime({ offset: true }),
         order_id: z.string(),
         product_variation_id: z.string().nullable(),
-      }),
+      })
     ),
   })
-  .describe('Detalhes do pedido obtidos com sucesso.') as unknown as ToZod<GetOrdersId200Type>
+  .describe(
+    'Detalhes do pedido obtidos com sucesso.'
+  ) as unknown as ToZod<GetOrdersId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -66,4 +68,6 @@ export const getOrdersId404Schema = z
   })
   .describe('Pedido não encontrado.') as unknown as ToZod<GetOrdersId404Type>
 
-export const getOrdersIdQueryResponseSchema = z.lazy(() => getOrdersId200Schema) as unknown as ToZod<GetOrdersIdQueryResponseType>
+export const getOrdersIdQueryResponseSchema = z.lazy(
+  () => getOrdersId200Schema
+) as unknown as ToZod<GetOrdersIdQueryResponseType>

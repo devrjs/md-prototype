@@ -8,7 +8,8 @@ export const getProductsQueryParamsOrderByEnum = {
   asc: 'asc',
 } as const
 
-export type GetProductsQueryParamsOrderByEnumType = (typeof getProductsQueryParamsOrderByEnum)[keyof typeof getProductsQueryParamsOrderByEnum]
+export type GetProductsQueryParamsOrderByEnumType =
+  (typeof getProductsQueryParamsOrderByEnum)[keyof typeof getProductsQueryParamsOrderByEnum]
 
 export type GetProductsQueryParamsType = {
   /**

@@ -23,7 +23,9 @@ function getPostEmployeesUrl() {
  */
 export async function postEmployees(
   data: PostEmployeesMutationRequestType,
-  config: Partial<RequestConfig<PostEmployeesMutationRequestType>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<PostEmployeesMutationRequestType>> & {
+    client?: typeof client
+  } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
@@ -31,6 +33,11 @@ export async function postEmployees(
     PostEmployeesMutationResponseType,
     ResponseErrorConfig<PostEmployees401Type | PostEmployees409Type>,
     PostEmployeesMutationRequestType
-  >({ method: 'POST', url: getPostEmployeesUrl().toString(), data, ...requestConfig })
+  >({
+    method: 'POST',
+    url: getPostEmployeesUrl().toString(),
+    data,
+    ...requestConfig,
+  })
   return res.data
 }

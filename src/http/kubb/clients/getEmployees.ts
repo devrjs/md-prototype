@@ -21,10 +21,17 @@ function getGetEmployeesUrl() {
  * @summary Retorna uma lista de colaboradores cadastrados.
  * {@link /employees}
  */
-export async function getEmployees(params?: GetEmployeesQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getEmployees(
+  params?: GetEmployeesQueryParamsType,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetEmployeesQueryResponseType, ResponseErrorConfig<GetEmployees401Type | GetEmployees404Type>, unknown>({
+  const res = await request<
+    GetEmployeesQueryResponseType,
+    ResponseErrorConfig<GetEmployees401Type | GetEmployees404Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetEmployeesUrl().toString(),
     params,

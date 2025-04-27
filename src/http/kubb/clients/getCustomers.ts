@@ -21,10 +21,17 @@ function getGetCustomersUrl() {
  * @summary Retorna uma lista de clientes castrados.
  * {@link /customers}
  */
-export async function getCustomers(params?: GetCustomersQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getCustomers(
+  params?: GetCustomersQueryParamsType,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetCustomersQueryResponseType, ResponseErrorConfig<GetCustomers401Type | GetCustomers404Type>, unknown>({
+  const res = await request<
+    GetCustomersQueryResponseType,
+    ResponseErrorConfig<GetCustomers401Type | GetCustomers404Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetCustomersUrl().toString(),
     params,

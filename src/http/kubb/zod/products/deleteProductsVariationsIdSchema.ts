@@ -32,7 +32,9 @@ export const deleteProductsVariationsId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<DeleteProductsVariationsId401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<DeleteProductsVariationsId401Type>
 
 /**
  * @description Variação de produto não encontrado.
@@ -41,8 +43,10 @@ export const deleteProductsVariationsId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Variação de produto não encontrado.') as unknown as ToZod<DeleteProductsVariationsId404Type>
+  .describe(
+    'Variação de produto não encontrado.'
+  ) as unknown as ToZod<DeleteProductsVariationsId404Type>
 
 export const deleteProductsVariationsIdMutationResponseSchema = z.lazy(
-  () => deleteProductsVariationsId200Schema,
+  () => deleteProductsVariationsId200Schema
 ) as unknown as ToZod<DeleteProductsVariationsIdMutationResponseType>

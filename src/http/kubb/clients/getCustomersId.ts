@@ -21,10 +21,17 @@ function getGetCustomersIdUrl(id: GetCustomersIdPathParamsType['id']) {
  * @summary Retorna informações de um cliente específico.
  * {@link /customers/:id}
  */
-export async function getCustomersId(id: GetCustomersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getCustomersId(
+  id: GetCustomersIdPathParamsType['id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetCustomersIdQueryResponseType, ResponseErrorConfig<GetCustomersId401Type | GetCustomersId404Type>, unknown>({
+  const res = await request<
+    GetCustomersIdQueryResponseType,
+    ResponseErrorConfig<GetCustomersId401Type | GetCustomersId404Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetCustomersIdUrl(id).toString(),
     ...requestConfig,

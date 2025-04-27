@@ -32,7 +32,9 @@ export const deleteEmployeesId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<DeleteEmployeesId401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<DeleteEmployeesId401Type>
 
 /**
  * @description Colaborador não encontrado.
@@ -41,6 +43,10 @@ export const deleteEmployeesId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Colaborador não encontrado.') as unknown as ToZod<DeleteEmployeesId404Type>
+  .describe(
+    'Colaborador não encontrado.'
+  ) as unknown as ToZod<DeleteEmployeesId404Type>
 
-export const deleteEmployeesIdMutationResponseSchema = z.lazy(() => deleteEmployeesId200Schema) as unknown as ToZod<DeleteEmployeesIdMutationResponseType>
+export const deleteEmployeesIdMutationResponseSchema = z.lazy(
+  () => deleteEmployeesId200Schema
+) as unknown as ToZod<DeleteEmployeesIdMutationResponseType>

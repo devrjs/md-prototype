@@ -13,8 +13,9 @@ import { z } from 'zod'
 /**
  * @description Default Response
  */
-export const postShopeeDownloadShippingDocument200Schema = z.unknown() as unknown as ToZod<PostShopeeDownloadShippingDocument200Type>
+export const postShopeeDownloadShippingDocument200Schema =
+  z.unknown() as unknown as ToZod<PostShopeeDownloadShippingDocument200Type>
 
 export const postShopeeDownloadShippingDocumentMutationResponseSchema = z.lazy(
-  () => postShopeeDownloadShippingDocument200Schema,
+  () => postShopeeDownloadShippingDocument200Schema
 ) as unknown as ToZod<PostShopeeDownloadShippingDocumentMutationResponseType>

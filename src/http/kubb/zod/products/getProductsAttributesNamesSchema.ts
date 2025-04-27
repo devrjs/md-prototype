@@ -32,10 +32,12 @@ export const getProductsAttributesNames200Schema = z
       z.object({
         id: z.string(),
         name: z.string(),
-      }),
+      })
     ),
   })
-  .describe('Nomes dos atributos dos produtos obtidos com sucesso.') as unknown as ToZod<GetProductsAttributesNames200Type>
+  .describe(
+    'Nomes dos atributos dos produtos obtidos com sucesso.'
+  ) as unknown as ToZod<GetProductsAttributesNames200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -44,8 +46,10 @@ export const getProductsAttributesNames401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsAttributesNames401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<GetProductsAttributesNames401Type>
 
 export const getProductsAttributesNamesQueryResponseSchema = z.lazy(
-  () => getProductsAttributesNames200Schema,
+  () => getProductsAttributesNames200Schema
 ) as unknown as ToZod<GetProductsAttributesNamesQueryResponseType>

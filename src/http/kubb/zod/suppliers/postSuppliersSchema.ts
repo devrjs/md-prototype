@@ -16,7 +16,10 @@ import { z } from 'zod'
 /**
  * @description Fornecedor cadastrado com sucesso.
  */
-export const postSuppliers201Schema = z.enum(['null']).describe('Fornecedor cadastrado com sucesso.').nullable() as unknown as ToZod<PostSuppliers201Type>
+export const postSuppliers201Schema = z
+  .enum(['null'])
+  .describe('Fornecedor cadastrado com sucesso.')
+  .nullable() as unknown as ToZod<PostSuppliers201Type>
 
 /**
  * @description Usuário não autenticado.
@@ -25,7 +28,9 @@ export const postSuppliers401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<PostSuppliers401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<PostSuppliers401Type>
 
 /**
  * @description Fornecedor já cadastrado.
@@ -34,7 +39,9 @@ export const postSuppliers409Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Fornecedor já cadastrado.') as unknown as ToZod<PostSuppliers409Type>
+  .describe(
+    'Fornecedor já cadastrado.'
+  ) as unknown as ToZod<PostSuppliers409Type>
 
 export const postSuppliersMutationRequestSchema = z.object({
   name: z.string().min(1),
@@ -57,4 +64,6 @@ export const postSuppliersMutationRequestSchema = z.object({
   state: z.string().min(1),
 }) as unknown as ToZod<PostSuppliersMutationRequestType>
 
-export const postSuppliersMutationResponseSchema = z.lazy(() => postSuppliers201Schema) as unknown as ToZod<PostSuppliersMutationResponseType>
+export const postSuppliersMutationResponseSchema = z.lazy(
+  () => postSuppliers201Schema
+) as unknown as ToZod<PostSuppliersMutationResponseType>

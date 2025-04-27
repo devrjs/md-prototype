@@ -14,7 +14,8 @@ export const putProductsId200Enum = {
   null: 'null',
 } as const
 
-export type PutProductsId200EnumType = (typeof putProductsId200Enum)[keyof typeof putProductsId200Enum]
+export type PutProductsId200EnumType =
+  (typeof putProductsId200Enum)[keyof typeof putProductsId200Enum]
 
 /**
  * @description Produto atualizado com sucesso.

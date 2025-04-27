@@ -22,7 +22,10 @@ export const putOrdersIdPathParamsSchema = z.object({
 /**
  * @description Pedido atualizado com sucesso.
  */
-export const putOrdersId200Schema = z.enum(['null']).describe('Pedido atualizado com sucesso.').nullable() as unknown as ToZod<PutOrdersId200Type>
+export const putOrdersId200Schema = z
+  .enum(['null'])
+  .describe('Pedido atualizado com sucesso.')
+  .nullable() as unknown as ToZod<PutOrdersId200Type>
 
 /**
  * @description Dados inválidos.
@@ -64,11 +67,19 @@ export const putOrdersIdMutationRequestSchema = z.object({
         product_variation_id: z.string().min(1),
         quantity: z.number().min(1),
         discount: z.number().min(0),
-      }),
+      })
     )
     .min(1),
-  return_previous_items_to_stock: z.boolean().default(true).describe('Retornar itens do pedido anterior ao estoque'),
-  remove_current_items_from_stock: z.boolean().default(true).describe('Remover itens do novo pedido do estoque'),
+  return_previous_items_to_stock: z
+    .boolean()
+    .default(true)
+    .describe('Retornar itens do pedido anterior ao estoque'),
+  remove_current_items_from_stock: z
+    .boolean()
+    .default(true)
+    .describe('Remover itens do novo pedido do estoque'),
 }) as unknown as ToZod<PutOrdersIdMutationRequestType>
 
-export const putOrdersIdMutationResponseSchema = z.lazy(() => putOrdersId200Schema) as unknown as ToZod<PutOrdersIdMutationResponseType>
+export const putOrdersIdMutationResponseSchema = z.lazy(
+  () => putOrdersId200Schema
+) as unknown as ToZod<PutOrdersIdMutationResponseType>

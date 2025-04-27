@@ -133,7 +133,8 @@ export type GetProductsVariations404Type = {
   message: string
 }
 
-export type GetProductsVariationsQueryResponseType = GetProductsVariations200Type
+export type GetProductsVariationsQueryResponseType =
+  GetProductsVariations200Type
 
 export type GetProductsVariationsTypeQuery = {
   Response: GetProductsVariations200Type

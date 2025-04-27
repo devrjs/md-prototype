@@ -8,7 +8,8 @@ export const getCustomersQueryParamsOrderByEnum = {
   asc: 'asc',
 } as const
 
-export type GetCustomersQueryParamsOrderByEnumType = (typeof getCustomersQueryParamsOrderByEnum)[keyof typeof getCustomersQueryParamsOrderByEnum]
+export type GetCustomersQueryParamsOrderByEnumType =
+  (typeof getCustomersQueryParamsOrderByEnum)[keyof typeof getCustomersQueryParamsOrderByEnum]
 
 export type GetCustomersQueryParamsType = {
   /**
@@ -41,7 +42,8 @@ export const customersDocumentTypeEnum = {
   COMPANY: 'COMPANY',
 } as const
 
-export type CustomersDocumentTypeEnumType = (typeof customersDocumentTypeEnum)[keyof typeof customersDocumentTypeEnum]
+export type CustomersDocumentTypeEnumType =
+  (typeof customersDocumentTypeEnum)[keyof typeof customersDocumentTypeEnum]
 
 /**
  * @description Clientes obtidos com sucesso.

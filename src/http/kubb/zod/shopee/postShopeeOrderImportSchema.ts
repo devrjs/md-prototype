@@ -34,7 +34,9 @@ export const postShopeeOrderImport400Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Erro ao importar pedidos.') as unknown as ToZod<PostShopeeOrderImport400Type>
+  .describe(
+    'Erro ao importar pedidos.'
+  ) as unknown as ToZod<PostShopeeOrderImport400Type>
 
 /**
  * @description Usuário não autenticado.
@@ -43,7 +45,9 @@ export const postShopeeOrderImport401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<PostShopeeOrderImport401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<PostShopeeOrderImport401Type>
 
 /**
  * @description Connection not found.
@@ -52,8 +56,10 @@ export const postShopeeOrderImport404Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Connection not found.') as unknown as ToZod<PostShopeeOrderImport404Type>
+  .describe(
+    'Connection not found.'
+  ) as unknown as ToZod<PostShopeeOrderImport404Type>
 
 export const postShopeeOrderImportMutationResponseSchema = z.lazy(
-  () => postShopeeOrderImport200Schema,
+  () => postShopeeOrderImport200Schema
 ) as unknown as ToZod<PostShopeeOrderImportMutationResponseType>

@@ -12,7 +12,9 @@ import type {
   GetProductsAttributesValuesId404Type,
 } from '../types/Produtos (Atributos)Types/GetProductsAttributesValuesIdType.ts'
 
-function getGetProductsAttributesValuesIdUrl(id: GetProductsAttributesValuesIdPathParamsType['id']) {
+function getGetProductsAttributesValuesIdUrl(
+  id: GetProductsAttributesValuesIdPathParamsType['id']
+) {
   return `/products/attributes/values/${id}` as const
 }
 
@@ -23,14 +25,21 @@ function getGetProductsAttributesValuesIdUrl(id: GetProductsAttributesValuesIdPa
  */
 export async function getProductsAttributesValuesId(
   id: GetProductsAttributesValuesIdPathParamsType['id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     GetProductsAttributesValuesIdQueryResponseType,
-    ResponseErrorConfig<GetProductsAttributesValuesId401Type | GetProductsAttributesValuesId404Type>,
+    ResponseErrorConfig<
+      | GetProductsAttributesValuesId401Type
+      | GetProductsAttributesValuesId404Type
+    >,
     unknown
-  >({ method: 'GET', url: getGetProductsAttributesValuesIdUrl(id).toString(), ...requestConfig })
+  >({
+    method: 'GET',
+    url: getGetProductsAttributesValuesIdUrl(id).toString(),
+    ...requestConfig,
+  })
   return res.data
 }

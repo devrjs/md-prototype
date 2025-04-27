@@ -70,7 +70,8 @@ export type GetProductsAttributesNames401Type = {
   message: string
 }
 
-export type GetProductsAttributesNamesQueryResponseType = GetProductsAttributesNames200Type
+export type GetProductsAttributesNamesQueryResponseType =
+  GetProductsAttributesNames200Type
 
 export type GetProductsAttributesNamesTypeQuery = {
   Response: GetProductsAttributesNames200Type

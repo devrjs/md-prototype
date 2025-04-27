@@ -7,7 +7,8 @@ export const postSuppliers201Enum = {
   null: 'null',
 } as const
 
-export type PostSuppliers201EnumType = (typeof postSuppliers201Enum)[keyof typeof postSuppliers201Enum]
+export type PostSuppliers201EnumType =
+  (typeof postSuppliers201Enum)[keyof typeof postSuppliers201Enum]
 
 /**
  * @description Fornecedor cadastrado com sucesso.

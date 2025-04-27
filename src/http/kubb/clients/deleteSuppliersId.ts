@@ -21,10 +21,17 @@ function getDeleteSuppliersIdUrl(id: DeleteSuppliersIdPathParamsType['id']) {
  * @summary Remove um fornecedor específico.
  * {@link /suppliers/:id}
  */
-export async function deleteSuppliersId(id: DeleteSuppliersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function deleteSuppliersId(
+  id: DeleteSuppliersIdPathParamsType['id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<DeleteSuppliersIdMutationResponseType, ResponseErrorConfig<DeleteSuppliersId401Type | DeleteSuppliersId404Type>, unknown>({
+  const res = await request<
+    DeleteSuppliersIdMutationResponseType,
+    ResponseErrorConfig<DeleteSuppliersId401Type | DeleteSuppliersId404Type>,
+    unknown
+  >({
     method: 'DELETE',
     url: getDeleteSuppliersIdUrl(id).toString(),
     ...requestConfig,

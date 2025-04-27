@@ -22,11 +22,15 @@ function getGetProductsAttributesValuesUrl() {
  */
 export async function getProductsAttributesValues(
   params: GetProductsAttributesValuesQueryParamsType,
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsAttributesValuesQueryResponseType, ResponseErrorConfig<GetProductsAttributesValues401Type>, unknown>({
+  const res = await request<
+    GetProductsAttributesValuesQueryResponseType,
+    ResponseErrorConfig<GetProductsAttributesValues401Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetProductsAttributesValuesUrl().toString(),
     params,

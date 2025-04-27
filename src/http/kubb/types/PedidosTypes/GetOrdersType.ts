@@ -8,14 +8,16 @@ export const getOrdersQueryParamsOrderByEnum = {
   desc: 'desc',
 } as const
 
-export type GetOrdersQueryParamsOrderByEnumType = (typeof getOrdersQueryParamsOrderByEnum)[keyof typeof getOrdersQueryParamsOrderByEnum]
+export type GetOrdersQueryParamsOrderByEnumType =
+  (typeof getOrdersQueryParamsOrderByEnum)[keyof typeof getOrdersQueryParamsOrderByEnum]
 
 export const getOrdersQueryParamsStatusEnum = {
   PROCESSED: 'PROCESSED',
   CANCELLED: 'CANCELLED',
 } as const
 
-export type GetOrdersQueryParamsStatusEnumType = (typeof getOrdersQueryParamsStatusEnum)[keyof typeof getOrdersQueryParamsStatusEnum]
+export type GetOrdersQueryParamsStatusEnumType =
+  (typeof getOrdersQueryParamsStatusEnum)[keyof typeof getOrdersQueryParamsStatusEnum]
 
 export type GetOrdersQueryParamsType = {
   /**

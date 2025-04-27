@@ -14,7 +14,8 @@ export const putOrdersId200Enum = {
   null: 'null',
 } as const
 
-export type PutOrdersId200EnumType = (typeof putOrdersId200Enum)[keyof typeof putOrdersId200Enum]
+export type PutOrdersId200EnumType =
+  (typeof putOrdersId200Enum)[keyof typeof putOrdersId200Enum]
 
 /**
  * @description Pedido atualizado com sucesso.
@@ -56,7 +57,8 @@ export const putOrdersIdMutationRequestStatusEnum = {
   CANCELLED: 'CANCELLED',
 } as const
 
-export type PutOrdersIdMutationRequestStatusEnumType = (typeof putOrdersIdMutationRequestStatusEnum)[keyof typeof putOrdersIdMutationRequestStatusEnum]
+export type PutOrdersIdMutationRequestStatusEnumType =
+  (typeof putOrdersIdMutationRequestStatusEnum)[keyof typeof putOrdersIdMutationRequestStatusEnum]
 
 export const putOrdersIdMutationRequestShippingCarrierEnum = {
   CORREIOS: 'CORREIOS',

@@ -14,12 +14,14 @@ export const deleteProductsAttributesValuesId200Enum = {
   null: 'null',
 } as const
 
-export type DeleteProductsAttributesValuesId200EnumType = (typeof deleteProductsAttributesValuesId200Enum)[keyof typeof deleteProductsAttributesValuesId200Enum]
+export type DeleteProductsAttributesValuesId200EnumType =
+  (typeof deleteProductsAttributesValuesId200Enum)[keyof typeof deleteProductsAttributesValuesId200Enum]
 
 /**
  * @description Valor de atributo do produto deletado com sucesso.
  */
-export type DeleteProductsAttributesValuesId200Type = DeleteProductsAttributesValuesId200EnumType | null
+export type DeleteProductsAttributesValuesId200Type =
+  DeleteProductsAttributesValuesId200EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -41,10 +43,13 @@ export type DeleteProductsAttributesValuesId404Type = {
   message: string
 }
 
-export type DeleteProductsAttributesValuesIdMutationResponseType = DeleteProductsAttributesValuesId200Type
+export type DeleteProductsAttributesValuesIdMutationResponseType =
+  DeleteProductsAttributesValuesId200Type
 
 export type DeleteProductsAttributesValuesIdTypeMutation = {
   Response: DeleteProductsAttributesValuesId200Type
   PathParams: DeleteProductsAttributesValuesIdPathParamsType
-  Errors: DeleteProductsAttributesValuesId401Type | DeleteProductsAttributesValuesId404Type
+  Errors:
+    | DeleteProductsAttributesValuesId401Type
+    | DeleteProductsAttributesValuesId404Type
 }

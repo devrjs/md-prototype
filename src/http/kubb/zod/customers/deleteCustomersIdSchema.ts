@@ -20,7 +20,10 @@ export const deleteCustomersIdPathParamsSchema = z.object({
 /**
  * @description Cliente deletado com sucesso.
  */
-export const deleteCustomersId200Schema = z.enum(['null']).describe('Cliente deletado com sucesso.').nullable() as unknown as ToZod<DeleteCustomersId200Type>
+export const deleteCustomersId200Schema = z
+  .enum(['null'])
+  .describe('Cliente deletado com sucesso.')
+  .nullable() as unknown as ToZod<DeleteCustomersId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -29,7 +32,9 @@ export const deleteCustomersId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<DeleteCustomersId401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<DeleteCustomersId401Type>
 
 /**
  * @description Cliente não encontrado.
@@ -38,6 +43,10 @@ export const deleteCustomersId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Cliente não encontrado.') as unknown as ToZod<DeleteCustomersId404Type>
+  .describe(
+    'Cliente não encontrado.'
+  ) as unknown as ToZod<DeleteCustomersId404Type>
 
-export const deleteCustomersIdMutationResponseSchema = z.lazy(() => deleteCustomersId200Schema) as unknown as ToZod<DeleteCustomersIdMutationResponseType>
+export const deleteCustomersIdMutationResponseSchema = z.lazy(
+  () => deleteCustomersId200Schema
+) as unknown as ToZod<DeleteCustomersIdMutationResponseType>

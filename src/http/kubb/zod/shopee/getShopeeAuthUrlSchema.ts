@@ -4,7 +4,11 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type { GetShopeeAuthUrl200Type, GetShopeeAuthUrl401Type, GetShopeeAuthUrlQueryResponseType } from '../../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
+import type {
+  GetShopeeAuthUrl200Type,
+  GetShopeeAuthUrl401Type,
+  GetShopeeAuthUrlQueryResponseType,
+} from '../../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
 import { z } from 'zod'
 
 /**
@@ -21,6 +25,10 @@ export const getShopeeAuthUrl401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<GetShopeeAuthUrl401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<GetShopeeAuthUrl401Type>
 
-export const getShopeeAuthUrlQueryResponseSchema = z.lazy(() => getShopeeAuthUrl200Schema) as unknown as ToZod<GetShopeeAuthUrlQueryResponseType>
+export const getShopeeAuthUrlQueryResponseSchema = z.lazy(
+  () => getShopeeAuthUrl200Schema
+) as unknown as ToZod<GetShopeeAuthUrlQueryResponseType>

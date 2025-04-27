@@ -26,14 +26,23 @@ function getPutOrdersIdUrl(id: PutOrdersIdPathParamsType['id']) {
 export async function putOrdersId(
   id: PutOrdersIdPathParamsType['id'],
   data: PutOrdersIdMutationRequestType,
-  config: Partial<RequestConfig<PutOrdersIdMutationRequestType>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<PutOrdersIdMutationRequestType>> & {
+    client?: typeof client
+  } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     PutOrdersIdMutationResponseType,
-    ResponseErrorConfig<PutOrdersId400Type | PutOrdersId401Type | PutOrdersId404Type>,
+    ResponseErrorConfig<
+      PutOrdersId400Type | PutOrdersId401Type | PutOrdersId404Type
+    >,
     PutOrdersIdMutationRequestType
-  >({ method: 'PUT', url: getPutOrdersIdUrl(id).toString(), data, ...requestConfig })
+  >({
+    method: 'PUT',
+    url: getPutOrdersIdUrl(id).toString(),
+    data,
+    ...requestConfig,
+  })
   return res.data
 }

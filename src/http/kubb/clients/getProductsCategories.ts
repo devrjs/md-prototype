@@ -5,7 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetProductsCategoriesQueryResponseType, GetProductsCategories401Type } from '../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
+import type {
+  GetProductsCategoriesQueryResponseType,
+  GetProductsCategories401Type,
+} from '../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
 
 function getGetProductsCategoriesUrl() {
   return `/products/categories` as const
@@ -16,10 +19,16 @@ function getGetProductsCategoriesUrl() {
  * @summary Retorna uma lista de categorias de produtos cadastradas.
  * {@link /products/categories}
  */
-export async function getProductsCategories(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProductsCategories(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsCategoriesQueryResponseType, ResponseErrorConfig<GetProductsCategories401Type>, unknown>({
+  const res = await request<
+    GetProductsCategoriesQueryResponseType,
+    ResponseErrorConfig<GetProductsCategories401Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetProductsCategoriesUrl().toString(),
     ...requestConfig,

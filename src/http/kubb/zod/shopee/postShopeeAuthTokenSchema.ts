@@ -17,7 +17,10 @@ import { z } from 'zod'
 /**
  * @description Shopee authenticated.
  */
-export const postShopeeAuthToken200Schema = z.enum(['null']).describe('Shopee authenticated.').nullable() as unknown as ToZod<PostShopeeAuthToken200Type>
+export const postShopeeAuthToken200Schema = z
+  .enum(['null'])
+  .describe('Shopee authenticated.')
+  .nullable() as unknown as ToZod<PostShopeeAuthToken200Type>
 
 /**
  * @description Shopee already exists.
@@ -26,7 +29,9 @@ export const postShopeeAuthToken400Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Shopee already exists.') as unknown as ToZod<PostShopeeAuthToken400Type>
+  .describe(
+    'Shopee already exists.'
+  ) as unknown as ToZod<PostShopeeAuthToken400Type>
 
 /**
  * @description Usuário não autenticado.
@@ -35,7 +40,9 @@ export const postShopeeAuthToken401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<PostShopeeAuthToken401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<PostShopeeAuthToken401Type>
 
 /**
  * @description Connection not found.
@@ -44,11 +51,15 @@ export const postShopeeAuthToken404Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Connection not found.') as unknown as ToZod<PostShopeeAuthToken404Type>
+  .describe(
+    'Connection not found.'
+  ) as unknown as ToZod<PostShopeeAuthToken404Type>
 
 export const postShopeeAuthTokenMutationRequestSchema = z.object({
   code: z.string(),
   shopId: z.number(),
 }) as unknown as ToZod<PostShopeeAuthTokenMutationRequestType>
 
-export const postShopeeAuthTokenMutationResponseSchema = z.lazy(() => postShopeeAuthToken200Schema) as unknown as ToZod<PostShopeeAuthTokenMutationResponseType>
+export const postShopeeAuthTokenMutationResponseSchema = z.lazy(
+  () => postShopeeAuthToken200Schema
+) as unknown as ToZod<PostShopeeAuthTokenMutationResponseType>

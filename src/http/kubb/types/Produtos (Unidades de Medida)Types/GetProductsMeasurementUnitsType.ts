@@ -31,7 +31,8 @@ export type GetProductsMeasurementUnits401Type = {
   message: string
 }
 
-export type GetProductsMeasurementUnitsQueryResponseType = GetProductsMeasurementUnits200Type
+export type GetProductsMeasurementUnitsQueryResponseType =
+  GetProductsMeasurementUnits200Type
 
 export type GetProductsMeasurementUnitsTypeQuery = {
   Response: GetProductsMeasurementUnits200Type

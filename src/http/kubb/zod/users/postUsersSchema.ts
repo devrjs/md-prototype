@@ -15,7 +15,10 @@ import { z } from 'zod'
 /**
  * @description Usuário cadastrado com sucesso.
  */
-export const postUsers201Schema = z.enum(['null']).describe('Usuário cadastrado com sucesso.').nullable() as unknown as ToZod<PostUsers201Type>
+export const postUsers201Schema = z
+  .enum(['null'])
+  .describe('Usuário cadastrado com sucesso.')
+  .nullable() as unknown as ToZod<PostUsers201Type>
 
 /**
  * @description Este email já está cadastrado em nossa base de dados.
@@ -24,7 +27,9 @@ export const postUsers409Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Este email já está cadastrado em nossa base de dados.') as unknown as ToZod<PostUsers409Type>
+  .describe(
+    'Este email já está cadastrado em nossa base de dados.'
+  ) as unknown as ToZod<PostUsers409Type>
 
 export const postUsersMutationRequestSchema = z.object({
   name: z.string().min(1),
@@ -32,4 +37,6 @@ export const postUsersMutationRequestSchema = z.object({
   password: z.string().min(6),
 }) as unknown as ToZod<PostUsersMutationRequestType>
 
-export const postUsersMutationResponseSchema = z.lazy(() => postUsers201Schema) as unknown as ToZod<PostUsersMutationResponseType>
+export const postUsersMutationResponseSchema = z.lazy(
+  () => postUsers201Schema
+) as unknown as ToZod<PostUsersMutationResponseType>

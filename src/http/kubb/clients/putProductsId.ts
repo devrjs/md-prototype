@@ -25,7 +25,9 @@ function getPutProductsIdUrl(id: PutProductsIdPathParamsType['id']) {
 export async function putProductsId(
   id: PutProductsIdPathParamsType['id'],
   data: PutProductsIdMutationRequestType,
-  config: Partial<RequestConfig<PutProductsIdMutationRequestType>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<PutProductsIdMutationRequestType>> & {
+    client?: typeof client
+  } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
@@ -33,6 +35,11 @@ export async function putProductsId(
     PutProductsIdMutationResponseType,
     ResponseErrorConfig<PutProductsId401Type | PutProductsId404Type>,
     PutProductsIdMutationRequestType
-  >({ method: 'PUT', url: getPutProductsIdUrl(id).toString(), data, ...requestConfig })
+  >({
+    method: 'PUT',
+    url: getPutProductsIdUrl(id).toString(),
+    data,
+    ...requestConfig,
+  })
   return res.data
 }

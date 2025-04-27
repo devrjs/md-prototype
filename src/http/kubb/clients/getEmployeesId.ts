@@ -21,10 +21,17 @@ function getGetEmployeesIdUrl(id: GetEmployeesIdPathParamsType['id']) {
  * @summary Retorna informações um colaborador específico.
  * {@link /employees/:id}
  */
-export async function getEmployeesId(id: GetEmployeesIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getEmployeesId(
+  id: GetEmployeesIdPathParamsType['id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetEmployeesIdQueryResponseType, ResponseErrorConfig<GetEmployeesId401Type | GetEmployeesId404Type>, unknown>({
+  const res = await request<
+    GetEmployeesIdQueryResponseType,
+    ResponseErrorConfig<GetEmployeesId401Type | GetEmployeesId404Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetEmployeesIdUrl(id).toString(),
     ...requestConfig,

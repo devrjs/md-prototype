@@ -55,10 +55,12 @@ export const getCustomersId200Schema = z
         city: z.string(),
         state: z.string(),
         platform: z.enum(['SHOPEE', 'MERCADO_LIVRE', 'TRAY', 'LOCAL']),
-      }),
+      })
     ),
   })
-  .describe('Cliente obtido com sucesso.') as unknown as ToZod<GetCustomersId200Type>
+  .describe(
+    'Cliente obtido com sucesso.'
+  ) as unknown as ToZod<GetCustomersId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -67,7 +69,9 @@ export const getCustomersId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<GetCustomersId401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<GetCustomersId401Type>
 
 /**
  * @description Cliente não encontrado.
@@ -76,6 +80,10 @@ export const getCustomersId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Cliente não encontrado.') as unknown as ToZod<GetCustomersId404Type>
+  .describe(
+    'Cliente não encontrado.'
+  ) as unknown as ToZod<GetCustomersId404Type>
 
-export const getCustomersIdQueryResponseSchema = z.lazy(() => getCustomersId200Schema) as unknown as ToZod<GetCustomersIdQueryResponseType>
+export const getCustomersIdQueryResponseSchema = z.lazy(
+  () => getCustomersId200Schema
+) as unknown as ToZod<GetCustomersIdQueryResponseType>

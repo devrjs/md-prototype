@@ -14,7 +14,8 @@ export const deleteOrdersId200Enum = {
   null: 'null',
 } as const
 
-export type DeleteOrdersId200EnumType = (typeof deleteOrdersId200Enum)[keyof typeof deleteOrdersId200Enum]
+export type DeleteOrdersId200EnumType =
+  (typeof deleteOrdersId200Enum)[keyof typeof deleteOrdersId200Enum]
 
 /**
  * @description Pedido deletado com sucesso.

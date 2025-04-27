@@ -15,14 +15,16 @@ export const getEmployeesId200DocumentTypeEnum = {
   COMPANY: 'COMPANY',
 } as const
 
-export type GetEmployeesId200DocumentTypeEnumType = (typeof getEmployeesId200DocumentTypeEnum)[keyof typeof getEmployeesId200DocumentTypeEnum]
+export type GetEmployeesId200DocumentTypeEnumType =
+  (typeof getEmployeesId200DocumentTypeEnum)[keyof typeof getEmployeesId200DocumentTypeEnum]
 
 export const getEmployeesId200GenderEnum = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
 } as const
 
-export type GetEmployeesId200GenderEnumType = (typeof getEmployeesId200GenderEnum)[keyof typeof getEmployeesId200GenderEnum]
+export type GetEmployeesId200GenderEnumType =
+  (typeof getEmployeesId200GenderEnum)[keyof typeof getEmployeesId200GenderEnum]
 
 export const addressesPlatformEnum3 = {
   SHOPEE: 'SHOPEE',
@@ -31,7 +33,8 @@ export const addressesPlatformEnum3 = {
   LOCAL: 'LOCAL',
 } as const
 
-export type AddressesPlatformEnum3Type = (typeof addressesPlatformEnum3)[keyof typeof addressesPlatformEnum3]
+export type AddressesPlatformEnum3Type =
+  (typeof addressesPlatformEnum3)[keyof typeof addressesPlatformEnum3]
 
 /**
  * @description Colaborador obtido com sucesso.

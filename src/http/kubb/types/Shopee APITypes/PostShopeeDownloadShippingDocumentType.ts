@@ -8,7 +8,8 @@
  */
 export type PostShopeeDownloadShippingDocument200Type = unknown
 
-export type PostShopeeDownloadShippingDocumentMutationResponseType = PostShopeeDownloadShippingDocument200Type
+export type PostShopeeDownloadShippingDocumentMutationResponseType =
+  PostShopeeDownloadShippingDocument200Type
 
 export type PostShopeeDownloadShippingDocumentTypeMutation = {
   Response: PostShopeeDownloadShippingDocument200Type

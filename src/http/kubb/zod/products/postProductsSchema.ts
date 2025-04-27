@@ -16,7 +16,10 @@ import { z } from 'zod'
 /**
  * @description Produto cadastrado com sucesso.
  */
-export const postProducts201Schema = z.enum(['null']).describe('Produto cadastrado com sucesso.').nullable() as unknown as ToZod<PostProducts201Type>
+export const postProducts201Schema = z
+  .enum(['null'])
+  .describe('Produto cadastrado com sucesso.')
+  .nullable() as unknown as ToZod<PostProducts201Type>
 
 /**
  * @description Usuário não autenticado.
@@ -34,7 +37,9 @@ export const postProducts404Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Fornecedor, marca, categoria ou unidade comercial não encontrado.') as unknown as ToZod<PostProducts404Type>
+  .describe(
+    'Fornecedor, marca, categoria ou unidade comercial não encontrado.'
+  ) as unknown as ToZod<PostProducts404Type>
 
 export const postProductsMutationRequestSchema = z.object({
   supplier_id: z.string().optional(),
@@ -44,7 +49,7 @@ export const postProductsMutationRequestSchema = z.object({
     .array(
       z.object({
         id: z.string(),
-      }),
+      })
     )
     .optional(),
   reference_code: z.string().min(1),
@@ -57,4 +62,6 @@ export const postProductsMutationRequestSchema = z.object({
   merchandise_origin: z.string().optional(),
 }) as unknown as ToZod<PostProductsMutationRequestType>
 
-export const postProductsMutationResponseSchema = z.lazy(() => postProducts201Schema) as unknown as ToZod<PostProductsMutationResponseType>
+export const postProductsMutationResponseSchema = z.lazy(
+  () => postProducts201Schema
+) as unknown as ToZod<PostProductsMutationResponseType>

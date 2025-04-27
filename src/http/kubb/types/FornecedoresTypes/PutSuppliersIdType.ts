@@ -14,7 +14,8 @@ export const putSuppliersId200Enum = {
   null: 'null',
 } as const
 
-export type PutSuppliersId200EnumType = (typeof putSuppliersId200Enum)[keyof typeof putSuppliersId200Enum]
+export type PutSuppliersId200EnumType =
+  (typeof putSuppliersId200Enum)[keyof typeof putSuppliersId200Enum]
 
 /**
  * @description Fornecedor atualizado com sucesso.

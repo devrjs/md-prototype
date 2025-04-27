@@ -20,10 +20,17 @@ function getGetSuppliersIdUrl(id: GetSuppliersIdPathParamsType['id']) {
  * @summary Retorna as informações de um fornecedor específico.
  * {@link /suppliers/:id}
  */
-export async function getSuppliersId(id: GetSuppliersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getSuppliersId(
+  id: GetSuppliersIdPathParamsType['id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetSuppliersIdQueryResponseType, ResponseErrorConfig<GetSuppliersId401Type | GetSuppliersId404Type>, unknown>({
+  const res = await request<
+    GetSuppliersIdQueryResponseType,
+    ResponseErrorConfig<GetSuppliersId401Type | GetSuppliersId404Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetSuppliersIdUrl(id).toString(),
     ...requestConfig,

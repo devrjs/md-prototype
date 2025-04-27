@@ -21,10 +21,17 @@ function getGetProductsIdUrl(id: GetProductsIdPathParamsType['id']) {
  * @summary Retorna as informações de um produto específico.
  * {@link /products/:id}
  */
-export async function getProductsId(id: GetProductsIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProductsId(
+  id: GetProductsIdPathParamsType['id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsIdQueryResponseType, ResponseErrorConfig<GetProductsId401Type | GetProductsId404Type>, unknown>({
+  const res = await request<
+    GetProductsIdQueryResponseType,
+    ResponseErrorConfig<GetProductsId401Type | GetProductsId404Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetProductsIdUrl(id).toString(),
     ...requestConfig,

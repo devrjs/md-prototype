@@ -28,7 +28,9 @@ export const postProductsAttributesNames401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<PostProductsAttributesNames401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<PostProductsAttributesNames401Type>
 
 /**
  * @description Nome do atributo do produto já cadastrado.
@@ -37,12 +39,14 @@ export const postProductsAttributesNames409Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Nome do atributo do produto já cadastrado.') as unknown as ToZod<PostProductsAttributesNames409Type>
+  .describe(
+    'Nome do atributo do produto já cadastrado.'
+  ) as unknown as ToZod<PostProductsAttributesNames409Type>
 
 export const postProductsAttributesNamesMutationRequestSchema = z.object({
   name: z.string(),
 }) as unknown as ToZod<PostProductsAttributesNamesMutationRequestType>
 
 export const postProductsAttributesNamesMutationResponseSchema = z.lazy(
-  () => postProductsAttributesNames201Schema,
+  () => postProductsAttributesNames201Schema
 ) as unknown as ToZod<PostProductsAttributesNamesMutationResponseType>

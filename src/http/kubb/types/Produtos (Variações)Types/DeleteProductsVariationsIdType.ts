@@ -14,12 +14,14 @@ export const deleteProductsVariationsId200Enum = {
   null: 'null',
 } as const
 
-export type DeleteProductsVariationsId200EnumType = (typeof deleteProductsVariationsId200Enum)[keyof typeof deleteProductsVariationsId200Enum]
+export type DeleteProductsVariationsId200EnumType =
+  (typeof deleteProductsVariationsId200Enum)[keyof typeof deleteProductsVariationsId200Enum]
 
 /**
  * @description Variação de produto deletado com sucesso.
  */
-export type DeleteProductsVariationsId200Type = DeleteProductsVariationsId200EnumType | null
+export type DeleteProductsVariationsId200Type =
+  DeleteProductsVariationsId200EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -41,7 +43,8 @@ export type DeleteProductsVariationsId404Type = {
   message: string
 }
 
-export type DeleteProductsVariationsIdMutationResponseType = DeleteProductsVariationsId200Type
+export type DeleteProductsVariationsIdMutationResponseType =
+  DeleteProductsVariationsId200Type
 
 export type DeleteProductsVariationsIdTypeMutation = {
   Response: DeleteProductsVariationsId200Type

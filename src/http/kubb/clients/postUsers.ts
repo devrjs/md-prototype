@@ -5,7 +5,11 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostUsersMutationRequestType, PostUsersMutationResponseType, PostUsers409Type } from '../types/Usu\u00E1riosTypes/PostUsersType.ts'
+import type {
+  PostUsersMutationRequestType,
+  PostUsersMutationResponseType,
+  PostUsers409Type,
+} from '../types/Usu\u00E1riosTypes/PostUsersType.ts'
 
 function getPostUsersUrl() {
   return `/users` as const
@@ -18,11 +22,17 @@ function getPostUsersUrl() {
  */
 export async function postUsers(
   data: PostUsersMutationRequestType,
-  config: Partial<RequestConfig<PostUsersMutationRequestType>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<PostUsersMutationRequestType>> & {
+    client?: typeof client
+  } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<PostUsersMutationResponseType, ResponseErrorConfig<PostUsers409Type>, PostUsersMutationRequestType>({
+  const res = await request<
+    PostUsersMutationResponseType,
+    ResponseErrorConfig<PostUsers409Type>,
+    PostUsersMutationRequestType
+  >({
     method: 'POST',
     url: getPostUsersUrl().toString(),
     data,

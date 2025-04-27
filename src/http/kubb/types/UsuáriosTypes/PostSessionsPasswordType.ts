@@ -40,7 +40,8 @@ export type PostSessionsPasswordMutationRequestType = {
   password: string
 }
 
-export type PostSessionsPasswordMutationResponseType = PostSessionsPassword200Type
+export type PostSessionsPasswordMutationResponseType =
+  PostSessionsPassword200Type
 
 export type PostSessionsPasswordTypeMutation = {
   Response: PostSessionsPassword200Type

@@ -16,7 +16,10 @@ import { z } from 'zod'
 /**
  * @description Marca cadastrado com sucesso.
  */
-export const postProductsBrands201Schema = z.enum(['null']).describe('Marca cadastrado com sucesso.').nullable() as unknown as ToZod<PostProductsBrands201Type>
+export const postProductsBrands201Schema = z
+  .enum(['null'])
+  .describe('Marca cadastrado com sucesso.')
+  .nullable() as unknown as ToZod<PostProductsBrands201Type>
 
 /**
  * @description Usuário não autenticado.
@@ -25,7 +28,9 @@ export const postProductsBrands401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<PostProductsBrands401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<PostProductsBrands401Type>
 
 /**
  * @description Marca já cadastrado.
@@ -34,11 +39,15 @@ export const postProductsBrands409Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Marca já cadastrado.') as unknown as ToZod<PostProductsBrands409Type>
+  .describe(
+    'Marca já cadastrado.'
+  ) as unknown as ToZod<PostProductsBrands409Type>
 
 export const postProductsBrandsMutationRequestSchema = z.object({
   name: z.string(),
   reference_code: z.string(),
 }) as unknown as ToZod<PostProductsBrandsMutationRequestType>
 
-export const postProductsBrandsMutationResponseSchema = z.lazy(() => postProductsBrands201Schema) as unknown as ToZod<PostProductsBrandsMutationResponseType>
+export const postProductsBrandsMutationResponseSchema = z.lazy(
+  () => postProductsBrands201Schema
+) as unknown as ToZod<PostProductsBrandsMutationResponseType>

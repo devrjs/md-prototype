@@ -19,10 +19,16 @@ function getGetProductsMeasurementUnitsUrl() {
  * @summary Retorna uma lista de unidades de medida de produtos.
  * {@link /products/measurement-units}
  */
-export async function getProductsMeasurementUnits(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProductsMeasurementUnits(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetProductsMeasurementUnitsQueryResponseType, ResponseErrorConfig<GetProductsMeasurementUnits401Type>, unknown>({
+  const res = await request<
+    GetProductsMeasurementUnitsQueryResponseType,
+    ResponseErrorConfig<GetProductsMeasurementUnits401Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetProductsMeasurementUnitsUrl().toString(),
     ...requestConfig,

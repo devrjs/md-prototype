@@ -23,14 +23,23 @@ function getPostProductsAttributesNamesUrl() {
  */
 export async function postProductsAttributesNames(
   data: PostProductsAttributesNamesMutationRequestType,
-  config: Partial<RequestConfig<PostProductsAttributesNamesMutationRequestType>> & { client?: typeof client } = {},
+  config: Partial<
+    RequestConfig<PostProductsAttributesNamesMutationRequestType>
+  > & { client?: typeof client } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     PostProductsAttributesNamesMutationResponseType,
-    ResponseErrorConfig<PostProductsAttributesNames401Type | PostProductsAttributesNames409Type>,
+    ResponseErrorConfig<
+      PostProductsAttributesNames401Type | PostProductsAttributesNames409Type
+    >,
     PostProductsAttributesNamesMutationRequestType
-  >({ method: 'POST', url: getPostProductsAttributesNamesUrl().toString(), data, ...requestConfig })
+  >({
+    method: 'POST',
+    url: getPostProductsAttributesNamesUrl().toString(),
+    data,
+    ...requestConfig,
+  })
   return res.data
 }

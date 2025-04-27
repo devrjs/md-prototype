@@ -20,7 +20,9 @@ export const postProductsUpload201Schema = z
   .object({
     fileUrl: z.string(),
   })
-  .describe('Produto cadastrado com sucesso.') as unknown as ToZod<PostProductsUpload201Type>
+  .describe(
+    'Produto cadastrado com sucesso.'
+  ) as unknown as ToZod<PostProductsUpload201Type>
 
 /**
  * @description Imagem inválida.
@@ -38,10 +40,14 @@ export const postProductsUpload401Schema = z
   .object({
     message: z.string(),
   })
-  .describe('Usuário não autenticado.') as unknown as ToZod<PostProductsUpload401Type>
+  .describe(
+    'Usuário não autenticado.'
+  ) as unknown as ToZod<PostProductsUpload401Type>
 
 export const postProductsUploadMutationRequestSchema = z.object({
   file: z.unknown().optional(),
 }) as unknown as ToZod<PostProductsUploadMutationRequestType>
 
-export const postProductsUploadMutationResponseSchema = z.lazy(() => postProductsUpload201Schema) as unknown as ToZod<PostProductsUploadMutationResponseType>
+export const postProductsUploadMutationResponseSchema = z.lazy(
+  () => postProductsUpload201Schema
+) as unknown as ToZod<PostProductsUploadMutationResponseType>

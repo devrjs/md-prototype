@@ -14,12 +14,14 @@ export const putProductsAttributesValuesId200Enum = {
   null: 'null',
 } as const
 
-export type PutProductsAttributesValuesId200EnumType = (typeof putProductsAttributesValuesId200Enum)[keyof typeof putProductsAttributesValuesId200Enum]
+export type PutProductsAttributesValuesId200EnumType =
+  (typeof putProductsAttributesValuesId200Enum)[keyof typeof putProductsAttributesValuesId200Enum]
 
 /**
  * @description Valor de atributo do produto atualizado com sucesso.
  */
-export type PutProductsAttributesValuesId200Type = PutProductsAttributesValuesId200EnumType | null
+export type PutProductsAttributesValuesId200Type =
+  PutProductsAttributesValuesId200EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -48,11 +50,14 @@ export type PutProductsAttributesValuesIdMutationRequestType = {
   value: string
 }
 
-export type PutProductsAttributesValuesIdMutationResponseType = PutProductsAttributesValuesId200Type
+export type PutProductsAttributesValuesIdMutationResponseType =
+  PutProductsAttributesValuesId200Type
 
 export type PutProductsAttributesValuesIdTypeMutation = {
   Response: PutProductsAttributesValuesId200Type
   Request: PutProductsAttributesValuesIdMutationRequestType
   PathParams: PutProductsAttributesValuesIdPathParamsType
-  Errors: PutProductsAttributesValuesId401Type | PutProductsAttributesValuesId404Type
+  Errors:
+    | PutProductsAttributesValuesId401Type
+    | PutProductsAttributesValuesId404Type
 }

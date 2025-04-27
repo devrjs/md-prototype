@@ -23,7 +23,9 @@ function getPostProductsBrandsUrl() {
  */
 export async function postProductsBrands(
   data: PostProductsBrandsMutationRequestType,
-  config: Partial<RequestConfig<PostProductsBrandsMutationRequestType>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<PostProductsBrandsMutationRequestType>> & {
+    client?: typeof client
+  } = {}
 ) {
   const { client: request = client, ...requestConfig } = config
 
@@ -31,6 +33,11 @@ export async function postProductsBrands(
     PostProductsBrandsMutationResponseType,
     ResponseErrorConfig<PostProductsBrands401Type | PostProductsBrands409Type>,
     PostProductsBrandsMutationRequestType
-  >({ method: 'POST', url: getPostProductsBrandsUrl().toString(), data, ...requestConfig })
+  >({
+    method: 'POST',
+    url: getPostProductsBrandsUrl().toString(),
+    data,
+    ...requestConfig,
+  })
   return res.data
 }

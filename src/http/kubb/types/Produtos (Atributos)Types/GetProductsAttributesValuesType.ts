@@ -74,7 +74,8 @@ export type GetProductsAttributesValues401Type = {
   message: string
 }
 
-export type GetProductsAttributesValuesQueryResponseType = GetProductsAttributesValues200Type
+export type GetProductsAttributesValuesQueryResponseType =
+  GetProductsAttributesValues200Type
 
 export type GetProductsAttributesValuesTypeQuery = {
   Response: GetProductsAttributesValues200Type

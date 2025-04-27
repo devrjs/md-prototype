@@ -7,7 +7,8 @@ export const postShopeeAuthToken200Enum = {
   null: 'null',
 } as const
 
-export type PostShopeeAuthToken200EnumType = (typeof postShopeeAuthToken200Enum)[keyof typeof postShopeeAuthToken200Enum]
+export type PostShopeeAuthToken200EnumType =
+  (typeof postShopeeAuthToken200Enum)[keyof typeof postShopeeAuthToken200Enum]
 
 /**
  * @description Shopee authenticated.
@@ -60,5 +61,8 @@ export type PostShopeeAuthTokenMutationResponseType = PostShopeeAuthToken200Type
 export type PostShopeeAuthTokenTypeMutation = {
   Response: PostShopeeAuthToken200Type
   Request: PostShopeeAuthTokenMutationRequestType
-  Errors: PostShopeeAuthToken400Type | PostShopeeAuthToken401Type | PostShopeeAuthToken404Type
+  Errors:
+    | PostShopeeAuthToken400Type
+    | PostShopeeAuthToken401Type
+    | PostShopeeAuthToken404Type
 }

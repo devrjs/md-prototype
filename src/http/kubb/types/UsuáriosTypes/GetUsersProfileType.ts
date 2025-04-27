@@ -8,7 +8,8 @@ export const getUsersProfile200RoleEnum = {
   ADMIN: 'ADMIN',
 } as const
 
-export type GetUsersProfile200RoleEnumType = (typeof getUsersProfile200RoleEnum)[keyof typeof getUsersProfile200RoleEnum]
+export type GetUsersProfile200RoleEnumType =
+  (typeof getUsersProfile200RoleEnum)[keyof typeof getUsersProfile200RoleEnum]
 
 /**
  * @description Informações do perfil do usuário obtidas com sucesso.

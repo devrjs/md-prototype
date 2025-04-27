@@ -4,7 +4,11 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type { GetOrdersQueryParamsType, GetOrders200Type, GetOrdersQueryResponseType } from '../../types/PedidosTypes/GetOrdersType.ts'
+import type {
+  GetOrdersQueryParamsType,
+  GetOrders200Type,
+  GetOrdersQueryResponseType,
+} from '../../types/PedidosTypes/GetOrdersType.ts'
 import { z } from 'zod'
 
 export const getOrdersQueryParamsSchema = z
@@ -34,8 +38,10 @@ export const getOrders200Schema = z.object({
       order_placed_at: z.string().datetime({ offset: true }),
       created_at: z.string().datetime({ offset: true }),
       updated_at: z.string().datetime({ offset: true }),
-    }),
+    })
   ),
 }) as unknown as ToZod<GetOrders200Type>
 
-export const getOrdersQueryResponseSchema = z.lazy(() => getOrders200Schema) as unknown as ToZod<GetOrdersQueryResponseType>
+export const getOrdersQueryResponseSchema = z.lazy(
+  () => getOrders200Schema
+) as unknown as ToZod<GetOrdersQueryResponseType>

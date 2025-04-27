@@ -5,7 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetShopeeAuthUrlQueryResponseType, GetShopeeAuthUrl401Type } from '../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
+import type {
+  GetShopeeAuthUrlQueryResponseType,
+  GetShopeeAuthUrl401Type,
+} from '../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
 
 function getGetShopeeAuthUrlUrl() {
   return `/shopee/auth/url` as const
@@ -16,10 +19,16 @@ function getGetShopeeAuthUrlUrl() {
  * @summary Retorna a URL para autenticação do Shopee.
  * {@link /shopee/auth/url}
  */
-export async function getShopeeAuthUrl(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getShopeeAuthUrl(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetShopeeAuthUrlQueryResponseType, ResponseErrorConfig<GetShopeeAuthUrl401Type>, unknown>({
+  const res = await request<
+    GetShopeeAuthUrlQueryResponseType,
+    ResponseErrorConfig<GetShopeeAuthUrl401Type>,
+    unknown
+  >({
     method: 'GET',
     url: getGetShopeeAuthUrlUrl().toString(),
     ...requestConfig,

@@ -48,10 +48,13 @@ export type GetProductsAttributesValuesId404Type = {
   message: string
 }
 
-export type GetProductsAttributesValuesIdQueryResponseType = GetProductsAttributesValuesId200Type
+export type GetProductsAttributesValuesIdQueryResponseType =
+  GetProductsAttributesValuesId200Type
 
 export type GetProductsAttributesValuesIdTypeQuery = {
   Response: GetProductsAttributesValuesId200Type
   PathParams: GetProductsAttributesValuesIdPathParamsType
-  Errors: GetProductsAttributesValuesId401Type | GetProductsAttributesValuesId404Type
+  Errors:
+    | GetProductsAttributesValuesId401Type
+    | GetProductsAttributesValuesId404Type
 }
