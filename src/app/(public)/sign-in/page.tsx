@@ -14,7 +14,7 @@ import { useFormState } from '@/hooks/use-form-state'
 import { AlertTriangle } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { signInWithEmailAndPassword } from './_actions/sign-in'
+import { signInWithEmailAndPassword } from './_actions/sign-in-with-password'
 
 export default function SignIn() {
   const router = useRouter()
@@ -44,11 +44,11 @@ export default function SignIn() {
           )}
 
           <Button variant="outline" className="w-full">
-            <Icons.google className="w-4 h-4 mr-2" />
+            {/* <Icons.google className="w-4 h-4 mr-2" /> */}
             Login with Google
           </Button>
           <Button variant="outline" className="w-full">
-            <Icons.github className="w-4 h-4 mr-2" />
+            {/* <Icons.github className="w-4 h-4 mr-2" /> */}
             Login with GitHub
           </Button>
           <div className="relative">
@@ -66,7 +66,6 @@ export default function SignIn() {
             <label htmlFor="email">Email</label>
             <Input
               id="email"
-              type="email"
               name="email"
               placeholder="m@example.com"
               defaultValue="user@example.com"
@@ -97,7 +96,7 @@ export default function SignIn() {
             )}
           </div>
           <Button type="submit" className="w-full">
-            {isPending ? <Loader2 className="size-4 animate-spin" /> : 'Login'}
+            {isPending ? <span className="size-4 animate-spin" /> : 'Login'}
           </Button>
         </form>
         <div className="mt-4 text-center text-sm">

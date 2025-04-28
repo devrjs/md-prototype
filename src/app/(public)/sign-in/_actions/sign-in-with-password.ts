@@ -1,16 +1,18 @@
 'use server'
 
-import {
-  postSessionsPassword,
-  postSessionsPasswordMutationRequestSchema,
-} from '@/http/kubb'
+import { postSessionsPassword } from '@/http/kubb'
 import { cookies } from 'next/headers'
+import { z } from 'zod'
+
+const signInWithEmailAndPasswordSchema = z.object({
+  email: z.string().email('E-mail inválido').min(1, 'O e-mail é obrigatório'),
+  password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
+})
 
 export async function signInWithEmailAndPassword(data: FormData) {
-  const validatedCredentials =
-    postSessionsPasswordMutationRequestSchema.safeParse(
-      Object.fromEntries(data)
-    )
+  const validatedCredentials = signInWithEmailAndPasswordSchema.safeParse(
+    Object.fromEntries(data)
+  )
 
   if (!validatedCredentials.success) {
     const errors = validatedCredentials.error.flatten().fieldErrors
