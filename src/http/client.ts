@@ -1,4 +1,5 @@
 import { env } from '@/env'
+import { HTTPError } from '@/errors/http-error'
 
 export type RequestConfig<TData = unknown> = {
   url?: string
@@ -57,12 +58,12 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
   const data = await response.json()
 
   if (!response.ok) {
-    throw {
+    throw new HTTPError(
       data,
-      status: response.status,
-      statusText: response.statusText,
-      message: data.message || 'Erro na requisição',
-    }
+      response.status,
+      response.statusText,
+      data.message
+    )
   }
 
   return {
