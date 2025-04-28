@@ -31,12 +31,13 @@ export async function signInWithEmailAndPassword(data: FormData) {
       path: '/',
       maxAge: 60 * 60 * 4, // 4 hours
     })
-  } catch (error) {
+  } catch (error: any) {
     console.log(error)
 
     return {
       success: false,
-      message: 'Erro inesperado, tente novamente em alguns minutos.',
+      message:
+        error.message || 'Erro inesperado, tente novamente em alguns minutos.',
       errors: null,
     }
   }

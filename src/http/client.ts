@@ -56,6 +56,15 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
 
   const data = await response.json()
 
+  if (!response.ok) {
+    throw {
+      data,
+      status: response.status,
+      statusText: response.statusText,
+      message: data.message || 'Erro na requisição',
+    }
+  }
+
   return {
     data,
     status: response.status,
