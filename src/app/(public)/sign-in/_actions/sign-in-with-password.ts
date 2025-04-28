@@ -23,7 +23,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
 
     const cookieStore = await cookies()
 
-    cookieStore.set('accessToken', access_token, {
+    cookieStore.set('access_token', access_token, {
       path: '/',
       maxAge: 60 * 60 * 4, // 4 hours
     })
