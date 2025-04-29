@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 const ptBrPathNames: Record<string, string> = {
   Orders: 'Pedidos',
-  Person: 'Pessoa',
+  People: 'Pessoa',
   Products: 'Produtos',
   Settings: 'Configurações',
   Shipments: 'Envios',

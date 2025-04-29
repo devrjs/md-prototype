@@ -7,7 +7,7 @@ import data from './data.json'
 
 export default function Page() {
   return (
-    <SidebarInset>
+    <SidebarInset className="bg-[#f1f5f9]">
       <SiteHeader />
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">
