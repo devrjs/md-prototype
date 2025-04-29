@@ -1,5 +1,6 @@
 'use client'
 
+import { Icons } from '@/components/global/icons'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import {
@@ -11,7 +12,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useFormState } from '@/hooks/use-form-state'
-import { AlertTriangle } from 'lucide-react'
+import { AlertTriangle, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -52,13 +53,10 @@ export default function SignInForm() {
           )}
 
           <Button variant="outline" className="w-full">
-            {/* <Icons.google className="w-4 h-4 mr-2" /> */}
+            <Icons.google className="w-4 h-4 mr-2" />
             Login with Google
           </Button>
-          <Button variant="outline" className="w-full">
-            {/* <Icons.github className="w-4 h-4 mr-2" /> */}
-            Login with GitHub
-          </Button>
+
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
@@ -104,7 +102,7 @@ export default function SignInForm() {
             )}
           </div>
           <Button type="submit" className="w-full">
-            {isPending ? <span className="size-4 animate-spin" /> : 'Login'}
+            {isPending ? <Loader2 className="size-4 animate-spin" /> : 'Login'}
           </Button>
         </form>
         <div className="mt-4 text-center text-sm">

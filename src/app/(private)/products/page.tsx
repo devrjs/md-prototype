@@ -6,7 +6,7 @@ export default async function Products() {
   const products = await getProducts()
 
   return (
-    <SidebarInset className="bg-[#f1f5f9]">
+    <SidebarInset>
       <SiteHeader />
       {JSON.stringify(products, null, 2)}
     </SidebarInset>
