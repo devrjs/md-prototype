@@ -4,7 +4,7 @@ import { IconGripVertical } from '@tabler/icons-react'
 import { Button } from '@/components/ui/button'
 
 // Componente para o manipulador de arrasto das linhas da tabela
-export function DragHandle({ id }: { id: number }) {
+export function DragHandle({ id }: { id: string }) {
   const { attributes, listeners } = useSortable({
     id,
   })

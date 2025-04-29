@@ -68,12 +68,12 @@ export function TableCellViewer({ item }: TableCellViewerProps) {
     <Drawer direction={isMobile ? 'bottom' : 'right'}>
       <DrawerTrigger asChild>
         <Button variant="link" className="text-foreground w-fit px-0 text-left">
-          {item.header}
+          {item.id}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="gap-1">
-          <DrawerTitle>{item.header}</DrawerTitle>
+          <DrawerTitle>{item.id}</DrawerTitle>
           <DrawerDescription>
             Showing total visitors for the last 6 months
           </DrawerDescription>
@@ -139,12 +139,12 @@ export function TableCellViewer({ item }: TableCellViewerProps) {
           <form className="flex flex-col gap-4">
             <div className="flex flex-col gap-3">
               <Label htmlFor="header">Header</Label>
-              <Input id="header" defaultValue={item.header} />
+              <Input id="header" defaultValue={item.id} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="type">Type</Label>
-                <Select defaultValue={item.type}>
+                <Select defaultValue={item.id}>
                   <SelectTrigger id="type" className="w-full">
                     <SelectValue placeholder="Select a type" />
                   </SelectTrigger>
@@ -185,16 +185,16 @@ export function TableCellViewer({ item }: TableCellViewerProps) {
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="target">Target</Label>
-                <Input id="target" defaultValue={item.target} />
+                <Input id="target" defaultValue={item.id} />
               </div>
               <div className="flex flex-col gap-3">
                 <Label htmlFor="limit">Limit</Label>
-                <Input id="limit" defaultValue={item.limit} />
+                <Input id="limit" defaultValue={item.id} />
               </div>
             </div>
             <div className="flex flex-col gap-3">
               <Label htmlFor="reviewer">Reviewer</Label>
-              <Select defaultValue={item.reviewer}>
+              <Select defaultValue={item.id}>
                 <SelectTrigger id="reviewer" className="w-full">
                   <SelectValue placeholder="Select a reviewer" />
                 </SelectTrigger>
