@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import type * as React from "react"
-import type { Icon } from "@tabler/icons-react"
+import type { Icon } from '@tabler/icons-react'
+import type * as React from 'react'
 
 import {
   SidebarGroup,
@@ -9,9 +9,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar'
 
-export function NavSecondary({
+export function NavBottomItems({
   items,
   ...props
 }: {
@@ -25,7 +25,7 @@ export function NavSecondary({
     <SidebarGroup {...props}>
       <SidebarGroupContent>
         <SidebarMenu>
-          {items.map((item) => (
+          {items.map(item => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <a href={item.url}>

@@ -1,7 +1,11 @@
+import { SiteHeader } from '@/components/global/site-header'
+import { SidebarInset } from '@/components/ui/sidebar'
+
 export default function People() {
   return (
-    <div>
+    <SidebarInset>
+      <SiteHeader />
       <h1>People</h1>
-    </div>
+    </SidebarInset>
   )
 }
