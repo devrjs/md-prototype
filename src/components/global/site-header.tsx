@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation'
 
 const ptBrPathNames: Record<string, string> = {
   Orders: 'Pedidos',
-  People: 'Pessoa',
+  People: 'Pessoas',
   Products: 'Produtos',
   Settings: 'Configurações',
-  Shipments: 'Envios',
+  Shipments: 'Controle de Envios',
 }
 
 export function SiteHeader() {

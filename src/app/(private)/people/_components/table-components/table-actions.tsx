@@ -20,14 +20,7 @@ import {
 import { type Table, flexRender } from '@tanstack/react-table'
 import * as React from 'react'
 
-import {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Table as UITable,
-} from '@/components/ui/table'
+import { TableBody, TableHeader, Table as UITable } from '@/components/ui/table'
 
 import { DraggableRow } from './draggable-row'
 import type { OrderItem } from './schema'
@@ -76,20 +69,20 @@ export function TableActions({ table, data, setData }: TableActionsProps) {
       <UITable>
         <TableHeader className="bg-muted sticky top-0 z-10">
           {table.getHeaderGroups().map(headerGroup => (
-            <TableRow key={headerGroup.id}>
+            <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => {
                 return (
-                  <TableHead key={header.id} colSpan={header.colSpan}>
+                  <th key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                  </TableHead>
+                  </th>
                 )
               })}
-            </TableRow>
+            </tr>
           ))}
         </TableHeader>
         <TableBody className="**:data-[slot=table-cell]:first:w-8">
@@ -103,14 +96,14 @@ export function TableActions({ table, data, setData }: TableActionsProps) {
               ))}
             </SortableContext>
           ) : (
-            <TableRow>
-              <TableCell
+            <tr>
+              <td
                 colSpan={table.getAllColumns().length}
                 className="h-24 text-center"
               >
                 Nenhum resultado encontrado.
-              </TableCell>
-            </TableRow>
+              </td>
+            </tr>
           )}
         </TableBody>
       </UITable>

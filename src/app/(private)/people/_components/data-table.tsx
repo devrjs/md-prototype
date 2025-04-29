@@ -1,8 +1,20 @@
 'use client'
 
-import { IconTrendingUp } from '@tabler/icons-react'
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
-import { toast } from 'sonner'
+import {
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
+  getCoreRowModel,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
+import * as React from 'react'
+
+import { Tabs, TabsContent } from '@/components/ui/tabs'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -32,10 +44,100 @@ import {
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { useIsMobile } from '@/hooks/use-mobile'
+import { IconTrendingUp } from '@tabler/icons-react'
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
+import type { z } from 'zod'
+import type { OrderItem, schema } from './table-components/schema'
+import { TableActions } from './table-components/table-actions'
+// Importação dos componentes modulares
+import { getColumns } from './table-components/table-columns'
+import { TableHeader as TableControls } from './table-components/table-header'
+import { TablePagination } from './table-components/table-pagination'
 
-import type { OrderItem } from './schema'
+export function DataTable({
+  data: initialData,
+}: {
+  data: OrderItem[]
+}) {
+  // Estados para controle da tabela
+  const [data, setData] = React.useState(() => initialData)
+  const [rowSelection, setRowSelection] = React.useState({})
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [pagination, setPagination] = React.useState({
+    pageIndex: 0,
+    pageSize: 10,
+  })
 
-// Dados do gráfico para o visualizador de células
+  // Obter as colunas da tabela
+  const columns = React.useMemo(() => getColumns(), [])
+
+  // Configuração da tabela usando TanStack Table
+  const table = useReactTable({
+    data,
+    columns,
+    state: {
+      sorting,
+      columnVisibility,
+      rowSelection,
+      columnFilters,
+      pagination,
+    },
+    getRowId: row => row.id.toString(),
+    enableRowSelection: true,
+    onRowSelectionChange: setRowSelection,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
+  })
+
+  return (
+    <Tabs
+      defaultValue="outline"
+      className="w-full flex-col justify-start gap-6"
+    >
+      {/* Controles da tabela com opções de visualização e personalização */}
+      <TableControls table={table} />
+      <TabsContent
+        value="outline"
+        className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
+      >
+        <div className="overflow-hidden rounded-lg border">
+          <TableActions table={table} data={data} setData={setData} />
+        </div>
+        {/* Paginação da tabela */}
+        <TablePagination table={table} />
+      </TabsContent>
+      <TabsContent
+        value="past-performance"
+        className="flex flex-col px-4 lg:px-6"
+      >
+        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed" />
+      </TabsContent>
+      <TabsContent value="key-personnel" className="flex flex-col px-4 lg:px-6">
+        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed" />
+      </TabsContent>
+      <TabsContent
+        value="focus-documents"
+        className="flex flex-col px-4 lg:px-6"
+      >
+        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed" />
+      </TabsContent>
+    </Tabs>
+  )
+}
+
 const chartData = [
   { month: 'January', desktop: 186, mobile: 80 },
   { month: 'February', desktop: 305, mobile: 200 },
@@ -45,7 +147,6 @@ const chartData = [
   { month: 'June', desktop: 214, mobile: 140 },
 ]
 
-// Configuração do gráfico
 const chartConfig = {
   desktop: {
     label: 'Desktop',
@@ -57,11 +158,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-interface TableCellViewerProps {
-  item: OrderItem
-}
-
-export function TableCellViewer({ item }: TableCellViewerProps) {
+function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
   const isMobile = useIsMobile()
 
   return (
@@ -210,9 +307,7 @@ export function TableCellViewer({ item }: TableCellViewerProps) {
           </form>
         </div>
         <DrawerFooter>
-          <Button onClick={() => toast.success('Changes saved successfully')}>
-            Submit
-          </Button>
+          <Button>Submit</Button>
           <DrawerClose asChild>
             <Button variant="outline">Done</Button>
           </DrawerClose>
