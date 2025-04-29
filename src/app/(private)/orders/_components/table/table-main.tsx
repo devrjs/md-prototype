@@ -14,14 +14,14 @@ import {
 } from '@tanstack/react-table'
 import * as React from 'react'
 
-import type { OrderItem } from './table-components/schema'
-import { TableActions } from './table-components/table-actions'
+import type { OrderItem } from './schema'
+import { TableActions } from './table-actions'
 // Importação dos componentes modulares
-import { getColumns } from './table-components/table-columns'
-import { TableHeader as TableControls } from './table-components/table-header'
-import { TablePagination } from './table-components/table-pagination'
+import { getColumns } from './table-columns'
+import { TableControls } from './table-controls'
+import { TablePagination } from './table-pagination'
 
-export function DataTable({
+export function TableMain({
   data: initialData,
 }: {
   data: OrderItem[]

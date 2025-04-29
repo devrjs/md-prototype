@@ -18,7 +18,7 @@ export function DragHandle({ id }: { id: string }) {
       className="text-muted-foreground size-7 hover:bg-transparent"
     >
       <IconGripVertical className="text-muted-foreground size-3" />
-      <span className="sr-only">Drag to reorder</span>
+      <span className="sr-only">Arraste para reordenar</span>
     </Button>
   )
 }

@@ -26,11 +26,11 @@ import {
 
 import type { OrderItem } from './schema'
 
-interface TableHeaderProps {
+interface TableControlsProps {
   table: Table<OrderItem>
 }
 
-export function TableHeader({ table }: TableHeaderProps) {
+export function TableControls({ table }: TableControlsProps) {
   return (
     <div className="flex items-center justify-between px-4 lg:px-6">
       <Label htmlFor="view-selector" className="sr-only">
