@@ -31,13 +31,12 @@ export default function SignInForm() {
       router.push('/dashboard')
     }
   }, [success, router])
-
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Sign In</CardTitle>
+        <CardTitle className="text-2xl">Entrar</CardTitle>
         <CardDescription>
-          Enter your email below to sign in to your account
+          Digite seu email abaixo para acessar sua conta
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -45,7 +44,7 @@ export default function SignInForm() {
           {success === false && message && (
             <Alert variant="destructive">
               <AlertTriangle className="size-4" />
-              <AlertTitle>Login failed!</AlertTitle>
+              <AlertTitle>Falha no login!</AlertTitle>
               <AlertDescription>
                 <p>{message}</p>
               </AlertDescription>
@@ -54,7 +53,7 @@ export default function SignInForm() {
 
           <Button variant="outline" className="w-full">
             <Icons.google className="w-4 h-4 mr-2" />
-            Login with Google
+            Entrar com Google
           </Button>
 
           <div className="relative">
@@ -63,7 +62,7 @@ export default function SignInForm() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
+                Ou continue com
               </span>
             </div>
           </div>
@@ -73,7 +72,7 @@ export default function SignInForm() {
             <Input
               id="email"
               name="email"
-              placeholder="m@example.com"
+              placeholder="m@exemplo.com"
               defaultValue="user@example.com"
             />
             {errors?.email && (
@@ -84,9 +83,9 @@ export default function SignInForm() {
           </div>
           <div className="grid gap-2">
             <div className="flex items-center">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Senha</label>
               <Link href="#" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
+                Esqueceu sua senha?
               </Link>
             </div>
             <Input
@@ -102,13 +101,13 @@ export default function SignInForm() {
             )}
           </div>
           <Button type="submit" className="w-full">
-            {isPending ? <Loader2 className="size-4 animate-spin" /> : 'Login'}
+            {isPending ? <Loader2 className="size-4 animate-spin" /> : 'Entrar'}
           </Button>
         </form>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{' '}
+          Não tem uma conta?{' '}
           <Link href="/signup" className="underline">
-            Sign up
+            Cadastre-se
           </Link>
         </div>
       </CardContent>

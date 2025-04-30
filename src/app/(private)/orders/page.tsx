@@ -1,10 +1,10 @@
 import { SiteHeader } from '@/components/global/site-header'
 import { SidebarInset } from '@/components/ui/sidebar'
-import { getOrders } from '@/http/kubb'
+import { getOrders, getUsersProfile } from '@/http/kubb'
 import { TableMain } from './_components/table/table-main'
 
 export default async function Order() {
-  const { orders, totalCount } = await getOrders()
+  const { orders } = await getOrders()
 
   return (
     <SidebarInset>

@@ -22,12 +22,12 @@ import { TableControls } from './table-controls'
 import { TablePagination } from './table-pagination'
 
 export function TableMain({
-  data: initialData,
+  data: initialData = [],
 }: {
-  data: OrderItem[]
+  data?: OrderItem[]
 }) {
   // Estados para controle da tabela
-  const [data, setData] = React.useState(() => initialData)
+  const [data, setData] = React.useState(() => initialData || [])
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})

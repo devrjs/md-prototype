@@ -2,7 +2,6 @@
 
 import type { UniqueIdentifier } from '@dnd-kit/core'
 import { type Table, flexRender } from '@tanstack/react-table'
-import * as React from 'react'
 
 import {
   TableBody,
@@ -22,13 +21,7 @@ interface TableActionsProps {
   setData: React.Dispatch<React.SetStateAction<OrderItem[]>>
 }
 
-export function TableActions({ table, data, setData }: TableActionsProps) {
-  // Obter IDs únicos para os itens arrastáveis
-  const dataIds = React.useMemo<UniqueIdentifier[]>(
-    () => data?.map(({ id }) => id) || [],
-    [data]
-  )
-
+export function TableActions({ table, data = [], setData }: TableActionsProps) {
   return (
     <UITable>
       <TableHeader className="bg-muted sticky top-0 z-10">
@@ -56,9 +49,9 @@ export function TableActions({ table, data, setData }: TableActionsProps) {
         ))}
       </TableHeader>
       <TableBody className="**:data-[slot=table-cell]:first:w-8">
-        {table.getRowModel().rows?.length ? (
+        {(table.getRowModel().rows || [])?.length ? (
           <>
-            {table.getRowModel().rows.map(row => (
+            {(table.getRowModel().rows || []).map(row => (
               <OrderTableRow key={row.id} row={row} />
             ))}
           </>

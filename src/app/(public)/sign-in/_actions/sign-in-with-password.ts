@@ -21,6 +21,8 @@ export async function signInWithEmailAndPassword(data: FormData) {
   try {
     const { access_token } = await postSessionsPassword({ email, password })
 
+    if (!access_token) throw new Error()
+
     const cookieStore = await cookies()
 
     cookieStore.set('access_token', access_token, {

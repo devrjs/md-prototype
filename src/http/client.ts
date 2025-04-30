@@ -1,4 +1,5 @@
 import { env } from '@/env'
+import { HTTPError } from '@/errors/http-error'
 
 export type RequestConfig<TData = unknown> = {
   url?: string
@@ -55,6 +56,15 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
   })
 
   const data = await response.json()
+
+  if (!response.ok) {
+    throw new HTTPError(
+      data,
+      response.status,
+      response.statusText,
+      data.message
+    )
+  }
 
   return {
     data,

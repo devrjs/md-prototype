@@ -10,9 +10,10 @@ interface OrderTableRowProps {
 }
 
 export function OrderTableRow({ row }: OrderTableRowProps) {
+  const cells = row.getVisibleCells() || []
   return (
     <TableRow>
-      {row.getVisibleCells().map(cell => (
+      {cells.map(cell => (
         <TableCell key={cell.id}>
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </TableCell>
