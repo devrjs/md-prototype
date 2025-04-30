@@ -19,15 +19,15 @@ export type GetOrdersQueryParamsStatusEnumType = (typeof getOrdersQueryParamsSta
 
 export type GetOrdersQueryParamsType = {
   /**
-   * @default "10"
-   * @type string | undefined
+   * @default 10
+   * @type number | undefined
    */
-  perPage?: string
+  perPage?: number
   /**
-   * @default "0"
-   * @type string | undefined
+   * @default 0
+   * @type number | undefined
    */
-  pageIndex?: string
+  pageIndex?: number
   /**
    * @default "desc"
    * @type string | undefined

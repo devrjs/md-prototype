@@ -10,10 +10,10 @@ import type {
   PostProductsUploadMutationResponseType,
   PostProductsUpload400Type,
   PostProductsUpload401Type,
-} from '../types/ProdutosTypes/PostProductsUploadType'
+} from '../types/ProdutosTypes/PostProductsUploadType.ts'
 
 function getPostProductsUploadUrl() {
-  return '/products/upload' as const
+  return `/products/upload` as const
 }
 
 /**

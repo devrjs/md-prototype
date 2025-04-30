@@ -10,10 +10,10 @@ import type {
   PostCustomersMutationResponseType,
   PostCustomers401Type,
   PostCustomers409Type,
-} from '../types/ClientesTypes/PostCustomersType'
+} from '../types/ClientesTypes/PostCustomersType.ts'
 
 function getPostCustomersUrl() {
-  return '/customers' as const
+  return `/customers` as const
 }
 
 /**

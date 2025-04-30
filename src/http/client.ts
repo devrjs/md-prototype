@@ -44,10 +44,13 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
     token = (await cookieStore).get('access_token')?.value ?? ''
   }
 
-  const response = await fetch(`${env.API_URL}${config.url}`, {
+  const params = new URLSearchParams(config.params as Record<string, string>)
+
+  const response = await fetch(`${env.API_URL}${config.url}?${params}`, {
     method: config.method.toUpperCase(),
     body: JSON.stringify(config.data),
     signal: config.signal,
+
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

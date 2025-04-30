@@ -12,7 +12,7 @@ import type {
   PutOrdersId400Type,
   PutOrdersId401Type,
   PutOrdersId404Type,
-} from '../types/PedidosTypes/PutOrdersIdType'
+} from '../types/PedidosTypes/PutOrdersIdType.ts'
 
 function getPutOrdersIdUrl(id: PutOrdersIdPathParamsType['id']) {
   return `/orders/${id}` as const

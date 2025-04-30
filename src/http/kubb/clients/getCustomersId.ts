@@ -10,7 +10,7 @@ import type {
   GetCustomersIdPathParamsType,
   GetCustomersId401Type,
   GetCustomersId404Type,
-} from '../types/ClientesTypes/GetCustomersIdType'
+} from '../types/ClientesTypes/GetCustomersIdType.ts'
 
 function getGetCustomersIdUrl(id: GetCustomersIdPathParamsType['id']) {
   return `/customers/${id}` as const

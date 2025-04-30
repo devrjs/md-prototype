@@ -10,10 +10,10 @@ import type {
   GetSuppliersQueryParamsType,
   GetSuppliers401Type,
   GetSuppliers404Type,
-} from '../types/FornecedoresTypes/GetSuppliersType'
+} from '../types/FornecedoresTypes/GetSuppliersType.ts'
 
 function getGetSuppliersUrl() {
-  return '/suppliers' as const
+  return `/suppliers` as const
 }
 
 /**

@@ -8,7 +8,7 @@ import type {
   GetProductsMeasurementUnits200Type,
   GetProductsMeasurementUnits401Type,
   GetProductsMeasurementUnitsQueryResponseType,
-} from '../../types/Produtos (Unidades de Medida)Types/GetProductsMeasurementUnitsType'
+} from '../../types/Produtos (Unidades de Medida)Types/GetProductsMeasurementUnitsType.ts'
 import { z } from 'zod'
 
 /**

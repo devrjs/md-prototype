@@ -10,7 +10,7 @@ import type {
   DeleteOrdersId401Type,
   DeleteOrdersId404Type,
   DeleteOrdersIdMutationResponseType,
-} from '../../types/PedidosTypes/DeleteOrdersIdType'
+} from '../../types/PedidosTypes/DeleteOrdersIdType.ts'
 import { z } from 'zod'
 
 export const deleteOrdersIdPathParamsSchema = z.object({

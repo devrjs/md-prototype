@@ -11,7 +11,7 @@ import type {
   PutProductsId404Type,
   PutProductsIdMutationRequestType,
   PutProductsIdMutationResponseType,
-} from '../../types/ProdutosTypes/PutProductsIdType'
+} from '../../types/ProdutosTypes/PutProductsIdType.ts'
 import { z } from 'zod'
 
 export const putProductsIdPathParamsSchema = z.object({

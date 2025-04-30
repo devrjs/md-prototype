@@ -9,7 +9,7 @@ import type {
   GetUsersProfile401Type,
   GetUsersProfile404Type,
   GetUsersProfileQueryResponseType,
-} from '../../types/Usu\u00E1riosTypes/GetUsersProfileType'
+} from '../../types/Usu\u00E1riosTypes/GetUsersProfileType.ts'
 import { z } from 'zod'
 
 /**

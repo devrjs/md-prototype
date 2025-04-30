@@ -10,7 +10,7 @@ import type {
   PostEmployees409Type,
   PostEmployeesMutationRequestType,
   PostEmployeesMutationResponseType,
-} from '../../types/ColaboradoresTypes/PostEmployeesType'
+} from '../../types/ColaboradoresTypes/PostEmployeesType.ts'
 import { z } from 'zod'
 
 /**

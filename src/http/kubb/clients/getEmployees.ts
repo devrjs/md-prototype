@@ -10,10 +10,10 @@ import type {
   GetEmployeesQueryParamsType,
   GetEmployees401Type,
   GetEmployees404Type,
-} from '../types/ColaboradoresTypes/GetEmployeesType'
+} from '../types/ColaboradoresTypes/GetEmployeesType.ts'
 
 function getGetEmployeesUrl() {
-  return '/employees' as const
+  return `/employees` as const
 }
 
 /**

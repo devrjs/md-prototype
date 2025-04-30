@@ -5,10 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetOrdersQueryResponseType, GetOrdersQueryParamsType } from '../types/PedidosTypes/GetOrdersType'
+import type { GetOrdersQueryResponseType, GetOrdersQueryParamsType } from '../types/PedidosTypes/GetOrdersType.ts'
 
 function getGetOrdersUrl() {
-  return '/orders' as const
+  return `/orders` as const
 }
 
 /**

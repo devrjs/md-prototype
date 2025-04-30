@@ -11,10 +11,10 @@ import type {
   PostOrders400Type,
   PostOrders401Type,
   PostOrders404Type,
-} from '../types/PedidosTypes/PostOrdersType'
+} from '../types/PedidosTypes/PostOrdersType.ts'
 
 function getPostOrdersUrl() {
-  return '/orders' as const
+  return `/orders` as const
 }
 
 /**

@@ -5,10 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetUsersProfileQueryResponseType, GetUsersProfile401Type, GetUsersProfile404Type } from '../types/Usu\u00E1riosTypes/GetUsersProfileType'
+import type { GetUsersProfileQueryResponseType, GetUsersProfile401Type, GetUsersProfile404Type } from '../types/Usu\u00E1riosTypes/GetUsersProfileType.ts'
 
 function getGetUsersProfileUrl() {
-  return '/users/profile' as const
+  return `/users/profile` as const
 }
 
 /**

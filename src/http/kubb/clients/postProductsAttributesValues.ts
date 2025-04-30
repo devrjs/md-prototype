@@ -10,10 +10,10 @@ import type {
   PostProductsAttributesValuesMutationResponseType,
   PostProductsAttributesValues401Type,
   PostProductsAttributesValues409Type,
-} from '../types/Produtos (Atributos)Types/PostProductsAttributesValuesType'
+} from '../types/Produtos (Atributos)Types/PostProductsAttributesValuesType.ts'
 
 function getPostProductsAttributesValuesUrl() {
-  return '/products/attributes/values' as const
+  return `/products/attributes/values` as const
 }
 
 /**

@@ -9,7 +9,7 @@ import type {
   PostSessionsPassword400Type,
   PostSessionsPasswordMutationRequestType,
   PostSessionsPasswordMutationResponseType,
-} from '../../types/Usu\u00E1riosTypes/PostSessionsPasswordType'
+} from '../../types/Usu\u00E1riosTypes/PostSessionsPasswordType.ts'
 import { z } from 'zod'
 
 /**

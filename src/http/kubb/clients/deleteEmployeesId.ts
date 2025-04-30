@@ -10,7 +10,7 @@ import type {
   DeleteEmployeesIdPathParamsType,
   DeleteEmployeesId401Type,
   DeleteEmployeesId404Type,
-} from '../types/ColaboradoresTypes/DeleteEmployeesIdType'
+} from '../types/ColaboradoresTypes/DeleteEmployeesIdType.ts'
 
 function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParamsType['id']) {
   return `/employees/${id}` as const

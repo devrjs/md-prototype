@@ -10,7 +10,7 @@ import type {
   GetProductsVariations401Type,
   GetProductsVariations404Type,
   GetProductsVariationsQueryResponseType,
-} from '../../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType'
+} from '../../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType.ts'
 import { z } from 'zod'
 
 export const getProductsVariationsQueryParamsSchema = z

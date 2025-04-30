@@ -9,7 +9,7 @@ import type {
   PostUsers409Type,
   PostUsersMutationRequestType,
   PostUsersMutationResponseType,
-} from '../../types/Usu\u00E1riosTypes/PostUsersType'
+} from '../../types/Usu\u00E1riosTypes/PostUsersType.ts'
 import { z } from 'zod'
 
 /**

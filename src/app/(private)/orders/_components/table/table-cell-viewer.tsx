@@ -1,6 +1,6 @@
 'use client'
 
-import { IconTrendingUp } from '@tabler/icons-react'
+import { IconSearch, IconTrendingUp } from '@tabler/icons-react'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 import { toast } from 'sonner'
 
@@ -67,8 +67,9 @@ export function TableCellViewer({ item }: TableCellViewerProps) {
   return (
     <Drawer direction={isMobile ? 'bottom' : 'right'}>
       <DrawerTrigger asChild>
-        <Button variant="link" className="text-foreground w-fit px-0 text-left">
-          {item.id}
+        <Button variant="outline" className="size-8">
+          <IconSearch className="size-4" />
+          <span className="sr-only">Detalhes do pedido</span>
         </Button>
       </DrawerTrigger>
       <DrawerContent>

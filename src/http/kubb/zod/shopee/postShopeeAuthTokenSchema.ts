@@ -11,7 +11,7 @@ import type {
   PostShopeeAuthToken404Type,
   PostShopeeAuthTokenMutationRequestType,
   PostShopeeAuthTokenMutationResponseType,
-} from '../../types/Shopee APITypes/PostShopeeAuthTokenType'
+} from '../../types/Shopee APITypes/PostShopeeAuthTokenType.ts'
 import { z } from 'zod'
 
 /**

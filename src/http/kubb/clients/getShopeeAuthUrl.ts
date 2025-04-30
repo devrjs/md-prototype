@@ -5,10 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetShopeeAuthUrlQueryResponseType, GetShopeeAuthUrl401Type } from '../types/Shopee APITypes/GetShopeeAuthUrlType'
+import type { GetShopeeAuthUrlQueryResponseType, GetShopeeAuthUrl401Type } from '../types/Shopee APITypes/GetShopeeAuthUrlType.ts'
 
 function getGetShopeeAuthUrlUrl() {
-  return '/shopee/auth/url' as const
+  return `/shopee/auth/url` as const
 }
 
 /**

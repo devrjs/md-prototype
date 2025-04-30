@@ -10,7 +10,7 @@ import type {
   GetEmployeesId401Type,
   GetEmployeesId404Type,
   GetEmployeesIdQueryResponseType,
-} from '../../types/ColaboradoresTypes/GetEmployeesIdType'
+} from '../../types/ColaboradoresTypes/GetEmployeesIdType.ts'
 import { z } from 'zod'
 
 export const getEmployeesIdPathParamsSchema = z.object({

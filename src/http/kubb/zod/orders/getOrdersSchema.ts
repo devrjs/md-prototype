@@ -4,13 +4,13 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type { GetOrdersQueryParamsType, GetOrders200Type, GetOrdersQueryResponseType } from '../../types/PedidosTypes/GetOrdersType'
+import type { GetOrdersQueryParamsType, GetOrders200Type, GetOrdersQueryResponseType } from '../../types/PedidosTypes/GetOrdersType.ts'
 import { z } from 'zod'
 
 export const getOrdersQueryParamsSchema = z
   .object({
-    perPage: z.string().default('10'),
-    pageIndex: z.string().default('0'),
+    perPage: z.number().default(10),
+    pageIndex: z.number().default(0),
     orderBy: z.enum(['asc', 'desc']).default('desc'),
     status: z.enum(['PROCESSED', 'CANCELLED']).optional(),
     orderId: z.string().optional(),

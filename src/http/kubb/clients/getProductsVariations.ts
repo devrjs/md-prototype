@@ -10,10 +10,10 @@ import type {
   GetProductsVariationsQueryParamsType,
   GetProductsVariations401Type,
   GetProductsVariations404Type,
-} from '../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType'
+} from '../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType.ts'
 
 function getGetProductsVariationsUrl() {
-  return '/products/variations' as const
+  return `/products/variations` as const
 }
 
 /**

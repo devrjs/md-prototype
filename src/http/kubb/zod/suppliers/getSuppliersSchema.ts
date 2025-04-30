@@ -10,7 +10,7 @@ import type {
   GetSuppliers401Type,
   GetSuppliers404Type,
   GetSuppliersQueryResponseType,
-} from '../../types/FornecedoresTypes/GetSuppliersType'
+} from '../../types/FornecedoresTypes/GetSuppliersType.ts'
 import { z } from 'zod'
 
 export const getSuppliersQueryParamsSchema = z

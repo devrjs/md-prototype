@@ -4,6 +4,8 @@ import {
   IconLoader,
 } from '@tabler/icons-react'
 import type { ColumnDef } from '@tanstack/react-table'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -22,30 +24,37 @@ import { TableCellViewer } from './table-cell-viewer'
 
 // Definição das colunas da tabela
 export const getColumns = (): ColumnDef<OrderItem>[] => [
+  // {
+  //   id: 'select',
+  //   header: ({ table }) => (
+  //     <div className="flex items-center justify-center">
+  //       <Checkbox
+  //         checked={
+  //           table.getIsAllPageRowsSelected() ||
+  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
+  //         }
+  //         onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
+  //         aria-label="Select all"
+  //       />
+  //     </div>
+  //   ),
+  //   cell: ({ row }) => (
+  //     <div className="flex items-center justify-center">
+  //       <Checkbox
+  //         checked={row.getIsSelected()}
+  //         onCheckedChange={value => row.toggleSelected(!!value)}
+  //         aria-label="Select row"
+  //       />
+  //     </div>
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
-    id: 'select',
-    header: ({ table }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
-          }
-          onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      </div>
-    ),
-    cell: ({ row }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={value => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      </div>
-    ),
-    enableSorting: false,
+    id: 'viewer',
+    cell: ({ row }) => {
+      return <TableCellViewer item={row.original} />
+    },
     enableHiding: false,
   },
   {
@@ -57,16 +66,24 @@ export const getColumns = (): ColumnDef<OrderItem>[] => [
   },
   {
     accessorKey: 'número do pedido',
-    header: 'Número do Pedido',
+    header: 'Número do pedido',
     cell: ({ row }) => row.original.platform_order_details?.external_order_id,
   },
   {
-    accessorKey: 'header',
-    header: 'Header',
+    accessorKey: 'plataforma',
+    header: 'Plataforma',
+    cell: ({ row }) =>
+      row.original.platform_order_details?.platform_name || 'N/A',
+  },
+  {
+    accessorKey: 'realizado há',
+    header: 'Realizado há',
     cell: ({ row }) => {
-      return <TableCellViewer item={row.original} />
+      return formatDistanceToNow(new Date(row.original.order_placed_at), {
+        locale: ptBR,
+        addSuffix: true,
+      })
     },
-    enableHiding: false,
   },
   {
     accessorKey: 'status',
@@ -81,6 +98,11 @@ export const getColumns = (): ColumnDef<OrderItem>[] => [
         {row.original.status}
       </Badge>
     ),
+  },
+  {
+    accessorKey: 'transportadora',
+    header: 'Transportadora',
+    cell: ({ row }) => row.original.shipping_carrier,
   },
   {
     id: 'actions',

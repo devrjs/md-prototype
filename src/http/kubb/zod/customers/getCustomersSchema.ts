@@ -10,7 +10,7 @@ import type {
   GetCustomers401Type,
   GetCustomers404Type,
   GetCustomersQueryResponseType,
-} from '../../types/ClientesTypes/GetCustomersType'
+} from '../../types/ClientesTypes/GetCustomersType.ts'
 import { z } from 'zod'
 
 export const getCustomersQueryParamsSchema = z
