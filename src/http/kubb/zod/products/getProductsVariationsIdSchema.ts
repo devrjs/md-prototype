@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetProductsVariationsIdPathParamsType,
   GetProductsVariationsId200Type,
   GetProductsVariationsId401Type,
   GetProductsVariationsId404Type,
-  GetProductsVariationsIdPathParamsType,
   GetProductsVariationsIdQueryResponseType,
 } from '../../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsIdType'
+import { z } from 'zod'
 
 export const getProductsVariationsIdPathParamsSchema = z.object({
   id: z.string(),
@@ -43,14 +43,12 @@ export const getProductsVariationsId200Schema = z
           z.object({
             id: z.string(),
             value: z.string(),
-          })
+          }),
         ),
-      })
+      }),
     ),
   })
-  .describe(
-    'Variação de produto obtido com sucesso.'
-  ) as unknown as ToZod<GetProductsVariationsId200Type>
+  .describe('Variação de produto obtido com sucesso.') as unknown as ToZod<GetProductsVariationsId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -59,9 +57,7 @@ export const getProductsVariationsId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetProductsVariationsId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsVariationsId401Type>
 
 /**
  * @description Variação de produto não encontrado.
@@ -70,10 +66,8 @@ export const getProductsVariationsId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Variação de produto não encontrado.'
-  ) as unknown as ToZod<GetProductsVariationsId404Type>
+  .describe('Variação de produto não encontrado.') as unknown as ToZod<GetProductsVariationsId404Type>
 
 export const getProductsVariationsIdQueryResponseSchema = z.lazy(
-  () => getProductsVariationsId200Schema
+  () => getProductsVariationsId200Schema,
 ) as unknown as ToZod<GetProductsVariationsIdQueryResponseType>

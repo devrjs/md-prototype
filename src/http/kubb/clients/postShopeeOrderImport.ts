@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  PostShopeeOrderImportMutationResponseType,
+  PostShopeeOrderImportQueryParamsType,
   PostShopeeOrderImport400Type,
   PostShopeeOrderImport401Type,
   PostShopeeOrderImport404Type,
-  PostShopeeOrderImportMutationResponseType,
-  PostShopeeOrderImportQueryParamsType,
 } from '../types/Shopee APITypes/PostShopeeOrderImportType'
 
 function getPostShopeeOrderImportUrl() {
@@ -20,25 +20,13 @@ function getPostShopeeOrderImportUrl() {
 /**
  * {@link /shopee/order/import}
  */
-export async function postShopeeOrderImport(
-  params: PostShopeeOrderImportQueryParamsType,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
+export async function postShopeeOrderImport(params: PostShopeeOrderImportQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     PostShopeeOrderImportMutationResponseType,
-    ResponseErrorConfig<
-      | PostShopeeOrderImport400Type
-      | PostShopeeOrderImport401Type
-      | PostShopeeOrderImport404Type
-    >,
+    ResponseErrorConfig<PostShopeeOrderImport400Type | PostShopeeOrderImport401Type | PostShopeeOrderImport404Type>,
     unknown
-  >({
-    method: 'POST',
-    url: getPostShopeeOrderImportUrl().toString(),
-    params,
-    ...requestConfig,
-  })
+  >({ method: 'POST', url: getPostShopeeOrderImportUrl().toString(), params, ...requestConfig })
   return res.data
 }

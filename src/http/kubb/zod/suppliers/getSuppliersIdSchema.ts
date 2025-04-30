@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetSuppliersIdPathParamsType,
   GetSuppliersId200Type,
   GetSuppliersId401Type,
   GetSuppliersId404Type,
-  GetSuppliersIdPathParamsType,
   GetSuppliersIdQueryResponseType,
 } from '../../types/FornecedoresTypes/GetSuppliersIdType'
+import { z } from 'zod'
 
 export const getSuppliersIdPathParamsSchema = z.object({
   id: z.string(),
@@ -52,12 +52,10 @@ export const getSuppliersId200Schema = z
         city: z.string(),
         state: z.string(),
         platform: z.enum(['SHOPEE', 'MERCADO_LIVRE', 'TRAY', 'LOCAL']),
-      })
+      }),
     ),
   })
-  .describe(
-    'Fornecedor obtido com sucesso.'
-  ) as unknown as ToZod<GetSuppliersId200Type>
+  .describe('Fornecedor obtido com sucesso.') as unknown as ToZod<GetSuppliersId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -66,9 +64,7 @@ export const getSuppliersId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetSuppliersId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetSuppliersId401Type>
 
 /**
  * @description Fornecedor não encontrado.
@@ -77,10 +73,6 @@ export const getSuppliersId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Fornecedor não encontrado.'
-  ) as unknown as ToZod<GetSuppliersId404Type>
+  .describe('Fornecedor não encontrado.') as unknown as ToZod<GetSuppliersId404Type>
 
-export const getSuppliersIdQueryResponseSchema = z.lazy(
-  () => getSuppliersId200Schema
-) as unknown as ToZod<GetSuppliersIdQueryResponseType>
+export const getSuppliersIdQueryResponseSchema = z.lazy(() => getSuppliersId200Schema) as unknown as ToZod<GetSuppliersIdQueryResponseType>

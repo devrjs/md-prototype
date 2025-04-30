@@ -15,8 +15,7 @@ export const getSuppliersId200DocumentTypeEnum = {
   COMPANY: 'COMPANY',
 } as const
 
-export type GetSuppliersId200DocumentTypeEnumType =
-  (typeof getSuppliersId200DocumentTypeEnum)[keyof typeof getSuppliersId200DocumentTypeEnum]
+export type GetSuppliersId200DocumentTypeEnumType = (typeof getSuppliersId200DocumentTypeEnum)[keyof typeof getSuppliersId200DocumentTypeEnum]
 
 export const addressesPlatformEnum2 = {
   SHOPEE: 'SHOPEE',
@@ -25,8 +24,7 @@ export const addressesPlatformEnum2 = {
   LOCAL: 'LOCAL',
 } as const
 
-export type AddressesPlatformEnum2Type =
-  (typeof addressesPlatformEnum2)[keyof typeof addressesPlatformEnum2]
+export type AddressesPlatformEnum2Type = (typeof addressesPlatformEnum2)[keyof typeof addressesPlatformEnum2]
 
 /**
  * @description Fornecedor obtido com sucesso.

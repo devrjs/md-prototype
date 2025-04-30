@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetProductsAttributesValuesIdPathParamsType,
   GetProductsAttributesValuesId200Type,
   GetProductsAttributesValuesId401Type,
   GetProductsAttributesValuesId404Type,
-  GetProductsAttributesValuesIdPathParamsType,
   GetProductsAttributesValuesIdQueryResponseType,
 } from '../../types/Produtos (Atributos)Types/GetProductsAttributesValuesIdType'
+import { z } from 'zod'
 
 export const getProductsAttributesValuesIdPathParamsSchema = z.object({
   id: z.string(),
@@ -26,9 +26,7 @@ export const getProductsAttributesValuesId200Schema = z
     value: z.string(),
     created_at: z.string().datetime({ offset: true }),
   })
-  .describe(
-    'Valor de atributo do produto obtido com sucesso.'
-  ) as unknown as ToZod<GetProductsAttributesValuesId200Type>
+  .describe('Valor de atributo do produto obtido com sucesso.') as unknown as ToZod<GetProductsAttributesValuesId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -37,9 +35,7 @@ export const getProductsAttributesValuesId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetProductsAttributesValuesId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsAttributesValuesId401Type>
 
 /**
  * @description Valor de atributo do produto não encontrado.
@@ -48,10 +44,8 @@ export const getProductsAttributesValuesId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Valor de atributo do produto não encontrado.'
-  ) as unknown as ToZod<GetProductsAttributesValuesId404Type>
+  .describe('Valor de atributo do produto não encontrado.') as unknown as ToZod<GetProductsAttributesValuesId404Type>
 
 export const getProductsAttributesValuesIdQueryResponseSchema = z.lazy(
-  () => getProductsAttributesValuesId200Schema
+  () => getProductsAttributesValuesId200Schema,
 ) as unknown as ToZod<GetProductsAttributesValuesIdQueryResponseType>

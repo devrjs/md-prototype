@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetEmployeesIdPathParamsType,
   GetEmployeesId200Type,
   GetEmployeesId401Type,
   GetEmployeesId404Type,
-  GetEmployeesIdPathParamsType,
   GetEmployeesIdQueryResponseType,
 } from '../../types/ColaboradoresTypes/GetEmployeesIdType'
+import { z } from 'zod'
 
 export const getEmployeesIdPathParamsSchema = z.object({
   id: z.string(),
@@ -54,12 +54,10 @@ export const getEmployeesId200Schema = z
         city: z.string(),
         state: z.string(),
         platform: z.enum(['SHOPEE', 'MERCADO_LIVRE', 'TRAY', 'LOCAL']),
-      })
+      }),
     ),
   })
-  .describe(
-    'Colaborador obtido com sucesso.'
-  ) as unknown as ToZod<GetEmployeesId200Type>
+  .describe('Colaborador obtido com sucesso.') as unknown as ToZod<GetEmployeesId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -68,9 +66,7 @@ export const getEmployeesId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetEmployeesId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetEmployeesId401Type>
 
 /**
  * @description Colaborador não encontrado.
@@ -79,10 +75,6 @@ export const getEmployeesId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Colaborador não encontrado.'
-  ) as unknown as ToZod<GetEmployeesId404Type>
+  .describe('Colaborador não encontrado.') as unknown as ToZod<GetEmployeesId404Type>
 
-export const getEmployeesIdQueryResponseSchema = z.lazy(
-  () => getEmployeesId200Schema
-) as unknown as ToZod<GetEmployeesIdQueryResponseType>
+export const getEmployeesIdQueryResponseSchema = z.lazy(() => getEmployeesId200Schema) as unknown as ToZod<GetEmployeesIdQueryResponseType>

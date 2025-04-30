@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostCustomers401Type,
-  PostCustomers409Type,
   PostCustomersMutationRequestType,
   PostCustomersMutationResponseType,
+  PostCustomers401Type,
+  PostCustomers409Type,
 } from '../types/ClientesTypes/PostCustomersType'
 
 function getPostCustomersUrl() {
@@ -23,9 +23,7 @@ function getPostCustomersUrl() {
  */
 export async function postCustomers(
   data: PostCustomersMutationRequestType,
-  config: Partial<RequestConfig<PostCustomersMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PostCustomersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
@@ -33,11 +31,6 @@ export async function postCustomers(
     PostCustomersMutationResponseType,
     ResponseErrorConfig<PostCustomers401Type | PostCustomers409Type>,
     PostCustomersMutationRequestType
-  >({
-    method: 'POST',
-    url: getPostCustomersUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  >({ method: 'POST', url: getPostCustomersUrl().toString(), data, ...requestConfig })
   return res.data
 }

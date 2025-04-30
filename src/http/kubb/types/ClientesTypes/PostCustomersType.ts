@@ -7,8 +7,7 @@ export const postCustomers201Enum = {
   null: 'null',
 } as const
 
-export type PostCustomers201EnumType =
-  (typeof postCustomers201Enum)[keyof typeof postCustomers201Enum]
+export type PostCustomers201EnumType = (typeof postCustomers201Enum)[keyof typeof postCustomers201Enum]
 
 /**
  * @description Cliente cadastrado com sucesso.
@@ -48,8 +47,7 @@ export const postCustomersMutationRequestGenderEnum = {
   FEMALE: 'FEMALE',
 } as const
 
-export type PostCustomersMutationRequestGenderEnumType =
-  (typeof postCustomersMutationRequestGenderEnum)[keyof typeof postCustomersMutationRequestGenderEnum]
+export type PostCustomersMutationRequestGenderEnumType = (typeof postCustomersMutationRequestGenderEnum)[keyof typeof postCustomersMutationRequestGenderEnum]
 
 export type PostCustomersMutationRequestType = {
   /**

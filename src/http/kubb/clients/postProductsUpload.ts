@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostProductsUpload400Type,
-  PostProductsUpload401Type,
   PostProductsUploadMutationRequestType,
   PostProductsUploadMutationResponseType,
+  PostProductsUpload400Type,
+  PostProductsUpload401Type,
 } from '../types/ProdutosTypes/PostProductsUploadType'
 
 function getPostProductsUploadUrl() {
@@ -23,20 +23,15 @@ function getPostProductsUploadUrl() {
  */
 export async function postProductsUpload(
   data?: PostProductsUploadMutationRequestType,
-  config: Partial<RequestConfig<PostProductsUploadMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PostProductsUploadMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const formData = new FormData()
   if (data) {
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       const value = data[key as keyof typeof data]
-      if (
-        typeof key === 'string' &&
-        (typeof value === 'string' || (value as Blob) instanceof Blob)
-      ) {
+      if (typeof key === 'string' && (typeof value === 'string' || (value as Blob) instanceof Blob)) {
         formData.append(key, value as unknown as string)
       }
     })
@@ -50,10 +45,7 @@ export async function postProductsUpload(
     url: getPostProductsUploadUrl().toString(),
     data: formData,
     ...requestConfig,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      ...requestConfig.headers,
-    },
+    headers: { 'Content-Type': 'multipart/form-data', ...requestConfig.headers },
   })
   return res.data
 }

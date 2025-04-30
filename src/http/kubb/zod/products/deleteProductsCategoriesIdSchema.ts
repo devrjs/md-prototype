@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  DeleteProductsCategoriesIdPathParamsType,
   DeleteProductsCategoriesId200Type,
   DeleteProductsCategoriesId401Type,
   DeleteProductsCategoriesId404Type,
   DeleteProductsCategoriesIdMutationResponseType,
-  DeleteProductsCategoriesIdPathParamsType,
 } from '../../types/Produtos (Categorias)Types/DeleteProductsCategoriesIdType'
+import { z } from 'zod'
 
 export const deleteProductsCategoriesIdPathParamsSchema = z.object({
   id: z.string(),
@@ -32,9 +32,7 @@ export const deleteProductsCategoriesId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<DeleteProductsCategoriesId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<DeleteProductsCategoriesId401Type>
 
 /**
  * @description Categoria não encontrado.
@@ -43,10 +41,8 @@ export const deleteProductsCategoriesId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Categoria não encontrado.'
-  ) as unknown as ToZod<DeleteProductsCategoriesId404Type>
+  .describe('Categoria não encontrado.') as unknown as ToZod<DeleteProductsCategoriesId404Type>
 
 export const deleteProductsCategoriesIdMutationResponseSchema = z.lazy(
-  () => deleteProductsCategoriesId200Schema
+  () => deleteProductsCategoriesId200Schema,
 ) as unknown as ToZod<DeleteProductsCategoriesIdMutationResponseType>

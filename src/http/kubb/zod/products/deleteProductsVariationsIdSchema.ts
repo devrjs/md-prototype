@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  DeleteProductsVariationsIdPathParamsType,
   DeleteProductsVariationsId200Type,
   DeleteProductsVariationsId401Type,
   DeleteProductsVariationsId404Type,
   DeleteProductsVariationsIdMutationResponseType,
-  DeleteProductsVariationsIdPathParamsType,
 } from '../../types/Produtos (Varia\u00E7\u00F5es)Types/DeleteProductsVariationsIdType'
+import { z } from 'zod'
 
 export const deleteProductsVariationsIdPathParamsSchema = z.object({
   id: z.string(),
@@ -32,9 +32,7 @@ export const deleteProductsVariationsId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<DeleteProductsVariationsId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<DeleteProductsVariationsId401Type>
 
 /**
  * @description Variação de produto não encontrado.
@@ -43,10 +41,8 @@ export const deleteProductsVariationsId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Variação de produto não encontrado.'
-  ) as unknown as ToZod<DeleteProductsVariationsId404Type>
+  .describe('Variação de produto não encontrado.') as unknown as ToZod<DeleteProductsVariationsId404Type>
 
 export const deleteProductsVariationsIdMutationResponseSchema = z.lazy(
-  () => deleteProductsVariationsId200Schema
+  () => deleteProductsVariationsId200Schema,
 ) as unknown as ToZod<DeleteProductsVariationsIdMutationResponseType>

@@ -27,8 +27,7 @@ export type GetProductsCategories401Type = {
   message: string
 }
 
-export type GetProductsCategoriesQueryResponseType =
-  GetProductsCategories200Type
+export type GetProductsCategoriesQueryResponseType = GetProductsCategories200Type
 
 export type GetProductsCategoriesTypeQuery = {
   Response: GetProductsCategories200Type

@@ -7,8 +7,7 @@ export const postProducts201Enum = {
   null: 'null',
 } as const
 
-export type PostProducts201EnumType =
-  (typeof postProducts201Enum)[keyof typeof postProducts201Enum]
+export type PostProducts201EnumType = (typeof postProducts201Enum)[keyof typeof postProducts201Enum]
 
 /**
  * @description Produto cadastrado com sucesso.

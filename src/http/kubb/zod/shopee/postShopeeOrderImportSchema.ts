@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  PostShopeeOrderImportQueryParamsType,
   PostShopeeOrderImport200Type,
   PostShopeeOrderImport400Type,
   PostShopeeOrderImport401Type,
   PostShopeeOrderImport404Type,
   PostShopeeOrderImportMutationResponseType,
-  PostShopeeOrderImportQueryParamsType,
 } from '../../types/Shopee APITypes/PostShopeeOrderImportType'
+import { z } from 'zod'
 
 export const postShopeeOrderImportQueryParamsSchema = z.object({
   orderPeriodStartDate: z.string(),
@@ -34,9 +34,7 @@ export const postShopeeOrderImport400Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Erro ao importar pedidos.'
-  ) as unknown as ToZod<PostShopeeOrderImport400Type>
+  .describe('Erro ao importar pedidos.') as unknown as ToZod<PostShopeeOrderImport400Type>
 
 /**
  * @description Usuário não autenticado.
@@ -45,9 +43,7 @@ export const postShopeeOrderImport401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PostShopeeOrderImport401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PostShopeeOrderImport401Type>
 
 /**
  * @description Connection not found.
@@ -56,10 +52,8 @@ export const postShopeeOrderImport404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Connection not found.'
-  ) as unknown as ToZod<PostShopeeOrderImport404Type>
+  .describe('Connection not found.') as unknown as ToZod<PostShopeeOrderImport404Type>
 
 export const postShopeeOrderImportMutationResponseSchema = z.lazy(
-  () => postShopeeOrderImport200Schema
+  () => postShopeeOrderImport200Schema,
 ) as unknown as ToZod<PostShopeeOrderImportMutationResponseType>

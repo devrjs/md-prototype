@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  PutProductsAttributesNamesIdPathParamsType,
   PutProductsAttributesNamesId200Type,
   PutProductsAttributesNamesId401Type,
   PutProductsAttributesNamesId404Type,
   PutProductsAttributesNamesIdMutationRequestType,
   PutProductsAttributesNamesIdMutationResponseType,
-  PutProductsAttributesNamesIdPathParamsType,
 } from '../../types/Produtos (Atributos)Types/PutProductsAttributesNamesIdType'
+import { z } from 'zod'
 
 export const putProductsAttributesNamesIdPathParamsSchema = z.object({
   id: z.string(),
@@ -33,9 +33,7 @@ export const putProductsAttributesNamesId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PutProductsAttributesNamesId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PutProductsAttributesNamesId401Type>
 
 /**
  * @description Nome de atributo do produto não encontrado.
@@ -44,14 +42,12 @@ export const putProductsAttributesNamesId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Nome de atributo do produto não encontrado.'
-  ) as unknown as ToZod<PutProductsAttributesNamesId404Type>
+  .describe('Nome de atributo do produto não encontrado.') as unknown as ToZod<PutProductsAttributesNamesId404Type>
 
 export const putProductsAttributesNamesIdMutationRequestSchema = z.object({
   name: z.string(),
 }) as unknown as ToZod<PutProductsAttributesNamesIdMutationRequestType>
 
 export const putProductsAttributesNamesIdMutationResponseSchema = z.lazy(
-  () => putProductsAttributesNamesId200Schema
+  () => putProductsAttributesNamesId200Schema,
 ) as unknown as ToZod<PutProductsAttributesNamesIdMutationResponseType>

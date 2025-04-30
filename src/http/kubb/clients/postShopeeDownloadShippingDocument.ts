@@ -14,16 +14,10 @@ function getPostShopeeDownloadShippingDocumentUrl() {
 /**
  * {@link /shopee/download/shipping-document}
  */
-export async function postShopeeDownloadShippingDocument(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
+export async function postShopeeDownloadShippingDocument(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    PostShopeeDownloadShippingDocumentMutationResponseType,
-    ResponseErrorConfig<Error>,
-    unknown
-  >({
+  const res = await request<PostShopeeDownloadShippingDocumentMutationResponseType, ResponseErrorConfig<Error>, unknown>({
     method: 'POST',
     url: getPostShopeeDownloadShippingDocumentUrl().toString(),
     ...requestConfig,

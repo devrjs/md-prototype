@@ -7,14 +7,12 @@ export const postProductsVariations201Enum = {
   null: 'null',
 } as const
 
-export type PostProductsVariations201EnumType =
-  (typeof postProductsVariations201Enum)[keyof typeof postProductsVariations201Enum]
+export type PostProductsVariations201EnumType = (typeof postProductsVariations201Enum)[keyof typeof postProductsVariations201Enum]
 
 /**
  * @description Variação cadastrada com sucesso.
  */
-export type PostProductsVariations201Type =
-  PostProductsVariations201EnumType | null
+export type PostProductsVariations201Type = PostProductsVariations201EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -133,8 +131,7 @@ export type PostProductsVariationsMutationRequestType = {
   is_available?: boolean
 }
 
-export type PostProductsVariationsMutationResponseType =
-  PostProductsVariations201Type
+export type PostProductsVariationsMutationResponseType = PostProductsVariations201Type
 
 export type PostProductsVariationsTypeMutation = {
   Response: PostProductsVariations201Type

@@ -6,9 +6,9 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostSessionsPassword400Type,
   PostSessionsPasswordMutationRequestType,
   PostSessionsPasswordMutationResponseType,
+  PostSessionsPassword400Type,
 } from '../types/Usu\u00E1riosTypes/PostSessionsPasswordType'
 
 function getPostSessionsPasswordUrl() {
@@ -22,9 +22,7 @@ function getPostSessionsPasswordUrl() {
  */
 export async function postSessionsPassword(
   data: PostSessionsPasswordMutationRequestType,
-  config: Partial<RequestConfig<PostSessionsPasswordMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PostSessionsPasswordMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
@@ -32,11 +30,6 @@ export async function postSessionsPassword(
     PostSessionsPasswordMutationResponseType,
     ResponseErrorConfig<PostSessionsPassword400Type>,
     PostSessionsPasswordMutationRequestType
-  >({
-    method: 'POST',
-    url: getPostSessionsPasswordUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  >({ method: 'POST', url: getPostSessionsPasswordUrl().toString(), data, ...requestConfig })
   return res.data
 }

@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostProductsVariations401Type,
-  PostProductsVariations409Type,
   PostProductsVariationsMutationRequestType,
   PostProductsVariationsMutationResponseType,
+  PostProductsVariations401Type,
+  PostProductsVariations409Type,
 } from '../types/Produtos (Varia\u00E7\u00F5es)Types/PostProductsVariationsType'
 
 function getPostProductsVariationsUrl() {
@@ -23,23 +23,14 @@ function getPostProductsVariationsUrl() {
  */
 export async function postProductsVariations(
   data: PostProductsVariationsMutationRequestType,
-  config: Partial<RequestConfig<PostProductsVariationsMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PostProductsVariationsMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     PostProductsVariationsMutationResponseType,
-    ResponseErrorConfig<
-      PostProductsVariations401Type | PostProductsVariations409Type
-    >,
+    ResponseErrorConfig<PostProductsVariations401Type | PostProductsVariations409Type>,
     PostProductsVariationsMutationRequestType
-  >({
-    method: 'POST',
-    url: getPostProductsVariationsUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  >({ method: 'POST', url: getPostProductsVariationsUrl().toString(), data, ...requestConfig })
   return res.data
 }

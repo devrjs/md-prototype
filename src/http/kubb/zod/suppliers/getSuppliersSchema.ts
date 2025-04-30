@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetSuppliersQueryParamsType,
   GetSuppliers200Type,
   GetSuppliers401Type,
   GetSuppliers404Type,
-  GetSuppliersQueryParamsType,
   GetSuppliersQueryResponseType,
 } from '../../types/FornecedoresTypes/GetSuppliersType'
+import { z } from 'zod'
 
 export const getSuppliersQueryParamsSchema = z
   .object({
@@ -39,12 +39,10 @@ export const getSuppliers200Schema = z
         user_id: z.string(),
         entry_number: z.number(),
         person_id: z.string(),
-      })
+      }),
     ),
   })
-  .describe(
-    'Fornecedores obtidos com sucesso.'
-  ) as unknown as ToZod<GetSuppliers200Type>
+  .describe('Fornecedores obtidos com sucesso.') as unknown as ToZod<GetSuppliers200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -62,10 +60,6 @@ export const getSuppliers404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Fornecedor não encontrado.'
-  ) as unknown as ToZod<GetSuppliers404Type>
+  .describe('Fornecedor não encontrado.') as unknown as ToZod<GetSuppliers404Type>
 
-export const getSuppliersQueryResponseSchema = z.lazy(
-  () => getSuppliers200Schema
-) as unknown as ToZod<GetSuppliersQueryResponseType>
+export const getSuppliersQueryResponseSchema = z.lazy(() => getSuppliers200Schema) as unknown as ToZod<GetSuppliersQueryResponseType>

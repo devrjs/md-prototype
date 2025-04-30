@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  PutSuppliersIdPathParamsType,
   PutSuppliersId200Type,
   PutSuppliersId401Type,
   PutSuppliersId404Type,
   PutSuppliersIdMutationRequestType,
   PutSuppliersIdMutationResponseType,
-  PutSuppliersIdPathParamsType,
 } from '../../types/FornecedoresTypes/PutSuppliersIdType'
+import { z } from 'zod'
 
 export const putSuppliersIdPathParamsSchema = z.object({
   id: z.string(),
@@ -21,10 +21,7 @@ export const putSuppliersIdPathParamsSchema = z.object({
 /**
  * @description Fornecedor atualizado com sucesso.
  */
-export const putSuppliersId200Schema = z
-  .enum(['null'])
-  .describe('Fornecedor atualizado com sucesso.')
-  .nullable() as unknown as ToZod<PutSuppliersId200Type>
+export const putSuppliersId200Schema = z.enum(['null']).describe('Fornecedor atualizado com sucesso.').nullable() as unknown as ToZod<PutSuppliersId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -33,9 +30,7 @@ export const putSuppliersId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PutSuppliersId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PutSuppliersId401Type>
 
 /**
  * @description Fornecedor não encontrado.
@@ -44,9 +39,7 @@ export const putSuppliersId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Fornecedor não encontrado.'
-  ) as unknown as ToZod<PutSuppliersId404Type>
+  .describe('Fornecedor não encontrado.') as unknown as ToZod<PutSuppliersId404Type>
 
 export const putSuppliersIdMutationRequestSchema = z.object({
   name: z.string().min(1),
@@ -73,6 +66,4 @@ export const putSuppliersIdMutationRequestSchema = z.object({
   state: z.string().min(1),
 }) as unknown as ToZod<PutSuppliersIdMutationRequestType>
 
-export const putSuppliersIdMutationResponseSchema = z.lazy(
-  () => putSuppliersId200Schema
-) as unknown as ToZod<PutSuppliersIdMutationResponseType>
+export const putSuppliersIdMutationResponseSchema = z.lazy(() => putSuppliersId200Schema) as unknown as ToZod<PutSuppliersIdMutationResponseType>

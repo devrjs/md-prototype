@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetCustomersQueryParamsType,
   GetCustomers200Type,
   GetCustomers401Type,
   GetCustomers404Type,
-  GetCustomersQueryParamsType,
   GetCustomersQueryResponseType,
 } from '../../types/ClientesTypes/GetCustomersType'
+import { z } from 'zod'
 
 export const getCustomersQueryParamsSchema = z
   .object({
@@ -39,12 +39,10 @@ export const getCustomers200Schema = z
         user_id: z.string(),
         entry_number: z.number(),
         person_id: z.string(),
-      })
+      }),
     ),
   })
-  .describe(
-    'Clientes obtidos com sucesso.'
-  ) as unknown as ToZod<GetCustomers200Type>
+  .describe('Clientes obtidos com sucesso.') as unknown as ToZod<GetCustomers200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -64,6 +62,4 @@ export const getCustomers404Schema = z
   })
   .describe('Cliente não encontrado.') as unknown as ToZod<GetCustomers404Type>
 
-export const getCustomersQueryResponseSchema = z.lazy(
-  () => getCustomers200Schema
-) as unknown as ToZod<GetCustomersQueryResponseType>
+export const getCustomersQueryResponseSchema = z.lazy(() => getCustomers200Schema) as unknown as ToZod<GetCustomersQueryResponseType>

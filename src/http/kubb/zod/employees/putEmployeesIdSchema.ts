@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  PutEmployeesIdPathParamsType,
   PutEmployeesId200Type,
   PutEmployeesId401Type,
   PutEmployeesId404Type,
   PutEmployeesIdMutationRequestType,
   PutEmployeesIdMutationResponseType,
-  PutEmployeesIdPathParamsType,
 } from '../../types/ColaboradoresTypes/PutEmployeesIdType'
+import { z } from 'zod'
 
 export const putEmployeesIdPathParamsSchema = z.object({
   id: z.string(),
@@ -21,10 +21,7 @@ export const putEmployeesIdPathParamsSchema = z.object({
 /**
  * @description Colaborador atualizado com sucesso.
  */
-export const putEmployeesId200Schema = z
-  .enum(['null'])
-  .describe('Colaborador atualizado com sucesso.')
-  .nullable() as unknown as ToZod<PutEmployeesId200Type>
+export const putEmployeesId200Schema = z.enum(['null']).describe('Colaborador atualizado com sucesso.').nullable() as unknown as ToZod<PutEmployeesId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -33,9 +30,7 @@ export const putEmployeesId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PutEmployeesId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PutEmployeesId401Type>
 
 /**
  * @description Colaborador não encontrado.
@@ -44,9 +39,7 @@ export const putEmployeesId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Colaborador não encontrado.'
-  ) as unknown as ToZod<PutEmployeesId404Type>
+  .describe('Colaborador não encontrado.') as unknown as ToZod<PutEmployeesId404Type>
 
 export const putEmployeesIdMutationRequestSchema = z.object({
   name: z.string().min(1),
@@ -75,6 +68,4 @@ export const putEmployeesIdMutationRequestSchema = z.object({
   state: z.string().min(1),
 }) as unknown as ToZod<PutEmployeesIdMutationRequestType>
 
-export const putEmployeesIdMutationResponseSchema = z.lazy(
-  () => putEmployeesId200Schema
-) as unknown as ToZod<PutEmployeesIdMutationResponseType>
+export const putEmployeesIdMutationResponseSchema = z.lazy(() => putEmployeesId200Schema) as unknown as ToZod<PutEmployeesIdMutationResponseType>

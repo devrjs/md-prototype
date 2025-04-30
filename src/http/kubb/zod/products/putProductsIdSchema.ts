@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  PutProductsIdPathParamsType,
   PutProductsId200Type,
   PutProductsId401Type,
   PutProductsId404Type,
   PutProductsIdMutationRequestType,
   PutProductsIdMutationResponseType,
-  PutProductsIdPathParamsType,
 } from '../../types/ProdutosTypes/PutProductsIdType'
+import { z } from 'zod'
 
 export const putProductsIdPathParamsSchema = z.object({
   id: z.string(),
@@ -21,10 +21,7 @@ export const putProductsIdPathParamsSchema = z.object({
 /**
  * @description Produto atualizado com sucesso.
  */
-export const putProductsId200Schema = z
-  .enum(['null'])
-  .describe('Produto atualizado com sucesso.')
-  .nullable() as unknown as ToZod<PutProductsId200Type>
+export const putProductsId200Schema = z.enum(['null']).describe('Produto atualizado com sucesso.').nullable() as unknown as ToZod<PutProductsId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -33,9 +30,7 @@ export const putProductsId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PutProductsId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PutProductsId401Type>
 
 /**
  * @description Produto, marca ou fornecedor não encontrado.
@@ -44,9 +39,7 @@ export const putProductsId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Produto, marca ou fornecedor não encontrado.'
-  ) as unknown as ToZod<PutProductsId404Type>
+  .describe('Produto, marca ou fornecedor não encontrado.') as unknown as ToZod<PutProductsId404Type>
 
 export const putProductsIdMutationRequestSchema = z.object({
   supplier_id: z.string().optional(),
@@ -56,7 +49,7 @@ export const putProductsIdMutationRequestSchema = z.object({
     .array(
       z.object({
         id: z.string(),
-      })
+      }),
     )
     .optional(),
   reference_code: z.string().min(1),
@@ -69,6 +62,4 @@ export const putProductsIdMutationRequestSchema = z.object({
   merchandise_origin: z.string().optional(),
 }) as unknown as ToZod<PutProductsIdMutationRequestType>
 
-export const putProductsIdMutationResponseSchema = z.lazy(
-  () => putProductsId200Schema
-) as unknown as ToZod<PutProductsIdMutationResponseType>
+export const putProductsIdMutationResponseSchema = z.lazy(() => putProductsId200Schema) as unknown as ToZod<PutProductsIdMutationResponseType>

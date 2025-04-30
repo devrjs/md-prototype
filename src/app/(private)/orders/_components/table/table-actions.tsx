@@ -1,22 +1,6 @@
 'use client'
 
-import {
-  DndContext,
-  type DragEndEvent,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  type UniqueIdentifier,
-  closestCenter,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core'
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
-import {
-  SortableContext,
-  arrayMove,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
+import type { UniqueIdentifier } from '@dnd-kit/core'
 import { type Table, flexRender } from '@tanstack/react-table'
 import * as React from 'react'
 
@@ -29,7 +13,7 @@ import {
   Table as UITable,
 } from '@/components/ui/table'
 
-import { DraggableRow } from './draggable-row'
+import { OrderTableRow } from './order-table-row'
 import type { OrderItem } from './schema'
 
 interface TableActionsProps {
@@ -39,81 +23,56 @@ interface TableActionsProps {
 }
 
 export function TableActions({ table, data, setData }: TableActionsProps) {
-  // Configuração para drag and drop
-  const sortableId = React.useId()
-  const sensors = useSensors(
-    useSensor(MouseSensor, {}),
-    useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {})
-  )
-
   // Obter IDs únicos para os itens arrastáveis
   const dataIds = React.useMemo<UniqueIdentifier[]>(
     () => data?.map(({ id }) => id) || [],
     [data]
   )
 
-  // Manipulador para o evento de fim de arrasto
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event
-    if (active && over && active.id !== over.id) {
-      setData(data => {
-        const oldIndex = dataIds.indexOf(active.id)
-        const newIndex = dataIds.indexOf(over.id)
-        return arrayMove(data, oldIndex, newIndex)
-      })
-    }
-  }
-
   return (
-    <DndContext
-      collisionDetection={closestCenter}
-      modifiers={[restrictToVerticalAxis]}
-      onDragEnd={handleDragEnd}
-      sensors={sensors}
-      id={sortableId}
-    >
-      <UITable>
-        <TableHeader className="bg-muted sticky top-0 z-10">
-          {table.getHeaderGroups().map(headerGroup => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
-                return (
-                  <TableHead key={header.id} colSpan={header.colSpan}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                )
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody className="**:data-[slot=table-cell]:first:w-8">
-          {table.getRowModel().rows?.length ? (
-            <SortableContext
-              items={dataIds}
-              strategy={verticalListSortingStrategy}
+    <UITable>
+      <TableHeader className="bg-muted sticky top-0 z-10">
+        {table.getHeaderGroups().map(headerGroup => (
+          <TableRow key={headerGroup.id}>
+            {headerGroup.headers.map((header, index) => {
+              return (
+                <TableHead
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  className={
+                    index === headerGroup.headers.length - 1 ? 'w-[40px]' : ''
+                  }
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </TableHead>
+              )
+            })}
+          </TableRow>
+        ))}
+      </TableHeader>
+      <TableBody className="**:data-[slot=table-cell]:first:w-8">
+        {table.getRowModel().rows?.length ? (
+          <>
+            {table.getRowModel().rows.map(row => (
+              <OrderTableRow key={row.id} row={row} />
+            ))}
+          </>
+        ) : (
+          <TableRow>
+            <TableCell
+              colSpan={table.getAllColumns().length}
+              className="h-24 text-center"
             >
-              {table.getRowModel().rows.map(row => (
-                <DraggableRow key={row.id} row={row} />
-              ))}
-            </SortableContext>
-          ) : (
-            <TableRow>
-              <TableCell
-                colSpan={table.getAllColumns().length}
-                className="h-24 text-center"
-              >
-                Nenhum resultado encontrado.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </UITable>
-    </DndContext>
+              Nenhum resultado encontrado.
+            </TableCell>
+          </TableRow>
+        )}
+      </TableBody>
+    </UITable>
   )
 }

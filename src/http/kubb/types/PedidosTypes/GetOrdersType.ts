@@ -8,16 +8,14 @@ export const getOrdersQueryParamsOrderByEnum = {
   desc: 'desc',
 } as const
 
-export type GetOrdersQueryParamsOrderByEnumType =
-  (typeof getOrdersQueryParamsOrderByEnum)[keyof typeof getOrdersQueryParamsOrderByEnum]
+export type GetOrdersQueryParamsOrderByEnumType = (typeof getOrdersQueryParamsOrderByEnum)[keyof typeof getOrdersQueryParamsOrderByEnum]
 
 export const getOrdersQueryParamsStatusEnum = {
   PROCESSED: 'PROCESSED',
   CANCELLED: 'CANCELLED',
 } as const
 
-export type GetOrdersQueryParamsStatusEnumType =
-  (typeof getOrdersQueryParamsStatusEnum)[keyof typeof getOrdersQueryParamsStatusEnum]
+export type GetOrdersQueryParamsStatusEnumType = (typeof getOrdersQueryParamsStatusEnum)[keyof typeof getOrdersQueryParamsStatusEnum]
 
 export type GetOrdersQueryParamsType = {
   /**
@@ -56,6 +54,15 @@ export type GetOrdersQueryParamsType = {
    */
   timeTo?: string
 }
+
+export const platformOrderDetailsPlatformNameEnum = {
+  SHOPEE: 'SHOPEE',
+  MERCADO_LIVRE: 'MERCADO_LIVRE',
+  TRAY: 'TRAY',
+  LOCAL: 'LOCAL',
+} as const
+
+export type PlatformOrderDetailsPlatformNameEnumType = (typeof platformOrderDetailsPlatformNameEnum)[keyof typeof platformOrderDetailsPlatformNameEnum]
 
 /**
  * @description Default Response
@@ -97,6 +104,19 @@ export type GetOrders200Type = {
      * @type string, date-time
      */
     updated_at: string
+    /**
+     * @type object
+     */
+    platform_order_details: {
+      /**
+       * @type string
+       */
+      platform_name: PlatformOrderDetailsPlatformNameEnumType
+      /**
+       * @type string
+       */
+      external_order_id: string
+    } | null
   }[]
 }
 

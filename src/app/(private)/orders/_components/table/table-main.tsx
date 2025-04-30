@@ -72,11 +72,12 @@ export function TableMain({
   return (
     <>
       <TableControls table={table} />
-      <div className="overflow-hidden rounded-lg border">
-        <TableActions table={table} data={data} setData={setData} />
+      <div className="flex flex-col gap-4 px-6 md:gap-6">
+        <div className="overflow-hidden rounded-lg border">
+          <TableActions table={table} data={data} setData={setData} />
+        </div>
+        <TablePagination table={table} />
       </div>
-      {/* Paginação da tabela */}
-      <TablePagination table={table} />
     </>
   )
 }

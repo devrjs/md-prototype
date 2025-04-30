@@ -3,21 +3,20 @@ import { pluginClient } from '@kubb/plugin-client'
 import { pluginOas } from '@kubb/plugin-oas'
 import { pluginTs } from '@kubb/plugin-ts'
 import { pluginZod } from '@kubb/plugin-zod'
-import { env } from './src/env'
 
 const OUTPUT_PATH = './src/http/kubb'
 
 export default defineConfig({
   input: {
-    path: `${env.API_URL}/docs/json`, // 🔹 URL do Swagger JSON (OpenAPI) para gerar o código
+    path: 'http://localhost:3333/docs/json', // 🔹 URL do Swagger JSON (OpenAPI) para gerar o código
   },
   output: {
     path: OUTPUT_PATH, // 🔹 Diretório onde os arquivos gerados serão salvos
     clean: true,
   },
-  hooks: {
-    done: [`biome lint --write --unsafe ${OUTPUT_PATH}`],
-  },
+  // hooks: {
+  //   done: [`biome lint --write --unsafe ${OUTPUT_PATH}`],
+  // },
   plugins: [
     pluginOas(), // 🔹 Processa a OpenAPI e prepara os dados para os outros plugins
     // 🔹 Gera automaticamente os tipos TypeScript baseados nos schemas da API

@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostProducts401Type,
-  PostProducts404Type,
   PostProductsMutationRequestType,
   PostProductsMutationResponseType,
+  PostProducts401Type,
+  PostProducts404Type,
 } from '../types/ProdutosTypes/PostProductsType'
 
 function getPostProductsUrl() {
@@ -23,17 +23,11 @@ function getPostProductsUrl() {
  */
 export async function postProducts(
   data: PostProductsMutationRequestType,
-  config: Partial<RequestConfig<PostProductsMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PostProductsMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    PostProductsMutationResponseType,
-    ResponseErrorConfig<PostProducts401Type | PostProducts404Type>,
-    PostProductsMutationRequestType
-  >({
+  const res = await request<PostProductsMutationResponseType, ResponseErrorConfig<PostProducts401Type | PostProducts404Type>, PostProductsMutationRequestType>({
     method: 'POST',
     url: getPostProductsUrl().toString(),
     data,

@@ -7,14 +7,12 @@ export const postProductsAttributesValues201Enum = {
   null: 'null',
 } as const
 
-export type PostProductsAttributesValues201EnumType =
-  (typeof postProductsAttributesValues201Enum)[keyof typeof postProductsAttributesValues201Enum]
+export type PostProductsAttributesValues201EnumType = (typeof postProductsAttributesValues201Enum)[keyof typeof postProductsAttributesValues201Enum]
 
 /**
  * @description Valor do atributo do produto cadastrado com sucesso.
  */
-export type PostProductsAttributesValues201Type =
-  PostProductsAttributesValues201EnumType | null
+export type PostProductsAttributesValues201Type = PostProductsAttributesValues201EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -47,13 +45,10 @@ export type PostProductsAttributesValuesMutationRequestType = {
   value: string
 }
 
-export type PostProductsAttributesValuesMutationResponseType =
-  PostProductsAttributesValues201Type
+export type PostProductsAttributesValuesMutationResponseType = PostProductsAttributesValues201Type
 
 export type PostProductsAttributesValuesTypeMutation = {
   Response: PostProductsAttributesValues201Type
   Request: PostProductsAttributesValuesMutationRequestType
-  Errors:
-    | PostProductsAttributesValues401Type
-    | PostProductsAttributesValues409Type
+  Errors: PostProductsAttributesValues401Type | PostProductsAttributesValues409Type
 }

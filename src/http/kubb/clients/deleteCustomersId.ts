@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteCustomersId401Type,
-  DeleteCustomersId404Type,
   DeleteCustomersIdMutationResponseType,
   DeleteCustomersIdPathParamsType,
+  DeleteCustomersId401Type,
+  DeleteCustomersId404Type,
 } from '../types/ClientesTypes/DeleteCustomersIdType'
 
 function getDeleteCustomersIdUrl(id: DeleteCustomersIdPathParamsType['id']) {
@@ -21,17 +21,10 @@ function getDeleteCustomersIdUrl(id: DeleteCustomersIdPathParamsType['id']) {
  * @summary Remove um cliente específico.
  * {@link /customers/:id}
  */
-export async function deleteCustomersId(
-  id: DeleteCustomersIdPathParamsType['id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
+export async function deleteCustomersId(id: DeleteCustomersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    DeleteCustomersIdMutationResponseType,
-    ResponseErrorConfig<DeleteCustomersId401Type | DeleteCustomersId404Type>,
-    unknown
-  >({
+  const res = await request<DeleteCustomersIdMutationResponseType, ResponseErrorConfig<DeleteCustomersId401Type | DeleteCustomersId404Type>, unknown>({
     method: 'DELETE',
     url: getDeleteCustomersIdUrl(id).toString(),
     ...requestConfig,

@@ -8,8 +8,7 @@ export const getSuppliersQueryParamsOrderByEnum = {
   asc: 'asc',
 } as const
 
-export type GetSuppliersQueryParamsOrderByEnumType =
-  (typeof getSuppliersQueryParamsOrderByEnum)[keyof typeof getSuppliersQueryParamsOrderByEnum]
+export type GetSuppliersQueryParamsOrderByEnumType = (typeof getSuppliersQueryParamsOrderByEnum)[keyof typeof getSuppliersQueryParamsOrderByEnum]
 
 export type GetSuppliersQueryParamsType = {
   /**
@@ -42,8 +41,7 @@ export const suppliersDocumentTypeEnum = {
   COMPANY: 'COMPANY',
 } as const
 
-export type SuppliersDocumentTypeEnumType =
-  (typeof suppliersDocumentTypeEnum)[keyof typeof suppliersDocumentTypeEnum]
+export type SuppliersDocumentTypeEnumType = (typeof suppliersDocumentTypeEnum)[keyof typeof suppliersDocumentTypeEnum]
 
 /**
  * @description Fornecedores obtidos com sucesso.

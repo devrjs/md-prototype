@@ -7,8 +7,7 @@ export const postEmployees201Enum = {
   null: 'null',
 } as const
 
-export type PostEmployees201EnumType =
-  (typeof postEmployees201Enum)[keyof typeof postEmployees201Enum]
+export type PostEmployees201EnumType = (typeof postEmployees201Enum)[keyof typeof postEmployees201Enum]
 
 /**
  * @description Colaborador cadastrado com sucesso.
@@ -48,8 +47,7 @@ export const postEmployeesMutationRequestGenderEnum = {
   FEMALE: 'FEMALE',
 } as const
 
-export type PostEmployeesMutationRequestGenderEnumType =
-  (typeof postEmployeesMutationRequestGenderEnum)[keyof typeof postEmployeesMutationRequestGenderEnum]
+export type PostEmployeesMutationRequestGenderEnumType = (typeof postEmployeesMutationRequestGenderEnum)[keyof typeof postEmployeesMutationRequestGenderEnum]
 
 export type PostEmployeesMutationRequestType = {
   /**

@@ -6,15 +6,13 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteProductsVariationsId401Type,
-  DeleteProductsVariationsId404Type,
   DeleteProductsVariationsIdMutationResponseType,
   DeleteProductsVariationsIdPathParamsType,
+  DeleteProductsVariationsId401Type,
+  DeleteProductsVariationsId404Type,
 } from '../types/Produtos (Varia\u00E7\u00F5es)Types/DeleteProductsVariationsIdType'
 
-function getDeleteProductsVariationsIdUrl(
-  id: DeleteProductsVariationsIdPathParamsType['id']
-) {
+function getDeleteProductsVariationsIdUrl(id: DeleteProductsVariationsIdPathParamsType['id']) {
   return `/products/variations/${id}` as const
 }
 
@@ -25,20 +23,14 @@ function getDeleteProductsVariationsIdUrl(
  */
 export async function deleteProductsVariationsId(
   id: DeleteProductsVariationsIdPathParamsType['id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     DeleteProductsVariationsIdMutationResponseType,
-    ResponseErrorConfig<
-      DeleteProductsVariationsId401Type | DeleteProductsVariationsId404Type
-    >,
+    ResponseErrorConfig<DeleteProductsVariationsId401Type | DeleteProductsVariationsId404Type>,
     unknown
-  >({
-    method: 'DELETE',
-    url: getDeleteProductsVariationsIdUrl(id).toString(),
-    ...requestConfig,
-  })
+  >({ method: 'DELETE', url: getDeleteProductsVariationsIdUrl(id).toString(), ...requestConfig })
   return res.data
 }

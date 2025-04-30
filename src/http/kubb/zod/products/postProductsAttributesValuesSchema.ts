@@ -4,7 +4,6 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   PostProductsAttributesValues201Type,
   PostProductsAttributesValues401Type,
@@ -12,6 +11,7 @@ import type {
   PostProductsAttributesValuesMutationRequestType,
   PostProductsAttributesValuesMutationResponseType,
 } from '../../types/Produtos (Atributos)Types/PostProductsAttributesValuesType'
+import { z } from 'zod'
 
 /**
  * @description Valor do atributo do produto cadastrado com sucesso.
@@ -28,9 +28,7 @@ export const postProductsAttributesValues401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PostProductsAttributesValues401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PostProductsAttributesValues401Type>
 
 /**
  * @description Valor do atributo do produto já cadastrado.
@@ -39,9 +37,7 @@ export const postProductsAttributesValues409Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Valor do atributo do produto já cadastrado.'
-  ) as unknown as ToZod<PostProductsAttributesValues409Type>
+  .describe('Valor do atributo do produto já cadastrado.') as unknown as ToZod<PostProductsAttributesValues409Type>
 
 export const postProductsAttributesValuesMutationRequestSchema = z.object({
   product_attribute_name_id: z.string(),
@@ -49,5 +45,5 @@ export const postProductsAttributesValuesMutationRequestSchema = z.object({
 }) as unknown as ToZod<PostProductsAttributesValuesMutationRequestType>
 
 export const postProductsAttributesValuesMutationResponseSchema = z.lazy(
-  () => postProductsAttributesValues201Schema
+  () => postProductsAttributesValues201Schema,
 ) as unknown as ToZod<PostProductsAttributesValuesMutationResponseType>

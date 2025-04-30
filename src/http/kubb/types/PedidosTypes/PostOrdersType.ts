@@ -7,8 +7,7 @@ export const postOrders201Enum = {
   null: 'null',
 } as const
 
-export type PostOrders201EnumType =
-  (typeof postOrders201Enum)[keyof typeof postOrders201Enum]
+export type PostOrders201EnumType = (typeof postOrders201Enum)[keyof typeof postOrders201Enum]
 
 /**
  * @description Pedido criado com sucesso.
@@ -50,8 +49,7 @@ export const postOrdersMutationRequestStatusEnum = {
   CANCELLED: 'CANCELLED',
 } as const
 
-export type PostOrdersMutationRequestStatusEnumType =
-  (typeof postOrdersMutationRequestStatusEnum)[keyof typeof postOrdersMutationRequestStatusEnum]
+export type PostOrdersMutationRequestStatusEnumType = (typeof postOrdersMutationRequestStatusEnum)[keyof typeof postOrdersMutationRequestStatusEnum]
 
 export const postOrdersMutationRequestShippingCarrierEnum = {
   CORREIOS: 'CORREIOS',

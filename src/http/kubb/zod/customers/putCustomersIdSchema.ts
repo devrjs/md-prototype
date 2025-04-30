@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  PutCustomersIdPathParamsType,
   PutCustomersId200Type,
   PutCustomersId401Type,
   PutCustomersId404Type,
   PutCustomersIdMutationRequestType,
   PutCustomersIdMutationResponseType,
-  PutCustomersIdPathParamsType,
 } from '../../types/ClientesTypes/PutCustomersIdType'
+import { z } from 'zod'
 
 export const putCustomersIdPathParamsSchema = z.object({
   id: z.string(),
@@ -21,10 +21,7 @@ export const putCustomersIdPathParamsSchema = z.object({
 /**
  * @description Cliente atualizado com sucesso.
  */
-export const putCustomersId200Schema = z
-  .enum(['null'])
-  .describe('Cliente atualizado com sucesso.')
-  .nullable() as unknown as ToZod<PutCustomersId200Type>
+export const putCustomersId200Schema = z.enum(['null']).describe('Cliente atualizado com sucesso.').nullable() as unknown as ToZod<PutCustomersId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -33,9 +30,7 @@ export const putCustomersId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PutCustomersId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PutCustomersId401Type>
 
 /**
  * @description Cliente não encontrado.
@@ -44,9 +39,7 @@ export const putCustomersId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Cliente não encontrado.'
-  ) as unknown as ToZod<PutCustomersId404Type>
+  .describe('Cliente não encontrado.') as unknown as ToZod<PutCustomersId404Type>
 
 export const putCustomersIdMutationRequestSchema = z.object({
   name: z.string().min(1),
@@ -76,6 +69,4 @@ export const putCustomersIdMutationRequestSchema = z.object({
   state: z.string().min(1),
 }) as unknown as ToZod<PutCustomersIdMutationRequestType>
 
-export const putCustomersIdMutationResponseSchema = z.lazy(
-  () => putCustomersId200Schema
-) as unknown as ToZod<PutCustomersIdMutationResponseType>
+export const putCustomersIdMutationResponseSchema = z.lazy(() => putCustomersId200Schema) as unknown as ToZod<PutCustomersIdMutationResponseType>

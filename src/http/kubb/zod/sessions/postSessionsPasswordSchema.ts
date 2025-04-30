@@ -4,13 +4,13 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   PostSessionsPassword200Type,
   PostSessionsPassword400Type,
   PostSessionsPasswordMutationRequestType,
   PostSessionsPasswordMutationResponseType,
 } from '../../types/Usu\u00E1riosTypes/PostSessionsPasswordType'
+import { z } from 'zod'
 
 /**
  * @description Usuário autenticado com sucesso.
@@ -20,9 +20,7 @@ export const postSessionsPassword200Schema = z
     access_token: z.string(),
     refresh_token: z.string(),
   })
-  .describe(
-    'Usuário autenticado com sucesso.'
-  ) as unknown as ToZod<PostSessionsPassword200Type>
+  .describe('Usuário autenticado com sucesso.') as unknown as ToZod<PostSessionsPassword200Type>
 
 /**
  * @description E-mail ou senha incorretos.
@@ -31,9 +29,7 @@ export const postSessionsPassword400Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'E-mail ou senha incorretos.'
-  ) as unknown as ToZod<PostSessionsPassword400Type>
+  .describe('E-mail ou senha incorretos.') as unknown as ToZod<PostSessionsPassword400Type>
 
 export const postSessionsPasswordMutationRequestSchema = z.object({
   email: z.string().email().min(1),
@@ -41,5 +37,5 @@ export const postSessionsPasswordMutationRequestSchema = z.object({
 }) as unknown as ToZod<PostSessionsPasswordMutationRequestType>
 
 export const postSessionsPasswordMutationResponseSchema = z.lazy(
-  () => postSessionsPassword200Schema
+  () => postSessionsPassword200Schema,
 ) as unknown as ToZod<PostSessionsPasswordMutationResponseType>

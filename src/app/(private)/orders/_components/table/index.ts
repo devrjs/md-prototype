@@ -1,5 +1,4 @@
-export * from './drag-handle'
-export * from './draggable-row'
+export * from './order-table-row'
 export * from './table-cell-viewer'
 export * from './table-columns'
 export * from './table-controls'

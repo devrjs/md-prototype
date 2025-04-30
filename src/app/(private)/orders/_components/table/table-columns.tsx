@@ -4,40 +4,24 @@ import {
   IconLoader,
 } from '@tabler/icons-react'
 import type { ColumnDef } from '@tanstack/react-table'
-import { toast } from 'sonner'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 
-import { DragHandle } from './drag-handle'
+import { SquarePen, Trash } from 'lucide-react'
 import type { OrderItem } from './schema'
 import { TableCellViewer } from './table-cell-viewer'
 
 // Definição das colunas da tabela
 export const getColumns = (): ColumnDef<OrderItem>[] => [
-  {
-    id: 'drag',
-    header: () => null,
-    cell: ({ row }) => <DragHandle id={row.original.id} />,
-  },
   {
     id: 'select',
     header: ({ table }) => (
@@ -63,6 +47,18 @@ export const getColumns = (): ColumnDef<OrderItem>[] => [
     ),
     enableSorting: false,
     enableHiding: false,
+  },
+  {
+    accessorKey: 'ID',
+    header: 'ID',
+    cell: ({ row }) => (
+      <span className="font-mono text-xs">{row.original.id}</span>
+    ),
+  },
+  {
+    accessorKey: 'número do pedido',
+    header: 'Número do Pedido',
+    cell: ({ row }) => row.original.platform_order_details?.external_order_id,
   },
   {
     accessorKey: 'header',
@@ -97,15 +93,19 @@ export const getColumns = (): ColumnDef<OrderItem>[] => [
             size="icon"
           >
             <IconDotsVertical />
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">Abrir menu</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem>Make a copy</DropdownMenuItem>
-          <DropdownMenuItem>Favorite</DropdownMenuItem>
+          <DropdownMenuItem>
+            <SquarePen className="size-4 mr-1" />
+            Editar
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+          <DropdownMenuItem variant="destructive">
+            <Trash className="size-4 mr-1" />
+            Excluir
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     ),

@@ -6,9 +6,9 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  GetProductsAttributesNames401Type,
-  GetProductsAttributesNamesQueryParamsType,
   GetProductsAttributesNamesQueryResponseType,
+  GetProductsAttributesNamesQueryParamsType,
+  GetProductsAttributesNames401Type,
 } from '../types/Produtos (Atributos)Types/GetProductsAttributesNamesType'
 
 function getGetProductsAttributesNamesUrl() {
@@ -22,15 +22,11 @@ function getGetProductsAttributesNamesUrl() {
  */
 export async function getProductsAttributesNames(
   params?: GetProductsAttributesNamesQueryParamsType,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    GetProductsAttributesNamesQueryResponseType,
-    ResponseErrorConfig<GetProductsAttributesNames401Type>,
-    unknown
-  >({
+  const res = await request<GetProductsAttributesNamesQueryResponseType, ResponseErrorConfig<GetProductsAttributesNames401Type>, unknown>({
     method: 'GET',
     url: getGetProductsAttributesNamesUrl().toString(),
     params,

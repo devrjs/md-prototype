@@ -4,12 +4,8 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
+import type { GetOrdersQueryParamsType, GetOrders200Type, GetOrdersQueryResponseType } from '../../types/PedidosTypes/GetOrdersType'
 import { z } from 'zod'
-import type {
-  GetOrders200Type,
-  GetOrdersQueryParamsType,
-  GetOrdersQueryResponseType,
-} from '../../types/PedidosTypes/GetOrdersType'
 
 export const getOrdersQueryParamsSchema = z
   .object({
@@ -38,10 +34,14 @@ export const getOrders200Schema = z.object({
       order_placed_at: z.string().datetime({ offset: true }),
       created_at: z.string().datetime({ offset: true }),
       updated_at: z.string().datetime({ offset: true }),
-    })
+      platform_order_details: z
+        .object({
+          platform_name: z.enum(['SHOPEE', 'MERCADO_LIVRE', 'TRAY', 'LOCAL']),
+          external_order_id: z.string(),
+        })
+        .nullable(),
+    }),
   ),
 }) as unknown as ToZod<GetOrders200Type>
 
-export const getOrdersQueryResponseSchema = z.lazy(
-  () => getOrders200Schema
-) as unknown as ToZod<GetOrdersQueryResponseType>
+export const getOrdersQueryResponseSchema = z.lazy(() => getOrders200Schema) as unknown as ToZod<GetOrdersQueryResponseType>

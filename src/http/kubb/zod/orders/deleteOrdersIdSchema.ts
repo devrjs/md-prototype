@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  DeleteOrdersIdPathParamsType,
   DeleteOrdersId200Type,
   DeleteOrdersId401Type,
   DeleteOrdersId404Type,
   DeleteOrdersIdMutationResponseType,
-  DeleteOrdersIdPathParamsType,
 } from '../../types/PedidosTypes/DeleteOrdersIdType'
+import { z } from 'zod'
 
 export const deleteOrdersIdPathParamsSchema = z.object({
   id: z.string(),
@@ -20,10 +20,7 @@ export const deleteOrdersIdPathParamsSchema = z.object({
 /**
  * @description Pedido deletado com sucesso.
  */
-export const deleteOrdersId200Schema = z
-  .enum(['null'])
-  .describe('Pedido deletado com sucesso.')
-  .nullable() as unknown as ToZod<DeleteOrdersId200Type>
+export const deleteOrdersId200Schema = z.enum(['null']).describe('Pedido deletado com sucesso.').nullable() as unknown as ToZod<DeleteOrdersId200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -32,9 +29,7 @@ export const deleteOrdersId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<DeleteOrdersId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<DeleteOrdersId401Type>
 
 /**
  * @description Pedido não encontrado.
@@ -45,6 +40,4 @@ export const deleteOrdersId404Schema = z
   })
   .describe('Pedido não encontrado.') as unknown as ToZod<DeleteOrdersId404Type>
 
-export const deleteOrdersIdMutationResponseSchema = z.lazy(
-  () => deleteOrdersId200Schema
-) as unknown as ToZod<DeleteOrdersIdMutationResponseType>
+export const deleteOrdersIdMutationResponseSchema = z.lazy(() => deleteOrdersId200Schema) as unknown as ToZod<DeleteOrdersIdMutationResponseType>

@@ -4,7 +4,6 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   PostCustomers201Type,
   PostCustomers401Type,
@@ -12,14 +11,12 @@ import type {
   PostCustomersMutationRequestType,
   PostCustomersMutationResponseType,
 } from '../../types/ClientesTypes/PostCustomersType'
+import { z } from 'zod'
 
 /**
  * @description Cliente cadastrado com sucesso.
  */
-export const postCustomers201Schema = z
-  .enum(['null'])
-  .describe('Cliente cadastrado com sucesso.')
-  .nullable() as unknown as ToZod<PostCustomers201Type>
+export const postCustomers201Schema = z.enum(['null']).describe('Cliente cadastrado com sucesso.').nullable() as unknown as ToZod<PostCustomers201Type>
 
 /**
  * @description Usuário não autenticado.
@@ -28,9 +25,7 @@ export const postCustomers401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PostCustomers401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PostCustomers401Type>
 
 /**
  * @description Cliente já cadastrado.
@@ -65,6 +60,4 @@ export const postCustomersMutationRequestSchema = z.object({
   state: z.string().min(1),
 }) as unknown as ToZod<PostCustomersMutationRequestType>
 
-export const postCustomersMutationResponseSchema = z.lazy(
-  () => postCustomers201Schema
-) as unknown as ToZod<PostCustomersMutationResponseType>
+export const postCustomersMutationResponseSchema = z.lazy(() => postCustomers201Schema) as unknown as ToZod<PostCustomersMutationResponseType>

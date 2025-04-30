@@ -4,7 +4,6 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   PostOrders201Type,
   PostOrders400Type,
@@ -13,14 +12,12 @@ import type {
   PostOrdersMutationRequestType,
   PostOrdersMutationResponseType,
 } from '../../types/PedidosTypes/PostOrdersType'
+import { z } from 'zod'
 
 /**
  * @description Pedido criado com sucesso.
  */
-export const postOrders201Schema = z
-  .enum(['null'])
-  .describe('Pedido criado com sucesso.')
-  .nullable() as unknown as ToZod<PostOrders201Type>
+export const postOrders201Schema = z.enum(['null']).describe('Pedido criado com sucesso.').nullable() as unknown as ToZod<PostOrders201Type>
 
 /**
  * @description Dados inválidos.
@@ -47,9 +44,7 @@ export const postOrders404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Cliente ou Endereço não encontrado.'
-  ) as unknown as ToZod<PostOrders404Type>
+  .describe('Cliente ou Endereço não encontrado.') as unknown as ToZod<PostOrders404Type>
 
 export const postOrdersMutationRequestSchema = z.object({
   customer_id: z.string().min(1),
@@ -64,11 +59,9 @@ export const postOrdersMutationRequestSchema = z.object({
         product_variation_id: z.string().min(1),
         quantity: z.number().min(1),
         discount: z.number().min(0),
-      })
+      }),
     )
     .min(1),
 }) as unknown as ToZod<PostOrdersMutationRequestType>
 
-export const postOrdersMutationResponseSchema = z.lazy(
-  () => postOrders201Schema
-) as unknown as ToZod<PostOrdersMutationResponseType>
+export const postOrdersMutationResponseSchema = z.lazy(() => postOrders201Schema) as unknown as ToZod<PostOrdersMutationResponseType>

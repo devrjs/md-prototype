@@ -5,11 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type {
-  GetUsersProfile401Type,
-  GetUsersProfile404Type,
-  GetUsersProfileQueryResponseType,
-} from '../types/Usu\u00E1riosTypes/GetUsersProfileType'
+import type { GetUsersProfileQueryResponseType, GetUsersProfile401Type, GetUsersProfile404Type } from '../types/Usu\u00E1riosTypes/GetUsersProfileType'
 
 function getGetUsersProfileUrl() {
   return '/users/profile' as const
@@ -20,16 +16,10 @@ function getGetUsersProfileUrl() {
  * @summary Retorna dados de perfil do usuário.
  * {@link /users/profile}
  */
-export async function getUsersProfile(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
+export async function getUsersProfile(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    GetUsersProfileQueryResponseType,
-    ResponseErrorConfig<GetUsersProfile401Type | GetUsersProfile404Type>,
-    unknown
-  >({
+  const res = await request<GetUsersProfileQueryResponseType, ResponseErrorConfig<GetUsersProfile401Type | GetUsersProfile404Type>, unknown>({
     method: 'GET',
     url: getGetUsersProfileUrl().toString(),
     ...requestConfig,

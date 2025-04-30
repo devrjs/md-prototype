@@ -4,7 +4,6 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   PostProductsCategories201Type,
   PostProductsCategories401Type,
@@ -12,6 +11,7 @@ import type {
   PostProductsCategoriesMutationRequestType,
   PostProductsCategoriesMutationResponseType,
 } from '../../types/Produtos (Categorias)Types/PostProductsCategoriesType'
+import { z } from 'zod'
 
 /**
  * @description Categoria cadastrado com sucesso.
@@ -28,9 +28,7 @@ export const postProductsCategories401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PostProductsCategories401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PostProductsCategories401Type>
 
 /**
  * @description Categoria já cadastrado.
@@ -39,14 +37,12 @@ export const postProductsCategories409Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Categoria já cadastrado.'
-  ) as unknown as ToZod<PostProductsCategories409Type>
+  .describe('Categoria já cadastrado.') as unknown as ToZod<PostProductsCategories409Type>
 
 export const postProductsCategoriesMutationRequestSchema = z.object({
   name: z.string(),
 }) as unknown as ToZod<PostProductsCategoriesMutationRequestType>
 
 export const postProductsCategoriesMutationResponseSchema = z.lazy(
-  () => postProductsCategories201Schema
+  () => postProductsCategories201Schema,
 ) as unknown as ToZod<PostProductsCategoriesMutationResponseType>

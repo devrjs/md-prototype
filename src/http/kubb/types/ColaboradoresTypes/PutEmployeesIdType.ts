@@ -14,8 +14,7 @@ export const putEmployeesId200Enum = {
   null: 'null',
 } as const
 
-export type PutEmployeesId200EnumType =
-  (typeof putEmployeesId200Enum)[keyof typeof putEmployeesId200Enum]
+export type PutEmployeesId200EnumType = (typeof putEmployeesId200Enum)[keyof typeof putEmployeesId200Enum]
 
 /**
  * @description Colaborador atualizado com sucesso.
@@ -55,8 +54,7 @@ export const putEmployeesIdMutationRequestGenderEnum = {
   FEMALE: 'FEMALE',
 } as const
 
-export type PutEmployeesIdMutationRequestGenderEnumType =
-  (typeof putEmployeesIdMutationRequestGenderEnum)[keyof typeof putEmployeesIdMutationRequestGenderEnum]
+export type PutEmployeesIdMutationRequestGenderEnumType = (typeof putEmployeesIdMutationRequestGenderEnum)[keyof typeof putEmployeesIdMutationRequestGenderEnum]
 
 export type PutEmployeesIdMutationRequestType = {
   /**

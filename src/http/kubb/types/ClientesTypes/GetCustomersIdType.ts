@@ -15,16 +15,14 @@ export const getCustomersId200DocumentTypeEnum = {
   COMPANY: 'COMPANY',
 } as const
 
-export type GetCustomersId200DocumentTypeEnumType =
-  (typeof getCustomersId200DocumentTypeEnum)[keyof typeof getCustomersId200DocumentTypeEnum]
+export type GetCustomersId200DocumentTypeEnumType = (typeof getCustomersId200DocumentTypeEnum)[keyof typeof getCustomersId200DocumentTypeEnum]
 
 export const getCustomersId200GenderEnum = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
 } as const
 
-export type GetCustomersId200GenderEnumType =
-  (typeof getCustomersId200GenderEnum)[keyof typeof getCustomersId200GenderEnum]
+export type GetCustomersId200GenderEnumType = (typeof getCustomersId200GenderEnum)[keyof typeof getCustomersId200GenderEnum]
 
 export const addressesPlatformEnum = {
   SHOPEE: 'SHOPEE',
@@ -33,8 +31,7 @@ export const addressesPlatformEnum = {
   LOCAL: 'LOCAL',
 } as const
 
-export type AddressesPlatformEnumType =
-  (typeof addressesPlatformEnum)[keyof typeof addressesPlatformEnum]
+export type AddressesPlatformEnumType = (typeof addressesPlatformEnum)[keyof typeof addressesPlatformEnum]
 
 /**
  * @description Cliente obtido com sucesso.

@@ -4,13 +4,13 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetProductsAttributesValuesQueryParamsType,
   GetProductsAttributesValues200Type,
   GetProductsAttributesValues401Type,
-  GetProductsAttributesValuesQueryParamsType,
   GetProductsAttributesValuesQueryResponseType,
 } from '../../types/Produtos (Atributos)Types/GetProductsAttributesValuesType'
+import { z } from 'zod'
 
 export const getProductsAttributesValuesQueryParamsSchema = z.object({
   productAttributeNameId: z.string(),
@@ -31,12 +31,10 @@ export const getProductsAttributesValues200Schema = z
       z.object({
         id: z.string(),
         value: z.string(),
-      })
+      }),
     ),
   })
-  .describe(
-    'Valores dos atributos dos produtos obtidos com sucesso.'
-  ) as unknown as ToZod<GetProductsAttributesValues200Type>
+  .describe('Valores dos atributos dos produtos obtidos com sucesso.') as unknown as ToZod<GetProductsAttributesValues200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -45,10 +43,8 @@ export const getProductsAttributesValues401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetProductsAttributesValues401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsAttributesValues401Type>
 
 export const getProductsAttributesValuesQueryResponseSchema = z.lazy(
-  () => getProductsAttributesValues200Schema
+  () => getProductsAttributesValues200Schema,
 ) as unknown as ToZod<GetProductsAttributesValuesQueryResponseType>

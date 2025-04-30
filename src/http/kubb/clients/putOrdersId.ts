@@ -6,12 +6,12 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PutOrdersId400Type,
-  PutOrdersId401Type,
-  PutOrdersId404Type,
   PutOrdersIdMutationRequestType,
   PutOrdersIdMutationResponseType,
   PutOrdersIdPathParamsType,
+  PutOrdersId400Type,
+  PutOrdersId401Type,
+  PutOrdersId404Type,
 } from '../types/PedidosTypes/PutOrdersIdType'
 
 function getPutOrdersIdUrl(id: PutOrdersIdPathParamsType['id']) {
@@ -26,23 +26,14 @@ function getPutOrdersIdUrl(id: PutOrdersIdPathParamsType['id']) {
 export async function putOrdersId(
   id: PutOrdersIdPathParamsType['id'],
   data: PutOrdersIdMutationRequestType,
-  config: Partial<RequestConfig<PutOrdersIdMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PutOrdersIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     PutOrdersIdMutationResponseType,
-    ResponseErrorConfig<
-      PutOrdersId400Type | PutOrdersId401Type | PutOrdersId404Type
-    >,
+    ResponseErrorConfig<PutOrdersId400Type | PutOrdersId401Type | PutOrdersId404Type>,
     PutOrdersIdMutationRequestType
-  >({
-    method: 'PUT',
-    url: getPutOrdersIdUrl(id).toString(),
-    data,
-    ...requestConfig,
-  })
+  >({ method: 'PUT', url: getPutOrdersIdUrl(id).toString(), data, ...requestConfig })
   return res.data
 }

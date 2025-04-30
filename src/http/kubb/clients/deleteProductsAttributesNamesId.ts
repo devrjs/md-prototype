@@ -6,15 +6,13 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteProductsAttributesNamesId401Type,
-  DeleteProductsAttributesNamesId404Type,
   DeleteProductsAttributesNamesIdMutationResponseType,
   DeleteProductsAttributesNamesIdPathParamsType,
+  DeleteProductsAttributesNamesId401Type,
+  DeleteProductsAttributesNamesId404Type,
 } from '../types/Produtos (Atributos)Types/DeleteProductsAttributesNamesIdType'
 
-function getDeleteProductsAttributesNamesIdUrl(
-  id: DeleteProductsAttributesNamesIdPathParamsType['id']
-) {
+function getDeleteProductsAttributesNamesIdUrl(id: DeleteProductsAttributesNamesIdPathParamsType['id']) {
   return `/products/attributes/names/${id}` as const
 }
 
@@ -25,21 +23,14 @@ function getDeleteProductsAttributesNamesIdUrl(
  */
 export async function deleteProductsAttributesNamesId(
   id: DeleteProductsAttributesNamesIdPathParamsType['id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     DeleteProductsAttributesNamesIdMutationResponseType,
-    ResponseErrorConfig<
-      | DeleteProductsAttributesNamesId401Type
-      | DeleteProductsAttributesNamesId404Type
-    >,
+    ResponseErrorConfig<DeleteProductsAttributesNamesId401Type | DeleteProductsAttributesNamesId404Type>,
     unknown
-  >({
-    method: 'DELETE',
-    url: getDeleteProductsAttributesNamesIdUrl(id).toString(),
-    ...requestConfig,
-  })
+  >({ method: 'DELETE', url: getDeleteProductsAttributesNamesIdUrl(id).toString(), ...requestConfig })
   return res.data
 }

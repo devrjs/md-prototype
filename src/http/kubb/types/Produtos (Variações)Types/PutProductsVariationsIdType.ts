@@ -14,14 +14,12 @@ export const putProductsVariationsId200Enum = {
   null: 'null',
 } as const
 
-export type PutProductsVariationsId200EnumType =
-  (typeof putProductsVariationsId200Enum)[keyof typeof putProductsVariationsId200Enum]
+export type PutProductsVariationsId200EnumType = (typeof putProductsVariationsId200Enum)[keyof typeof putProductsVariationsId200Enum]
 
 /**
  * @description Variação atualizada com sucesso.
  */
-export type PutProductsVariationsId200Type =
-  PutProductsVariationsId200EnumType | null
+export type PutProductsVariationsId200Type = PutProductsVariationsId200EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -140,8 +138,7 @@ export type PutProductsVariationsIdMutationRequestType = {
   is_available?: boolean
 }
 
-export type PutProductsVariationsIdMutationResponseType =
-  PutProductsVariationsId200Type
+export type PutProductsVariationsIdMutationResponseType = PutProductsVariationsId200Type
 
 export type PutProductsVariationsIdTypeMutation = {
   Response: PutProductsVariationsId200Type

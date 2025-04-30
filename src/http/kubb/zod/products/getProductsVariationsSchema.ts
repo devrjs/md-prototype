@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetProductsVariationsQueryParamsType,
   GetProductsVariations200Type,
   GetProductsVariations401Type,
   GetProductsVariations404Type,
-  GetProductsVariationsQueryParamsType,
   GetProductsVariationsQueryResponseType,
 } from '../../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType'
+import { z } from 'zod'
 
 export const getProductsVariationsQueryParamsSchema = z
   .object({
@@ -46,12 +46,10 @@ export const getProductsVariations200Schema = z
         is_available: z.boolean().optional(),
         created_at: z.string().datetime({ offset: true }),
         product_id: z.string(),
-      })
+      }),
     ),
   })
-  .describe(
-    'Variações de produtos obtidos com sucesso.'
-  ) as unknown as ToZod<GetProductsVariations200Type>
+  .describe('Variações de produtos obtidos com sucesso.') as unknown as ToZod<GetProductsVariations200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -60,9 +58,7 @@ export const getProductsVariations401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetProductsVariations401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsVariations401Type>
 
 /**
  * @description Variações de produtos não encontrado.
@@ -71,10 +67,6 @@ export const getProductsVariations404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Variações de produtos não encontrado.'
-  ) as unknown as ToZod<GetProductsVariations404Type>
+  .describe('Variações de produtos não encontrado.') as unknown as ToZod<GetProductsVariations404Type>
 
-export const getProductsVariationsQueryResponseSchema = z.lazy(
-  () => getProductsVariations200Schema
-) as unknown as ToZod<GetProductsVariationsQueryResponseType>
+export const getProductsVariationsQueryResponseSchema = z.lazy(() => getProductsVariations200Schema) as unknown as ToZod<GetProductsVariationsQueryResponseType>

@@ -7,14 +7,12 @@ export const postProductsCategories201Enum = {
   null: 'null',
 } as const
 
-export type PostProductsCategories201EnumType =
-  (typeof postProductsCategories201Enum)[keyof typeof postProductsCategories201Enum]
+export type PostProductsCategories201EnumType = (typeof postProductsCategories201Enum)[keyof typeof postProductsCategories201Enum]
 
 /**
  * @description Categoria cadastrado com sucesso.
  */
-export type PostProductsCategories201Type =
-  PostProductsCategories201EnumType | null
+export type PostProductsCategories201Type = PostProductsCategories201EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -43,8 +41,7 @@ export type PostProductsCategoriesMutationRequestType = {
   name: string
 }
 
-export type PostProductsCategoriesMutationResponseType =
-  PostProductsCategories201Type
+export type PostProductsCategoriesMutationResponseType = PostProductsCategories201Type
 
 export type PostProductsCategoriesTypeMutation = {
   Response: PostProductsCategories201Type

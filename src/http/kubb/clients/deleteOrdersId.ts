@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteOrdersId401Type,
-  DeleteOrdersId404Type,
   DeleteOrdersIdMutationResponseType,
   DeleteOrdersIdPathParamsType,
+  DeleteOrdersId401Type,
+  DeleteOrdersId404Type,
 } from '../types/PedidosTypes/DeleteOrdersIdType'
 
 function getDeleteOrdersIdUrl(id: DeleteOrdersIdPathParamsType['id']) {
@@ -21,17 +21,10 @@ function getDeleteOrdersIdUrl(id: DeleteOrdersIdPathParamsType['id']) {
  * @summary Remove um pedido existente.
  * {@link /orders/:id}
  */
-export async function deleteOrdersId(
-  id: DeleteOrdersIdPathParamsType['id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
+export async function deleteOrdersId(id: DeleteOrdersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    DeleteOrdersIdMutationResponseType,
-    ResponseErrorConfig<DeleteOrdersId401Type | DeleteOrdersId404Type>,
-    unknown
-  >({
+  const res = await request<DeleteOrdersIdMutationResponseType, ResponseErrorConfig<DeleteOrdersId401Type | DeleteOrdersId404Type>, unknown>({
     method: 'DELETE',
     url: getDeleteOrdersIdUrl(id).toString(),
     ...requestConfig,

@@ -14,14 +14,12 @@ export const putProductsAttributesNamesId200Enum = {
   null: 'null',
 } as const
 
-export type PutProductsAttributesNamesId200EnumType =
-  (typeof putProductsAttributesNamesId200Enum)[keyof typeof putProductsAttributesNamesId200Enum]
+export type PutProductsAttributesNamesId200EnumType = (typeof putProductsAttributesNamesId200Enum)[keyof typeof putProductsAttributesNamesId200Enum]
 
 /**
  * @description Nome de atributo do produto atualizado com sucesso.
  */
-export type PutProductsAttributesNamesId200Type =
-  PutProductsAttributesNamesId200EnumType | null
+export type PutProductsAttributesNamesId200Type = PutProductsAttributesNamesId200EnumType | null
 
 /**
  * @description Usuário não autenticado.
@@ -50,14 +48,11 @@ export type PutProductsAttributesNamesIdMutationRequestType = {
   name: string
 }
 
-export type PutProductsAttributesNamesIdMutationResponseType =
-  PutProductsAttributesNamesId200Type
+export type PutProductsAttributesNamesIdMutationResponseType = PutProductsAttributesNamesId200Type
 
 export type PutProductsAttributesNamesIdTypeMutation = {
   Response: PutProductsAttributesNamesId200Type
   Request: PutProductsAttributesNamesIdMutationRequestType
   PathParams: PutProductsAttributesNamesIdPathParamsType
-  Errors:
-    | PutProductsAttributesNamesId401Type
-    | PutProductsAttributesNamesId404Type
+  Errors: PutProductsAttributesNamesId401Type | PutProductsAttributesNamesId404Type
 }

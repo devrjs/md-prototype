@@ -8,8 +8,7 @@ export const getEmployeesQueryParamsOrderByEnum = {
   asc: 'asc',
 } as const
 
-export type GetEmployeesQueryParamsOrderByEnumType =
-  (typeof getEmployeesQueryParamsOrderByEnum)[keyof typeof getEmployeesQueryParamsOrderByEnum]
+export type GetEmployeesQueryParamsOrderByEnumType = (typeof getEmployeesQueryParamsOrderByEnum)[keyof typeof getEmployeesQueryParamsOrderByEnum]
 
 export type GetEmployeesQueryParamsType = {
   /**
@@ -42,8 +41,7 @@ export const employeesDocumentTypeEnum = {
   COMPANY: 'COMPANY',
 } as const
 
-export type EmployeesDocumentTypeEnumType =
-  (typeof employeesDocumentTypeEnum)[keyof typeof employeesDocumentTypeEnum]
+export type EmployeesDocumentTypeEnumType = (typeof employeesDocumentTypeEnum)[keyof typeof employeesDocumentTypeEnum]
 
 /**
  * @description Colaboradores obtidos com sucesso.

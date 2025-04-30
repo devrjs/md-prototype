@@ -1,13 +1,8 @@
 'use client'
 
-import {
-  IconChevronDown,
-  IconLayoutColumns,
-  IconPlus,
-} from '@tabler/icons-react'
+import { IconChevronDown, IconLayoutColumns } from '@tabler/icons-react'
 import type { Table } from '@tanstack/react-table'
 
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -34,7 +29,7 @@ export function TableControls({ table }: TableControlsProps) {
   return (
     <div className="flex items-center justify-between px-4 lg:px-6">
       <Label htmlFor="view-selector" className="sr-only">
-        View
+        Visualização
       </Label>
       <Select defaultValue="outline">
         <SelectTrigger
@@ -42,13 +37,13 @@ export function TableControls({ table }: TableControlsProps) {
           size="sm"
           id="view-selector"
         >
-          <SelectValue placeholder="Select a view" />
+          <SelectValue placeholder="Selecione uma visualização" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="outline">Outline</SelectItem>
-          <SelectItem value="past-performance">Past Performance</SelectItem>
-          <SelectItem value="key-personnel">Key Personnel</SelectItem>
-          <SelectItem value="focus-documents">Focus Documents</SelectItem>
+          <SelectItem value="outline">Resumo</SelectItem>
+          <SelectItem value="past-performance">Desempenho Anterior</SelectItem>
+          <SelectItem value="key-personnel">Pessoal Chave</SelectItem>
+          <SelectItem value="focus-documents">Documentos Principais</SelectItem>
         </SelectContent>
       </Select>
       <div className="flex items-center gap-2">
@@ -56,8 +51,8 @@ export function TableControls({ table }: TableControlsProps) {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm">
               <IconLayoutColumns />
-              <span className="hidden lg:inline">Customize Columns</span>
-              <span className="lg:hidden">Columns</span>
+              <span className="hidden lg:inline">Personalizar Colunas</span>
+              <span className="lg:hidden">Colunas</span>
               <IconChevronDown />
             </Button>
           </DropdownMenuTrigger>

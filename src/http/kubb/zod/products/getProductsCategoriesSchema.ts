@@ -4,12 +4,12 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   GetProductsCategories200Type,
   GetProductsCategories401Type,
   GetProductsCategoriesQueryResponseType,
 } from '../../types/Produtos (Categorias)Types/GetProductsCategoriesType'
+import { z } from 'zod'
 
 /**
  * @description Categorias de produtos obtidas com sucesso.
@@ -19,11 +19,9 @@ export const getProductsCategories200Schema = z
     z.object({
       id: z.string(),
       name: z.string(),
-    })
+    }),
   )
-  .describe(
-    'Categorias de produtos obtidas com sucesso.'
-  ) as unknown as ToZod<GetProductsCategories200Type>
+  .describe('Categorias de produtos obtidas com sucesso.') as unknown as ToZod<GetProductsCategories200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -32,10 +30,6 @@ export const getProductsCategories401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetProductsCategories401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsCategories401Type>
 
-export const getProductsCategoriesQueryResponseSchema = z.lazy(
-  () => getProductsCategories200Schema
-) as unknown as ToZod<GetProductsCategoriesQueryResponseType>
+export const getProductsCategoriesQueryResponseSchema = z.lazy(() => getProductsCategories200Schema) as unknown as ToZod<GetProductsCategoriesQueryResponseType>

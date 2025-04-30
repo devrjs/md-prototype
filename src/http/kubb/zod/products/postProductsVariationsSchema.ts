@@ -4,7 +4,6 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   PostProductsVariations201Type,
   PostProductsVariations401Type,
@@ -12,6 +11,7 @@ import type {
   PostProductsVariationsMutationRequestType,
   PostProductsVariationsMutationResponseType,
 } from '../../types/Produtos (Varia\u00E7\u00F5es)Types/PostProductsVariationsType'
+import { z } from 'zod'
 
 /**
  * @description Variação cadastrada com sucesso.
@@ -28,9 +28,7 @@ export const postProductsVariations401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PostProductsVariations401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PostProductsVariations401Type>
 
 /**
  * @description Variação já cadastrada.
@@ -39,9 +37,7 @@ export const postProductsVariations409Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Variação já cadastrada.'
-  ) as unknown as ToZod<PostProductsVariations409Type>
+  .describe('Variação já cadastrada.') as unknown as ToZod<PostProductsVariations409Type>
 
 export const postProductsVariationsMutationRequestSchema = z.object({
   product_id: z.string().regex(/^[cC][^\s-]{8,}$/),
@@ -70,5 +66,5 @@ export const postProductsVariationsMutationRequestSchema = z.object({
 }) as unknown as ToZod<PostProductsVariationsMutationRequestType>
 
 export const postProductsVariationsMutationResponseSchema = z.lazy(
-  () => postProductsVariations201Schema
+  () => postProductsVariations201Schema,
 ) as unknown as ToZod<PostProductsVariationsMutationResponseType>

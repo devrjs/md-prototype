@@ -4,15 +4,15 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  PutProductsVariationsIdPathParamsType,
   PutProductsVariationsId200Type,
   PutProductsVariationsId401Type,
   PutProductsVariationsId404Type,
   PutProductsVariationsIdMutationRequestType,
   PutProductsVariationsIdMutationResponseType,
-  PutProductsVariationsIdPathParamsType,
 } from '../../types/Produtos (Varia\u00E7\u00F5es)Types/PutProductsVariationsIdType'
+import { z } from 'zod'
 
 export const putProductsVariationsIdPathParamsSchema = z.object({
   id: z.string(),
@@ -33,9 +33,7 @@ export const putProductsVariationsId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<PutProductsVariationsId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<PutProductsVariationsId401Type>
 
 /**
  * @description Variação não encontrada.
@@ -44,9 +42,7 @@ export const putProductsVariationsId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Variação não encontrada.'
-  ) as unknown as ToZod<PutProductsVariationsId404Type>
+  .describe('Variação não encontrada.') as unknown as ToZod<PutProductsVariationsId404Type>
 
 export const putProductsVariationsIdMutationRequestSchema = z.object({
   product_id: z.string().regex(/^[cC][^\s-]{8,}$/),
@@ -75,5 +71,5 @@ export const putProductsVariationsIdMutationRequestSchema = z.object({
 }) as unknown as ToZod<PutProductsVariationsIdMutationRequestType>
 
 export const putProductsVariationsIdMutationResponseSchema = z.lazy(
-  () => putProductsVariationsId200Schema
+  () => putProductsVariationsId200Schema,
 ) as unknown as ToZod<PutProductsVariationsIdMutationResponseType>

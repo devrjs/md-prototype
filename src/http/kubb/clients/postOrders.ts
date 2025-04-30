@@ -6,11 +6,11 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  PostOrdersMutationRequestType,
+  PostOrdersMutationResponseType,
   PostOrders400Type,
   PostOrders401Type,
   PostOrders404Type,
-  PostOrdersMutationRequestType,
-  PostOrdersMutationResponseType,
 } from '../types/PedidosTypes/PostOrdersType'
 
 function getPostOrdersUrl() {
@@ -24,23 +24,14 @@ function getPostOrdersUrl() {
  */
 export async function postOrders(
   data: PostOrdersMutationRequestType,
-  config: Partial<RequestConfig<PostOrdersMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PostOrdersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     PostOrdersMutationResponseType,
-    ResponseErrorConfig<
-      PostOrders400Type | PostOrders401Type | PostOrders404Type
-    >,
+    ResponseErrorConfig<PostOrders400Type | PostOrders401Type | PostOrders404Type>,
     PostOrdersMutationRequestType
-  >({
-    method: 'POST',
-    url: getPostOrdersUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  >({ method: 'POST', url: getPostOrdersUrl().toString(), data, ...requestConfig })
   return res.data
 }

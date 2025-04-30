@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  GetEmployeesQueryParamsType,
   GetEmployees200Type,
   GetEmployees401Type,
   GetEmployees404Type,
-  GetEmployeesQueryParamsType,
   GetEmployeesQueryResponseType,
 } from '../../types/ColaboradoresTypes/GetEmployeesType'
+import { z } from 'zod'
 
 export const getEmployeesQueryParamsSchema = z
   .object({
@@ -39,12 +39,10 @@ export const getEmployees200Schema = z
         user_id: z.string(),
         entry_number: z.number(),
         person_id: z.string(),
-      })
+      }),
     ),
   })
-  .describe(
-    'Colaboradores obtidos com sucesso.'
-  ) as unknown as ToZod<GetEmployees200Type>
+  .describe('Colaboradores obtidos com sucesso.') as unknown as ToZod<GetEmployees200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -62,10 +60,6 @@ export const getEmployees404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Colaborador não encontrado.'
-  ) as unknown as ToZod<GetEmployees404Type>
+  .describe('Colaborador não encontrado.') as unknown as ToZod<GetEmployees404Type>
 
-export const getEmployeesQueryResponseSchema = z.lazy(
-  () => getEmployees200Schema
-) as unknown as ToZod<GetEmployeesQueryResponseType>
+export const getEmployeesQueryResponseSchema = z.lazy(() => getEmployees200Schema) as unknown as ToZod<GetEmployeesQueryResponseType>

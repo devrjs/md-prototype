@@ -6,15 +6,13 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  GetProductsVariationsIdQueryResponseType,
+  GetProductsVariationsIdPathParamsType,
   GetProductsVariationsId401Type,
   GetProductsVariationsId404Type,
-  GetProductsVariationsIdPathParamsType,
-  GetProductsVariationsIdQueryResponseType,
 } from '../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsIdType'
 
-function getGetProductsVariationsIdUrl(
-  id: GetProductsVariationsIdPathParamsType['id']
-) {
+function getGetProductsVariationsIdUrl(id: GetProductsVariationsIdPathParamsType['id']) {
   return `/products/variations/${id}` as const
 }
 
@@ -25,20 +23,14 @@ function getGetProductsVariationsIdUrl(
  */
 export async function getProductsVariationsId(
   id: GetProductsVariationsIdPathParamsType['id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     GetProductsVariationsIdQueryResponseType,
-    ResponseErrorConfig<
-      GetProductsVariationsId401Type | GetProductsVariationsId404Type
-    >,
+    ResponseErrorConfig<GetProductsVariationsId401Type | GetProductsVariationsId404Type>,
     unknown
-  >({
-    method: 'GET',
-    url: getGetProductsVariationsIdUrl(id).toString(),
-    ...requestConfig,
-  })
+  >({ method: 'GET', url: getGetProductsVariationsIdUrl(id).toString(), ...requestConfig })
   return res.data
 }

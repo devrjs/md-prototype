@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  DeleteEmployeesId401Type,
-  DeleteEmployeesId404Type,
   DeleteEmployeesIdMutationResponseType,
   DeleteEmployeesIdPathParamsType,
+  DeleteEmployeesId401Type,
+  DeleteEmployeesId404Type,
 } from '../types/ColaboradoresTypes/DeleteEmployeesIdType'
 
 function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParamsType['id']) {
@@ -21,17 +21,10 @@ function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParamsType['id']) {
  * @summary Remove um colaborador específico.
  * {@link /employees/:id}
  */
-export async function deleteEmployeesId(
-  id: DeleteEmployeesIdPathParamsType['id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
+export async function deleteEmployeesId(id: DeleteEmployeesIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    DeleteEmployeesIdMutationResponseType,
-    ResponseErrorConfig<DeleteEmployeesId401Type | DeleteEmployeesId404Type>,
-    unknown
-  >({
+  const res = await request<DeleteEmployeesIdMutationResponseType, ResponseErrorConfig<DeleteEmployeesId401Type | DeleteEmployeesId404Type>, unknown>({
     method: 'DELETE',
     url: getDeleteEmployeesIdUrl(id).toString(),
     ...requestConfig,

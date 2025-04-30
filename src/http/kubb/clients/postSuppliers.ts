@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PostSuppliers401Type,
-  PostSuppliers409Type,
   PostSuppliersMutationRequestType,
   PostSuppliersMutationResponseType,
+  PostSuppliers401Type,
+  PostSuppliers409Type,
 } from '../types/FornecedoresTypes/PostSuppliersType'
 
 function getPostSuppliersUrl() {
@@ -23,9 +23,7 @@ function getPostSuppliersUrl() {
  */
 export async function postSuppliers(
   data: PostSuppliersMutationRequestType,
-  config: Partial<RequestConfig<PostSuppliersMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PostSuppliersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
@@ -33,11 +31,6 @@ export async function postSuppliers(
     PostSuppliersMutationResponseType,
     ResponseErrorConfig<PostSuppliers401Type | PostSuppliers409Type>,
     PostSuppliersMutationRequestType
-  >({
-    method: 'POST',
-    url: getPostSuppliersUrl().toString(),
-    data,
-    ...requestConfig,
-  })
+  >({ method: 'POST', url: getPostSuppliersUrl().toString(), data, ...requestConfig })
   return res.data
 }

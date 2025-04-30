@@ -6,10 +6,10 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
+  GetProductsVariationsQueryResponseType,
+  GetProductsVariationsQueryParamsType,
   GetProductsVariations401Type,
   GetProductsVariations404Type,
-  GetProductsVariationsQueryParamsType,
-  GetProductsVariationsQueryResponseType,
 } from '../types/Produtos (Varia\u00E7\u00F5es)Types/GetProductsVariationsType'
 
 function getGetProductsVariationsUrl() {
@@ -21,19 +21,10 @@ function getGetProductsVariationsUrl() {
  * @summary Retorna uma lista de variações de produtos.
  * {@link /products/variations}
  */
-export async function getProductsVariations(
-  params?: GetProductsVariationsQueryParamsType,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
+export async function getProductsVariations(params?: GetProductsVariationsQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    GetProductsVariationsQueryResponseType,
-    ResponseErrorConfig<
-      GetProductsVariations401Type | GetProductsVariations404Type
-    >,
-    unknown
-  >({
+  const res = await request<GetProductsVariationsQueryResponseType, ResponseErrorConfig<GetProductsVariations401Type | GetProductsVariations404Type>, unknown>({
     method: 'GET',
     url: getGetProductsVariationsUrl().toString(),
     params,

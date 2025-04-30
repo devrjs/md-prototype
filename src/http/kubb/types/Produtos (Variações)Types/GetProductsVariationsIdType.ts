@@ -115,8 +115,7 @@ export type GetProductsVariationsId404Type = {
   message: string
 }
 
-export type GetProductsVariationsIdQueryResponseType =
-  GetProductsVariationsId200Type
+export type GetProductsVariationsIdQueryResponseType = GetProductsVariationsId200Type
 
 export type GetProductsVariationsIdTypeQuery = {
   Response: GetProductsVariationsId200Type

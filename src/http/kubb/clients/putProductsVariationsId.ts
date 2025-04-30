@@ -6,16 +6,14 @@
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type {
-  PutProductsVariationsId401Type,
-  PutProductsVariationsId404Type,
   PutProductsVariationsIdMutationRequestType,
   PutProductsVariationsIdMutationResponseType,
   PutProductsVariationsIdPathParamsType,
+  PutProductsVariationsId401Type,
+  PutProductsVariationsId404Type,
 } from '../types/Produtos (Varia\u00E7\u00F5es)Types/PutProductsVariationsIdType'
 
-function getPutProductsVariationsIdUrl(
-  id: PutProductsVariationsIdPathParamsType['id']
-) {
+function getPutProductsVariationsIdUrl(id: PutProductsVariationsIdPathParamsType['id']) {
   return `/products/variations/${id}` as const
 }
 
@@ -27,23 +25,14 @@ function getPutProductsVariationsIdUrl(
 export async function putProductsVariationsId(
   id: PutProductsVariationsIdPathParamsType['id'],
   data: PutProductsVariationsIdMutationRequestType,
-  config: Partial<RequestConfig<PutProductsVariationsIdMutationRequestType>> & {
-    client?: typeof client
-  } = {}
+  config: Partial<RequestConfig<PutProductsVariationsIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     PutProductsVariationsIdMutationResponseType,
-    ResponseErrorConfig<
-      PutProductsVariationsId401Type | PutProductsVariationsId404Type
-    >,
+    ResponseErrorConfig<PutProductsVariationsId401Type | PutProductsVariationsId404Type>,
     PutProductsVariationsIdMutationRequestType
-  >({
-    method: 'PUT',
-    url: getPutProductsVariationsIdUrl(id).toString(),
-    data,
-    ...requestConfig,
-  })
+  >({ method: 'PUT', url: getPutProductsVariationsIdUrl(id).toString(), data, ...requestConfig })
   return res.data
 }

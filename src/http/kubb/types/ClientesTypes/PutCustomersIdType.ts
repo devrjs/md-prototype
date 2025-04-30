@@ -14,8 +14,7 @@ export const putCustomersId200Enum = {
   null: 'null',
 } as const
 
-export type PutCustomersId200EnumType =
-  (typeof putCustomersId200Enum)[keyof typeof putCustomersId200Enum]
+export type PutCustomersId200EnumType = (typeof putCustomersId200Enum)[keyof typeof putCustomersId200Enum]
 
 /**
  * @description Cliente atualizado com sucesso.
@@ -55,8 +54,7 @@ export const putCustomersIdMutationRequestGenderEnum = {
   FEMALE: 'FEMALE',
 } as const
 
-export type PutCustomersIdMutationRequestGenderEnumType =
-  (typeof putCustomersIdMutationRequestGenderEnum)[keyof typeof putCustomersIdMutationRequestGenderEnum]
+export type PutCustomersIdMutationRequestGenderEnumType = (typeof putCustomersIdMutationRequestGenderEnum)[keyof typeof putCustomersIdMutationRequestGenderEnum]
 
 export type PutCustomersIdMutationRequestType = {
   /**

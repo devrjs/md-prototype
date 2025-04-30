@@ -4,12 +4,12 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   GetProductsMeasurementUnits200Type,
   GetProductsMeasurementUnits401Type,
   GetProductsMeasurementUnitsQueryResponseType,
 } from '../../types/Produtos (Unidades de Medida)Types/GetProductsMeasurementUnitsType'
+import { z } from 'zod'
 
 /**
  * @description Unidades de medida de produtos obtidas com sucesso.
@@ -20,11 +20,9 @@ export const getProductsMeasurementUnits200Schema = z
       id: z.string(),
       name: z.string(),
       acronym: z.string(),
-    })
+    }),
   )
-  .describe(
-    'Unidades de medida de produtos obtidas com sucesso.'
-  ) as unknown as ToZod<GetProductsMeasurementUnits200Type>
+  .describe('Unidades de medida de produtos obtidas com sucesso.') as unknown as ToZod<GetProductsMeasurementUnits200Type>
 
 /**
  * @description Usuário não autenticado.
@@ -33,10 +31,8 @@ export const getProductsMeasurementUnits401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<GetProductsMeasurementUnits401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetProductsMeasurementUnits401Type>
 
 export const getProductsMeasurementUnitsQueryResponseSchema = z.lazy(
-  () => getProductsMeasurementUnits200Schema
+  () => getProductsMeasurementUnits200Schema,
 ) as unknown as ToZod<GetProductsMeasurementUnitsQueryResponseType>

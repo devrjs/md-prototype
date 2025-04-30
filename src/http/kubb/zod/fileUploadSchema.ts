@@ -4,12 +4,9 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type { FileUploadType } from '../types/FileUploadType'
+import { z } from 'zod'
 
 export const fileUploadSchema = z.object({
-  file: z
-    .instanceof(File)
-    .describe('Arquivo de imagem a ser enviado')
-    .optional(),
+  file: z.instanceof(File).describe('Arquivo de imagem a ser enviado').optional(),
 }) as unknown as ToZod<FileUploadType>

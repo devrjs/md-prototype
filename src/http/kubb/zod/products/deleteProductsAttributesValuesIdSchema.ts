@@ -4,14 +4,14 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
+  DeleteProductsAttributesValuesIdPathParamsType,
   DeleteProductsAttributesValuesId200Type,
   DeleteProductsAttributesValuesId401Type,
   DeleteProductsAttributesValuesId404Type,
   DeleteProductsAttributesValuesIdMutationResponseType,
-  DeleteProductsAttributesValuesIdPathParamsType,
 } from '../../types/Produtos (Atributos)Types/DeleteProductsAttributesValuesIdType'
+import { z } from 'zod'
 
 export const deleteProductsAttributesValuesIdPathParamsSchema = z.object({
   id: z.string(),
@@ -32,9 +32,7 @@ export const deleteProductsAttributesValuesId401Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Usuário não autenticado.'
-  ) as unknown as ToZod<DeleteProductsAttributesValuesId401Type>
+  .describe('Usuário não autenticado.') as unknown as ToZod<DeleteProductsAttributesValuesId401Type>
 
 /**
  * @description Valor de atributo do produto não encontrado.
@@ -43,10 +41,8 @@ export const deleteProductsAttributesValuesId404Schema = z
   .object({
     message: z.string(),
   })
-  .describe(
-    'Valor de atributo do produto não encontrado.'
-  ) as unknown as ToZod<DeleteProductsAttributesValuesId404Type>
+  .describe('Valor de atributo do produto não encontrado.') as unknown as ToZod<DeleteProductsAttributesValuesId404Type>
 
 export const deleteProductsAttributesValuesIdMutationResponseSchema = z.lazy(
-  () => deleteProductsAttributesValuesId200Schema
+  () => deleteProductsAttributesValuesId200Schema,
 ) as unknown as ToZod<DeleteProductsAttributesValuesIdMutationResponseType>

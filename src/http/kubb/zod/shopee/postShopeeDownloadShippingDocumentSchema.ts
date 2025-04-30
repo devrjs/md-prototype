@@ -4,18 +4,17 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import { z } from 'zod'
 import type {
   PostShopeeDownloadShippingDocument200Type,
   PostShopeeDownloadShippingDocumentMutationResponseType,
 } from '../../types/Shopee APITypes/PostShopeeDownloadShippingDocumentType'
+import { z } from 'zod'
 
 /**
  * @description Default Response
  */
-export const postShopeeDownloadShippingDocument200Schema =
-  z.unknown() as unknown as ToZod<PostShopeeDownloadShippingDocument200Type>
+export const postShopeeDownloadShippingDocument200Schema = z.unknown() as unknown as ToZod<PostShopeeDownloadShippingDocument200Type>
 
 export const postShopeeDownloadShippingDocumentMutationResponseSchema = z.lazy(
-  () => postShopeeDownloadShippingDocument200Schema
+  () => postShopeeDownloadShippingDocument200Schema,
 ) as unknown as ToZod<PostShopeeDownloadShippingDocumentMutationResponseType>
