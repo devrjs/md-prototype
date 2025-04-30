@@ -1,20 +1,28 @@
 'use client'
 
+import { Skeleton } from '@/components/ui/skeleton'
 import { getOrders } from '@/http/kubb'
 import { useQuery } from '@tanstack/react-query'
+import { useSearchParams } from 'next/navigation'
 import { TableMain } from './table/table-main'
 
 export function OrderData() {
-  const { data: result, isLoading: isLoadingOrders } = useQuery({
-    queryKey: ['orders' /*, pageIndex */],
-    queryFn: () => getOrders(),
-  })
+  const searchParams = useSearchParams()
+  const pageIndex = Number(searchParams.get('page')) || 0
+  const pageSize = Number(searchParams.get('pageSize')) || 10
 
-  console.log(result)
+  const { data: result, isLoading: isLoadingOrders } = useQuery({
+    queryKey: ['orders', pageIndex],
+    queryFn: () => getOrders({ pageIndex }),
+  })
 
   return (
     <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-      <TableMain data={result?.orders} />
+      {isLoadingOrders ? (
+        <Skeleton className="h-8 w-full" />
+      ) : (
+        <TableMain data={result?.orders} />
+      )}
     </div>
   )
 }
