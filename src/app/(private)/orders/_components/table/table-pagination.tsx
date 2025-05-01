@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
+import { useSearchParams } from 'next/navigation'
 import type { OrderItem } from './schema'
 
 interface TablePaginationProps {
@@ -25,6 +26,15 @@ interface TablePaginationProps {
 }
 
 export function TablePagination({ table }: TablePaginationProps) {
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams.toString())
+
+  function nextPage() {
+    table.nextPage()
+
+    params.set('page', String(table.getState().pagination.pageIndex))
+  }
+
   return (
     <div className="flex items-center justify-between px-4">
       <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
@@ -82,7 +92,7 @@ export function TablePagination({ table }: TablePaginationProps) {
             variant="outline"
             className="size-8"
             size="icon"
-            onClick={() => table.nextPage()}
+            onClick={() => nextPage()}
             disabled={!table.getCanNextPage()}
           >
             <span className="sr-only">Ir para próxima página</span>
