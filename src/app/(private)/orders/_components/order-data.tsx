@@ -8,12 +8,12 @@ import { TableMain } from './table/table-main'
 
 export function OrderData() {
   const searchParams = useSearchParams()
-  const pageIndex = Number(searchParams.get('page')) || 0
+  const pageIndex = Number(searchParams.get('page')) || 1
   const pageSize = Number(searchParams.get('pageSize')) || 10
 
-  const { data: result, isLoading: isLoadingOrders } = useQuery({
+  const { data: ordersData, isLoading: isLoadingOrders } = useQuery({
     queryKey: ['orders', pageIndex],
-    queryFn: () => getOrders({ pageIndex }),
+    queryFn: () => getOrders({ pageIndex, perPage: pageSize }),
   })
 
   return (
@@ -21,7 +21,7 @@ export function OrderData() {
       {isLoadingOrders ? (
         <Skeleton className="h-8 w-full" />
       ) : (
-        <TableMain data={result?.orders} />
+        <TableMain data={ordersData?.orders} />
       )}
     </div>
   )

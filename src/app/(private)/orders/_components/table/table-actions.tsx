@@ -12,8 +12,8 @@ import {
   Table as UITable,
 } from '@/components/ui/table'
 
-import { OrderTableRow } from './order-table-row'
 import type { OrderItem } from './schema'
+import { TableRowData } from './table-row-data'
 
 interface TableActionsProps {
   table: Table<OrderItem>
@@ -52,7 +52,7 @@ export function TableActions({ table, data = [], setData }: TableActionsProps) {
         {(table.getRowModel().rows || [])?.length ? (
           <>
             {(table.getRowModel().rows || []).map(row => (
-              <OrderTableRow key={row.id} row={row} />
+              <TableRowData key={row.id} row={row} />
             ))}
           </>
         ) : (

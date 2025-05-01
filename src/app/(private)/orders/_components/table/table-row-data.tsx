@@ -9,7 +9,7 @@ interface OrderTableRowProps {
   row: Row<OrderItem>
 }
 
-export function OrderTableRow({ row }: OrderTableRowProps) {
+export function TableRowData({ row }: OrderTableRowProps) {
   const cells = row.getVisibleCells() || []
   return (
     <TableRow>

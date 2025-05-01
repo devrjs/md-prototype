@@ -1,4 +1,4 @@
-export * from './order-table-row'
+export * from './table-row-data'
 export * from './table-cell-viewer'
 export * from './table-columns'
 export * from './table-controls'
