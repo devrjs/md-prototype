@@ -60,7 +60,7 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
         </DrawerHeader>
         <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
           {orderData?.items.map(item => (
-            <div key={item.id} className="overflow-hidden">
+            <div key={item.id}>
               <Table className="w-full table-fixed text-center border-separate">
                 <TableBody>
                   <TableRow>
@@ -76,9 +76,12 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
                     {/* Coluna da imagem */}
                     <TableHead
                       rowSpan={2}
-                      className="align-center text-center w-24 border rounded bg-gray-100"
+                      className="align-center px-0 w-24 border rounded bg-gray-100"
                     >
-                      <IconPhoto className="size-4" />
+                      <div className="w-full flex flex-col items-center justify-center text-muted-foreground/80">
+                        <IconPhoto className="size-8" />
+                        <span className="text-xs self-center">sem imagem</span>
+                      </div>
                     </TableHead>
 
                     {/* Cabeçalhos */}
