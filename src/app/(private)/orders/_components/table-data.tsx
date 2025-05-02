@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { TableContainer } from './table/table-container'
 
-export function OrdersData() {
+export function TableData() {
   const searchParams = useSearchParams()
   const pageIndex = Number(searchParams.get('page')) || 1
   const pageSize = Number(searchParams.get('pageSize')) || 10

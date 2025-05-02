@@ -1,6 +1,6 @@
 import { SiteHeader } from '@/components/global/site-header'
 import { SidebarInset } from '@/components/ui/sidebar'
-import { OrdersData } from './_components/orders-data'
+import { TableData } from './_components/table-data'
 
 export default async function Order() {
   return (
@@ -8,7 +8,7 @@ export default async function Order() {
       <SiteHeader />
       <div className="flex flex-1 flex-col">
         <div className="@container/main flex flex-1 flex-col gap-2">
-          <OrdersData />
+          <TableData />
         </div>
       </div>
     </SidebarInset>
