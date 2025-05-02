@@ -17,14 +17,14 @@ import {
 import { useMemo } from 'react'
 import { tableColumns } from './table-columns'
 import { TablePagination } from './table-pagination'
-import type { TableType } from './table-schema'
+import type { TableItemType } from './table-schema'
 
 export function TableContainer({
   data,
   pagination,
   rowCount,
 }: {
-  data: TableType[]
+  data: TableItemType[]
   pagination: PaginationState
   rowCount: number
 }) {

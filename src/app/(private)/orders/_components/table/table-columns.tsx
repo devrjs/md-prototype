@@ -16,14 +16,22 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { SquarePen, Trash } from 'lucide-react'
-import type { TableType } from './table-schema'
+import { TableItemViewer } from './table-item-viewer'
+import type { TableItemType } from './table-schema'
 
-export const tableColumns: ColumnDef<TableType>[] = [
+export const tableColumns: ColumnDef<TableItemType>[] = [
+  {
+    id: 'viewer',
+    cell: ({ row }) => {
+      return <TableItemViewer itemId={row.original.id} />
+    },
+    enableHiding: false,
+  },
   {
     accessorKey: 'id',
     header: 'ID',
     cell: ({ row }) => (
-      <span className="font-mono text-xs lg:pr-8 xl:pr-12 2xl:pr-18">
+      <span className="font-mono text-xs lg:pr-2 2xl:pr-18">
         {row.original.id}
       </span>
     ),

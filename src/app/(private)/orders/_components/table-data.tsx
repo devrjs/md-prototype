@@ -4,6 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { getOrders } from '@/http/kubb'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
+import { TableSkeleton } from './table-skeleton'
 import { TableContainer } from './table/table-container'
 
 export function TableData() {
@@ -19,7 +20,7 @@ export function TableData() {
   return (
     <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
       {isLoadingOrders ? (
-        <Skeleton className="h-8 w-full" />
+        <TableSkeleton />
       ) : (
         <TableContainer
           data={ordersData?.orders ?? []}

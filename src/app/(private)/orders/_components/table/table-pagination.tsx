@@ -17,10 +17,10 @@ import {
 } from '@tabler/icons-react'
 import type { Table } from '@tanstack/react-table'
 import { useRouter, useSearchParams } from 'next/navigation'
-import type { TableType } from './table-schema'
+import type { TableItemType } from './table-schema'
 
 interface TablePaginationProps {
-  table: Table<TableType>
+  table: Table<TableItemType>
 }
 
 export function TablePagination({ table }: TablePaginationProps) {
