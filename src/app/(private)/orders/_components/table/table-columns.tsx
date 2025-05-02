@@ -23,7 +23,9 @@ export const tableColumns: ColumnDef<TableType>[] = [
     accessorKey: 'id',
     header: 'ID',
     cell: ({ row }) => (
-      <span className="font-mono text-xs">{row.original.id}</span>
+      <span className="font-mono text-xs lg:pr-8 xl:pr-12 2xl:pr-18">
+        {row.original.id}
+      </span>
     ),
   },
   {
