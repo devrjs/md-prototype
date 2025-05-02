@@ -4,16 +4,16 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { getOrders } from '@/http/kubb'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
-import { TableMain } from './table/table-main'
+import { TableContainer } from './table/table-container'
 
-export function OrderData() {
+export function OrdersData() {
   const searchParams = useSearchParams()
-  const pageIndex = Number(searchParams.get('page')) || 0
+  const pageIndex = Number(searchParams.get('page')) || 1
   const pageSize = Number(searchParams.get('pageSize')) || 10
 
   const { data: ordersData, isLoading: isLoadingOrders } = useQuery({
     queryKey: ['orders', pageIndex, pageSize],
-    queryFn: () => getOrders({ pageIndex: pageIndex + 1, perPage: pageSize }),
+    queryFn: async () => await getOrders({ pageIndex, perPage: pageSize }),
   })
 
   return (
@@ -21,12 +21,10 @@ export function OrderData() {
       {isLoadingOrders ? (
         <Skeleton className="h-8 w-full" />
       ) : (
-        <TableMain
-          data={ordersData?.orders}
-          initialPageIndex={pageIndex}
-          initialPageSize={pageSize}
-          pageCount={ordersData?.pageCount ?? 0}
-          totalCount={ordersData?.totalCount ?? 0}
+        <TableContainer
+          data={ordersData?.orders ?? []}
+          pagination={{ pageIndex, pageSize }}
+          rowCount={ordersData?.totalCount ?? 0}
         />
       )}
     </div>

@@ -23,14 +23,14 @@ import { TablePagination } from './table-pagination'
 
 export function TableMain({
   data: initialData = [],
-  initialPageIndex,
-  initialPageSize,
+  pageIndex,
+  pageSize,
   pageCount,
   totalCount,
 }: {
   data?: OrderItem[]
-  initialPageIndex: number
-  initialPageSize: number
+  pageIndex: number
+  pageSize: number
   pageCount: number
   totalCount: number
 }) {
@@ -44,8 +44,8 @@ export function TableMain({
   )
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [pagination, setPagination] = React.useState({
-    pageIndex: initialPageIndex,
-    pageSize: initialPageSize,
+    pageIndex,
+    pageSize,
   })
 
   // Obter as colunas da tabela

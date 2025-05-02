@@ -1,13 +1,5 @@
 'use client'
 
-import {
-  IconChevronLeft,
-  IconChevronRight,
-  IconChevronsLeft,
-  IconChevronsRight,
-} from '@tabler/icons-react'
-import type { Table } from '@tanstack/react-table'
-
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import {
@@ -17,30 +9,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-
-import { useSearchParams } from 'next/navigation'
-import type { OrderItem } from './schema'
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconChevronsLeft,
+  IconChevronsRight,
+} from '@tabler/icons-react'
+import type { Table } from '@tanstack/react-table'
+import { useRouter, useSearchParams } from 'next/navigation'
+import type { TableType } from './table-schema'
 
 interface TablePaginationProps {
-  table: Table<OrderItem>
+  table: Table<TableType>
 }
 
 export function TablePagination({ table }: TablePaginationProps) {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams.toString())
 
-  function nextPage() {
-    table.nextPage()
-
-    params.set('page', String(table.getState().pagination.pageIndex))
+  function updateUrlParams(newParams: { page?: number; pageSize?: number }) {
+    if (newParams.page) params.set('page', String(newParams.page))
+    if (newParams.pageSize) {
+      params.set('pageSize', String(newParams.pageSize))
+      params.set('page', '1')
+    }
+    router.push(`?${params.toString()}`)
   }
 
   return (
-    <div className="flex items-center justify-between px-4">
-      <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
-        {table.getFilteredSelectedRowModel().rows.length} de{' '}
-        {table.getFilteredRowModel().rows.length} linha(s) selecionada(s).
-      </div>
+    <div className="flex items-center justify-end px-4">
       <div className="flex w-full items-center gap-8 lg:w-fit">
         <div className="hidden items-center gap-2 lg:flex">
           <Label htmlFor="rows-per-page" className="text-sm font-medium">
@@ -49,7 +47,11 @@ export function TablePagination({ table }: TablePaginationProps) {
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={value => {
-              table.setPageSize(Number(value))
+              const newSize = Number(value)
+              table.setPageSize(newSize)
+              updateUrlParams({
+                pageSize: newSize,
+              })
             }}
           >
             <SelectTrigger size="sm" className="w-20" id="rows-per-page">
@@ -65,15 +67,20 @@ export function TablePagination({ table }: TablePaginationProps) {
           </Select>
         </div>
         <div className="flex w-fit items-center justify-center text-sm font-medium">
-          Página {table.getState().pagination.pageIndex + 1} de{' '}
+          Página {table.getState().pagination.pageIndex} de{' '}
           {table.getPageCount()}
         </div>
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
           <Button
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
+            onClick={() => {
+              table.setPageIndex(0)
+              updateUrlParams({
+                page: 1,
+              })
+            }}
+            disabled={table.getState().pagination.pageIndex <= 1}
           >
             <span className="sr-only">Ir para primeira página</span>
             <IconChevronsLeft />
@@ -82,8 +89,16 @@ export function TablePagination({ table }: TablePaginationProps) {
             variant="outline"
             className="size-8"
             size="icon"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={() => {
+              table.previousPage()
+              const newIndex = table.getState().pagination.pageIndex - 1
+              if (newIndex >= 0) {
+                updateUrlParams({
+                  page: newIndex,
+                })
+              }
+            }}
+            disabled={table.getState().pagination.pageIndex <= 1}
           >
             <span className="sr-only">Ir para página anterior</span>
             <IconChevronLeft />
@@ -92,8 +107,16 @@ export function TablePagination({ table }: TablePaginationProps) {
             variant="outline"
             className="size-8"
             size="icon"
-            onClick={() => nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={() => {
+              table.nextPage()
+              const newIndex = table.getState().pagination.pageIndex + 1
+              updateUrlParams({
+                page: newIndex,
+              })
+            }}
+            disabled={
+              table.getState().pagination.pageIndex >= table.getPageCount()
+            }
           >
             <span className="sr-only">Ir para próxima página</span>
             <IconChevronRight />
@@ -102,8 +125,16 @@ export function TablePagination({ table }: TablePaginationProps) {
             variant="outline"
             className="hidden size-8 lg:flex"
             size="icon"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
+            onClick={() => {
+              const lastPageIndex = table.getPageCount()
+              table.setPageIndex(lastPageIndex)
+              updateUrlParams({
+                page: lastPageIndex,
+              })
+            }}
+            disabled={
+              table.getState().pagination.pageIndex >= table.getPageCount()
+            }
           >
             <span className="sr-only">Ir para última página</span>
             <IconChevronsRight />

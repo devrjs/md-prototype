@@ -1,12 +1,3 @@
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import {
   IconCircleCheckFilled,
   IconDotsVertical,
@@ -15,12 +6,59 @@ import {
 import type { ColumnDef } from '@tanstack/react-table'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { SquarePen, Trash } from 'lucide-react'
-import type { TableType } from './table-schema'
 
-export const tableColumns: ColumnDef<TableType>[] = [
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
+import { SquarePen, Trash } from 'lucide-react'
+import type { OrderItem } from './schema'
+import { TableCellViewer } from './table-cell-viewer'
+
+// Definição das colunas da tabela
+export const getColumns = (): ColumnDef<OrderItem>[] => [
+  // {
+  //   id: 'select',
+  //   header: ({ table }) => (
+  //     <div className="flex items-center justify-center">
+  //       <Checkbox
+  //         checked={
+  //           table.getIsAllPageRowsSelected() ||
+  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
+  //         }
+  //         onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
+  //         aria-label="Select all"
+  //       />
+  //     </div>
+  //   ),
+  //   cell: ({ row }) => (
+  //     <div className="flex items-center justify-center">
+  //       <Checkbox
+  //         checked={row.getIsSelected()}
+  //         onCheckedChange={value => row.toggleSelected(!!value)}
+  //         aria-label="Select row"
+  //       />
+  //     </div>
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
-    accessorKey: 'id',
+    id: 'viewer',
+    cell: ({ row }) => {
+      return <TableCellViewer item={row.original} />
+    },
+    enableHiding: false,
+  },
+  {
+    accessorKey: 'ID',
     header: 'ID',
     cell: ({ row }) => (
       <span className="font-mono text-xs">{row.original.id}</span>
