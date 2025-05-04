@@ -1,6 +1,5 @@
 'use client'
 
-import { Skeleton } from '@/components/ui/skeleton'
 import { getOrders } from '@/http/kubb'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'

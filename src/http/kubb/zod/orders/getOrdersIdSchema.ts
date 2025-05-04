@@ -45,6 +45,29 @@ export const getOrdersId200Schema = z
         product_variation_id: z.string().nullable(),
       }),
     ),
+    platform_order_details: z
+      .object({
+        platform_name: z.enum(['SHOPEE', 'MERCADO_LIVRE', 'TRAY', 'LOCAL']),
+        external_order_id: z.string(),
+      })
+      .nullable(),
+    order_payment: z
+      .object({
+        id: z.string(),
+        buyer_payment_method: z.string(),
+        shipping_cost: z.number(),
+        total_order_price: z.number(),
+        seller_discount: z.number(),
+        platform_discount: z.number(),
+        platform_coins: z.number(),
+        buyer_paid_amount: z.number(),
+        total_platform_fee: z.number(),
+        total_platform_fee_with_discounts: z.number(),
+        amount_received_from_sale: z.number(),
+        created_at: z.string().datetime({ offset: true }),
+        updated_at: z.string().datetime({ offset: true }),
+      })
+      .nullable(),
   })
   .describe('Detalhes do pedido obtidos com sucesso.') as unknown as ToZod<GetOrdersId200Type>
 

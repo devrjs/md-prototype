@@ -166,6 +166,7 @@ export type {
 } from './types/PedidosTypes/DeleteOrdersIdType.ts'
 export type {
   GetOrdersIdPathParamsType,
+  PlatformOrderDetailsPlatformNameEnum2Type,
   GetOrdersId200Type,
   GetOrdersId401Type,
   GetOrdersId404Type,
@@ -588,6 +589,7 @@ export { getSuppliersQueryParamsOrderByEnum, suppliersDocumentTypeEnum } from '.
 export { postSuppliers201Enum, postSuppliersMutationRequestDocumentTypeEnum } from './types/FornecedoresTypes/PostSuppliersType.ts'
 export { putSuppliersId200Enum, putSuppliersIdMutationRequestDocumentTypeEnum } from './types/FornecedoresTypes/PutSuppliersIdType.ts'
 export { deleteOrdersId200Enum } from './types/PedidosTypes/DeleteOrdersIdType.ts'
+export { platformOrderDetailsPlatformNameEnum2 } from './types/PedidosTypes/GetOrdersIdType.ts'
 export { getOrdersQueryParamsOrderByEnum, getOrdersQueryParamsStatusEnum, platformOrderDetailsPlatformNameEnum } from './types/PedidosTypes/GetOrdersType.ts'
 export {
   postOrders201Enum,

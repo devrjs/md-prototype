@@ -10,7 +10,7 @@ import { z } from 'zod'
 export const getOrdersQueryParamsSchema = z
   .object({
     perPage: z.number().default(10),
-    pageIndex: z.number().default(0),
+    pageIndex: z.number().min(1).default(1),
     orderBy: z.enum(['asc', 'desc']).default('desc'),
     status: z.enum(['PROCESSED', 'CANCELLED']).optional(),
     orderId: z.string().optional(),

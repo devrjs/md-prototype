@@ -1,4 +1,5 @@
 {
+  "cSpell.language": "en,pt_BR",
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -12,5 +13,5 @@
     "source.organizeImports.biome": "explicit",
     "source.fixAll.biome": "explicit"
   },
-  "editor.formatOnSave": true
+  "cSpell.words": ["cnpj", "kubb", "sonner", "tabler"]
 }

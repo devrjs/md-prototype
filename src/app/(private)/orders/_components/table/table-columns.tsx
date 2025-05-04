@@ -31,21 +31,8 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
     accessorKey: 'id',
     header: 'ID',
     cell: ({ row }) => (
-      <span className="font-mono text-xs lg:pr-2 2xl:pr-18">
-        {row.original.id}
-      </span>
+      <span className="font-mono text-xs lg:pr-2">{row.original.id}</span>
     ),
-  },
-  {
-    accessorKey: 'número do pedido',
-    header: 'Número do pedido',
-    cell: ({ row }) => row.original.platform_order_details?.external_order_id,
-  },
-  {
-    accessorKey: 'plataforma',
-    header: 'Plataforma',
-    cell: ({ row }) =>
-      row.original.platform_order_details?.platform_name || 'N/A',
   },
   {
     accessorKey: 'realizado há',
@@ -70,6 +57,17 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
         {row.original.status}
       </Badge>
     ),
+  },
+  {
+    accessorKey: 'número do pedido',
+    header: 'Número do pedido',
+    cell: ({ row }) => row.original.platform_order_details?.external_order_id,
+  },
+  {
+    accessorKey: 'plataforma',
+    header: 'Plataforma',
+    cell: ({ row }) =>
+      row.original.platform_order_details?.platform_name || 'N/A',
   },
   {
     accessorKey: 'transportadora',

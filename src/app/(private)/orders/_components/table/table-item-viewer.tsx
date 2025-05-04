@@ -29,6 +29,7 @@ import {
 } from '@/components/ui/table'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { getOrdersId } from '@/http/kubb'
+import { formatToBRL } from '@/utils/format-to-brl'
 import { IconPhoto, IconSearch } from '@tabler/icons-react'
 import { useQuery } from '@tanstack/react-query'
 import { toast } from 'sonner'
@@ -55,12 +56,19 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="gap-1">
-          <DrawerTitle>ID: {itemId}</DrawerTitle>
-          <DrawerDescription>Pedido: [item]</DrawerDescription>
+          <DrawerTitle>Detalhes do pedido</DrawerTitle>
+          <DrawerDescription>ID: {itemId}</DrawerDescription>
+          <DrawerDescription>
+            Número do Pedido:{' '}
+            {orderData?.platform_order_details?.external_order_id}
+          </DrawerDescription>
         </DrawerHeader>
         <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
           {orderData?.items.map(item => (
-            <div key={item.id}>
+            <div
+              key={item.id}
+              className="border rounded-t-2xl rounded-b bg-accent/50"
+            >
               <Table className="w-full table-fixed text-center border-separate">
                 <TableBody>
                   <TableRow>
@@ -72,113 +80,95 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
                     </TableCell>
                   </TableRow>
 
-                  <TableRow>
-                    {/* Coluna da imagem */}
+                  <TableRow className="text-xs">
+                    <TableHead
+                      colSpan={2}
+                      className="font-bold text-center border whitespace-pre-wrap break-words"
+                    >
+                      SKU
+                    </TableHead>
+                    <TableHead
+                      colSpan={2}
+                      className="font-bold border text-center"
+                    >
+                      PRATELEIRA
+                    </TableHead>
+                  </TableRow>
+                  <TableRow className="text-xs">
+                    <TableCell colSpan={2} className="border">
+                      {item.variation_sku}
+                    </TableCell>
+                    <TableCell colSpan={2} className="border">
+                      -
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow className="text-xs">
                     <TableHead
                       rowSpan={2}
-                      className="align-center px-0 w-24 border rounded bg-gray-100"
+                      className="align-center px-0 w-24 borders rounded bg-gray-100"
                     >
                       <div className="w-full flex flex-col items-center justify-center text-muted-foreground/80">
                         <IconPhoto className="size-8" />
-                        <span className="text-xs self-center">sem imagem</span>
+                        <span className="self-center">sem imagem</span>
                       </div>
                     </TableHead>
 
-                    {/* Cabeçalhos */}
-                    <TableHead className="font-bold">QTDE</TableHead>
-                    <TableHead className="font-bold">PREÇO</TableHead>
-                    <TableHead className="font-bold">DESCONTO</TableHead>
+                    <TableHead className="font-bold border text-center whitespace-pre-wrap break-words">
+                      QUANT.
+                    </TableHead>
+                    <TableHead className="font-bold border text-center">
+                      PREÇO
+                    </TableHead>
+                    <TableHead className="font-bold border text-center">
+                      DESCONTO
+                    </TableHead>
                   </TableRow>
-                  <TableRow>
-                    <TableCell>{item.quantity}</TableCell>
-                    <TableCell>R$ {item.unit_price}</TableCell>
-                    <TableCell>R$ {item.unit_price}</TableCell>
+                  <TableRow className="text-xs">
+                    <TableCell className="border">{item.quantity}</TableCell>
+                    <TableCell className="border">
+                      {formatToBRL(item.unit_price)}
+                    </TableCell>
+                    <TableCell className="border">
+                      {formatToBRL(
+                        item.unit_price - item.unit_price_with_discount
+                      )}
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </div>
           ))}
 
-          <form className="flex flex-col gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-3">
-              <Input id="header" defaultValue={orderData?.items[0].name} />
+              <Label htmlFor="limit">Taxa da plataforma</Label>
+              <span>
+                {orderData?.order_payment?.total_platform_fee_with_discounts}
+              </span>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="type">Type</Label>
-                <Select defaultValue={itemId}>
-                  <SelectTrigger id="type" className="w-full">
-                    <SelectValue placeholder="Select a type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Table of Contents">
-                      Table of Contents
-                    </SelectItem>
-                    <SelectItem value="Executive Summary">
-                      Executive Summary
-                    </SelectItem>
-                    <SelectItem value="Technical Approach">
-                      Technical Approach
-                    </SelectItem>
-                    <SelectItem value="Design">Design</SelectItem>
-                    <SelectItem value="Capabilities">Capabilities</SelectItem>
-                    <SelectItem value="Focus Documents">
-                      Focus Documents
-                    </SelectItem>
-                    <SelectItem value="Narrative">Narrative</SelectItem>
-                    <SelectItem value="Cover Page">Cover Page</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="status">Status</Label>
-                <Select defaultValue={itemId}>
-                  <SelectTrigger id="status" className="w-full">
-                    <SelectValue placeholder="Select a status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Done">Done</SelectItem>
-                    <SelectItem value="In Progress">In Progress</SelectItem>
-                    <SelectItem value="Not Started">Not Started</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="target">Target</Label>
-                <Input id="target" defaultValue={itemId} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <Label htmlFor="limit">Limit</Label>
-                <Input id="limit" defaultValue={itemId} />
-              </div>
-            </div>
+
             <div className="flex flex-col gap-3">
-              <Label htmlFor="reviewer">Reviewer</Label>
-              <Select defaultValue={itemId}>
-                <SelectTrigger id="reviewer" className="w-full">
-                  <SelectValue placeholder="Select a reviewer" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
-                  <SelectItem value="Jamik Tashpulatov">
-                    Jamik Tashpulatov
-                  </SelectItem>
-                  <SelectItem value="Emily Whalen">Emily Whalen</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label htmlFor="target">Valor Recebido</Label>
+              <span>{orderData?.order_payment?.amount_received_from_sale}</span>
             </div>
-          </form>
+
+            <span>
+              {Number(orderData?.order_payment?.amount_received_from_sale) +
+                Number(
+                  orderData?.order_payment?.total_platform_fee_with_discounts
+                )}
+            </span>
+          </div>
         </div>
-        <DrawerFooter>
+        {/* <DrawerFooter>
           <Button onClick={() => toast.success('Changes saved successfully')}>
             Submit
           </Button>
           <DrawerClose asChild>
             <Button variant="outline">Done</Button>
           </DrawerClose>
-        </DrawerFooter>
+        </DrawerFooter> */}
       </DrawerContent>
     </Drawer>
   )
