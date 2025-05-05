@@ -23,7 +23,7 @@ function getPostShopeeAuthTokenUrl() {
  * {@link /shopee/auth/token}
  */
 export async function postShopeeAuthToken(
-  { data }: { data: PostShopeeAuthTokenMutationRequestType },
+  data: PostShopeeAuthTokenMutationRequestType,
   config: Partial<RequestConfig<PostShopeeAuthTokenMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

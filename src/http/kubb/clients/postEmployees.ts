@@ -22,7 +22,7 @@ function getPostEmployeesUrl() {
  * {@link /employees}
  */
 export async function postEmployees(
-  { data }: { data: PostEmployeesMutationRequestType },
+  data: PostEmployeesMutationRequestType,
   config: Partial<RequestConfig<PostEmployeesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

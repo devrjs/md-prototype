@@ -22,7 +22,7 @@ function getPostProductsUploadUrl() {
  * {@link /products/upload}
  */
 export async function postProductsUpload(
-  { data }: { data?: PostProductsUploadMutationRequestType },
+  data?: PostProductsUploadMutationRequestType,
   config: Partial<RequestConfig<PostProductsUploadMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

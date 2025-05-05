@@ -17,7 +17,7 @@ function getPostUsersUrl() {
  * {@link /users}
  */
 export async function postUsers(
-  { data }: { data: PostUsersMutationRequestType },
+  data: PostUsersMutationRequestType,
   config: Partial<RequestConfig<PostUsersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

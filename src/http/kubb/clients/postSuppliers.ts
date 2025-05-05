@@ -22,7 +22,7 @@ function getPostSuppliersUrl() {
  * {@link /suppliers}
  */
 export async function postSuppliers(
-  { data }: { data: PostSuppliersMutationRequestType },
+  data: PostSuppliersMutationRequestType,
   config: Partial<RequestConfig<PostSuppliersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

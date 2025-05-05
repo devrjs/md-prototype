@@ -14,7 +14,7 @@ import type {
   PutOrdersId404Type,
 } from '../types/orders/PutOrdersIdType'
 
-function getPutOrdersIdUrl({ id }: { id: PutOrdersIdPathParamsType['id'] }) {
+function getPutOrdersIdUrl(id: PutOrdersIdPathParamsType['id']) {
   return `http://localhost:3333/orders/${id}` as const
 }
 
@@ -24,7 +24,8 @@ function getPutOrdersIdUrl({ id }: { id: PutOrdersIdPathParamsType['id'] }) {
  * {@link /orders/:id}
  */
 export async function putOrdersId(
-  { id, data }: { id: PutOrdersIdPathParamsType['id']; data: PutOrdersIdMutationRequestType },
+  id: PutOrdersIdPathParamsType['id'],
+  data: PutOrdersIdMutationRequestType,
   config: Partial<RequestConfig<PutOrdersIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
@@ -33,6 +34,6 @@ export async function putOrdersId(
     PutOrdersIdMutationResponseType,
     ResponseErrorConfig<PutOrdersId400Type | PutOrdersId401Type | PutOrdersId404Type>,
     PutOrdersIdMutationRequestType
-  >({ method: 'PUT', url: getPutOrdersIdUrl({ id }).toString(), data, ...requestConfig })
+  >({ method: 'PUT', url: getPutOrdersIdUrl(id).toString(), data, ...requestConfig })
   return res.data
 }

@@ -20,10 +20,7 @@ function getPostShopeeOrderImportUrl() {
 /**
  * {@link /shopee/order/import}
  */
-export async function postShopeeOrderImport(
-  { params }: { params: PostShopeeOrderImportQueryParamsType },
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
-) {
+export async function postShopeeOrderImport(params: PostShopeeOrderImportQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<

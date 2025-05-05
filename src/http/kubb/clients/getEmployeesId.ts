@@ -12,7 +12,7 @@ import type {
   GetEmployeesId404Type,
 } from '../types/employees/GetEmployeesIdType'
 
-function getGetEmployeesIdUrl({ id }: { id: GetEmployeesIdPathParamsType['id'] }) {
+function getGetEmployeesIdUrl(id: GetEmployeesIdPathParamsType['id']) {
   return `http://localhost:3333/employees/${id}` as const
 }
 
@@ -21,12 +21,12 @@ function getGetEmployeesIdUrl({ id }: { id: GetEmployeesIdPathParamsType['id'] }
  * @summary Retorna informações um colaborador específico.
  * {@link /employees/:id}
  */
-export async function getEmployeesId({ id }: { id: GetEmployeesIdPathParamsType['id'] }, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getEmployeesId(id: GetEmployeesIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetEmployeesIdQueryResponseType, ResponseErrorConfig<GetEmployeesId401Type | GetEmployeesId404Type>, unknown>({
     method: 'GET',
-    url: getGetEmployeesIdUrl({ id }).toString(),
+    url: getGetEmployeesIdUrl(id).toString(),
     ...requestConfig,
   })
   return res.data

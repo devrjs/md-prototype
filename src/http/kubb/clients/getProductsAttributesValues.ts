@@ -21,7 +21,7 @@ function getGetProductsAttributesValuesUrl() {
  * {@link /products/attributes/values}
  */
 export async function getProductsAttributesValues(
-  { params }: { params: GetProductsAttributesValuesQueryParamsType },
+  params: GetProductsAttributesValuesQueryParamsType,
   config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

@@ -12,7 +12,7 @@ import type {
   GetCustomersId404Type,
 } from '../types/customers/GetCustomersIdType'
 
-function getGetCustomersIdUrl({ id }: { id: GetCustomersIdPathParamsType['id'] }) {
+function getGetCustomersIdUrl(id: GetCustomersIdPathParamsType['id']) {
   return `http://localhost:3333/customers/${id}` as const
 }
 
@@ -21,12 +21,12 @@ function getGetCustomersIdUrl({ id }: { id: GetCustomersIdPathParamsType['id'] }
  * @summary Retorna informações de um cliente específico.
  * {@link /customers/:id}
  */
-export async function getCustomersId({ id }: { id: GetCustomersIdPathParamsType['id'] }, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getCustomersId(id: GetCustomersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetCustomersIdQueryResponseType, ResponseErrorConfig<GetCustomersId401Type | GetCustomersId404Type>, unknown>({
     method: 'GET',
-    url: getGetCustomersIdUrl({ id }).toString(),
+    url: getGetCustomersIdUrl(id).toString(),
     ...requestConfig,
   })
   return res.data

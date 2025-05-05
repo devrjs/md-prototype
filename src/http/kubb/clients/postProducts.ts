@@ -22,7 +22,7 @@ function getPostProductsUrl() {
  * {@link /products}
  */
 export async function postProducts(
-  { data }: { data: PostProductsMutationRequestType },
+  data: PostProductsMutationRequestType,
   config: Partial<RequestConfig<PostProductsMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

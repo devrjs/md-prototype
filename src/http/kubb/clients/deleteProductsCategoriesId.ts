@@ -12,7 +12,7 @@ import type {
   DeleteProductsCategoriesId404Type,
 } from '../types/products/DeleteProductsCategoriesIdType'
 
-function getDeleteProductsCategoriesIdUrl({ id }: { id: DeleteProductsCategoriesIdPathParamsType['id'] }) {
+function getDeleteProductsCategoriesIdUrl(id: DeleteProductsCategoriesIdPathParamsType['id']) {
   return `http://localhost:3333/products/categories/${id}` as const
 }
 
@@ -22,7 +22,7 @@ function getDeleteProductsCategoriesIdUrl({ id }: { id: DeleteProductsCategories
  * {@link /products/categories/:id}
  */
 export async function deleteProductsCategoriesId(
-  { id }: { id: DeleteProductsCategoriesIdPathParamsType['id'] },
+  id: DeleteProductsCategoriesIdPathParamsType['id'],
   config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
@@ -31,6 +31,6 @@ export async function deleteProductsCategoriesId(
     DeleteProductsCategoriesIdMutationResponseType,
     ResponseErrorConfig<DeleteProductsCategoriesId401Type | DeleteProductsCategoriesId404Type>,
     unknown
-  >({ method: 'DELETE', url: getDeleteProductsCategoriesIdUrl({ id }).toString(), ...requestConfig })
+  >({ method: 'DELETE', url: getDeleteProductsCategoriesIdUrl(id).toString(), ...requestConfig })
   return res.data
 }

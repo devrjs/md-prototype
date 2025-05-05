@@ -12,7 +12,7 @@ import type {
   GetProductsId404Type,
 } from '../types/products/GetProductsIdType'
 
-function getGetProductsIdUrl({ id }: { id: GetProductsIdPathParamsType['id'] }) {
+function getGetProductsIdUrl(id: GetProductsIdPathParamsType['id']) {
   return `http://localhost:3333/products/${id}` as const
 }
 
@@ -21,12 +21,12 @@ function getGetProductsIdUrl({ id }: { id: GetProductsIdPathParamsType['id'] }) 
  * @summary Retorna as informações de um produto específico.
  * {@link /products/:id}
  */
-export async function getProductsId({ id }: { id: GetProductsIdPathParamsType['id'] }, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProductsId(id: GetProductsIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetProductsIdQueryResponseType, ResponseErrorConfig<GetProductsId401Type | GetProductsId404Type>, unknown>({
     method: 'GET',
-    url: getGetProductsIdUrl({ id }).toString(),
+    url: getGetProductsIdUrl(id).toString(),
     ...requestConfig,
   })
   return res.data

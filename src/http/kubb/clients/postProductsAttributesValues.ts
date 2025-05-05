@@ -22,7 +22,7 @@ function getPostProductsAttributesValuesUrl() {
  * {@link /products/attributes/values}
  */
 export async function postProductsAttributesValues(
-  { data }: { data: PostProductsAttributesValuesMutationRequestType },
+  data: PostProductsAttributesValuesMutationRequestType,
   config: Partial<RequestConfig<PostProductsAttributesValuesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

@@ -22,7 +22,7 @@ function getPostProductsCategoriesUrl() {
  * {@link /products/categories}
  */
 export async function postProductsCategories(
-  { data }: { data: PostProductsCategoriesMutationRequestType },
+  data: PostProductsCategoriesMutationRequestType,
   config: Partial<RequestConfig<PostProductsCategoriesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

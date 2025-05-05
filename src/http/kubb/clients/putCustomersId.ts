@@ -13,7 +13,7 @@ import type {
   PutCustomersId404Type,
 } from '../types/customers/PutCustomersIdType'
 
-function getPutCustomersIdUrl({ id }: { id: PutCustomersIdPathParamsType['id'] }) {
+function getPutCustomersIdUrl(id: PutCustomersIdPathParamsType['id']) {
   return `http://localhost:3333/customers/${id}` as const
 }
 
@@ -23,7 +23,8 @@ function getPutCustomersIdUrl({ id }: { id: PutCustomersIdPathParamsType['id'] }
  * {@link /customers/:id}
  */
 export async function putCustomersId(
-  { id, data }: { id: PutCustomersIdPathParamsType['id']; data: PutCustomersIdMutationRequestType },
+  id: PutCustomersIdPathParamsType['id'],
+  data: PutCustomersIdMutationRequestType,
   config: Partial<RequestConfig<PutCustomersIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
@@ -32,6 +33,6 @@ export async function putCustomersId(
     PutCustomersIdMutationResponseType,
     ResponseErrorConfig<PutCustomersId401Type | PutCustomersId404Type>,
     PutCustomersIdMutationRequestType
-  >({ method: 'PUT', url: getPutCustomersIdUrl({ id }).toString(), data, ...requestConfig })
+  >({ method: 'PUT', url: getPutCustomersIdUrl(id).toString(), data, ...requestConfig })
   return res.data
 }

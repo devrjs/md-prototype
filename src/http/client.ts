@@ -1,4 +1,3 @@
-import { env } from '@/env'
 import { HTTPError } from '@/errors/http-error'
 
 export type RequestConfig<TData = unknown> = {
@@ -46,20 +45,17 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
 
   const params = new URLSearchParams(config.params as Record<string, string>)
 
-  const response = await fetch(
-    `${env.NEXT_PUBLIC_API_URL}${config.url}?${params}`,
-    {
-      method: config.method.toUpperCase(),
-      body: JSON.stringify(config.data),
-      signal: config.signal,
+  const response = await fetch(`${config.url}?${params}`, {
+    method: config.method.toUpperCase(),
+    body: JSON.stringify(config.data),
+    signal: config.signal,
 
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-        ...config.headers,
-      },
-    }
-  )
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      ...config.headers,
+    },
+  })
 
   const data = await response.json()
 

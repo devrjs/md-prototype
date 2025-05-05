@@ -21,7 +21,7 @@ function getPostSessionsPasswordUrl() {
  * {@link /sessions/password}
  */
 export async function postSessionsPassword(
-  { data }: { data: PostSessionsPasswordMutationRequestType },
+  data: PostSessionsPasswordMutationRequestType,
   config: Partial<RequestConfig<PostSessionsPasswordMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

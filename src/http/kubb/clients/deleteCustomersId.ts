@@ -12,7 +12,7 @@ import type {
   DeleteCustomersId404Type,
 } from '../types/customers/DeleteCustomersIdType'
 
-function getDeleteCustomersIdUrl({ id }: { id: DeleteCustomersIdPathParamsType['id'] }) {
+function getDeleteCustomersIdUrl(id: DeleteCustomersIdPathParamsType['id']) {
   return `http://localhost:3333/customers/${id}` as const
 }
 
@@ -21,15 +21,12 @@ function getDeleteCustomersIdUrl({ id }: { id: DeleteCustomersIdPathParamsType['
  * @summary Remove um cliente específico.
  * {@link /customers/:id}
  */
-export async function deleteCustomersId(
-  { id }: { id: DeleteCustomersIdPathParamsType['id'] },
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
-) {
+export async function deleteCustomersId(id: DeleteCustomersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<DeleteCustomersIdMutationResponseType, ResponseErrorConfig<DeleteCustomersId401Type | DeleteCustomersId404Type>, unknown>({
     method: 'DELETE',
-    url: getDeleteCustomersIdUrl({ id }).toString(),
+    url: getDeleteCustomersIdUrl(id).toString(),
     ...requestConfig,
   })
   return res.data

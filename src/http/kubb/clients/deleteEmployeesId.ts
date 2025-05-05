@@ -12,7 +12,7 @@ import type {
   DeleteEmployeesId404Type,
 } from '../types/employees/DeleteEmployeesIdType'
 
-function getDeleteEmployeesIdUrl({ id }: { id: DeleteEmployeesIdPathParamsType['id'] }) {
+function getDeleteEmployeesIdUrl(id: DeleteEmployeesIdPathParamsType['id']) {
   return `http://localhost:3333/employees/${id}` as const
 }
 
@@ -21,15 +21,12 @@ function getDeleteEmployeesIdUrl({ id }: { id: DeleteEmployeesIdPathParamsType['
  * @summary Remove um colaborador específico.
  * {@link /employees/:id}
  */
-export async function deleteEmployeesId(
-  { id }: { id: DeleteEmployeesIdPathParamsType['id'] },
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
-) {
+export async function deleteEmployeesId(id: DeleteEmployeesIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<DeleteEmployeesIdMutationResponseType, ResponseErrorConfig<DeleteEmployeesId401Type | DeleteEmployeesId404Type>, unknown>({
     method: 'DELETE',
-    url: getDeleteEmployeesIdUrl({ id }).toString(),
+    url: getDeleteEmployeesIdUrl(id).toString(),
     ...requestConfig,
   })
   return res.data

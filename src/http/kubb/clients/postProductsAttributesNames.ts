@@ -22,7 +22,7 @@ function getPostProductsAttributesNamesUrl() {
  * {@link /products/attributes/names}
  */
 export async function postProductsAttributesNames(
-  { data }: { data: PostProductsAttributesNamesMutationRequestType },
+  data: PostProductsAttributesNamesMutationRequestType,
   config: Partial<RequestConfig<PostProductsAttributesNamesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

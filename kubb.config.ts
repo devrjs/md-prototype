@@ -36,7 +36,6 @@ export default defineConfig({
     pluginClient({
       client: 'fetch',
       importPath: '@/http/client',
-      paramsType: 'object',
       baseURL: process.env.NEXT_PUBLIC_API_URL,
     }),
 
