@@ -13,7 +13,7 @@ import type {
 } from '../types/customers/PostCustomersType'
 
 function getPostCustomersUrl() {
-  return '/customers' as const
+  return 'http://localhost:3333/customers' as const
 }
 
 /**
@@ -22,7 +22,7 @@ function getPostCustomersUrl() {
  * {@link /customers}
  */
 export async function postCustomers(
-  data: PostCustomersMutationRequestType,
+  { data }: { data: PostCustomersMutationRequestType },
   config: Partial<RequestConfig<PostCustomersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

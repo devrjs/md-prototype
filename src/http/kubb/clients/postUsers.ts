@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type { PostUsersMutationRequestType, PostUsersMutationResponseType, PostUsers409Type } from '../types/users/PostUsersType'
 
 function getPostUsersUrl() {
-  return '/users' as const
+  return 'http://localhost:3333/users' as const
 }
 
 /**
@@ -17,7 +17,7 @@ function getPostUsersUrl() {
  * {@link /users}
  */
 export async function postUsers(
-  data: PostUsersMutationRequestType,
+  { data }: { data: PostUsersMutationRequestType },
   config: Partial<RequestConfig<PostUsersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

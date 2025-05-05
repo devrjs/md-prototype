@@ -14,7 +14,7 @@ import type {
 } from '../types/orders/PostOrdersType'
 
 function getPostOrdersUrl() {
-  return '/orders' as const
+  return 'http://localhost:3333/orders' as const
 }
 
 /**
@@ -23,7 +23,7 @@ function getPostOrdersUrl() {
  * {@link /orders}
  */
 export async function postOrders(
-  data: PostOrdersMutationRequestType,
+  { data }: { data: PostOrdersMutationRequestType },
   config: Partial<RequestConfig<PostOrdersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

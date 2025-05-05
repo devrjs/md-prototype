@@ -13,7 +13,7 @@ import type {
 } from '../types/suppliers/PostSuppliersType'
 
 function getPostSuppliersUrl() {
-  return '/suppliers' as const
+  return 'http://localhost:3333/suppliers' as const
 }
 
 /**
@@ -22,7 +22,7 @@ function getPostSuppliersUrl() {
  * {@link /suppliers}
  */
 export async function postSuppliers(
-  data: PostSuppliersMutationRequestType,
+  { data }: { data: PostSuppliersMutationRequestType },
   config: Partial<RequestConfig<PostSuppliersMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

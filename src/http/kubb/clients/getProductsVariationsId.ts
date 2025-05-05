@@ -12,8 +12,8 @@ import type {
   GetProductsVariationsId404Type,
 } from '../types/products/GetProductsVariationsIdType'
 
-function getGetProductsVariationsIdUrl(id: GetProductsVariationsIdPathParamsType['id']) {
-  return `/products/variations/${id}` as const
+function getGetProductsVariationsIdUrl({ id }: { id: GetProductsVariationsIdPathParamsType['id'] }) {
+  return `http://localhost:3333/products/variations/${id}` as const
 }
 
 /**
@@ -22,7 +22,7 @@ function getGetProductsVariationsIdUrl(id: GetProductsVariationsIdPathParamsType
  * {@link /products/variations/:id}
  */
 export async function getProductsVariationsId(
-  id: GetProductsVariationsIdPathParamsType['id'],
+  { id }: { id: GetProductsVariationsIdPathParamsType['id'] },
   config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
@@ -31,6 +31,6 @@ export async function getProductsVariationsId(
     GetProductsVariationsIdQueryResponseType,
     ResponseErrorConfig<GetProductsVariationsId401Type | GetProductsVariationsId404Type>,
     unknown
-  >({ method: 'GET', url: getGetProductsVariationsIdUrl(id).toString(), ...requestConfig })
+  >({ method: 'GET', url: getGetProductsVariationsIdUrl({ id }).toString(), ...requestConfig })
   return res.data
 }

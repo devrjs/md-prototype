@@ -13,7 +13,7 @@ import type {
 } from '../types/products/GetProductsVariationsType'
 
 function getGetProductsVariationsUrl() {
-  return '/products/variations' as const
+  return 'http://localhost:3333/products/variations' as const
 }
 
 /**
@@ -21,7 +21,10 @@ function getGetProductsVariationsUrl() {
  * @summary Retorna uma lista de variações de produtos.
  * {@link /products/variations}
  */
-export async function getProductsVariations(params?: GetProductsVariationsQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProductsVariations(
+  { params }: { params?: GetProductsVariationsQueryParamsType },
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
+) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetProductsVariationsQueryResponseType, ResponseErrorConfig<GetProductsVariations401Type | GetProductsVariations404Type>, unknown>({

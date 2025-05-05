@@ -12,8 +12,8 @@ import type {
   DeleteProductsBrandsId404Type,
 } from '../types/products/DeleteProductsBrandsIdType'
 
-function getDeleteProductsBrandsIdUrl(id: DeleteProductsBrandsIdPathParamsType['id']) {
-  return `/products/brands/${id}` as const
+function getDeleteProductsBrandsIdUrl({ id }: { id: DeleteProductsBrandsIdPathParamsType['id'] }) {
+  return `http://localhost:3333/products/brands/${id}` as const
 }
 
 /**
@@ -21,13 +21,16 @@ function getDeleteProductsBrandsIdUrl(id: DeleteProductsBrandsIdPathParamsType['
  * @summary Remove uma marca específica.
  * {@link /products/brands/:id}
  */
-export async function deleteProductsBrandsId(id: DeleteProductsBrandsIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function deleteProductsBrandsId(
+  { id }: { id: DeleteProductsBrandsIdPathParamsType['id'] },
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
+) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     DeleteProductsBrandsIdMutationResponseType,
     ResponseErrorConfig<DeleteProductsBrandsId401Type | DeleteProductsBrandsId404Type>,
     unknown
-  >({ method: 'DELETE', url: getDeleteProductsBrandsIdUrl(id).toString(), ...requestConfig })
+  >({ method: 'DELETE', url: getDeleteProductsBrandsIdUrl({ id }).toString(), ...requestConfig })
   return res.data
 }

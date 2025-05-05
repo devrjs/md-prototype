@@ -13,7 +13,7 @@ import type {
 } from '../types/suppliers/GetSuppliersType'
 
 function getGetSuppliersUrl() {
-  return '/suppliers' as const
+  return 'http://localhost:3333/suppliers' as const
 }
 
 /**
@@ -21,7 +21,7 @@ function getGetSuppliersUrl() {
  * @summary Retorna uma lista de fornecedores cadastrados.
  * {@link /suppliers}
  */
-export async function getSuppliers(params?: GetSuppliersQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getSuppliers({ params }: { params?: GetSuppliersQueryParamsType }, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetSuppliersQueryResponseType, ResponseErrorConfig<GetSuppliers401Type | GetSuppliers404Type>, unknown>({

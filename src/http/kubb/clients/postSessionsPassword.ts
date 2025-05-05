@@ -12,7 +12,7 @@ import type {
 } from '../types/sessions/PostSessionsPasswordType'
 
 function getPostSessionsPasswordUrl() {
-  return '/sessions/password' as const
+  return 'http://localhost:3333/sessions/password' as const
 }
 
 /**
@@ -21,7 +21,7 @@ function getPostSessionsPasswordUrl() {
  * {@link /sessions/password}
  */
 export async function postSessionsPassword(
-  data: PostSessionsPasswordMutationRequestType,
+  { data }: { data: PostSessionsPasswordMutationRequestType },
   config: Partial<RequestConfig<PostSessionsPasswordMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

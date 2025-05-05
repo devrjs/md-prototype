@@ -13,8 +13,8 @@ import type {
   PutSuppliersId404Type,
 } from '../types/suppliers/PutSuppliersIdType'
 
-function getPutSuppliersIdUrl(id: PutSuppliersIdPathParamsType['id']) {
-  return `/suppliers/${id}` as const
+function getPutSuppliersIdUrl({ id }: { id: PutSuppliersIdPathParamsType['id'] }) {
+  return `http://localhost:3333/suppliers/${id}` as const
 }
 
 /**
@@ -23,8 +23,7 @@ function getPutSuppliersIdUrl(id: PutSuppliersIdPathParamsType['id']) {
  * {@link /suppliers/:id}
  */
 export async function putSuppliersId(
-  id: PutSuppliersIdPathParamsType['id'],
-  data: PutSuppliersIdMutationRequestType,
+  { id, data }: { id: PutSuppliersIdPathParamsType['id']; data: PutSuppliersIdMutationRequestType },
   config: Partial<RequestConfig<PutSuppliersIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
@@ -33,6 +32,6 @@ export async function putSuppliersId(
     PutSuppliersIdMutationResponseType,
     ResponseErrorConfig<PutSuppliersId401Type | PutSuppliersId404Type>,
     PutSuppliersIdMutationRequestType
-  >({ method: 'PUT', url: getPutSuppliersIdUrl(id).toString(), data, ...requestConfig })
+  >({ method: 'PUT', url: getPutSuppliersIdUrl({ id }).toString(), data, ...requestConfig })
   return res.data
 }

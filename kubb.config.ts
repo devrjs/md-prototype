@@ -4,12 +4,15 @@ import { pluginOas } from '@kubb/plugin-oas'
 import { pluginTs } from '@kubb/plugin-ts'
 import { pluginZod } from '@kubb/plugin-zod'
 
+import * as dotenv from 'dotenv'
+dotenv.config({ path: '.env.local' })
+
 const OUTPUT_PATH = './src/http/kubb'
 
 export default defineConfig({
   // 🔹 URL do Swagger JSON (OpenAPI) para gerar o código
   input: {
-    path: 'http://localhost:3333/docs/json',
+    path: `${process.env.NEXT_PUBLIC_API_URL}/docs/json`,
   },
 
   // 🔹 Diretório onde os arquivos gerados serão salvos
@@ -33,8 +36,8 @@ export default defineConfig({
     pluginClient({
       client: 'fetch',
       importPath: '@/http/client',
-      // paramsType: 'object',
-      // baseURL: env.API_URL,
+      paramsType: 'object',
+      baseURL: process.env.NEXT_PUBLIC_API_URL,
     }),
 
     // 🔹 Gera automaticamente os tipos TypeScript baseados nos schemas da API

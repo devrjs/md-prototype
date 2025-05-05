@@ -14,7 +14,7 @@ import type {
 } from '../types/shopee/PostShopeeAuthTokenType'
 
 function getPostShopeeAuthTokenUrl() {
-  return '/shopee/auth/token' as const
+  return 'http://localhost:3333/shopee/auth/token' as const
 }
 
 /**
@@ -23,7 +23,7 @@ function getPostShopeeAuthTokenUrl() {
  * {@link /shopee/auth/token}
  */
 export async function postShopeeAuthToken(
-  data: PostShopeeAuthTokenMutationRequestType,
+  { data }: { data: PostShopeeAuthTokenMutationRequestType },
   config: Partial<RequestConfig<PostShopeeAuthTokenMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

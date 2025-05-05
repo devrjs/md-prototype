@@ -13,8 +13,8 @@ import type {
   PutProductsVariationsId404Type,
 } from '../types/products/PutProductsVariationsIdType'
 
-function getPutProductsVariationsIdUrl(id: PutProductsVariationsIdPathParamsType['id']) {
-  return `/products/variations/${id}` as const
+function getPutProductsVariationsIdUrl({ id }: { id: PutProductsVariationsIdPathParamsType['id'] }) {
+  return `http://localhost:3333/products/variations/${id}` as const
 }
 
 /**
@@ -23,8 +23,7 @@ function getPutProductsVariationsIdUrl(id: PutProductsVariationsIdPathParamsType
  * {@link /products/variations/:id}
  */
 export async function putProductsVariationsId(
-  id: PutProductsVariationsIdPathParamsType['id'],
-  data: PutProductsVariationsIdMutationRequestType,
+  { id, data }: { id: PutProductsVariationsIdPathParamsType['id']; data: PutProductsVariationsIdMutationRequestType },
   config: Partial<RequestConfig<PutProductsVariationsIdMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config
@@ -33,6 +32,6 @@ export async function putProductsVariationsId(
     PutProductsVariationsIdMutationResponseType,
     ResponseErrorConfig<PutProductsVariationsId401Type | PutProductsVariationsId404Type>,
     PutProductsVariationsIdMutationRequestType
-  >({ method: 'PUT', url: getPutProductsVariationsIdUrl(id).toString(), data, ...requestConfig })
+  >({ method: 'PUT', url: getPutProductsVariationsIdUrl({ id }).toString(), data, ...requestConfig })
   return res.data
 }

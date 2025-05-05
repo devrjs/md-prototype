@@ -14,13 +14,16 @@ import type {
 } from '../types/shopee/PostShopeeOrderImportType'
 
 function getPostShopeeOrderImportUrl() {
-  return '/shopee/order/import' as const
+  return 'http://localhost:3333/shopee/order/import' as const
 }
 
 /**
  * {@link /shopee/order/import}
  */
-export async function postShopeeOrderImport(params: PostShopeeOrderImportQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function postShopeeOrderImport(
+  { params }: { params: PostShopeeOrderImportQueryParamsType },
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
+) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<

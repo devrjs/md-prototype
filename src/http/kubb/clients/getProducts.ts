@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type { GetProductsQueryResponseType, GetProductsQueryParamsType, GetProducts401Type } from '../types/products/GetProductsType'
 
 function getGetProductsUrl() {
-  return '/products' as const
+  return 'http://localhost:3333/products' as const
 }
 
 /**
@@ -16,7 +16,7 @@ function getGetProductsUrl() {
  * @summary Retorna uma lista de produtos cadastrados.
  * {@link /products}
  */
-export async function getProducts(params?: GetProductsQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getProducts({ params }: { params?: GetProductsQueryParamsType }, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetProductsQueryResponseType, ResponseErrorConfig<GetProducts401Type>, unknown>({

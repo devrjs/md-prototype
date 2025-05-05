@@ -7,8 +7,8 @@ import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type { GetOrdersIdQueryResponseType, GetOrdersIdPathParamsType, GetOrdersId401Type, GetOrdersId404Type } from '../types/orders/GetOrdersIdType'
 
-function getGetOrdersIdUrl(id: GetOrdersIdPathParamsType['id']) {
-  return `/orders/${id}` as const
+function getGetOrdersIdUrl({ id }: { id: GetOrdersIdPathParamsType['id'] }) {
+  return `http://localhost:3333/orders/${id}` as const
 }
 
 /**
@@ -16,12 +16,12 @@ function getGetOrdersIdUrl(id: GetOrdersIdPathParamsType['id']) {
  * @summary Retorna informações detalhadas de um pedido específico.
  * {@link /orders/:id}
  */
-export async function getOrdersId(id: GetOrdersIdPathParamsType['id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getOrdersId({ id }: { id: GetOrdersIdPathParamsType['id'] }, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetOrdersIdQueryResponseType, ResponseErrorConfig<GetOrdersId401Type | GetOrdersId404Type>, unknown>({
     method: 'GET',
-    url: getGetOrdersIdUrl(id).toString(),
+    url: getGetOrdersIdUrl({ id }).toString(),
     ...requestConfig,
   })
   return res.data

@@ -12,7 +12,7 @@ import type {
 } from '../types/products/GetProductsAttributesValuesType'
 
 function getGetProductsAttributesValuesUrl() {
-  return '/products/attributes/values' as const
+  return 'http://localhost:3333/products/attributes/values' as const
 }
 
 /**
@@ -21,7 +21,7 @@ function getGetProductsAttributesValuesUrl() {
  * {@link /products/attributes/values}
  */
 export async function getProductsAttributesValues(
-  params: GetProductsAttributesValuesQueryParamsType,
+  { params }: { params: GetProductsAttributesValuesQueryParamsType },
   config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

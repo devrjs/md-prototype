@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type { GetUsersProfileQueryResponseType, GetUsersProfile401Type, GetUsersProfile404Type } from '../types/users/GetUsersProfileType'
 
 function getGetUsersProfileUrl() {
-  return '/users/profile' as const
+  return 'http://localhost:3333/users/profile' as const
 }
 
 /**

@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type { GetOrdersQueryResponseType, GetOrdersQueryParamsType, GetOrders401Type } from '../types/orders/GetOrdersType'
 
 function getGetOrdersUrl() {
-  return '/orders' as const
+  return 'http://localhost:3333/orders' as const
 }
 
 /**
@@ -16,7 +16,7 @@ function getGetOrdersUrl() {
  * @summary Retorna uma lista de pedidos.
  * {@link /orders}
  */
-export async function getOrders(params?: GetOrdersQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+export async function getOrders({ params }: { params?: GetOrdersQueryParamsType }, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
   const res = await request<GetOrdersQueryResponseType, ResponseErrorConfig<GetOrders401Type>, unknown>({

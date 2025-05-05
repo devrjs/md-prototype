@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type { GetProductsMeasurementUnitsQueryResponseType, GetProductsMeasurementUnits401Type } from '../types/products/GetProductsMeasurementUnitsType'
 
 function getGetProductsMeasurementUnitsUrl() {
-  return '/products/measurement-units' as const
+  return 'http://localhost:3333/products/measurement-units' as const
 }
 
 /**

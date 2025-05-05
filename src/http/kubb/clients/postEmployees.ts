@@ -13,7 +13,7 @@ import type {
 } from '../types/employees/PostEmployeesType'
 
 function getPostEmployeesUrl() {
-  return '/employees' as const
+  return 'http://localhost:3333/employees' as const
 }
 
 /**
@@ -22,7 +22,7 @@ function getPostEmployeesUrl() {
  * {@link /employees}
  */
 export async function postEmployees(
-  data: PostEmployeesMutationRequestType,
+  { data }: { data: PostEmployeesMutationRequestType },
   config: Partial<RequestConfig<PostEmployeesMutationRequestType>> & { client?: typeof client } = {},
 ) {
   const { client: request = client, ...requestConfig } = config

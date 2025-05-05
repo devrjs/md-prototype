@@ -8,7 +8,7 @@ import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
 import type { GetProductsCategoriesQueryResponseType, GetProductsCategories401Type } from '../types/products/GetProductsCategoriesType'
 
 function getGetProductsCategoriesUrl() {
-  return '/products/categories' as const
+  return 'http://localhost:3333/products/categories' as const
 }
 
 /**
