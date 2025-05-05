@@ -491,7 +491,6 @@ export type {
   GetUsersProfileTypeQuery,
 } from './types/users/GetUsersProfileType'
 export type {
-  PostUsers201EnumType,
   PostUsers201Type,
   PostUsers409Type,
   PostUsersMutationRequestType,
@@ -621,7 +620,6 @@ export { getSuppliersQueryParamsOrderByEnum, suppliersDocumentTypeEnum } from '.
 export { postSuppliers201Enum, postSuppliersMutationRequestDocumentTypeEnum } from './types/suppliers/PostSuppliersType'
 export { putSuppliersId200Enum, putSuppliersIdMutationRequestDocumentTypeEnum } from './types/suppliers/PutSuppliersIdType'
 export { getUsersProfile200RoleEnum } from './types/users/GetUsersProfileType'
-export { postUsers201Enum } from './types/users/PostUsersType'
 export {
   deleteCustomersIdPathParamsSchema,
   deleteCustomersId200Schema,

@@ -17,7 +17,8 @@ export type GetProductsQueryParamsType = {
    */
   perPage?: number
   /**
-   * @default 0
+   * @minLength 1
+   * @default 1
    * @type number | undefined
    */
   pageIndex?: number

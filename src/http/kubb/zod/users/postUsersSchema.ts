@@ -10,7 +10,11 @@ import { z } from 'zod'
 /**
  * @description Usuário cadastrado com sucesso.
  */
-export const postUsers201Schema = z.enum(['null']).describe('Usuário cadastrado com sucesso.').nullable() as unknown as ToZod<PostUsers201Type>
+export const postUsers201Schema = z
+  .object({
+    message: z.string(),
+  })
+  .describe('Usuário cadastrado com sucesso.') as unknown as ToZod<PostUsers201Type>
 
 /**
  * @description Este email já está cadastrado em nossa base de dados.

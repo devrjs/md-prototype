@@ -1,7 +1,5 @@
-export default function Register() {
-  return (
-    <div>
-      <h1>Register</h1>
-    </div>
-  )
+import RegisterForm from './_components/register-form'
+
+export default function Register(totalCount: number, limit: number) {
+  return <RegisterForm />
 }

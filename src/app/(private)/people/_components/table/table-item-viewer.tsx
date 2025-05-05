@@ -142,14 +142,14 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-3">
-              <Label htmlFor="limit">total_platform_fee_with_discounts</Label>
+              <Label htmlFor="limit">Taxa da plataforma</Label>
               <span>
                 {orderData?.order_payment?.total_platform_fee_with_discounts}
               </span>
             </div>
 
             <div className="flex flex-col gap-3">
-              <Label htmlFor="target">amount_received_from_sale</Label>
+              <Label htmlFor="target">Valor Recebido</Label>
               <span>{orderData?.order_payment?.amount_received_from_sale}</span>
             </div>
 

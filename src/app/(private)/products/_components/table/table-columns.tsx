@@ -7,8 +7,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { applyBrazilianCNPJMask } from '@/utils/apply-brazilian-cnpj-mask'
-import { applyBrazilianCPFMask } from '@/utils/apply-brazilian-cpf-mask'
 import {
   IconCircleCheckFilled,
   IconDotsVertical,
@@ -22,35 +20,17 @@ import { TableItemViewer } from './table-item-viewer'
 import type { TableItemType } from './table-schema'
 
 export const tableColumns: ColumnDef<TableItemType>[] = [
-  // {
-  //   id: 'viewer',
-  //   cell: ({ row }) => {
-  //     return <TableItemViewer itemId={row.original.id} />
-  //   },
-  //   enableHiding: false,
-  // },
   {
     accessorKey: 'id',
     header: 'ID',
     cell: ({ row }) => (
-      <span className="font-mono text-xs lg:pr-6">{row.original.id}</span>
+      <span className="font-mono text-xs lg:pr-2">{row.original.id}</span>
     ),
   },
   {
     accessorKey: 'nome',
     header: 'Nome',
     cell: ({ row }) => row.original.name,
-  },
-  {
-    accessorKey: 'CPF/CPNJ',
-    header: 'CPF/CNPJ',
-    cell: ({ row }) => {
-      if (row.original.document.length === 11) {
-        return applyBrazilianCPFMask(row.original.document)
-      }
-
-      return applyBrazilianCNPJMask(row.original.document)
-    },
   },
   {
     id: 'actions',

@@ -3,16 +3,15 @@
  * Do not edit manually.
  */
 
-export const postUsers201Enum = {
-  null: 'null',
-} as const
-
-export type PostUsers201EnumType = (typeof postUsers201Enum)[keyof typeof postUsers201Enum]
-
 /**
  * @description Usuário cadastrado com sucesso.
  */
-export type PostUsers201Type = PostUsers201EnumType | null
+export type PostUsers201Type = {
+  /**
+   * @type string
+   */
+  message: string
+}
 
 /**
  * @description Este email já está cadastrado em nossa base de dados.

@@ -12,31 +12,43 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useFormState } from '@/hooks/use-form-state'
-import { AlertTriangle, Loader2 } from 'lucide-react'
+import { AlertTriangle, CircleCheckBig, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { signInWithEmailAndPassword } from '../_actions/sign-in-with-password'
+import { toast } from 'sonner'
+import { registerWithEmailAndPassword } from '../_actions/register-with-password'
 
-export default function SignInForm() {
+export default function RegisterForm() {
   const router = useRouter()
 
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    signInWithEmailAndPassword
+    registerWithEmailAndPassword
   )
 
   useEffect(() => {
     if (success) {
-      console.log('success')
-      router.push('/dashboard')
+      toast.custom(
+        () => (
+          <div className="bg-green-200 border border-green-400 p-2 px-3 rounded-lg shadow-lg">
+            <span className="text-sm font-medium text-green-900 flex items-center">
+              <CircleCheckBig className="size-4 mr-3 text-green-500" /> Conta
+              criada com sucesso!
+            </span>
+          </div>
+        ),
+        { duration: 10000 }
+      )
+
+      router.push('/sign-in')
     }
   }, [success, router])
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Entrar</CardTitle>
+        <CardTitle className="text-2xl">Registrar</CardTitle>
         <CardDescription>
-          Digite seu email abaixo para acessar sua conta
+          Digite seu email abaixo para criar sua conta
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -44,7 +56,7 @@ export default function SignInForm() {
           {success === false && message && (
             <Alert variant="destructive">
               <AlertTriangle className="size-4" />
-              <AlertTitle>Falha no login!</AlertTitle>
+              <AlertTitle>Falha ao cadastrar!</AlertTitle>
               <AlertDescription>
                 <p>{message}</p>
               </AlertDescription>
@@ -67,6 +79,20 @@ export default function SignInForm() {
             </div>
           </div>
 
+          <div className="grid gap-2">
+            <label htmlFor="name">Nome</label>
+            <Input
+              id="name"
+              name="name"
+              placeholder="Seu nome"
+              defaultValue=""
+            />
+            {errors?.name && (
+              <p className="text-xs font-medium text-red-500 dark:text-red-400">
+                {errors.name[0]}
+              </p>
+            )}
+          </div>
           <div className="grid gap-2">
             <label htmlFor="email">Email</label>
             <Input
@@ -106,12 +132,12 @@ export default function SignInForm() {
         </form>
         <div className="mt-6 text-center text-sm">
           <p className="text-muted-foreground">
-            Não possui uma conta?{' '}
+            Já possui uma conta?{' '}
             <Link
-              href="/register"
+              href="/sign-in"
               className="font-medium text-primary hover:underline transition-colors"
             >
-              Cadastre-se
+              Acessar conta
             </Link>
           </p>
         </div>

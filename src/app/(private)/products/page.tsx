@@ -1,14 +1,16 @@
 import { SiteHeader } from '@/components/global/site-header'
 import { SidebarInset } from '@/components/ui/sidebar'
-import { getProducts } from '@/http/kubb'
+import { TableData } from './_components/table-data'
 
 export default async function Products() {
-  const products = await getProducts()
-
   return (
     <SidebarInset>
       <SiteHeader />
-      {JSON.stringify(products, null, 2)}
+      <div className="flex flex-1 flex-col">
+        <div className="@container/main flex flex-1 flex-col gap-2">
+          <TableData />
+        </div>
+      </div>
     </SidebarInset>
   )
 }

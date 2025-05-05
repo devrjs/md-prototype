@@ -2,7 +2,7 @@ import { SiteHeader } from '@/components/global/site-header'
 import { SidebarInset } from '@/components/ui/sidebar'
 import { TableData } from './_components/table-data'
 
-export default async function Order() {
+export default async function Orders() {
   return (
     <SidebarInset>
       <SiteHeader />

@@ -10,7 +10,7 @@ import { z } from 'zod'
 export const getProductsQueryParamsSchema = z
   .object({
     perPage: z.number().default(10),
-    pageIndex: z.number().default(0),
+    pageIndex: z.number().min(1).default(1),
     orderBy: z.enum(['desc', 'asc']).default('desc'),
     productName: z.string().optional(),
   })
