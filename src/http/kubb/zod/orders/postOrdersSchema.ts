@@ -11,7 +11,7 @@ import type {
   PostOrders404Type,
   PostOrdersMutationRequestType,
   PostOrdersMutationResponseType,
-} from '../../types/PedidosTypes/PostOrdersType.ts'
+} from '../../types/orders/PostOrdersType'
 import { z } from 'zod'
 
 /**

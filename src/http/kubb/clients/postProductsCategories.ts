@@ -10,10 +10,10 @@ import type {
   PostProductsCategoriesMutationResponseType,
   PostProductsCategories401Type,
   PostProductsCategories409Type,
-} from '../types/Produtos (Categorias)Types/PostProductsCategoriesType.ts'
+} from '../types/products/PostProductsCategoriesType'
 
 function getPostProductsCategoriesUrl() {
-  return `/products/categories` as const
+  return '/products/categories' as const
 }
 
 /**

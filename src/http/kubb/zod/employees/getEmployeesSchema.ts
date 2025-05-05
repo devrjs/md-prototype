@@ -10,7 +10,7 @@ import type {
   GetEmployees401Type,
   GetEmployees404Type,
   GetEmployeesQueryResponseType,
-} from '../../types/ColaboradoresTypes/GetEmployeesType.ts'
+} from '../../types/employees/GetEmployeesType'
 import { z } from 'zod'
 
 export const getEmployeesQueryParamsSchema = z

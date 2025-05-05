@@ -10,7 +10,7 @@ import type {
   GetProductsId401Type,
   GetProductsId404Type,
   GetProductsIdQueryResponseType,
-} from '../../types/ProdutosTypes/GetProductsIdType.ts'
+} from '../../types/products/GetProductsIdType'
 import { z } from 'zod'
 
 export const getProductsIdPathParamsSchema = z.object({

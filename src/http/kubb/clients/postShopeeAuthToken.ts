@@ -11,10 +11,10 @@ import type {
   PostShopeeAuthToken400Type,
   PostShopeeAuthToken401Type,
   PostShopeeAuthToken404Type,
-} from '../types/Shopee APITypes/PostShopeeAuthTokenType.ts'
+} from '../types/shopee/PostShopeeAuthTokenType'
 
 function getPostShopeeAuthTokenUrl() {
-  return `/shopee/auth/token` as const
+  return '/shopee/auth/token' as const
 }
 
 /**

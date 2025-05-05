@@ -10,7 +10,7 @@ import type {
   PostProductsAttributesValues409Type,
   PostProductsAttributesValuesMutationRequestType,
   PostProductsAttributesValuesMutationResponseType,
-} from '../../types/Produtos (Atributos)Types/PostProductsAttributesValuesType.ts'
+} from '../../types/products/PostProductsAttributesValuesType'
 import { z } from 'zod'
 
 /**

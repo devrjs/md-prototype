@@ -11,10 +11,10 @@ import type {
   PostShopeeOrderImport400Type,
   PostShopeeOrderImport401Type,
   PostShopeeOrderImport404Type,
-} from '../types/Shopee APITypes/PostShopeeOrderImportType.ts'
+} from '../types/shopee/PostShopeeOrderImportType'
 
 function getPostShopeeOrderImportUrl() {
-  return `/shopee/order/import` as const
+  return '/shopee/order/import' as const
 }
 
 /**

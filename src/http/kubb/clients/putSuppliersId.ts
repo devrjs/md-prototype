@@ -11,7 +11,7 @@ import type {
   PutSuppliersIdPathParamsType,
   PutSuppliersId401Type,
   PutSuppliersId404Type,
-} from '../types/FornecedoresTypes/PutSuppliersIdType.ts'
+} from '../types/suppliers/PutSuppliersIdType'
 
 function getPutSuppliersIdUrl(id: PutSuppliersIdPathParamsType['id']) {
   return `/suppliers/${id}` as const

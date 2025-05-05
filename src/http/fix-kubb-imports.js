@@ -22,4 +22,4 @@ function walkDir(dir) {
 }
 
 walkDir(kubbDir)
-console.log('Importações corrigidas nos arquivos da pasta kubb.')
+console.log('✅ Importações corrigidas nos arquivos da pasta kubb.')

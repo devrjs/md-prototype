@@ -12,7 +12,7 @@ import type {
   PutOrdersId404Type,
   PutOrdersIdMutationRequestType,
   PutOrdersIdMutationResponseType,
-} from '../../types/PedidosTypes/PutOrdersIdType.ts'
+} from '../../types/orders/PutOrdersIdType'
 import { z } from 'zod'
 
 export const putOrdersIdPathParamsSchema = z.object({

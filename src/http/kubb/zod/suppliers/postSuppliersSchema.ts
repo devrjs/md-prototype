@@ -10,7 +10,7 @@ import type {
   PostSuppliers409Type,
   PostSuppliersMutationRequestType,
   PostSuppliersMutationResponseType,
-} from '../../types/FornecedoresTypes/PostSuppliersType.ts'
+} from '../../types/suppliers/PostSuppliersType'
 import { z } from 'zod'
 
 /**

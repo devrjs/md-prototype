@@ -10,10 +10,10 @@ import type {
   PostProductsUploadMutationResponseType,
   PostProductsUpload400Type,
   PostProductsUpload401Type,
-} from '../types/ProdutosTypes/PostProductsUploadType.ts'
+} from '../types/products/PostProductsUploadType'
 
 function getPostProductsUploadUrl() {
-  return `/products/upload` as const
+  return '/products/upload' as const
 }
 
 /**
@@ -29,12 +29,13 @@ export async function postProductsUpload(
 
   const formData = new FormData()
   if (data) {
-    Object.keys(data).forEach((key) => {
+    for (const key of Object.keys(data)) {
       const value = data[key as keyof typeof data]
       if (typeof key === 'string' && (typeof value === 'string' || (value as Blob) instanceof Blob)) {
         formData.append(key, value as unknown as string)
       }
-    })
+
+}
   }
   const res = await request<
     PostProductsUploadMutationResponseType,

@@ -5,7 +5,7 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetOrdersIdQueryResponseType, GetOrdersIdPathParamsType, GetOrdersId401Type, GetOrdersId404Type } from '../types/PedidosTypes/GetOrdersIdType.ts'
+import type { GetOrdersIdQueryResponseType, GetOrdersIdPathParamsType, GetOrdersId401Type, GetOrdersId404Type } from '../types/orders/GetOrdersIdType'
 
 function getGetOrdersIdUrl(id: GetOrdersIdPathParamsType['id']) {
   return `/orders/${id}` as const

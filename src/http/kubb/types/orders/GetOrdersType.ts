@@ -121,10 +121,20 @@ export type GetOrders200Type = {
   }[]
 }
 
+/**
+ * @description Usuário não autenticado.
+ */
+export type GetOrders401Type = {
+  /**
+   * @type string
+   */
+  message: string
+}
+
 export type GetOrdersQueryResponseType = GetOrders200Type
 
 export type GetOrdersTypeQuery = {
   Response: GetOrders200Type
   QueryParams: GetOrdersQueryParamsType
-  Errors: any
+  Errors: GetOrders401Type
 }

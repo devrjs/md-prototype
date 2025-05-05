@@ -11,7 +11,7 @@ import type {
   PostShopeeOrderImport401Type,
   PostShopeeOrderImport404Type,
   PostShopeeOrderImportMutationResponseType,
-} from '../../types/Shopee APITypes/PostShopeeOrderImportType.ts'
+} from '../../types/shopee/PostShopeeOrderImportType'
 import { z } from 'zod'
 
 export const postShopeeOrderImportQueryParamsSchema = z.object({

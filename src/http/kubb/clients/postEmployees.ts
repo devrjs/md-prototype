@@ -10,10 +10,10 @@ import type {
   PostEmployeesMutationResponseType,
   PostEmployees401Type,
   PostEmployees409Type,
-} from '../types/ColaboradoresTypes/PostEmployeesType.ts'
+} from '../types/employees/PostEmployeesType'
 
 function getPostEmployeesUrl() {
-  return `/employees` as const
+  return '/employees' as const
 }
 
 /**

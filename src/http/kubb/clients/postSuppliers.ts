@@ -10,10 +10,10 @@ import type {
   PostSuppliersMutationResponseType,
   PostSuppliers401Type,
   PostSuppliers409Type,
-} from '../types/FornecedoresTypes/PostSuppliersType.ts'
+} from '../types/suppliers/PostSuppliersType'
 
 function getPostSuppliersUrl() {
-  return `/suppliers` as const
+  return '/suppliers' as const
 }
 
 /**

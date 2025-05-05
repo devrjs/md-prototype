@@ -5,10 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { PostUsersMutationRequestType, PostUsersMutationResponseType, PostUsers409Type } from '../types/Usu\u00E1riosTypes/PostUsersType.ts'
+import type { PostUsersMutationRequestType, PostUsersMutationResponseType, PostUsers409Type } from '../types/users/PostUsersType'
 
 function getPostUsersUrl() {
-  return `/users` as const
+  return '/users' as const
 }
 
 /**

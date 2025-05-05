@@ -11,7 +11,7 @@ import type {
   PutEmployeesIdPathParamsType,
   PutEmployeesId401Type,
   PutEmployeesId404Type,
-} from '../types/ColaboradoresTypes/PutEmployeesIdType.ts'
+} from '../types/employees/PutEmployeesIdType'
 
 function getPutEmployeesIdUrl(id: PutEmployeesIdPathParamsType['id']) {
   return `/employees/${id}` as const

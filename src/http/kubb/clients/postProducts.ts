@@ -10,10 +10,10 @@ import type {
   PostProductsMutationResponseType,
   PostProducts401Type,
   PostProducts404Type,
-} from '../types/ProdutosTypes/PostProductsType.ts'
+} from '../types/products/PostProductsType'
 
 function getPostProductsUrl() {
-  return `/products` as const
+  return '/products' as const
 }
 
 /**

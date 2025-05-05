@@ -10,7 +10,7 @@ import type {
   PostProductsCategories409Type,
   PostProductsCategoriesMutationRequestType,
   PostProductsCategoriesMutationResponseType,
-} from '../../types/Produtos (Categorias)Types/PostProductsCategoriesType.ts'
+} from '../../types/products/PostProductsCategoriesType'
 import { z } from 'zod'
 
 /**

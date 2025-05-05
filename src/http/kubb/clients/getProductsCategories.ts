@@ -5,10 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetProductsCategoriesQueryResponseType, GetProductsCategories401Type } from '../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
+import type { GetProductsCategoriesQueryResponseType, GetProductsCategories401Type } from '../types/products/GetProductsCategoriesType'
 
 function getGetProductsCategoriesUrl() {
-  return `/products/categories` as const
+  return '/products/categories' as const
 }
 
 /**

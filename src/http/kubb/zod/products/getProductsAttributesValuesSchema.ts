@@ -9,7 +9,7 @@ import type {
   GetProductsAttributesValues200Type,
   GetProductsAttributesValues401Type,
   GetProductsAttributesValuesQueryResponseType,
-} from '../../types/Produtos (Atributos)Types/GetProductsAttributesValuesType.ts'
+} from '../../types/products/GetProductsAttributesValuesType'
 import { z } from 'zod'
 
 export const getProductsAttributesValuesQueryParamsSchema = z.object({

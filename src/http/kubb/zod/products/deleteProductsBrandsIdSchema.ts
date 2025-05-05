@@ -10,7 +10,7 @@ import type {
   DeleteProductsBrandsId401Type,
   DeleteProductsBrandsId404Type,
   DeleteProductsBrandsIdMutationResponseType,
-} from '../../types/Produtos (Marcas)Types/DeleteProductsBrandsIdType.ts'
+} from '../../types/products/DeleteProductsBrandsIdType'
 import { z } from 'zod'
 
 export const deleteProductsBrandsIdPathParamsSchema = z.object({

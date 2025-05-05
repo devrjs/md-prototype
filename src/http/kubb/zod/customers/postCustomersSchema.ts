@@ -10,7 +10,7 @@ import type {
   PostCustomers409Type,
   PostCustomersMutationRequestType,
   PostCustomersMutationResponseType,
-} from '../../types/ClientesTypes/PostCustomersType.ts'
+} from '../../types/customers/PostCustomersType'
 import { z } from 'zod'
 
 /**

@@ -10,10 +10,10 @@ import type {
   GetCustomersQueryParamsType,
   GetCustomers401Type,
   GetCustomers404Type,
-} from '../types/ClientesTypes/GetCustomersType.ts'
+} from '../types/customers/GetCustomersType'
 
 function getGetCustomersUrl() {
-  return `/customers` as const
+  return '/customers' as const
 }
 
 /**

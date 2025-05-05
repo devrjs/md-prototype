@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "fix:lint": "biome lint --write ./src",
-    "fix:lint:unsafe": "biome lint --write --unsafe ./src",
-    "fix-kubb-imports": "node ./src/http/fixKubbImports.js"
+    "fix:lint-unsafe": "biome lint --write --unsafe ./src",
+    "fix:kubb-imports": "node ./src/http/fix-kubb-imports.js",
+    "fix:for-each-to-for-of": "node ./src/http/fix-for-each-to-for-of.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

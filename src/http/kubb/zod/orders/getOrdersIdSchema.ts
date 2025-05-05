@@ -10,7 +10,7 @@ import type {
   GetOrdersId401Type,
   GetOrdersId404Type,
   GetOrdersIdQueryResponseType,
-} from '../../types/PedidosTypes/GetOrdersIdType.ts'
+} from '../../types/orders/GetOrdersIdType'
 import { z } from 'zod'
 
 export const getOrdersIdPathParamsSchema = z.object({

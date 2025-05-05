@@ -4,11 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type {
-  GetProductsBrands200Type,
-  GetProductsBrands401Type,
-  GetProductsBrandsQueryResponseType,
-} from '../../types/Produtos (Marcas)Types/GetProductsBrandsType.ts'
+import type { GetProductsBrands200Type, GetProductsBrands401Type, GetProductsBrandsQueryResponseType } from '../../types/products/GetProductsBrandsType'
 import { z } from 'zod'
 
 /**

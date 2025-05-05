@@ -4,7 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type { GetOrdersQueryParamsType, GetOrders200Type, GetOrdersQueryResponseType } from '../../types/PedidosTypes/GetOrdersType.ts'
+import type { GetOrdersQueryParamsType, GetOrders200Type, GetOrders401Type, GetOrdersQueryResponseType } from '../../types/orders/GetOrdersType'
 import { z } from 'zod'
 
 export const getOrdersQueryParamsSchema = z
@@ -43,5 +43,14 @@ export const getOrders200Schema = z.object({
     }),
   ),
 }) as unknown as ToZod<GetOrders200Type>
+
+/**
+ * @description Usuário não autenticado.
+ */
+export const getOrders401Schema = z
+  .object({
+    message: z.string(),
+  })
+  .describe('Usuário não autenticado.') as unknown as ToZod<GetOrders401Type>
 
 export const getOrdersQueryResponseSchema = z.lazy(() => getOrders200Schema) as unknown as ToZod<GetOrdersQueryResponseType>

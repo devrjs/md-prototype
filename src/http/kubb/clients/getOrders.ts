@@ -5,10 +5,10 @@
 
 import client from '@/http/client'
 import type { RequestConfig, ResponseErrorConfig } from '@/http/client'
-import type { GetOrdersQueryResponseType, GetOrdersQueryParamsType } from '../types/PedidosTypes/GetOrdersType.ts'
+import type { GetOrdersQueryResponseType, GetOrdersQueryParamsType, GetOrders401Type } from '../types/orders/GetOrdersType'
 
 function getGetOrdersUrl() {
-  return `/orders` as const
+  return '/orders' as const
 }
 
 /**
@@ -19,7 +19,7 @@ function getGetOrdersUrl() {
 export async function getOrders(params?: GetOrdersQueryParamsType, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
   const { client: request = client, ...requestConfig } = config
 
-  const res = await request<GetOrdersQueryResponseType, ResponseErrorConfig<Error>, unknown>({
+  const res = await request<GetOrdersQueryResponseType, ResponseErrorConfig<GetOrders401Type>, unknown>({
     method: 'GET',
     url: getGetOrdersUrl().toString(),
     params,

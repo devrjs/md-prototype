@@ -4,12 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type {
-  GetProductsQueryParamsType,
-  GetProducts200Type,
-  GetProducts401Type,
-  GetProductsQueryResponseType,
-} from '../../types/ProdutosTypes/GetProductsType.ts'
+import type { GetProductsQueryParamsType, GetProducts200Type, GetProducts401Type, GetProductsQueryResponseType } from '../../types/products/GetProductsType'
 import { z } from 'zod'
 
 export const getProductsQueryParamsSchema = z

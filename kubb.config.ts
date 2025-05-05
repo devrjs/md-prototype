@@ -7,60 +7,95 @@ import { pluginZod } from '@kubb/plugin-zod'
 const OUTPUT_PATH = './src/http/kubb'
 
 export default defineConfig({
+  // 🔹 URL do Swagger JSON (OpenAPI) para gerar o código
   input: {
-    path: 'http://localhost:3333/docs/json', // 🔹 URL do Swagger JSON (OpenAPI) para gerar o código
+    path: 'http://localhost:3333/docs/json',
   },
+
+  // 🔹 Diretório onde os arquivos gerados serão salvos
   output: {
-    path: OUTPUT_PATH, // 🔹 Diretório onde os arquivos gerados serão salvos
+    path: OUTPUT_PATH,
     clean: true,
   },
-  // hooks: {
-  //   done: [`biome lint --write --unsafe ${OUTPUT_PATH}`],
-  // },
+
+  hooks: {
+    done: [
+      'pnpm fix:kubb-imports',
+      'pnpm fix:for-each-to-for-of',
+      `biome lint --write --unsafe ${OUTPUT_PATH}`,
+    ],
+  },
+
   plugins: [
-    pluginOas(), // 🔹 Processa a OpenAPI e prepara os dados para os outros plugins
-    // 🔹 Gera automaticamente os tipos TypeScript baseados nos schemas da API
+    // 🔹 Processa a OpenAPI e prepara os dados para os outros plugins
+    pluginOas(),
+
     pluginClient({
       client: 'fetch',
       importPath: '@/http/client',
       // paramsType: 'object',
       // baseURL: env.API_URL,
     }),
+
+    // 🔹 Gera automaticamente os tipos TypeScript baseados nos schemas da API
     pluginTs({
+      // 🔹 Diretório onde os tipos TypeScript serão salvos
       output: {
-        path: './types', // 🔹 Diretório onde os tipos TypeScript serão salvos
+        path: './types',
         barrelType: 'all',
       },
+
+      // 🔹 Adiciona `Type` ao final dos tipos gerados
       transformers: {
         name: (name, type) => {
-          return `${name}Type` // 🔹 Adiciona `Type` ao final dos tipos gerados
+          return `${name}Type`
         },
       },
-      group: {
-        type: 'tag',
-        name: ({ group }) => `${group}Types`,
-      },
-      enumSuffix: 'Enum', // 🔹 Adiciona `Enum` ao final dos tipos enumerados
-      unknownType: 'unknown', // 🔹 Campos desconhecidos serão tratados como `unknown`
-    }),
-    pluginZod({
-      output: {
-        path: './zod', // 🔹 Diretório onde os schemas Zod serão salvos,
-        barrelType: 'all',
-      },
+
+      // 🔹 Agrupa os arquivos em pastas separadas com base no nome do caminho
       group: {
         type: 'path',
       },
+
+      // 🔹 Adiciona `Enum` ao final dos tipos enumerados
+      enumSuffix: 'Enum',
+
+      // 🔹 Campos desconhecidos serão tratados como `unknown`
+      unknownType: 'unknown',
+    }),
+
+    pluginZod({
+      // 🔹 Diretório onde os schemas Zod serão salvos,
+      output: {
+        path: './zod',
+        barrelType: 'all',
+      },
+
+      group: {
+        type: 'path',
+      },
+
       exclude: [
         {
-          type: 'path', // 🔹 Exclui schemas que contenham `path` no nome
-          pattern: 'api', // 🔹 Exclui schemas que contenham `api` no nome
+          // 🔹 Exclui schemas que contenham `path` no nome
+          type: 'path',
+
+          // 🔹 Exclui schemas que contenham `api` no nome
+          pattern: 'api',
         },
       ],
-      typed: true, // 🔹 Gera schemas já tipados para serem inferidos no TypeScript
-      dateType: 'stringOffset', // 🔹 Trata datas como strings (ISO 8601) em vez de objetos Date
-      unknownType: 'unknown', // 🔹 Campos desconhecidos serão tratados como `unknown`
-      importPath: 'zod', // 🔹 Define que os schemas importarão `zod` para validação
+
+      // 🔹 Gera schemas já tipados para serem inferidos no TypeScript
+      typed: true,
+
+      // 🔹 Trata datas como strings (ISO 8601) em vez de objetos Date
+      dateType: 'stringOffset',
+
+      // 🔹 Campos desconhecidos serão tratados como `unknown`
+      unknownType: 'unknown',
+
+      // 🔹 Define que os schemas importarão `zod` para validação
+      importPath: 'zod',
     }),
   ],
 })
@@ -93,20 +128,4 @@ export default defineConfig({
 //   //   initialPageParam: 0, // 🔹 Começa a paginação a partir de `0`
 //   //   cursorParam: "nextPage", // 🔹 Usa `nextPage` para paginação baseada em cursor
 //   // },
-// }),
-
-// pluginHookCustom({
-//   output: {
-//     path: "./hook-custom",
-//     barrelType: "all",
-//   },
-//   group: {
-//     type: "tag",
-//     name: ({ group }) => `${group}HookCustom`,
-//   },
-//   transformers: {
-//     name: (name) => {
-//       return `useCustom${name.charAt(0).toUpperCase()}${name.slice(1)}`;
-//     },
-//   },
 // }),

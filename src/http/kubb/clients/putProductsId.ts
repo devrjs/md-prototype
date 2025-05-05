@@ -11,7 +11,7 @@ import type {
   PutProductsIdPathParamsType,
   PutProductsId401Type,
   PutProductsId404Type,
-} from '../types/ProdutosTypes/PutProductsIdType.ts'
+} from '../types/products/PutProductsIdType'
 
 function getPutProductsIdUrl(id: PutProductsIdPathParamsType['id']) {
   return `/products/${id}` as const

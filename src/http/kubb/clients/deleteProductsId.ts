@@ -10,7 +10,7 @@ import type {
   DeleteProductsIdPathParamsType,
   DeleteProductsId401Type,
   DeleteProductsId404Type,
-} from '../types/ProdutosTypes/DeleteProductsIdType.ts'
+} from '../types/products/DeleteProductsIdType'
 
 function getDeleteProductsIdUrl(id: DeleteProductsIdPathParamsType['id']) {
   return `/products/${id}` as const

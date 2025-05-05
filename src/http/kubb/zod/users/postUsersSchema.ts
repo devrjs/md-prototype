@@ -4,12 +4,7 @@
  */
 
 import type { ToZod } from '@kubb/plugin-zod/utils'
-import type {
-  PostUsers201Type,
-  PostUsers409Type,
-  PostUsersMutationRequestType,
-  PostUsersMutationResponseType,
-} from '../../types/Usu\u00E1riosTypes/PostUsersType.ts'
+import type { PostUsers201Type, PostUsers409Type, PostUsersMutationRequestType, PostUsersMutationResponseType } from '../../types/users/PostUsersType'
 import { z } from 'zod'
 
 /**

@@ -8,7 +8,7 @@ import type {
   GetProductsCategories200Type,
   GetProductsCategories401Type,
   GetProductsCategoriesQueryResponseType,
-} from '../../types/Produtos (Categorias)Types/GetProductsCategoriesType.ts'
+} from '../../types/products/GetProductsCategoriesType'
 import { z } from 'zod'
 
 /**
