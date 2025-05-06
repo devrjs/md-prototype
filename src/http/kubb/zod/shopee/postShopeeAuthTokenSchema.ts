@@ -17,7 +17,11 @@ import { z } from 'zod'
 /**
  * @description Shopee authenticated.
  */
-export const postShopeeAuthToken200Schema = z.enum(['null']).describe('Shopee authenticated.').nullable() as unknown as ToZod<PostShopeeAuthToken200Type>
+export const postShopeeAuthToken200Schema = z
+  .object({
+    message: z.string(),
+  })
+  .describe('Shopee authenticated.') as unknown as ToZod<PostShopeeAuthToken200Type>
 
 /**
  * @description Shopee already exists.

@@ -13,7 +13,7 @@ export default async function Layout({
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+      <AppSidebar variant="sidebar" />
       {children}
     </SidebarProvider>
   )

@@ -15,9 +15,12 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import { useMemo } from 'react'
+import DatePicker from '../../../../../components/global/date-picker'
 import { tableColumns } from './table-columns'
+import { TableFilters } from './table-filters'
 import { TablePagination } from './table-pagination'
 import type { TableItemType } from './table-schema'
+import { TableSearch } from './table-search'
 
 export function TableContainer({
   data,
@@ -42,6 +45,11 @@ export function TableContainer({
 
   return (
     <div className="flex flex-col gap-4 px-6 md:gap-6">
+      <div className="flex gap-4">
+        <TableSearch />
+        <TableFilters />
+        <DatePicker />
+      </div>
       <div className="overflow-hidden rounded-lg border">
         <Table>
           <TableHeader className="bg-muted sticky top-0 z-10">

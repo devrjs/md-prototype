@@ -104,7 +104,6 @@ export type {
   PutEmployeesIdMutationResponseType,
   PutEmployeesIdTypeMutation,
 } from './types/employees/PutEmployeesIdType'
-export type { FileUploadType } from './types/FileUploadType'
 export type {
   DeleteOrdersIdPathParamsType,
   DeleteOrdersId200EnumType,
@@ -413,7 +412,6 @@ export type {
   GetShopeeAuthUrlTypeQuery,
 } from './types/shopee/GetShopeeAuthUrlType'
 export type {
-  PostShopeeAuthToken200EnumType,
   PostShopeeAuthToken200Type,
   PostShopeeAuthToken400Type,
   PostShopeeAuthToken401Type,
@@ -612,7 +610,6 @@ export { putProductsAttributesNamesId200Enum } from './types/products/PutProduct
 export { putProductsAttributesValuesId200Enum } from './types/products/PutProductsAttributesValuesIdType'
 export { putProductsId200Enum } from './types/products/PutProductsIdType'
 export { putProductsVariationsId200Enum } from './types/products/PutProductsVariationsIdType'
-export { postShopeeAuthToken200Enum } from './types/shopee/PostShopeeAuthTokenType'
 export { postShopeeOrderImport200Enum } from './types/shopee/PostShopeeOrderImportType'
 export { deleteSuppliersId200Enum } from './types/suppliers/DeleteSuppliersIdType'
 export { getSuppliersId200DocumentTypeEnum, addressesPlatformEnum2 } from './types/suppliers/GetSuppliersIdType'
@@ -692,7 +689,6 @@ export {
   putEmployeesIdMutationRequestSchema,
   putEmployeesIdMutationResponseSchema,
 } from './zod/employees/putEmployeesIdSchema'
-export { fileUploadSchema } from './zod/fileUploadSchema'
 export {
   deleteOrdersIdPathParamsSchema,
   deleteOrdersId200Schema,

@@ -3,16 +3,15 @@
  * Do not edit manually.
  */
 
-export const postShopeeAuthToken200Enum = {
-  null: 'null',
-} as const
-
-export type PostShopeeAuthToken200EnumType = (typeof postShopeeAuthToken200Enum)[keyof typeof postShopeeAuthToken200Enum]
-
 /**
  * @description Shopee authenticated.
  */
-export type PostShopeeAuthToken200Type = PostShopeeAuthToken200EnumType | null
+export type PostShopeeAuthToken200Type = {
+  /**
+   * @type string
+   */
+  message: string
+}
 
 /**
  * @description Shopee already exists.

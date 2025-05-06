@@ -5,9 +5,9 @@ import { postSessionsPassword } from '@/http/kubb'
 import { signInWithEmailAndPasswordSchema } from '@/schemas/sign-in-with-email-and-password-schema'
 import { cookies } from 'next/headers'
 
-export async function signInWithEmailAndPassword(data: FormData) {
+export async function signInWithEmailAndPassword(formData: FormData) {
   const validatedCredentials = signInWithEmailAndPasswordSchema.safeParse(
-    Object.fromEntries(data)
+    Object.fromEntries(formData)
   )
 
   if (!validatedCredentials.success) {

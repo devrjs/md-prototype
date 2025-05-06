@@ -3,23 +3,12 @@
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import {
   Table,
   TableBody,
@@ -32,7 +21,6 @@ import { getOrdersId } from '@/http/kubb'
 import { formatToBRL } from '@/utils/format-to-brl'
 import { IconPhoto, IconSearch } from '@tabler/icons-react'
 import { useQuery } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 interface TableCellViewerProps {
   itemId: string
@@ -63,7 +51,7 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
             {orderData?.platform_order_details?.external_order_id}
           </DrawerDescription>
         </DrawerHeader>
-        <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
+        <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm pb-6">
           {orderData?.items.map(item => (
             <div
               key={item.id}
@@ -140,26 +128,51 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
             </div>
           ))}
 
-          <div className="grid grid-cols-2 gap-4">
+          {/* <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-3">
-              <Label htmlFor="limit">total_platform_fee_with_discounts</Label>
+              <Label htmlFor="limit">1</Label>
               <span>
                 {orderData?.order_payment?.total_platform_fee_with_discounts}
               </span>
             </div>
 
             <div className="flex flex-col gap-3">
-              <Label htmlFor="target">amount_received_from_sale</Label>
+              <Label htmlFor="target">2</Label>
               <span>{orderData?.order_payment?.amount_received_from_sale}</span>
             </div>
-
-            <span>
-              {Number(orderData?.order_payment?.amount_received_from_sale) +
-                Number(
-                  orderData?.order_payment?.total_platform_fee_with_discounts
-                )}
-            </span>
-          </div>
+          </div> */}
+          <span>
+            amount_received_from_sale:{' '}
+            {Number(orderData?.order_payment?.amount_received_from_sale)}
+          </span>
+          <span>
+            buyer_paid_amount:{' '}
+            {Number(orderData?.order_payment?.buyer_paid_amount)}
+          </span>
+          <span>
+            platform_coins: {Number(orderData?.order_payment?.platform_coins)}
+          </span>
+          <span>
+            platform_discount:{' '}
+            {Number(orderData?.order_payment?.platform_discount)}
+          </span>
+          <span>
+            seller_discount: {Number(orderData?.order_payment?.seller_discount)}
+          </span>
+          <span>
+            total_order_price:{' '}
+            {Number(orderData?.order_payment?.total_order_price)}
+          </span>
+          <span>
+            total_platform_fee:{' '}
+            {Number(orderData?.order_payment?.total_platform_fee)}
+          </span>
+          <span>
+            total_platform_fee_with_discounts:{' '}
+            {Number(
+              orderData?.order_payment?.total_platform_fee_with_discounts
+            )}
+          </span>
         </div>
         {/* <DrawerFooter>
           <Button onClick={() => toast.success('Changes saved successfully')}>
