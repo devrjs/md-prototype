@@ -1,11 +1,9 @@
 'use client'
 
-import { Icons } from '@/components/global/icons'
-import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { siteConfig } from '../site-config'
+import { AuthButtons } from './auth-buttons'
+import { Logo } from './logo'
 import NavItems from './nav-items'
 
 export default function Header() {
@@ -13,62 +11,29 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setAddBorder(true)
-      } else {
-        setAddBorder(false)
-      }
+      setAddBorder(window.scrollY > 20)
     }
 
     window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <header
-      className={
-        'relative sticky top-0 z-50 py-2 bg-background/60 backdrop-blur'
-      }
-    >
+    <header className="sticky top-0 z-50 py-2 bg-background/60 backdrop-blur">
       <div className="flex justify-between items-center container">
-        <Link
-          href="/"
-          title="brand-logo"
-          className="relative mr-6 flex items-center space-x-2"
-        >
-          <Icons.logo className="w-auto h-[40px]" />
-          <span className="font-bold text-xl">{siteConfig.name}</span>
-        </Link>
+        <Logo />
 
         <div className="hidden lg:block">
-          <div className="flex items-center ">
-            <nav className="mr-10">{<NavItems />}</nav>
-
-            <div className="gap-2 flex">
-              <Link
-                href="/login"
-                className={buttonVariants({ variant: 'outline' })}
-              >
-                Login
-              </Link>
-              <Link
-                href="/signup"
-                className={cn(
-                  buttonVariants({ variant: 'default' }),
-                  'w-full sm:w-auto text-background flex gap-2'
-                )}
-              >
-                <Icons.logo className="h-6 w-6" />
-                Get Started for Free
-              </Link>
-            </div>
+          <div className="flex items-center">
+            <nav className="mr-10">
+              <NavItems />
+            </nav>
+            <AuthButtons />
           </div>
         </div>
+
         <div className="mt-2 cursor-pointer block lg:hidden">
-          {/* <Drawer /> */}
+          {/* drawer */}
         </div>
       </div>
       <hr

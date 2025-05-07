@@ -17,7 +17,7 @@ export default function UserDropdown() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="h-auto p-0 pl-2 hover:bg-transparent"
+          className="h-auto p-0 pl-2 hover:bg-transparent focus-visible:ring-0 cursor-pointer"
         >
           <div className="flex flex-col gap-1 text-start text-xs">
             <span className="font-medium text-sidebar-foreground">

@@ -47,12 +47,12 @@ export function TableContainer({
     <div className="flex flex-col gap-4 px-6 md:gap-6">
       <div className="flex gap-4">
         <TableSearch />
-        <TableFilters />
         <DatePicker />
+        <TableFilters />
       </div>
       <div className="overflow-hidden rounded-lg border">
         <Table>
-          <TableHeader className='sticky top-0 z-10 bg-muted'>
+          <TableHeader className="sticky top-0 z-10 bg-muted">
             {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header, index) => (

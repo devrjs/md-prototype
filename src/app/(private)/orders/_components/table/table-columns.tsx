@@ -48,7 +48,7 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => (
-      <Badge variant="outline" className='px-1.5 text-muted-foreground'>
+      <Badge variant="outline" className="px-1.5 text-muted-foreground">
         {row.original.status === 'PROCESSED' ? (
           <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
         ) : (
@@ -81,7 +81,7 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className='flex size-8 text-muted-foreground data-[state=open]:bg-muted'
+            className="flex size-8 text-muted-foreground data-[state=open]:bg-muted"
             size="icon"
           >
             <IconDotsVertical />
@@ -89,13 +89,13 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>
-            <SquarePen className='mr-1 size-4' />
+          <DropdownMenuItem className="cursor-pointer">
+            <SquarePen className="mr-1 size-4" />
             Editar
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">
-            <Trash className='mr-1 size-4' />
+          <DropdownMenuItem variant="destructive" className="cursor-pointer">
+            <Trash className="mr-1 size-4" />
             Excluir
           </DropdownMenuItem>
         </DropdownMenuContent>

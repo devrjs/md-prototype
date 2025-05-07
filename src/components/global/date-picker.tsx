@@ -55,16 +55,19 @@ export default function DatePicker() {
   }
   const [month, setMonth] = useState(today)
 
-  const [date, setDate] = useState<DateRange | undefined>(lastYear)
+  const [date, setDate] = useState<DateRange | undefined>()
 
   return (
     <div className="*:not-first:mt-2">
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className='min-w-62 justify-start'>
+          <Button
+            variant="outline"
+            className="min-w-62 justify-start cursor-pointer"
+          >
             <CalendarIcon
               size={16}
-              className='-ms-1 shrink-0 opacity-40 transition-colors group-hover:text-foreground'
+              className="-ms-1 shrink-0 opacity-40 transition-colors group-hover:text-foreground"
               aria-hidden="true"
             />
             <span className={cn('truncate', !date && 'text-muted-foreground')}>

@@ -12,11 +12,11 @@ export function TableFilters() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" className='w-fit max-w-32'>
-          <ListFilter className='-ms-1.5 ml-0.5 size-5 text-muted-foreground/60' />
+        <Button variant="outline" className="w-fit max-w-32 cursor-pointer">
+          <ListFilter className="-ms-1.5 ml-0.5 size-5 text-muted-foreground/60" />
           Filtros
           {/* {selectedStatuses.length > 0 && ( */}
-          <span className='-me-1 ms-1 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] font-medium text-[0.625rem] text-muted-foreground/70'>
+          <span className="-me-1 ms-1 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] font-medium text-[0.625rem] text-muted-foreground/70">
             {/* {selectedStatuses.length} */}2
           </span>
           {/* )} */}
@@ -24,18 +24,19 @@ export function TableFilters() {
       </PopoverTrigger>
       <PopoverContent className="w-auto min-w-36 p-3" align="end">
         <div className="space-y-3">
-          <div className='font-medium text-muted-foreground/60 text-xs uppercase'>
+          <div className="font-medium text-muted-foreground/60 text-xs uppercase">
             Status
           </div>
           <div className="space-y-3">
             {/* {uniqueStatusValues.map((value, i) => ( */}
             <div className="flex items-center gap-2">
               <Checkbox
-              // id={`${id}-${i}`}
-              // checked={selectedStatuses.includes(value)}
-              // onCheckedChange={(checked: boolean) =>
-              //   handleStatusChange(checked, value)
-              // }
+                // id={`${id}-${i}`}
+                // checked={selectedStatuses.includes(value)}
+                // onCheckedChange={(checked: boolean) =>
+                //   handleStatusChange(checked, value)
+                // }
+                className="cursor-pointer"
               />
               <Label
                 // htmlFor={`${id}-${i}`}
@@ -48,7 +49,7 @@ export function TableFilters() {
               </Label>
             </div>
             <div className="flex items-center gap-2">
-              <Checkbox />
+              <Checkbox className="cursor-pointer" />
               <Label className="flex grow justify-between gap-2 font-normal">
                 Pronto para envio
               </Label>
