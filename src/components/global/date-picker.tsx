@@ -61,10 +61,10 @@ export default function DatePicker() {
     <div className="*:not-first:mt-2">
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="justify-start min-w-62">
+          <Button variant="outline" className='min-w-62 justify-start'>
             <CalendarIcon
               size={16}
-              className="opacity-40 -ms-1 group-hover:text-foreground shrink-0 transition-colors"
+              className='-ms-1 shrink-0 opacity-40 transition-colors group-hover:text-foreground'
               aria-hidden="true"
             />
             <span className={cn('truncate', !date && 'text-muted-foreground')}>

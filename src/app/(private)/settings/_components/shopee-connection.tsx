@@ -36,7 +36,7 @@ export function ShopeeConnection() {
     <>
       <div className="flex h-fit items-center justify-between rounded-xl bg-muted/50 p-4 md:min-h-min">
         <div className="flex items-center gap-6">
-          <IconBrandShopee className="size-10 text-white bg-orange-400 rounded-full p-1" />
+          <IconBrandShopee className='size-10 rounded-full bg-orange-400 p-1 text-white' />
           Shopee
         </div>
         <Button variant="outline" onClick={() => handleShopeeURL()}>

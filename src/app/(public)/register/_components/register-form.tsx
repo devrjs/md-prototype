@@ -58,7 +58,7 @@ export default function RegisterForm() {
           )}
 
           <Button variant="outline" className="w-full">
-            <Icons.google className="w-4 h-4 mr-2" />
+            <Icons.google className='mr-2 h-4 w-4' />
             Entrar com Google
           </Button>
 
@@ -82,7 +82,7 @@ export default function RegisterForm() {
               defaultValue=""
             />
             {errors?.name && (
-              <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
                 {errors.name[0]}
               </p>
             )}
@@ -96,7 +96,7 @@ export default function RegisterForm() {
               defaultValue="user@example.com"
             />
             {errors?.email && (
-              <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
                 {errors.email[0]}
               </p>
             )}
@@ -115,7 +115,7 @@ export default function RegisterForm() {
               defaultValue="string"
             />
             {errors?.password && (
-              <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
                 {errors.password[0]}
               </p>
             )}
@@ -129,7 +129,7 @@ export default function RegisterForm() {
             Já possui uma conta?{' '}
             <Link
               href="/sign-in"
-              className="font-medium text-primary hover:underline transition-colors"
+              className='font-medium text-primary transition-colors hover:underline'
             >
               Acessar conta
             </Link>

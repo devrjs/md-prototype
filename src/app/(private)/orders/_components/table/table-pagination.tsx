@@ -41,7 +41,7 @@ export function TablePagination({ table }: TablePaginationProps) {
     <div className="flex items-center justify-end px-4">
       <div className="flex w-full items-center gap-8 lg:w-fit">
         <div className="hidden items-center gap-2 lg:flex">
-          <Label htmlFor="rows-per-page" className="text-sm font-medium">
+          <Label htmlFor="rows-per-page" className='font-medium text-sm'>
             Registros por página
           </Label>
           <Select
@@ -66,7 +66,7 @@ export function TablePagination({ table }: TablePaginationProps) {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-fit items-center justify-center text-sm font-medium">
+        <div className='flex w-fit items-center justify-center font-medium text-sm'>
           Página {table.getState().pagination.pageIndex} de{' '}
           {table.getPageCount()}
         </div>

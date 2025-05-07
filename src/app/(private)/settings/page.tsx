@@ -8,7 +8,7 @@ export default function Settings() {
   return (
     <SidebarInset>
       <SiteHeader />
-      <div className="flex flex-1 mt-4 flex-col gap-4 p-4 pt-0">
+      <div className='mt-4 flex flex-1 flex-col gap-4 p-4 pt-0'>
         <h2 className="font-bold text-xl">Integrações</h2>
         <ShopeeConnection />
       </div>

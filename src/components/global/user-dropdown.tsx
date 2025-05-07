@@ -21,11 +21,11 @@ export default function UserDropdown() {
           variant="ghost"
           className="h-auto p-0 pl-2 hover:bg-transparent"
         >
-          <div className="flex flex-col text-start text-xs gap-1">
-            <span className="text-sidebar-foreground font-medium">
+          <div className='flex flex-col gap-1 text-start text-xs'>
+            <span className='font-medium text-sidebar-foreground'>
               john doe
             </span>
-            <span className="text-muted-foreground font-medium">
+            <span className='font-medium text-muted-foreground'>
               email@example.com
             </span>
           </div>

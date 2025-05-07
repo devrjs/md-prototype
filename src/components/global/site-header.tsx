@@ -33,9 +33,9 @@ export function SiteHeader() {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">{pathSegments[0]}</h1>
+        <h1 className='font-medium text-base'>{pathSegments[0]}</h1>
       </div>
-      <div className="flex pr-2 gap-2 h-full items-center border-l">
+      <div className='flex h-full items-center gap-2 border-l pr-2'>
         <UserDropdown />
       </div>
     </header>

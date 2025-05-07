@@ -51,18 +51,18 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
             {orderData?.platform_order_details?.external_order_id}
           </DrawerDescription>
         </DrawerHeader>
-        <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm pb-6">
+        <div className='flex flex-col gap-4 overflow-y-auto px-4 pb-6 text-sm'>
           {orderData?.items.map(item => (
             <div
               key={item.id}
-              className="border rounded-t-2xl rounded-b bg-accent/50"
+              className='rounded-t-2xl rounded-b border bg-accent/50'
             >
-              <Table className="w-full table-fixed text-center border-separate">
+              <Table className='w-full table-fixed border-separate text-center'>
                 <TableBody>
                   <TableRow>
                     <TableCell
                       colSpan={4}
-                      className="pt-2 font-medium text-xs text-start border-b whitespace-pre-wrap break-words"
+                      className='whitespace-pre-wrap break-words border-b pt-2 text-start font-medium text-xs'
                     >
                       {item.name}
                     </TableCell>
@@ -71,13 +71,13 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
                   <TableRow className="text-xs">
                     <TableHead
                       colSpan={2}
-                      className="font-bold text-center border whitespace-pre-wrap break-words"
+                      className='whitespace-pre-wrap break-words border text-center font-bold'
                     >
                       SKU
                     </TableHead>
                     <TableHead
                       colSpan={2}
-                      className="font-bold border text-center"
+                      className='border text-center font-bold'
                     >
                       PRATELEIRA
                     </TableHead>
@@ -94,21 +94,21 @@ export function TableItemViewer({ itemId }: TableCellViewerProps) {
                   <TableRow className="text-xs">
                     <TableHead
                       rowSpan={2}
-                      className="align-center px-0 w-24 borders rounded bg-gray-100"
+                      className='borders w-24 rounded bg-gray-100 px-0 align-center'
                     >
-                      <div className="w-full flex flex-col items-center justify-center text-muted-foreground/80">
+                      <div className='flex w-full flex-col items-center justify-center text-muted-foreground/80'>
                         <IconPhoto className="size-8" />
                         <span className="self-center">sem imagem</span>
                       </div>
                     </TableHead>
 
-                    <TableHead className="font-bold border text-center whitespace-pre-wrap break-words">
+                    <TableHead className='whitespace-pre-wrap break-words border text-center font-bold'>
                       QUANT.
                     </TableHead>
-                    <TableHead className="font-bold border text-center">
+                    <TableHead className='border text-center font-bold'>
                       PREÇO
                     </TableHead>
-                    <TableHead className="font-bold border text-center">
+                    <TableHead className='border text-center font-bold'>
                       DESCONTO
                     </TableHead>
                   </TableRow>

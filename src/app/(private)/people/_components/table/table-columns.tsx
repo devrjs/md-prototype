@@ -59,7 +59,7 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
+            className='flex size-8 text-muted-foreground data-[state=open]:bg-muted'
             size="icon"
           >
             <IconDotsVertical />
@@ -68,12 +68,12 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
           <DropdownMenuItem>
-            <SquarePen className="size-4 mr-1" />
+            <SquarePen className='mr-1 size-4' />
             Editar
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">
-            <Trash className="size-4 mr-1" />
+            <Trash className='mr-1 size-4' />
             Excluir
           </DropdownMenuItem>
         </DropdownMenuContent>

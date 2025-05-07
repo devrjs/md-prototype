@@ -7,7 +7,7 @@ export function TableSearch() {
       // id={`${id}-input`}
       // ref={inputRef}
       className={cn(
-        'peer min-w-60 ps-9 bg-background bg-gradient-to-br from-accent/60 to-accent'
+        'peer min-w-60 bg-background bg-gradient-to-br from-accent/60 to-accent ps-9'
         // Boolean(table.getColumn('name')?.getFilterValue()) && 'pe-9'
       )}
       // value={(table.getColumn('name')?.getFilterValue() ?? '') as string}
