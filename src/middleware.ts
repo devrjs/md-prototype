@@ -26,6 +26,7 @@ export function middleware(request: NextRequest) {
     const redirectUrl = request.nextUrl.clone()
 
     redirectUrl.pathname = REDIRECT_WHEN_AUTHENTICATED_ROUTE
+    redirectUrl.search = ''
 
     return NextResponse.redirect(redirectUrl)
   }

@@ -3,23 +3,13 @@
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import {
   Table,
   TableBody,
@@ -32,7 +22,6 @@ import { getOrdersId } from '@/http/kubb'
 import { formatToBRL } from '@/utils/format-to-brl'
 import { IconPhoto, IconSearch } from '@tabler/icons-react'
 import { useQuery } from '@tanstack/react-query'
-import { toast } from 'sonner'
 
 interface TableCellViewerProps {
   itemId: string

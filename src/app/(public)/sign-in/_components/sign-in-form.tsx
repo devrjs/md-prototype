@@ -31,8 +31,9 @@ export default function SignInForm() {
       router.push('/dashboard')
     }
   }, [success, router])
+
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-sm w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Entrar</CardTitle>
         <CardDescription>
@@ -52,7 +53,7 @@ export default function SignInForm() {
           )}
 
           <Button variant="outline" className="w-full">
-            <Icons.google className='mr-2 h-4 w-4' />
+            <Icons.google className="mr-2 h-4 w-4" />
             Entrar com Google
           </Button>
 
@@ -76,7 +77,7 @@ export default function SignInForm() {
               defaultValue="user@example.com"
             />
             {errors?.email && (
-              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
+              <p className="font-medium text-red-500 text-xs dark:text-red-400">
                 {errors.email[0]}
               </p>
             )}
@@ -95,7 +96,7 @@ export default function SignInForm() {
               defaultValue="string"
             />
             {errors?.password && (
-              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
+              <p className="font-medium text-red-500 text-xs dark:text-red-400">
                 {errors.password[0]}
               </p>
             )}
@@ -109,7 +110,7 @@ export default function SignInForm() {
             Não possui uma conta?{' '}
             <Link
               href="/register"
-              className='font-medium text-primary transition-colors hover:underline'
+              className="font-medium text-primary transition-colors hover:underline"
             >
               Cadastre-se
             </Link>

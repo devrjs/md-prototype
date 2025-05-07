@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { useFormState } from '@/hooks/use-form-state'
-import { AlertTriangle, CircleCheckBig, Loader2 } from 'lucide-react'
+import { AlertTriangle, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -37,8 +37,9 @@ export default function RegisterForm() {
       router.push('/sign-in')
     }
   }, [success, router])
+
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-sm w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Registrar</CardTitle>
         <CardDescription>
@@ -58,7 +59,7 @@ export default function RegisterForm() {
           )}
 
           <Button variant="outline" className="w-full">
-            <Icons.google className='mr-2 h-4 w-4' />
+            <Icons.google className="mr-2 h-4 w-4" />
             Entrar com Google
           </Button>
 
@@ -82,7 +83,7 @@ export default function RegisterForm() {
               defaultValue=""
             />
             {errors?.name && (
-              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
+              <p className="font-medium text-red-500 text-xs dark:text-red-400">
                 {errors.name[0]}
               </p>
             )}
@@ -96,7 +97,7 @@ export default function RegisterForm() {
               defaultValue="user@example.com"
             />
             {errors?.email && (
-              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
+              <p className="font-medium text-red-500 text-xs dark:text-red-400">
                 {errors.email[0]}
               </p>
             )}
@@ -115,7 +116,7 @@ export default function RegisterForm() {
               defaultValue="string"
             />
             {errors?.password && (
-              <p className='font-medium text-red-500 text-xs dark:text-red-400'>
+              <p className="font-medium text-red-500 text-xs dark:text-red-400">
                 {errors.password[0]}
               </p>
             )}
@@ -129,7 +130,7 @@ export default function RegisterForm() {
             Já possui uma conta?{' '}
             <Link
               href="/sign-in"
-              className='font-medium text-primary transition-colors hover:underline'
+              className="font-medium text-primary transition-colors hover:underline"
             >
               Acessar conta
             </Link>

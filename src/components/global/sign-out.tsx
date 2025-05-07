@@ -2,7 +2,6 @@
 
 import { IconLogout } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation'
-import { Button } from '../ui/button'
 import { DropdownMenuItem } from '../ui/dropdown-menu'
 
 export function SignOut() {

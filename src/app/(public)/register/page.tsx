@@ -1,5 +1,9 @@
 import RegisterForm from './_components/register-form'
 
-export default function Register(totalCount: number, limit: number) {
-  return <RegisterForm />
+export default function Register() {
+  return (
+    <div className="w-screen h-screen flex items-center">
+      <RegisterForm />
+    </div>
+  )
 }

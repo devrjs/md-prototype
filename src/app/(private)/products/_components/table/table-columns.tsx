@@ -1,4 +1,4 @@
-import { Badge } from '@/components/ui/badge'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -8,15 +8,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import {
-  IconCircleCheckFilled,
   IconDotsVertical,
-  IconLoader,
 } from '@tabler/icons-react'
 import type { ColumnDef } from '@tanstack/react-table'
-import { formatDistanceToNow } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
 import { SquarePen, Trash } from 'lucide-react'
-import { TableItemViewer } from './table-item-viewer'
 import type { TableItemType } from './table-schema'
 
 export const tableColumns: ColumnDef<TableItemType>[] = [

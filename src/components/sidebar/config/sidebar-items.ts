@@ -1,6 +1,4 @@
 import {
-  IconHelp,
-  IconSettings,
   IconShoppingBag,
   IconTags,
   IconTruckDelivery,

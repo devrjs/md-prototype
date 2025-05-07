@@ -5,12 +5,10 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { IconLogout, IconSettings } from '@tabler/icons-react'
-import Link from 'next/link'
+import { IconSettings } from '@tabler/icons-react'
 import { SignOut } from './sign-out'
 
 export default function UserDropdown() {
@@ -21,11 +19,11 @@ export default function UserDropdown() {
           variant="ghost"
           className="h-auto p-0 pl-2 hover:bg-transparent"
         >
-          <div className='flex flex-col gap-1 text-start text-xs'>
-            <span className='font-medium text-sidebar-foreground'>
+          <div className="flex flex-col gap-1 text-start text-xs">
+            <span className="font-medium text-sidebar-foreground">
               john doe
             </span>
-            <span className='font-medium text-muted-foreground'>
+            <span className="font-medium text-muted-foreground">
               email@example.com
             </span>
           </div>
