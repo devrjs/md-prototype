@@ -3,6 +3,7 @@
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { usePathname } from 'next/navigation'
+import UserDropdown from './user-dropdown'
 
 const ptBrPathNames: Record<string, string> = {
   Orders: 'Pedidos',
@@ -33,6 +34,9 @@ export function SiteHeader() {
           className="mx-2 data-[orientation=vertical]:h-4"
         />
         <h1 className="text-base font-medium">{pathSegments[0]}</h1>
+      </div>
+      <div className="flex pr-2 gap-2 h-full items-center border-l">
+        <UserDropdown />
       </div>
     </header>
   )

@@ -8,12 +8,7 @@ import {
 } from '@tabler/icons-react'
 
 export const sidebarItems = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '#',
-  },
-  basicRegistration: [
+  geral: [
     {
       name: 'Pessoas',
       url: 'people',
@@ -24,31 +19,15 @@ export const sidebarItems = {
       url: 'products',
       icon: IconTags,
     },
-  ],
-  sales: [
     {
       name: 'Conferência de vendas',
       url: 'orders',
       icon: IconShoppingBag,
     },
-  ],
-  shipments: [
     {
       name: 'Controle de envios',
       url: 'shipments',
       icon: IconTruckDelivery,
-    },
-  ],
-  navBottomItems: [
-    {
-      title: 'Configurações',
-      url: 'settings',
-      icon: IconSettings,
-    },
-    {
-      title: 'Ajuda',
-      url: '#',
-      icon: IconHelp,
     },
   ],
 }

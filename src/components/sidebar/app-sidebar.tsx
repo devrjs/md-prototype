@@ -2,12 +2,9 @@
 
 import type * as React from 'react'
 
-import { NavBottomItems } from '@/components/sidebar/nav-bottom-items'
-import { NavUser } from '@/components/sidebar/nav-user'
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -36,23 +33,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavItems
-          title="Cadastros Básicos"
-          items={sidebarItems.basicRegistration}
-        />
-        <NavItems title="Vendas" items={sidebarItems.sales} />
-        <NavItems
-          title="Gerenciamento de Envios"
-          items={sidebarItems.shipments}
-        />
-        <NavBottomItems
-          items={sidebarItems.navBottomItems}
-          className="mt-auto"
-        />
+        <NavItems title="GERAL" items={sidebarItems.geral} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={sidebarItems.user} />
-      </SidebarFooter>
     </Sidebar>
   )
 }
