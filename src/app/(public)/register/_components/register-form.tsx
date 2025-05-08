@@ -31,7 +31,7 @@ export default function RegisterForm() {
     if (success) {
       toast.custom(
         () => <ToastSuccess description="Conta criada com sucesso!" />,
-        { duration: 10000 }
+        { duration: 3500 }
       )
 
       router.push('/sign-in')

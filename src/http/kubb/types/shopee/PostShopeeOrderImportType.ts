@@ -14,16 +14,15 @@ export type PostShopeeOrderImportQueryParamsType = {
   orderPeriodEndDate: string
 }
 
-export const postShopeeOrderImport200Enum = {
-  null: 'null',
-} as const
-
-export type PostShopeeOrderImport200EnumType = (typeof postShopeeOrderImport200Enum)[keyof typeof postShopeeOrderImport200Enum]
-
 /**
  * @description Pedidos importados com sucesso.
  */
-export type PostShopeeOrderImport200Type = PostShopeeOrderImport200EnumType | null
+export type PostShopeeOrderImport200Type = {
+  /**
+   * @type string
+   */
+  message: string
+}
 
 /**
  * @description Erro ao importar pedidos.

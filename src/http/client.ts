@@ -47,9 +47,12 @@ const client = async <TData, TError = unknown, TVariables = unknown>(
 
   const response = await fetch(`${config.url}?${params}`, {
     method: config.method.toUpperCase(),
-    body: JSON.stringify(config.data),
+    body: JSON.stringify(
+      !config.data && ['POST', 'PUT'].includes(config.method.toUpperCase())
+        ? {}
+        : config.data
+    ),
     signal: config.signal,
-
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

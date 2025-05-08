@@ -422,7 +422,6 @@ export type {
 } from './types/shopee/PostShopeeAuthTokenType'
 export type {
   PostShopeeOrderImportQueryParamsType,
-  PostShopeeOrderImport200EnumType,
   PostShopeeOrderImport200Type,
   PostShopeeOrderImport400Type,
   PostShopeeOrderImport401Type,
@@ -610,7 +609,6 @@ export { putProductsAttributesNamesId200Enum } from './types/products/PutProduct
 export { putProductsAttributesValuesId200Enum } from './types/products/PutProductsAttributesValuesIdType'
 export { putProductsId200Enum } from './types/products/PutProductsIdType'
 export { putProductsVariationsId200Enum } from './types/products/PutProductsVariationsIdType'
-export { postShopeeOrderImport200Enum } from './types/shopee/PostShopeeOrderImportType'
 export { deleteSuppliersId200Enum } from './types/suppliers/DeleteSuppliersIdType'
 export { getSuppliersId200DocumentTypeEnum, addressesPlatformEnum2 } from './types/suppliers/GetSuppliersIdType'
 export { getSuppliersQueryParamsOrderByEnum, suppliersDocumentTypeEnum } from './types/suppliers/GetSuppliersType'

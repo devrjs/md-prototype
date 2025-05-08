@@ -22,12 +22,12 @@ export function ShopeeConnection() {
   useEffect(() => {
     if (success) {
       toast.custom(
-        () => <ToastSuccess description="Conta criada com sucesso!" />,
-        { duration: 10000 }
+        () => <ToastSuccess description="Shopee conectada com sucesso!" />,
+        { duration: 3500 }
       )
     } else {
       toast.warning(message, {
-        duration: 10000,
+        duration: 7000,
       })
     }
   }, [success, message])
@@ -36,10 +36,14 @@ export function ShopeeConnection() {
     <>
       <div className="flex h-fit items-center justify-between rounded-xl bg-muted/50 p-4 md:min-h-min">
         <div className="flex items-center gap-6">
-          <IconBrandShopee className='size-10 rounded-full bg-orange-400 p-1 text-white' />
+          <IconBrandShopee className="size-10 rounded-full bg-orange-400 p-1 text-white" />
           Shopee
         </div>
-        <Button variant="outline" onClick={() => handleShopeeURL()}>
+        <Button
+          variant="outline"
+          className="cursor-pointer"
+          onClick={() => handleShopeeURL()}
+        >
           Acessar URL
         </Button>
       </div>
@@ -51,7 +55,7 @@ export function ShopeeConnection() {
           <Input name="code" id="code" type="text" placeholder="Code" />
           <Input name="shopId" id="shopId" type="text" placeholder="Shop ID" />
         </div>
-        <Button variant="outline" type="submit">
+        <Button variant="outline" className="cursor-pointer" type="submit">
           {isPending ? <Loader2 className="size-4 animate-spin" /> : 'Conectar'}
         </Button>
       </form>

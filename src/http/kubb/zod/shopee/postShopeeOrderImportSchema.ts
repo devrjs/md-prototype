@@ -23,9 +23,10 @@ export const postShopeeOrderImportQueryParamsSchema = z.object({
  * @description Pedidos importados com sucesso.
  */
 export const postShopeeOrderImport200Schema = z
-  .enum(['null'])
-  .describe('Pedidos importados com sucesso.')
-  .nullable() as unknown as ToZod<PostShopeeOrderImport200Type>
+  .object({
+    message: z.string(),
+  })
+  .describe('Pedidos importados com sucesso.') as unknown as ToZod<PostShopeeOrderImport200Type>
 
 /**
  * @description Erro ao importar pedidos.

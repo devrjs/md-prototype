@@ -1,6 +1,7 @@
 'use client'
 
 import DatePicker from '@/components/global/date-picker'
+import { ToastSuccess } from '@/components/global/toast-success'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -10,23 +11,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { postShopeeOrderImport } from '@/http/kubb'
-import { useMutation } from '@tanstack/react-query'
+import { useFormState } from '@/hooks/use-form-state'
 import { Loader2 } from 'lucide-react'
+import { useEffect } from 'react'
+import { toast } from 'sonner'
+import { importShopeeOrders } from '../_actions/import-shopee-orders'
 
 export function ImportOrders() {
-  const { data: orderImport, isPending: isImportingOrders } = useMutation({
-    mutationFn: async () =>
-      await postShopeeOrderImport({
-        orderPeriodStartDate: '2023-01-01',
-        orderPeriodEndDate: '2023-01-01',
-      }),
-  })
+  const [{ success, message, errors }, handleSubmit, isPending] =
+    useFormState(importShopeeOrders)
+
+  useEffect(() => {
+    if (success) {
+      toast.custom(
+        () => <ToastSuccess description="Pedidos importados com sucesso!" />,
+        { duration: 3500 }
+      )
+    } else {
+      toast.warning(message, {
+        duration: 7000,
+      })
+    }
+  }, [success, message])
 
   return (
     <div className="px-6 pt-4 flex justify-between gap-6 items-center">
       <div className="bg-accent rounded-md p-2 gap-1 flex flex-col justify-between">
-        <div className="flex gap-2">
+        <form onSubmit={handleSubmit} className="flex gap-2">
           <DatePicker />
 
           <Select>
@@ -43,15 +54,20 @@ export function ImportOrders() {
           </Select>
 
           <Button
-            className="bg-amber-500 hover:bg-orange-400 cursor-pointer"
-            disabled={isImportingOrders}
+            type="submit"
+            className="w-24 bg-amber-500 hover:bg-orange-400 cursor-pointer"
+            disabled={isPending}
           >
-            {isImportingOrders ? <Loader2 className="" /> : 'Importar'}
+            {isPending ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              'Importar'
+            )}
           </Button>
-          <Button className="cursor-pointer" disabled={isImportingOrders}>
+          <Button className="cursor-pointer" disabled={isPending}>
             Atualizar Importados
           </Button>
-        </div>
+        </form>
       </div>
       <Button className="bg-emerald-500 hover:bg-emerald-400 cursor-pointer">
         Novo Pedido
