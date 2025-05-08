@@ -22,17 +22,19 @@ export function ImportOrders() {
     useFormState(importShopeeOrders)
 
   useEffect(() => {
-    if (success) {
+    if (success && !isPending) {
       toast.custom(
         () => <ToastSuccess description="Pedidos importados com sucesso!" />,
         { duration: 3500 }
       )
-    } else {
+    }
+
+    if (!success && !isPending) {
       toast.warning(message, {
         duration: 7000,
       })
     }
-  }, [success, message])
+  }, [success, message, isPending])
 
   return (
     <div className="px-6 pt-4 flex justify-between gap-6 items-center">
@@ -40,15 +42,15 @@ export function ImportOrders() {
         <form onSubmit={handleSubmit} className="flex gap-2">
           <DatePicker />
 
-          <Select>
+          <Select name="platform">
             <SelectTrigger className="w-[190px] bg-background cursor-pointer">
               <SelectValue placeholder="Selecione a plataforma" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="apple">Shopee</SelectItem>
-                <SelectItem value="banana">Mercado Livre</SelectItem>
-                <SelectItem value="blueberry">Tray</SelectItem>
+                <SelectItem value="shopee">Shopee</SelectItem>
+                <SelectItem value="mercado-livre">Mercado Livre</SelectItem>
+                <SelectItem value="tray">Tray</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -64,10 +66,15 @@ export function ImportOrders() {
               'Importar'
             )}
           </Button>
-          <Button className="cursor-pointer" disabled={isPending}>
+          <Button type="button" className="cursor-pointer" disabled={isPending}>
             Atualizar Importados
           </Button>
         </form>
+        {errors?.platform && (
+          <span className="text-xs font-medium text-red-500 dark:text-red-400">
+            {errors.platform[0]}
+          </span>
+        )}
       </div>
       <Button className="bg-emerald-500 hover:bg-emerald-400 cursor-pointer">
         Novo Pedido

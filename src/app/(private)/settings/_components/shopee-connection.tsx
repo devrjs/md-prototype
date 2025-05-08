@@ -20,17 +20,19 @@ export function ShopeeConnection() {
   }
 
   useEffect(() => {
-    if (success) {
+    if (success && !isPending) {
       toast.custom(
         () => <ToastSuccess description="Shopee conectada com sucesso!" />,
         { duration: 3500 }
       )
-    } else {
+    }
+
+    if (!success && !isPending) {
       toast.warning(message, {
         duration: 7000,
       })
     }
-  }, [success, message])
+  }, [success, message, isPending])
 
   return (
     <>

@@ -13,7 +13,7 @@ import {
   IconLoader,
 } from '@tabler/icons-react'
 import type { ColumnDef } from '@tanstack/react-table'
-import { formatDistanceToNow } from 'date-fns'
+import { differenceInMinutes, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { SquarePen, Trash } from 'lucide-react'
 import { TableItemViewer } from './table-item-viewer'
@@ -31,18 +31,8 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
     accessorKey: 'id',
     header: 'ID',
     cell: ({ row }) => (
-      <span className="font-mono text-xs lg:pr-2">{row.original.id}</span>
+      <span className="font-mono text-xs">{row.original.id}</span>
     ),
-  },
-  {
-    accessorKey: 'realizado há',
-    header: 'Realizado há',
-    cell: ({ row }) => {
-      return formatDistanceToNow(new Date(row.original.order_placed_at), {
-        locale: ptBR,
-        addSuffix: true,
-      })
-    },
   },
   {
     accessorKey: 'status',
@@ -59,9 +49,29 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
     ),
   },
   {
+    accessorKey: 'realizado há',
+    header: 'Realizado há',
+    cell: ({ row }) => {
+      return formatDistanceToNow(new Date(row.original.order_placed_at), {
+        locale: ptBR,
+        addSuffix: true,
+      })
+    },
+  },
+  {
     accessorKey: 'número do pedido',
     header: 'Número do pedido',
-    cell: ({ row }) => row.original.platform_order_details?.external_order_id,
+    cell: ({ row }) => (
+      <div className="flex items-center gap-1">
+        {row.original.platform_order_details?.external_order_id}
+        {differenceInMinutes(new Date(), new Date(row.original.created_at)) <=
+          1 && (
+          <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-xs text-primary">
+            novo
+          </span>
+        )}
+      </div>
+    ),
   },
   {
     accessorKey: 'plataforma',

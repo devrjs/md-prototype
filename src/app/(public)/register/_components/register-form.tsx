@@ -28,7 +28,7 @@ export default function RegisterForm() {
   )
 
   useEffect(() => {
-    if (success) {
+    if (success && !isPending) {
       toast.custom(
         () => <ToastSuccess description="Conta criada com sucesso!" />,
         { duration: 3500 }
@@ -36,7 +36,7 @@ export default function RegisterForm() {
 
       router.push('/sign-in')
     }
-  }, [success, router])
+  }, [success, router, isPending])
 
   return (
     <Card className="mx-auto max-w-sm w-full">

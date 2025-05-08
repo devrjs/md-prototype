@@ -7,13 +7,13 @@ export async function importShopeeOrders(formData: FormData) {
     Object.fromEntries(formData)
   )
 
-  // if (!validatedCredentials.success) {
-  //   const errors = validatedCredentials.error.flatten().fieldErrors
+  if (!validatedCredentials.success) {
+    const errors = validatedCredentials.error.flatten().fieldErrors
 
-  //   return { success: false, message: null, errors }
-  // }
+    return { success: false, message: null, errors }
+  }
 
-  // const { orderPeriodStartDate, orderPeriodEndDate } = validatedCredentials.data
+  const { platform } = validatedCredentials.data
 
   try {
     const orderPeriodStartDate = '2023-01-01'
