@@ -1,3 +1,5 @@
+'use client'
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -8,24 +10,42 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { getUsersProfile } from '@/http/kubb'
 import { IconSettings } from '@tabler/icons-react'
+import { useQuery } from '@tanstack/react-query'
+import { Skeleton } from '../ui/skeleton'
 import { SignOut } from './sign-out'
 
 export default function UserDropdown() {
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
+    queryKey: ['profile'],
+    queryFn: async () => await getUsersProfile(),
+    staleTime: 1000 * 60 * 60, // Cache data for 1 hour
+  })
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="h-auto p-0 pl-2 hover:bg-transparent focus-visible:ring-0 cursor-pointer"
+          className="h-auto p-0 pl-2 hover:bg-transparent"
         >
           <div className="flex flex-col gap-1 text-start text-xs">
-            <span className="font-medium text-sidebar-foreground">
-              john doe
-            </span>
-            <span className="font-medium text-muted-foreground">
-              email@example.com
-            </span>
+            {isLoadingProfile ? (
+              <>
+                <Skeleton className="h-4 w-20" />
+                <Skeleton className="h-4 w-28" />
+              </>
+            ) : (
+              <>
+                <span className="font-medium text-sidebar-foreground">
+                  {profile?.name}
+                </span>
+                <span className="font-medium text-muted-foreground">
+                  {profile?.email}
+                </span>
+              </>
+            )}
           </div>
           <Avatar className="size-10 rounded-md">
             <AvatarImage

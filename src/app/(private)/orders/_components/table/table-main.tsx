@@ -12,17 +12,19 @@ import {
   type PaginationState,
   flexRender,
   getCoreRowModel,
+  getExpandedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import DatePicker from '../../../../../components/global/date-picker'
 import { tableColumns } from './table-columns'
 import { TableFilters } from './table-filters'
 import { TablePagination } from './table-pagination'
+import { TableRowExpanded } from './table-row-expanded'
 import type { TableItemType } from './table-schema'
 import { TableSearch } from './table-search'
 
-export function TableContainer({
+export function TableMain({
   data,
   pagination,
   rowCount,
@@ -41,6 +43,8 @@ export function TableContainer({
       pagination,
     },
     getCoreRowModel: getCoreRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    getRowCanExpand: row => true,
   })
 
   return (
@@ -76,20 +80,29 @@ export function TableContainer({
             {table.getRowModel().rows?.length ? (
               <>
                 {table.getRowModel().rows.map(row => (
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && 'selected'}
-                    className="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
-                  >
-                    {row.getVisibleCells().map(cell => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
+                  <Fragment key={row.id}>
+                    <TableRow
+                      data-state={row.getIsSelected() && 'selected'}
+                      className="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
+                    >
+                      {row.getVisibleCells().map(cell => (
+                        <TableCell
+                          key={cell.id}
+                          className={
+                            cell.column.id === 'expander'
+                              ? 'w-px py-0 pr-0'
+                              : ''
+                          }
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                    {row.getIsExpanded() && <TableRowExpanded row={row} />}
+                  </Fragment>
                 ))}
               </>
             ) : (

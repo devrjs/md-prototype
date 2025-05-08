@@ -15,15 +15,40 @@ import {
 import type { ColumnDef } from '@tanstack/react-table'
 import { differenceInMinutes, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { SquarePen, Trash } from 'lucide-react'
-import { TableItemViewer } from './table-item-viewer'
+import { ChevronDown, ChevronUp, SquarePen, Trash } from 'lucide-react'
 import type { TableItemType } from './table-schema'
 
 export const tableColumns: ColumnDef<TableItemType>[] = [
   {
-    id: 'viewer',
+    id: 'expander',
+    header: () => null,
     cell: ({ row }) => {
-      return <TableItemViewer itemId={row.original.id} />
+      return (
+        row.getCanExpand() && (
+          <Button
+            {...{
+              className: 'size-7 shadow-none text-muted-foreground',
+              onClick: row.getToggleExpandedHandler(),
+              'aria-expanded': row.getIsExpanded(),
+              'aria-label': row.getIsExpanded()
+                ? `Recolher detalhes do pedido ${row.original.id}`
+                : `Expandir detalhes do pedido ${row.original.id}`,
+              size: 'icon',
+              variant: 'ghost',
+            }}
+          >
+            {row.getIsExpanded() ? (
+              <ChevronUp className="opacity-60" size={16} aria-hidden="true" />
+            ) : (
+              <ChevronDown
+                className="opacity-60"
+                size={16}
+                aria-hidden="true"
+              />
+            )}
+          </Button>
+        )
+      )
     },
     enableHiding: false,
   },
