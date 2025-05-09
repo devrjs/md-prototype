@@ -26,26 +26,23 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
       return (
         row.getCanExpand() && (
           <Button
+            className="size-7 shadow-none text-muted-foreground"
+            size="icon"
+            variant="outline"
+            data-expanded={row.getIsExpanded()}
             {...{
-              className: 'size-7 shadow-none text-muted-foreground',
               onClick: row.getToggleExpandedHandler(),
               'aria-expanded': row.getIsExpanded(),
               'aria-label': row.getIsExpanded()
                 ? `Recolher detalhes do pedido ${row.original.id}`
                 : `Expandir detalhes do pedido ${row.original.id}`,
-              size: 'icon',
-              variant: 'ghost',
             }}
           >
-            {row.getIsExpanded() ? (
-              <ChevronUp className="opacity-60" size={16} aria-hidden="true" />
-            ) : (
-              <ChevronDown
-                className="opacity-60"
-                size={16}
-                aria-hidden="true"
-              />
-            )}
+            <ChevronDown
+              className="size-4 opacity-60 transition-transform duration-200 data-[expanded=true]:rotate-180"
+              aria-hidden="true"
+              data-expanded={row.getIsExpanded()}
+            />
           </Button>
         )
       )
