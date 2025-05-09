@@ -17,15 +17,20 @@ export async function importShopeeOrders(formData: FormData) {
     validatedCredentials.data
 
   try {
-    console.log(orderPeriodStartDate)
-    console.log(orderPeriodEndDate)
+    if (platform === 'shopee') {
+      // await postShopeeOrderImport({
+      //   orderPeriodStartDate,
+      //   orderPeriodEndDate,
+      // })
+    }
 
-    console.log(platform)
+    if (platform === 'mercado-livre') {
+      // TODO: Import Mercado Livre
+    }
 
-    // await postShopeeOrderImport({
-    //   orderPeriodStartDate,
-    //   orderPeriodEndDate,
-    // })
+    if (platform === 'tray') {
+      // TODO: Import Tray
+    }
 
     return { success: true, message: null, errors: null }
   } catch (error) {

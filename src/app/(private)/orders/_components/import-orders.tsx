@@ -56,7 +56,7 @@ export function ImportOrders() {
           <div className="flex flex-col gap-0.5">
             <DatePicker date={date} setDate={setDate} />
             {errors?.orderPeriodStartDate && (
-              <span className="text-xs px-2 font-medium text-red-500 dark:text-red-400">
+              <span className="max-w-[250px] text-xs px-2 font-medium text-red-500 dark:text-red-400">
                 {errors.orderPeriodStartDate[0]}
               </span>
             )}
