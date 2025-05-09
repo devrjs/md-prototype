@@ -28,7 +28,7 @@ export default function UserDropdown() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="h-auto p-0 pl-2 hover:bg-transparent"
+          className="h-auto cursor-pointer p-0 pl-2 hover:bg-transparent"
         >
           <div className="flex flex-col gap-1 text-start text-xs">
             {isLoadingProfile ? (

@@ -15,7 +15,8 @@ import {
   getExpandedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { Fragment, useMemo } from 'react'
+import { Fragment, useMemo, useState } from 'react'
+import type { DateRange } from 'react-day-picker'
 import DatePicker from '../../../../../components/global/date-picker'
 import { tableColumns } from './table-columns'
 import { TableFilters } from './table-filters'
@@ -33,6 +34,8 @@ export function TableMain({
   pagination: PaginationState
   rowCount: number
 }) {
+  const [date, setDate] = useState<DateRange | undefined>()
+
   const columns = useMemo(() => tableColumns, [])
 
   const table = useReactTable({
@@ -51,7 +54,7 @@ export function TableMain({
     <div className="flex flex-col gap-4 px-6 md:gap-6">
       <div className="flex gap-4">
         <TableSearch />
-        <DatePicker />
+        <DatePicker date={date} setDate={setDate} />
         <TableFilters />
       </div>
       <div className="overflow-hidden rounded-lg border">

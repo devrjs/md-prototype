@@ -3,10 +3,10 @@
 import { getOrders } from '@/http/kubb'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
-import { TableSkeleton } from './table-skeleton'
 import { TableMain } from './table/table-main'
+import { TableSkeleton } from './table/table-skeleton'
 
-export function TableData() {
+export function OrderData() {
   const searchParams = useSearchParams()
   const pageIndex = Number(searchParams.get('page')) || 1
   const pageSize = Number(searchParams.get('pageSize')) || 10

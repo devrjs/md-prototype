@@ -1,3 +1,5 @@
+'use server'
+
 import { HTTPError } from '@/errors/http-error'
 import { postShopeeAuthToken } from '@/http/kubb'
 import { connectShopeeSchema } from '@/schemas/connect-shopee-schema'

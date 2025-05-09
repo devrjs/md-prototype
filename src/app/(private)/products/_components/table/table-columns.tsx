@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -7,11 +6,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import {
-  IconDotsVertical,
-} from '@tabler/icons-react'
+import { IconDotsVertical } from '@tabler/icons-react'
 import type { ColumnDef } from '@tanstack/react-table'
-import { SquarePen, Trash } from 'lucide-react'
+import { SquarePen, Trash, UserSquare2 } from 'lucide-react'
 import type { TableItemType } from './table-schema'
 
 export const tableColumns: ColumnDef<TableItemType>[] = [
@@ -28,13 +25,23 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
     cell: ({ row }) => row.original.name,
   },
   {
+    accessorKey: 'ncm',
+    header: 'Ncm',
+    cell: ({ row }) => (
+      <span className="text-primary">
+        <UserSquare2 />
+        {row.original.ncm}
+      </span>
+    ),
+  },
+  {
     id: 'actions',
     cell: () => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className='flex size-8 text-muted-foreground data-[state=open]:bg-muted'
+            className="flex size-8 text-muted-foreground data-[state=open]:bg-muted"
             size="icon"
           >
             <IconDotsVertical />
@@ -43,12 +50,12 @@ export const tableColumns: ColumnDef<TableItemType>[] = [
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
           <DropdownMenuItem>
-            <SquarePen className='mr-1 size-4' />
+            <SquarePen className="mr-1 size-4" />
             Editar
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">
-            <Trash className='mr-1 size-4' />
+            <Trash className="mr-1 size-4" />
             Excluir
           </DropdownMenuItem>
         </DropdownMenuContent>

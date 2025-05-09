@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const importShopeeOrdersSchema = z
+export const importOrdersSchema = z
   .object({
     orderPeriodStartDate: z
       .string()

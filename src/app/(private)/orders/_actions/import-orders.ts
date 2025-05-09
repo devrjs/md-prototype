@@ -1,27 +1,29 @@
+'use server'
+
 import { HTTPError } from '@/errors/http-error'
 import { postShopeeOrderImport } from '@/http/kubb'
-import { importShopeeOrdersSchema } from '@/schemas/import-shopee-orders'
+import { importOrdersSchema } from '@/schemas/import-shopee-orders'
 
-export async function importShopeeOrders(formData: FormData) {
-  const validatedCredentials = importShopeeOrdersSchema.safeParse(
+export async function importOrders(formData: FormData) {
+  const validatedForm = importOrdersSchema.safeParse(
     Object.fromEntries(formData)
   )
 
-  if (!validatedCredentials.success) {
-    const errors = validatedCredentials.error.flatten().fieldErrors
+  if (!validatedForm.success) {
+    const errors = validatedForm.error.flatten().fieldErrors
 
     return { success: false, message: null, errors }
   }
 
   const { platform, orderPeriodStartDate, orderPeriodEndDate } =
-    validatedCredentials.data
+    validatedForm.data
 
   try {
     if (platform === 'shopee') {
-      // await postShopeeOrderImport({
-      //   orderPeriodStartDate,
-      //   orderPeriodEndDate,
-      // })
+      await postShopeeOrderImport({
+        orderPeriodStartDate,
+        orderPeriodEndDate,
+      })
     }
 
     if (platform === 'mercado-livre') {

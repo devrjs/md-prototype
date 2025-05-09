@@ -17,9 +17,10 @@ import { z } from 'zod'
  * @description Variação cadastrada com sucesso.
  */
 export const postProductsVariations201Schema = z
-  .enum(['null'])
-  .describe('Variação cadastrada com sucesso.')
-  .nullable() as unknown as ToZod<PostProductsVariations201Type>
+  .object({
+    message: z.string(),
+  })
+  .describe('Variação cadastrada com sucesso.') as unknown as ToZod<PostProductsVariations201Type>
 
 /**
  * @description Usuário não autenticado.

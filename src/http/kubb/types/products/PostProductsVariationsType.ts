@@ -3,16 +3,15 @@
  * Do not edit manually.
  */
 
-export const postProductsVariations201Enum = {
-  null: 'null',
-} as const
-
-export type PostProductsVariations201EnumType = (typeof postProductsVariations201Enum)[keyof typeof postProductsVariations201Enum]
-
 /**
  * @description Variação cadastrada com sucesso.
  */
-export type PostProductsVariations201Type = PostProductsVariations201EnumType | null
+export type PostProductsVariations201Type = {
+  /**
+   * @type string
+   */
+  message: string
+}
 
 /**
  * @description Usuário não autenticado.

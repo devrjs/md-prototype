@@ -24,11 +24,12 @@ export function TableRowExpanded({ row }: TableRowExpandedProps) {
         colSpan={row.getVisibleCells().length}
         className="p-0 bg-muted/30"
       >
-        <div className="flex flex-row gap-3 overflow-x-auto pb-2 whitespace-nowrap">
+        {/* items */}
+        <div className="flex flex-col gap-3 overflow-x-auto p-2 whitespace-nowrap">
           {orderData?.items.map(item => (
             <div
               key={item.id}
-              className="bg-background rounded-lg p-3 shadow-sm inline-flex flex-col min-w-[200px] mr-3 last:mr-0"
+              className="w-full bg-amber-500/5 rounded-lg p-3 shadow-sm inline-flex flex-col min-w-[200px]"
             >
               <div className="flex justify-between items-center gap-2">
                 <span className="font-medium text-sm truncate">
@@ -59,7 +60,7 @@ export function TableRowExpanded({ row }: TableRowExpandedProps) {
         </div>
 
         {/* Seção de Pagamento */}
-        <div className="space-y-4 md:space-y-6 min-w-[300px]">
+        {/*   <div className="space-y-4 md:space-y-6 min-w-[300px]">
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <CreditCard className="h-5 w-5" />
             Detalhes do Pagamento
@@ -115,10 +116,10 @@ export function TableRowExpanded({ row }: TableRowExpandedProps) {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Resumo Financeiro */}
-        <div className="space-y-4 md:space-y-6 min-w-[300px]">
+        {/*  <div className="space-y-4 md:space-y-6 min-w-[300px]">
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <Calculator className="h-5 w-5" />
             Resumo Financeiro
@@ -155,7 +156,7 @@ export function TableRowExpanded({ row }: TableRowExpandedProps) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </TableCell>
     </TableRow>
   )
