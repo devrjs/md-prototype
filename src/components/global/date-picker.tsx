@@ -23,7 +23,12 @@ import { CalendarIcon } from 'lucide-react'
 import { useState } from 'react'
 import type { DateRange } from 'react-day-picker'
 
-export default function DatePicker() {
+interface DatePickerProps {
+  date?: DateRange
+  setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>
+}
+
+export default function DatePicker({ date, setDate }: DatePickerProps) {
   const today = new Date()
   const yesterday = {
     from: subDays(today, 1),
@@ -54,8 +59,6 @@ export default function DatePicker() {
     to: endOfYear(subYears(today, 1)),
   }
   const [month, setMonth] = useState(today)
-
-  const [date, setDate] = useState<DateRange | undefined>()
 
   return (
     <div className="*:not-first:mt-2">

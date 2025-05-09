@@ -13,16 +13,19 @@ export async function importShopeeOrders(formData: FormData) {
     return { success: false, message: null, errors }
   }
 
-  const { platform } = validatedCredentials.data
+  const { platform, orderPeriodStartDate, orderPeriodEndDate } =
+    validatedCredentials.data
 
   try {
-    const orderPeriodStartDate = '2023-01-01'
-    const orderPeriodEndDate = '2023-01-01'
+    console.log(orderPeriodStartDate)
+    console.log(orderPeriodEndDate)
 
-    await postShopeeOrderImport({
-      orderPeriodStartDate,
-      orderPeriodEndDate,
-    })
+    console.log(platform)
+
+    // await postShopeeOrderImport({
+    //   orderPeriodStartDate,
+    //   orderPeriodEndDate,
+    // })
 
     return { success: true, message: null, errors: null }
   } catch (error) {

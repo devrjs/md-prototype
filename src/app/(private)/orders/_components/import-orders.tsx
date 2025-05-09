@@ -13,11 +13,14 @@ import {
 } from '@/components/ui/select'
 import { useFormState } from '@/hooks/use-form-state'
 import { Loader2 } from 'lucide-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import type { DateRange } from 'react-day-picker'
 import { toast } from 'sonner'
 import { importShopeeOrders } from '../_actions/import-shopee-orders'
 
 export function ImportOrders() {
+  const [date, setDate] = useState<DateRange | undefined>()
+
   const [{ success, message, errors }, handleSubmit, isPending] =
     useFormState(importShopeeOrders)
 
@@ -40,7 +43,17 @@ export function ImportOrders() {
     <div className="px-6 pt-4 flex justify-between gap-6 items-center">
       <div className="bg-accent rounded-md p-2 gap-1 flex flex-col justify-between">
         <form onSubmit={handleSubmit} className="flex gap-2">
-          <DatePicker />
+          <input
+            type="hidden"
+            name="orderPeriodStartDate"
+            value={date?.from?.toISOString() ?? ''}
+          />
+          <input
+            type="hidden"
+            name="orderPeriodEndDate"
+            value={date?.to?.toISOString() ?? ''}
+          />
+          <DatePicker date={date} setDate={setDate} />
 
           <Select name="platform">
             <SelectTrigger className="w-[190px] bg-background cursor-pointer">
