@@ -27,7 +27,7 @@ export function ShopeeConnection() {
       )
     }
 
-    if (!success && !isPending) {
+    if (!success && !isPending && message) {
       toast.warning(message, {
         duration: 7000,
       })

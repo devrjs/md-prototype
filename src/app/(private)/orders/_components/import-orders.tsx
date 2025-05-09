@@ -32,7 +32,7 @@ export function ImportOrders() {
       )
     }
 
-    if (!success && !isPending) {
+    if (!success && !isPending && message) {
       toast.warning(message, {
         duration: 7000,
       })
@@ -53,20 +53,34 @@ export function ImportOrders() {
             name="orderPeriodEndDate"
             value={date?.to?.toISOString() ?? ''}
           />
-          <DatePicker date={date} setDate={setDate} />
+          <div className="flex flex-col gap-0.5">
+            <DatePicker date={date} setDate={setDate} />
+            {errors?.orderPeriodStartDate && (
+              <span className="text-xs px-2 font-medium text-red-500 dark:text-red-400">
+                {errors.orderPeriodStartDate[0]}
+              </span>
+            )}
+          </div>
 
-          <Select name="platform">
-            <SelectTrigger className="w-[190px] bg-background cursor-pointer">
-              <SelectValue placeholder="Selecione a plataforma" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="shopee">Shopee</SelectItem>
-                <SelectItem value="mercado-livre">Mercado Livre</SelectItem>
-                <SelectItem value="tray">Tray</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <div className="flex flex-col gap-0.5">
+            <Select name="platform">
+              <SelectTrigger className="w-[190px] bg-background cursor-pointer">
+                <SelectValue placeholder="Selecione a plataforma" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="shopee">Shopee</SelectItem>
+                  <SelectItem value="mercado-livre">Mercado Livre</SelectItem>
+                  <SelectItem value="tray">Tray</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            {errors?.platform && (
+              <span className="text-xs px-2 font-medium text-red-500 dark:text-red-400">
+                {errors.platform[0]}
+              </span>
+            )}
+          </div>
 
           <Button
             type="submit"
@@ -83,11 +97,6 @@ export function ImportOrders() {
             Atualizar Importados
           </Button>
         </form>
-        {errors?.platform && (
-          <span className="text-xs font-medium text-red-500 dark:text-red-400">
-            {errors.platform[0]}
-          </span>
-        )}
       </div>
       <Button className="bg-emerald-500 hover:bg-emerald-400 cursor-pointer">
         Novo Pedido
