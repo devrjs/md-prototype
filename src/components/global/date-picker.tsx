@@ -9,8 +9,10 @@ import {
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import {
+  endOfDay,
   endOfMonth,
   endOfYear,
+  startOfDay,
   startOfMonth,
   startOfYear,
   subDays,
@@ -30,33 +32,35 @@ interface DatePickerProps {
 
 export default function DatePicker({ date, setDate }: DatePickerProps) {
   const today = new Date()
+  const todayStart = startOfDay(today)
+  const todayEnd = endOfDay(today)
   const yesterday = {
-    from: subDays(today, 1),
-    to: subDays(today, 1),
+    from: startOfDay(subDays(today, 1)),
+    to: endOfDay(subDays(today, 1)),
   }
   const last7Days = {
-    from: subDays(today, 6),
-    to: today,
+    from: startOfDay(subDays(today, 6)),
+    to: todayEnd,
   }
   const last30Days = {
-    from: subDays(today, 29),
-    to: today,
+    from: startOfDay(subDays(today, 29)),
+    to: todayEnd,
   }
   const monthToDate = {
-    from: startOfMonth(today),
-    to: today,
+    from: startOfDay(startOfMonth(today)),
+    to: todayEnd,
   }
   const lastMonth = {
-    from: startOfMonth(subMonths(today, 1)),
-    to: endOfMonth(subMonths(today, 1)),
+    from: startOfDay(startOfMonth(subMonths(today, 1))),
+    to: endOfDay(endOfMonth(subMonths(today, 1))),
   }
   const yearToDate = {
-    from: startOfYear(today),
-    to: today,
+    from: startOfDay(startOfYear(today)),
+    to: todayEnd,
   }
   const lastYear = {
-    from: startOfYear(subYears(today, 1)),
-    to: endOfYear(subYears(today, 1)),
+    from: startOfDay(startOfYear(subYears(today, 1))),
+    to: endOfDay(endOfYear(subYears(today, 1))),
   }
   const [month, setMonth] = useState(today)
 
@@ -100,8 +104,8 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
                     className="w-full justify-start"
                     onClick={() => {
                       setDate({
-                        from: today,
-                        to: today,
+                        from: todayStart,
+                        to: todayEnd,
                       })
                       setMonth(today)
                     }}
@@ -193,6 +197,13 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
               selected={date}
               onSelect={newDate => {
                 if (newDate) {
+                  // Ajustar para início e fim do dia
+                  if (newDate.from) {
+                    newDate.from = startOfDay(newDate.from)
+                  }
+                  if (newDate.to) {
+                    newDate.to = endOfDay(newDate.to)
+                  }
                   setDate(newDate)
                 }
               }}
