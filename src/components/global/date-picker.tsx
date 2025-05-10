@@ -70,7 +70,7 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className="min-w-62 justify-start cursor-pointer"
+            className="min-w-58 justify-start cursor-pointer"
           >
             <CalendarIcon
               size={16}
